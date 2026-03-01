@@ -6,6 +6,7 @@ import {
   INodeType,
   INodeTypeDescription,
   IHttpRequestMethods,
+  IDataObject,
   NodeOperationError,
 } from 'n8n-workflow';
 
@@ -760,14 +761,14 @@ export class RecurPost implements INodeType {
 
         // Add response to return data
         if (Array.isArray(responseData)) {
-          returnData.push(...responseData.map((item) => ({ json: item })));
+          returnData.push(...responseData.map((item: IDataObject) => ({ json: item, pairedItem: { item: i } })));
         } else {
-          returnData.push({ json: responseData });
+          returnData.push({ json: responseData, pairedItem: { item: i } });
         }
 
       } catch (error) {
         if (this.continueOnFail()) {
-          returnData.push({ json: { error: (error as Error).message } });
+          returnData.push({ json: { error: (error as Error).message }, pairedItem: { item: i } });
           continue;
         }
         throw new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
