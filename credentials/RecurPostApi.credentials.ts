@@ -34,7 +34,7 @@ export class RecurPostApi implements ICredentialType {
       displayName: 'API URL',
       name: 'apiUrl',
       type: 'string',
-      default: 'https://app.recurpost.com',
+      default: 'https://social.recurpost.com',
       required: true,
       description: 'RecurPost API base URL',
     },
