@@ -553,8 +553,8 @@ export class RecurPost implements INodeType {
             const formData: Record<string, string> = {
               emailid: email,
               pass_key: apiKey,
-              smpa_ids: JSON.stringify(socialAccounts),
-              content: content,
+              id: socialAccounts.join(','),
+              message: content,
             };
 
             // Handle schedule type
@@ -563,9 +563,15 @@ export class RecurPost implements INodeType {
             } else if (scheduleType === 'scheduled') {
               const scheduleDateTime = this.getNodeParameter('scheduleDateTime', i) as string;
               if (scheduleDateTime) {
+                // Format: YYYY-MM-DD HH:mm:ss
                 const date = new Date(scheduleDateTime);
-                formData.schedule_date = date.toISOString().split('T')[0];
-                formData.schedule_time = date.toTimeString().split(' ')[0].substring(0, 5);
+                const yyyy = date.getFullYear();
+                const mm = String(date.getMonth() + 1).padStart(2, '0');
+                const dd = String(date.getDate()).padStart(2, '0');
+                const hh = String(date.getHours()).padStart(2, '0');
+                const min = String(date.getMinutes()).padStart(2, '0');
+                const ss = String(date.getSeconds()).padStart(2, '0');
+                formData.schedule_date_time = `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
               }
             } else if (scheduleType === 'queue') {
               formData.add_to_queue = '1';
@@ -579,7 +585,7 @@ export class RecurPost implements INodeType {
               formData.video_url = additionalOptions.videoUrl;
             }
             if (additionalOptions.linkUrl) {
-              formData.link_url = additionalOptions.linkUrl;
+              formData.url = additionalOptions.linkUrl;
             }
             if (additionalOptions.firstComment) {
               formData.first_comment = additionalOptions.firstComment;
@@ -628,8 +634,8 @@ export class RecurPost implements INodeType {
             const formData: Record<string, string> = {
               emailid: email,
               pass_key: apiKey,
-              deck_id: libraryId,
-              content: libraryContent,
+              id: libraryId,
+              message: libraryContent,
             };
 
             if (libraryOptions.imageUrl) {
@@ -639,8 +645,10 @@ export class RecurPost implements INodeType {
               formData.video_url = libraryOptions.videoUrl;
             }
             if (libraryOptions.linkUrl) {
-              formData.link_url = libraryOptions.linkUrl;
+              formData.url = libraryOptions.linkUrl;
             }
+
+            const requestBody = new URLSearchParams(formData).toString();
 
             responseData = await this.helpers.httpRequest({
               method: 'POST' as IHttpRequestMethods,
@@ -648,7 +656,7 @@ export class RecurPost implements INodeType {
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams(formData).toString(),
+              body: requestBody,
             });
           }
         }
@@ -728,7 +736,7 @@ export class RecurPost implements INodeType {
               body: new URLSearchParams({
                 emailid: email,
                 pass_key: apiKey,
-                prompt: aiPrompt,
+                prompt_text: aiPrompt,
                 platform: aiPlatform,
               }).toString(),
             });
@@ -744,7 +752,7 @@ export class RecurPost implements INodeType {
               body: new URLSearchParams({
                 emailid: email,
                 pass_key: apiKey,
-                prompt: imagePrompt,
+                prompt_text: imagePrompt,
               }).toString(),
             });
           }
