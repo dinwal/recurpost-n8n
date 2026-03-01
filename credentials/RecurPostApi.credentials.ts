@@ -1,5 +1,4 @@
 import {
-  IAuthenticateGeneric,
   ICredentialTestRequest,
   ICredentialType,
   INodeProperties,
@@ -40,16 +39,6 @@ export class RecurPostApi implements ICredentialType {
     },
   ];
 
-  authenticate: IAuthenticateGeneric = {
-    type: 'generic',
-    properties: {
-      body: {
-        emailid: '={{$credentials.email}}',
-        pass_key: '={{$credentials.apiKey}}',
-      },
-    },
-  };
-
   test: ICredentialTestRequest = {
     request: {
       baseURL: '={{$credentials.apiUrl}}',
@@ -58,10 +47,7 @@ export class RecurPostApi implements ICredentialType {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: {
-        emailid: '={{$credentials.email}}',
-        pass_key: '={{$credentials.apiKey}}',
-      },
+      body: 'emailid={{$credentials.email}}&pass_key={{$credentials.apiKey}}',
     },
     rules: [
       {
