@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="rpGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#rpGradient)"/>
+  <g fill="white">
+    <!-- Circular arrows representing recurring/recycling -->
+    <path d="M32 16c-8.8 0-16 7.2-16 16h4c0-6.6 5.4-12 12-12V16z"/>
+    <path d="M32 48c8.8 0 16-7.2 16-16h-4c0 6.6-5.4 12-12 12v4z"/>
+    <!-- Arrow heads -->
+    <polygon points="32,10 38,18 26,18"/>
+    <polygon points="32,54 26,46 38,46"/>
+  </g>
+</svg>
