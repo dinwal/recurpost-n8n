@@ -471,14 +471,14 @@ export class RecurPost implements INodeType {
           }).toString(),
         });
 
-        if (response.status !== 200 || !response.data) {
+        if (response.status !== 200 || !response.social_accounts) {
           return [];
         }
 
         const accounts: INodePropertyOptions[] = [];
-        for (const account of response.data) {
+        for (const account of response.social_accounts) {
           accounts.push({
-            name: `${account.platform_name} - ${account.account_name || account.smpa_id}`,
+            name: account.smpa_name || account.smpa_id,
             value: account.smpa_id,
           });
         }
@@ -502,15 +502,15 @@ export class RecurPost implements INodeType {
           }).toString(),
         });
 
-        if (response.status !== 200 || !response.data) {
+        if (response.status !== 200 || !response.library_list) {
           return [];
         }
 
         const libraries: INodePropertyOptions[] = [];
-        for (const library of response.data) {
+        for (const library of response.library_list) {
           libraries.push({
-            name: library.library_name || library.deck_id,
-            value: library.deck_id,
+            name: library.cd_name || library.cd_id,
+            value: library.cd_id,
           });
         }
 
@@ -613,8 +613,8 @@ export class RecurPost implements INodeType {
               }).toString(),
             });
 
-            if (responseData.data) {
-              responseData = responseData.data;
+            if (responseData.library_list) {
+              responseData = responseData.library_list;
             }
           } else if (operation === 'addContent') {
             const libraryId = this.getNodeParameter('libraryId', i) as string;
@@ -670,8 +670,8 @@ export class RecurPost implements INodeType {
               }).toString(),
             });
 
-            if (responseData.data) {
-              responseData = responseData.data;
+            if (responseData.social_accounts) {
+              responseData = responseData.social_accounts;
             }
           } else if (operation === 'getConnectionUrls') {
             responseData = await this.helpers.httpRequest({
@@ -686,8 +686,8 @@ export class RecurPost implements INodeType {
               }).toString(),
             });
 
-            if (responseData.data) {
-              responseData = responseData.data;
+            if (responseData.social_links) {
+              responseData = responseData.social_links;
             }
           } else if (operation === 'getHistory') {
             const historyAccountId = this.getNodeParameter('historyAccountId', i) as string;
@@ -701,12 +701,12 @@ export class RecurPost implements INodeType {
               body: new URLSearchParams({
                 emailid: email,
                 pass_key: apiKey,
-                smpa_id: historyAccountId,
+                id: historyAccountId,
               }).toString(),
             });
 
-            if (responseData.data) {
-              responseData = responseData.data;
+            if (responseData.history_data) {
+              responseData = responseData.history_data;
             }
           }
         }
