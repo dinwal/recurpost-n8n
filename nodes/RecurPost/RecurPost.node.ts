@@ -5,9 +5,9 @@ import {
   INodePropertyOptions,
   INodeType,
   INodeTypeDescription,
-  IHttpRequestMethods,
   IDataObject,
-  NodeOperationError,
+  NodeApiError,
+  NodeConnectionTypes,
 } from 'n8n-workflow';
 
 export class RecurPost implements INodeType {
@@ -22,8 +22,8 @@ export class RecurPost implements INodeType {
     defaults: {
       name: 'RecurPost',
     },
-    inputs: ['main'],
-    outputs: ['main'],
+    inputs: [NodeConnectionTypes.Main],
+    outputs: [NodeConnectionTypes.Main],
     credentials: [
       {
         name: 'recurPostApi',
@@ -31,7 +31,7 @@ export class RecurPost implements INodeType {
       },
     ],
     properties: [
-      // Resource
+      // Resource (sorted alphabetically)
       {
         displayName: 'Resource',
         name: 'resource',
@@ -39,26 +39,26 @@ export class RecurPost implements INodeType {
         noDataExpression: true,
         options: [
           {
-            name: 'Post',
-            value: 'post',
+            name: 'AI Content',
+            value: 'aiContent',
           },
           {
             name: 'Library',
             value: 'library',
           },
           {
-            name: 'Social Account',
-            value: 'socialAccount',
+            name: 'Post',
+            value: 'post',
           },
           {
-            name: 'AI Content',
-            value: 'aiContent',
+            name: 'Social Account',
+            value: 'socialAccount',
           },
         ],
         default: 'post',
       },
 
-      // Operations for Post
+      // Operations for AI Content (sorted alphabetically)
       {
         displayName: 'Operation',
         name: 'operation',
@@ -66,21 +66,27 @@ export class RecurPost implements INodeType {
         noDataExpression: true,
         displayOptions: {
           show: {
-            resource: ['post'],
+            resource: ['aiContent'],
           },
         },
         options: [
           {
-            name: 'Schedule',
-            value: 'schedule',
-            description: 'Schedule a post to social media accounts',
-            action: 'Schedule a post',
+            name: 'Generate Image',
+            value: 'generateImage',
+            description: 'Generate an image using AI',
+            action: 'Generate image',
+          },
+          {
+            name: 'Generate Text',
+            value: 'generateText',
+            description: 'Generate post content using AI',
+            action: 'Generate text content',
           },
         ],
-        default: 'schedule',
+        default: 'generateText',
       },
 
-      // Operations for Library
+      // Operations for Library (sorted alphabetically)
       {
         displayName: 'Operation',
         name: 'operation',
@@ -108,7 +114,29 @@ export class RecurPost implements INodeType {
         default: 'addContent',
       },
 
-      // Operations for Social Account
+      // Operations for Post
+      {
+        displayName: 'Operation',
+        name: 'operation',
+        type: 'options',
+        noDataExpression: true,
+        displayOptions: {
+          show: {
+            resource: ['post'],
+          },
+        },
+        options: [
+          {
+            name: 'Schedule',
+            value: 'schedule',
+            description: 'Schedule a post to social media accounts',
+            action: 'Schedule a post',
+          },
+        ],
+        default: 'schedule',
+      },
+
+      // Operations for Social Account (sorted alphabetically)
       {
         displayName: 'Operation',
         name: 'operation',
@@ -140,34 +168,6 @@ export class RecurPost implements INodeType {
           },
         ],
         default: 'getAll',
-      },
-
-      // Operations for AI Content
-      {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-          show: {
-            resource: ['aiContent'],
-          },
-        },
-        options: [
-          {
-            name: 'Generate Text',
-            value: 'generateText',
-            description: 'Generate post content using AI',
-            action: 'Generate text content',
-          },
-          {
-            name: 'Generate Image',
-            value: 'generateImage',
-            description: 'Generate an image using AI',
-            action: 'Generate image',
-          },
-        ],
-        default: 'generateText',
       },
 
       // ==========================================
@@ -262,18 +262,21 @@ export class RecurPost implements INodeType {
         },
         options: [
           {
+            displayName: 'First Comment',
+            name: 'firstComment',
+            type: 'string',
+            typeOptions: {
+              rows: 2,
+            },
+            default: '',
+            description: 'Add a first comment to your post (supported on some platforms)',
+          },
+          {
             displayName: 'Image URL',
             name: 'imageUrl',
             type: 'string',
             default: '',
             description: 'URL of an image to include with the post',
-          },
-          {
-            displayName: 'Video URL',
-            name: 'videoUrl',
-            type: 'string',
-            default: '',
-            description: 'URL of a video to include with the post',
           },
           {
             displayName: 'Link URL',
@@ -283,14 +286,11 @@ export class RecurPost implements INodeType {
             description: 'URL to include as a link preview',
           },
           {
-            displayName: 'First Comment',
-            name: 'firstComment',
+            displayName: 'Video URL',
+            name: 'videoUrl',
             type: 'string',
-            typeOptions: {
-              rows: 2,
-            },
             default: '',
-            description: 'Add a first comment to your post (supported on some platforms)',
+            description: 'URL of a video to include with the post',
           },
         ],
       },
@@ -353,18 +353,18 @@ export class RecurPost implements INodeType {
             description: 'URL of an image to include',
           },
           {
-            displayName: 'Video URL',
-            name: 'videoUrl',
-            type: 'string',
-            default: '',
-            description: 'URL of a video to include',
-          },
-          {
             displayName: 'Link URL',
             name: 'linkUrl',
             type: 'string',
             default: '',
             description: 'URL to include as a link',
+          },
+          {
+            displayName: 'Video URL',
+            name: 'videoUrl',
+            type: 'string',
+            default: '',
+            description: 'URL of a video to include',
           },
         ],
       },
@@ -394,11 +394,11 @@ export class RecurPost implements INodeType {
         name: 'aiPlatform',
         type: 'options',
         options: [
-          { name: 'Twitter/X', value: 'twitter' },
           { name: 'Facebook', value: 'facebook' },
+          { name: 'General', value: 'general' },
           { name: 'Instagram', value: 'instagram' },
           { name: 'LinkedIn', value: 'linkedin' },
-          { name: 'General', value: 'general' },
+          { name: 'Twitter/X', value: 'twitter' },
         ],
         default: 'general',
         displayOptions: {
@@ -460,16 +460,13 @@ export class RecurPost implements INodeType {
         const credentials = await this.getCredentials('recurPostApi');
         const apiUrl = credentials.apiUrl as string;
 
-        const response = await this.helpers.httpRequest({
-          method: 'POST' as IHttpRequestMethods,
+        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+          method: 'POST',
           url: `${apiUrl}/api/social_account_list`,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: new URLSearchParams({
-            emailid: credentials.email as string,
-            pass_key: credentials.apiKey as string,
-          }).toString(),
+          body: {},
         });
 
         if (response.status !== 200 || !response.social_accounts) {
@@ -491,16 +488,13 @@ export class RecurPost implements INodeType {
         const credentials = await this.getCredentials('recurPostApi');
         const apiUrl = credentials.apiUrl as string;
 
-        const response = await this.helpers.httpRequest({
-          method: 'POST' as IHttpRequestMethods,
+        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+          method: 'POST',
           url: `${apiUrl}/api/library_list`,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: new URLSearchParams({
-            emailid: credentials.email as string,
-            pass_key: credentials.apiKey as string,
-          }).toString(),
+          body: {},
         });
 
         if (response.status !== 200 || !response.library_list) {
@@ -526,8 +520,6 @@ export class RecurPost implements INodeType {
 
     const credentials = await this.getCredentials('recurPostApi');
     const apiUrl = credentials.apiUrl as string;
-    const email = credentials.email as string;
-    const apiKey = credentials.apiKey as string;
 
     const resource = this.getNodeParameter('resource', 0) as string;
     const operation = this.getNodeParameter('operation', 0) as string;
@@ -551,20 +543,17 @@ export class RecurPost implements INodeType {
               firstComment?: string;
             };
 
-            const formData: Record<string, string> = {
-              emailid: email,
-              pass_key: apiKey,
+            const body: Record<string, string> = {
               id: socialAccounts.join(','),
               message: content,
             };
 
             // Handle schedule type
             if (scheduleType === 'now') {
-              formData.post_now = '1';
+              body.post_now = '1';
             } else if (scheduleType === 'scheduled') {
               const scheduleDateTime = this.getNodeParameter('scheduleDateTime', i) as string;
               if (scheduleDateTime) {
-                // Format: YYYY-MM-DD HH:mm:ss
                 const date = new Date(scheduleDateTime);
                 const yyyy = date.getFullYear();
                 const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -572,33 +561,32 @@ export class RecurPost implements INodeType {
                 const hh = String(date.getHours()).padStart(2, '0');
                 const min = String(date.getMinutes()).padStart(2, '0');
                 const ss = String(date.getSeconds()).padStart(2, '0');
-                formData.schedule_date_time = `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+                body.schedule_date_time = `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
               }
             } else if (scheduleType === 'queue') {
-              formData.add_to_queue = '1';
+              body.add_to_queue = '1';
             }
 
-            // Add optional fields
             if (additionalOptions.imageUrl) {
-              formData.image_url = additionalOptions.imageUrl;
+              body.image_url = additionalOptions.imageUrl;
             }
             if (additionalOptions.videoUrl) {
-              formData.video_url = additionalOptions.videoUrl;
+              body.video_url = additionalOptions.videoUrl;
             }
             if (additionalOptions.linkUrl) {
-              formData.url = additionalOptions.linkUrl;
+              body.url = additionalOptions.linkUrl;
             }
             if (additionalOptions.firstComment) {
-              formData.first_comment = additionalOptions.firstComment;
+              body.first_comment = additionalOptions.firstComment;
             }
 
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/post_content`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams(formData).toString(),
+              body,
             });
           }
         }
@@ -608,16 +596,13 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'library') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/library_list`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams({
-                emailid: email,
-                pass_key: apiKey,
-              }).toString(),
+              body: {},
             });
 
             if (responseData.library_list) {
@@ -632,32 +617,28 @@ export class RecurPost implements INodeType {
               linkUrl?: string;
             };
 
-            const formData: Record<string, string> = {
-              emailid: email,
-              pass_key: apiKey,
+            const body: Record<string, string> = {
               id: libraryId,
               message: libraryContent,
             };
 
             if (libraryOptions.imageUrl) {
-              formData.image_url = libraryOptions.imageUrl;
+              body.image_url = libraryOptions.imageUrl;
             }
             if (libraryOptions.videoUrl) {
-              formData.video_url = libraryOptions.videoUrl;
+              body.video_url = libraryOptions.videoUrl;
             }
             if (libraryOptions.linkUrl) {
-              formData.url = libraryOptions.linkUrl;
+              body.url = libraryOptions.linkUrl;
             }
 
-            const requestBody = new URLSearchParams(formData).toString();
-
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/add_content_in_library`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: requestBody,
+              body,
             });
           }
         }
@@ -667,32 +648,26 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'socialAccount') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/social_account_list`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams({
-                emailid: email,
-                pass_key: apiKey,
-              }).toString(),
+              body: {},
             });
 
             if (responseData.social_accounts) {
               responseData = responseData.social_accounts;
             }
           } else if (operation === 'getConnectionUrls') {
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/connect_social_account_urls`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams({
-                emailid: email,
-                pass_key: apiKey,
-              }).toString(),
+              body: {},
             });
 
             if (responseData.social_links) {
@@ -701,17 +676,15 @@ export class RecurPost implements INodeType {
           } else if (operation === 'getHistory') {
             const historyAccountId = this.getNodeParameter('historyAccountId', i) as string;
 
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/history_data`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams({
-                emailid: email,
-                pass_key: apiKey,
+              body: {
                 id: historyAccountId,
-              }).toString(),
+              },
             });
 
             if (responseData.history_data) {
@@ -728,33 +701,29 @@ export class RecurPost implements INodeType {
             const aiPrompt = this.getNodeParameter('aiPrompt', i) as string;
             const aiPlatform = this.getNodeParameter('aiPlatform', i) as string;
 
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/generate_content_with_ai`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams({
-                emailid: email,
-                pass_key: apiKey,
+              body: {
                 prompt_text: aiPrompt,
                 platform: aiPlatform,
-              }).toString(),
+              },
             });
           } else if (operation === 'generateImage') {
             const imagePrompt = this.getNodeParameter('imagePrompt', i) as string;
 
-            responseData = await this.helpers.httpRequest({
-              method: 'POST' as IHttpRequestMethods,
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
               url: `${apiUrl}/api/generate_image_with_ai`,
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: new URLSearchParams({
-                emailid: email,
-                pass_key: apiKey,
+              body: {
                 prompt_text: imagePrompt,
-              }).toString(),
+              },
             });
           }
         }
@@ -771,7 +740,8 @@ export class RecurPost implements INodeType {
           returnData.push({ json: { error: (error as Error).message }, pairedItem: { item: i } });
           continue;
         }
-        throw new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        throw new NodeApiError(this.getNode(), error as any);
       }
     }
 

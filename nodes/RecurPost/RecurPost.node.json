@@ -1,0 +1,19 @@
+{
+	"node": "n8n-nodes-base.recurPost",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Marketing & Content"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://developers.recurpost.com/"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://developers.recurpost.com/"
+			}
+		]
+	},
+	"alias": ["social media", "scheduling", "automation", "social", "recurpost"]
+}

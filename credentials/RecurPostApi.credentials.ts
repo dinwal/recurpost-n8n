@@ -1,4 +1,5 @@
 import {
+  IAuthenticateGeneric,
   ICredentialTestRequest,
   ICredentialType,
   INodeProperties,
@@ -8,6 +9,7 @@ export class RecurPostApi implements ICredentialType {
   name = 'recurPostApi';
   displayName = 'RecurPost API';
   documentationUrl = 'https://developers.recurpost.com/';
+  icon = 'file:recurpost.png' as const;
   properties: INodeProperties[] = [
     {
       displayName: 'Email',
@@ -38,6 +40,16 @@ export class RecurPostApi implements ICredentialType {
       description: 'RecurPost API base URL',
     },
   ];
+
+  authenticate: IAuthenticateGeneric = {
+    type: 'generic',
+    properties: {
+      body: {
+        emailid: '={{$credentials.email}}',
+        pass_key: '={{$credentials.apiKey}}',
+      },
+    },
+  };
 
   test: ICredentialTestRequest = {
     request: {
