@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-recurpost",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "N8N community node for RecurPost - Schedule and automate your social media posts",
   "keywords": [
     "n8n-community-node-package",
