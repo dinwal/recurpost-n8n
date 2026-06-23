@@ -56,10 +56,7 @@ export class RecurPostApi implements ICredentialType {
       baseURL: '={{$credentials.apiUrl}}',
       url: '/api/user_login',
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: 'emailid={{$credentials.email}}&pass_key={{$credentials.apiKey}}',
+      body: {},
     },
     rules: [
       {
