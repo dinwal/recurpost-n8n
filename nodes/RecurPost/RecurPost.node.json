@@ -1,5 +1,5 @@
 {
-	"node": "n8n-nodes-base.recurPost",
+	"node": "n8n-nodes-recurpost.recurPost",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Marketing & Content"],
