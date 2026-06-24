@@ -14,7 +14,7 @@ export class RecurPost implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'RecurPost',
     name: 'recurPost',
-    icon: 'file:recurpost.png',
+    icon: 'file:recurpost.svg',
     group: ['transform'],
     version: 1,
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -105,10 +105,10 @@ export class RecurPost implements INodeType {
             action: 'Add content to library',
           },
           {
-            name: 'Get All',
+            name: 'Get Many',
             value: 'getAll',
-            description: 'Get all libraries',
-            action: 'Get all libraries',
+            description: 'Get many libraries',
+            action: 'Get many libraries',
           },
         ],
         default: 'addContent',
@@ -149,22 +149,22 @@ export class RecurPost implements INodeType {
         },
         options: [
           {
-            name: 'Get All',
-            value: 'getAll',
-            description: 'Get all connected social media accounts',
-            action: 'Get all social accounts',
-          },
-          {
             name: 'Get Connection URLs',
             value: 'getConnectionUrls',
             description: 'Get URLs to connect new social media accounts',
-            action: 'Get connection URLs',
+            action: 'Get connection links',
           },
           {
             name: 'Get History',
             value: 'getHistory',
             description: 'Get posting history for a social media account',
             action: 'Get posting history',
+          },
+          {
+            name: 'Get Many',
+            value: 'getAll',
+            description: 'Get many connected social media accounts',
+            action: 'Get many social accounts',
           },
         ],
         default: 'getAll',
@@ -213,16 +213,16 @@ export class RecurPost implements INodeType {
         type: 'options',
         options: [
           {
+            name: 'Add to Queue',
+            value: 'queue',
+          },
+          {
             name: 'Post Now',
             value: 'now',
           },
           {
             name: 'Schedule for Later',
             value: 'scheduled',
-          },
-          {
-            name: 'Add to Queue',
-            value: 'queue',
           },
         ],
         default: 'now',
@@ -452,6 +452,7 @@ export class RecurPost implements INodeType {
         description: 'Select the social media account to get history for. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
       },
     ],
+		usableAsTool: true,
   };
 
   methods = {
@@ -741,7 +742,7 @@ export class RecurPost implements INodeType {
           continue;
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        throw new NodeApiError(this.getNode(), error as any);
+        throw new NodeApiError(this.getNode(), error as any, { itemIndex: i });
       }
     }
 

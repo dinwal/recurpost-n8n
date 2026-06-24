@@ -1,23 +1,67 @@
-name: Publish to npm
+# Publishes this n8n community node package to npm on every version tag push.
+#
+# Starting May 1 2026, n8n requires all community nodes to be published via
+# GitHub Actions with npm provenance statements. This workflow satisfies that
+# requirement. Provenance lets anyone cryptographically verify that a package
+# was built by this exact workflow, from this exact repository and commit.
+#
+# Releases are driven by `npm run release` (n8n-node release) locally, which
+# bumps the version, updates the changelog, commits, tags, and pushes. The
+# pushed tag triggers this workflow, which publishes to npm with provenance.
+#
+# ─── AUTH (one-time setup) ─────────────────────────────────────────────────────
+#
+# Option A — OIDC Trusted Publishing (recommended, no long-lived secrets):
+#   npmjs.com → package settings → "Trusted Publishers" → Add a publisher:
+#     Repository owner: dinwal
+#     Repository name:  recurpost-n8n
+#     Workflow name:    publish.yml
+#   Then leave the NPM_TOKEN secret UNSET — GitHub's OIDC token is used instead.
+#
+# Option B — npm Automation Token (fallback, currently configured):
+#   Set NPM_TOKEN in repo Actions secrets (granular/automation token with
+#   read+write publish scope on this package).
+
+name: Publish
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - '*.*.*'
 
 jobs:
   publish:
+    name: Publish to npm
     runs-on: ubuntu-latest
+
     permissions:
-      contents: read
+      # Required to mint an OIDC token for npm provenance attestation.
       id-token: write
+      # Scoped down from the default (write) for least-privilege publishing.
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish --provenance --access public
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Release
+        # Publishes to npm with a provenance attestation (requires id-token: write above).
+        # Lint and build run automatically as part of the release process.
+        #
+        # Option A (OIDC): leave NPM_TOKEN unset — the token step is skipped and
+        #   npm uses the OIDC exchange instead.
+        # Option B (token): set NPM_TOKEN in repo secrets — it is written to
+        #   .npmrc here before publishing.
+        run: |
+          [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          npm run release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
