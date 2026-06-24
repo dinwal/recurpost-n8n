@@ -4,10 +4,13 @@ This is an n8n community node for [RecurPost](https://recurpost.com) - the socia
 
 ## Features
 
-- **Schedule Posts** - Post to multiple social media accounts instantly, at a scheduled time, or add to your queue
-- **Manage Libraries** - Add content to your recurring content libraries
+- **Schedule Posts** - Post to multiple social media accounts instantly or at a scheduled time
+- **Multiple Images** - Attach several images to a single post or library item (carousel/gallery)
+- **Per-Platform Customization** - Override the message and set platform-specific options for Facebook, Instagram, LinkedIn, Pinterest, Google Business, YouTube, TikTok, Threads, Bluesky and Twitter/X
+- **Manage Libraries** - Add content to your recurring content libraries, with go-live / expiry dates and top-of-queue
 - **Get Social Accounts** - Retrieve list of connected social media accounts
-- **AI Content Generation** - Generate post text and images using AI
+- **Posting History** - Pull posting history for an account, optionally over a date range
+- **AI Content Generation** - Generate post text (with multi-turn conversation) and images using AI
 
 ## Installation
 
@@ -38,18 +41,28 @@ You'll need your RecurPost API credentials:
 
 | Operation | Description |
 |-----------|-------------|
-| Schedule | Schedule a post to one or more social media accounts |
+| Schedule | Schedule a post to one or more social media accounts (sent to each account separately) |
 
-**Schedule Options:**
+**Schedule Type:**
 - **Post Now** - Publish immediately
 - **Schedule for Later** - Set a specific date and time
-- **Add to Queue** - Add to your posting queue
 
-**Additional Options:**
-- Image URL
+**Media & General Options:**
+- Image URLs (add multiple for a carousel/gallery)
 - Video URL
 - Link URL
-- First Comment
+- First Comment (default, applied to all platforms)
+- Host Images on RecurPost (turn off to pass original image URLs straight through)
+
+**Per-Platform Options** (apply to both Schedule and Add Content):
+- **Per-Platform Message Overrides** - a custom message for any of the 10 supported networks
+- **Facebook** - post type (feed/reel/story), first comment
+- **Instagram** - post type, share reel to feed, first comment
+- **LinkedIn** - document URL + title (document carousel), first comment
+- **Pinterest** - pin title
+- **Google Business** - CTA + URL, offer title/dates/coupon/terms/redeem link
+- **YouTube** - title, category, privacy, tags, thumbnail, made-for-kids
+- **TikTok** - privacy, allow comments/duet/stitches, branded content flags
 
 ### Library
 
@@ -58,19 +71,24 @@ You'll need your RecurPost API credentials:
 | Add Content | Add content to a library for recurring posts |
 | Get All | Retrieve all your content libraries |
 
+**Add Content** supports all the media and per-platform options above, plus:
+- Go Live Date (keep as draft until)
+- Stop Recurring Date (expire after)
+- Top of Queue
+
 ### Social Account
 
 | Operation | Description |
 |-----------|-------------|
 | Get All | Get all connected social media accounts |
 | Get Connection URLs | Get URLs to connect new social media accounts |
-| Get History | Get posting history for a specific social account |
+| Get History | Get posting history for a specific social account (optional start/end date range and video-update filter) |
 
 ### AI Content
 
 | Operation | Description |
 |-----------|-------------|
-| Generate Text | Generate post content using AI |
+| Generate Text | Generate post content using AI (supports multi-turn conversation via session ID, chat progress and chat history) |
 | Generate Image | Generate an image using AI |
 
 ## Example Workflow
