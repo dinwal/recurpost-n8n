@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-recurpost",
-  "version": "1.1.13",
+  "version": "1.2.0",
   "description": "N8N community node for RecurPost - Schedule and automate your social media posts",
   "keywords": [
     "n8n-community-node-package",
@@ -12,7 +12,10 @@
   ],
   "license": "MIT",
   "homepage": "https://recurpost.com",
-  "author": { "name": "RecurPost", "email": "support@recurpost.com" },
+  "author": {
+    "name": "RecurPost",
+    "email": "support@recurpost.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dinwal/recurpost-n8n.git"
@@ -28,12 +31,18 @@
     "release": "n8n-node release",
     "prepublishOnly": "n8n-node prerelease"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "strict": true,
-    "credentials": ["dist/credentials/RecurPostApi.credentials.js"],
-    "nodes": ["dist/nodes/RecurPost/RecurPost.node.js"]
+    "credentials": [
+      "dist/credentials/RecurPostApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/RecurPost/RecurPost.node.js"
+    ]
   },
   "devDependencies": {
     "@n8n/node-cli": "latest",
@@ -43,6 +52,10 @@
     "release-it": "20.2.0",
     "typescript": "5.9.3"
   },
-  "peerDependencies": { "n8n-workflow": "*" },
-  "engines": { "node": ">=18.0.0" }
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
