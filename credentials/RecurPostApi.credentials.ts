@@ -9,7 +9,7 @@ export class RecurPostApi implements ICredentialType {
   name = 'recurPostApi';
   displayName = 'RecurPost API';
   documentationUrl = 'https://developers.recurpost.com/';
-  icon = 'file:recurpost.png' as const;
+  icon = 'file:recurpost.svg' as const;
   properties: INodeProperties[] = [
     {
       displayName: 'Email',
