@@ -223,6 +223,10 @@ export class RecurPost implements INodeType {
             name: 'Social Account',
             value: 'socialAccount',
           },
+          {
+            name: 'Workspace',
+            value: 'workspace',
+          },
         ],
         default: 'post',
       },
@@ -337,6 +341,50 @@ export class RecurPost implements INodeType {
           },
         ],
         default: 'getAll',
+      },
+
+      // Operations for Workspace
+      {
+        displayName: 'Operation',
+        name: 'operation',
+        type: 'options',
+        noDataExpression: true,
+        displayOptions: {
+          show: {
+            resource: ['workspace'],
+          },
+        },
+        options: [
+          {
+            name: 'Get Many',
+            value: 'getAll',
+            description: 'Get many workspaces you are a member of',
+            action: 'Get many workspaces',
+          },
+        ],
+        default: 'getAll',
+      },
+
+      // ==========================================
+      // SHARED: WORKSPACE SELECTOR
+      // Shown for every operation that accepts an optional workspace_id.
+      // An empty value means the account's default workspace (previous behaviour).
+      // ==========================================
+      {
+        displayName: 'Workspace Name or ID',
+        name: 'workspaceId',
+        type: 'options',
+        typeOptions: {
+          loadOptionsMethod: 'getWorkspaces',
+        },
+        default: '',
+        displayOptions: {
+          show: {
+            resource: ['post', 'library', 'socialAccount'],
+            operation: ['schedule', 'addContent', 'getAll', 'getHistory'],
+          },
+        },
+        description: 'The workspace to operate in. Leave as Default Workspace to keep using your default workspace. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
       },
 
       // ==========================================
@@ -1033,9 +1081,43 @@ export class RecurPost implements INodeType {
 
   methods = {
     loadOptions: {
+      async getWorkspaces(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+        const credentials = await this.getCredentials('recurPostApi');
+        const apiUrl = credentials.apiUrl as string;
+
+        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+          method: 'POST',
+          url: `${apiUrl}/api/workspace_list`,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: {},
+        });
+
+        // Empty value = the account's default workspace (previous behaviour).
+        const workspaces: INodePropertyOptions[] = [{ name: 'Default Workspace', value: '' }];
+
+        if (response.status === 200 && response.workspace_list) {
+          for (const workspace of response.workspace_list) {
+            workspaces.push({
+              name: workspace.ownership === 'shared' ? `${workspace.ws_name} (Shared)` : workspace.ws_name,
+              value: workspace.ws_id,
+            });
+          }
+        }
+
+        return workspaces;
+      },
+
       async getSocialAccounts(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
         const credentials = await this.getCredentials('recurPostApi');
         const apiUrl = credentials.apiUrl as string;
+
+        const body: IDataObject = {};
+        const workspaceId = this.getCurrentNodeParameter('workspaceId') as string;
+        if (workspaceId) {
+          body.workspace_id = workspaceId;
+        }
 
         const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
           method: 'POST',
@@ -1043,7 +1125,7 @@ export class RecurPost implements INodeType {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: {},
+          body,
         });
 
         if (response.status !== 200 || !response.social_accounts) {
@@ -1065,13 +1147,19 @@ export class RecurPost implements INodeType {
         const credentials = await this.getCredentials('recurPostApi');
         const apiUrl = credentials.apiUrl as string;
 
+        const body: IDataObject = {};
+        const workspaceId = this.getCurrentNodeParameter('workspaceId') as string;
+        if (workspaceId) {
+          body.workspace_id = workspaceId;
+        }
+
         const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
           method: 'POST',
           url: `${apiUrl}/api/library_list`,
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: {},
+          body,
         });
 
         if (response.status !== 200 || !response.library_list) {
@@ -1107,6 +1195,11 @@ export class RecurPost implements INodeType {
       try {
         let responseData;
 
+        // Optional workspace scoping — an empty value means the account's
+        // default workspace (the API's behaviour when workspace_id is omitted).
+        const workspaceId = this.getNodeParameter('workspaceId', i, '') as string;
+        const workspaceBody: Record<string, string> = workspaceId ? { workspace_id: workspaceId } : {};
+
         // ==========================================
         // POST OPERATIONS
         // ==========================================
@@ -1118,6 +1211,7 @@ export class RecurPost implements INodeType {
 
             const baseBody: Record<string, string> = {
               message: content,
+              ...workspaceBody,
               ...buildCustomization(i),
             };
 
@@ -1161,7 +1255,7 @@ export class RecurPost implements INodeType {
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: {},
+              body: workspaceBody,
             });
 
             if (responseData.library_list) {
@@ -1175,6 +1269,7 @@ export class RecurPost implements INodeType {
             const body: Record<string, string> = {
               id: libraryId,
               message: libraryContent,
+              ...workspaceBody,
               ...buildCustomization(i),
             };
 
@@ -1210,7 +1305,7 @@ export class RecurPost implements INodeType {
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-              body: {},
+              body: workspaceBody,
             });
 
             if (responseData.social_accounts) {
@@ -1235,6 +1330,7 @@ export class RecurPost implements INodeType {
 
             const body: Record<string, string> = {
               id: historyAccountId,
+              ...workspaceBody,
             };
 
             if (historyOptions.startDate) {
@@ -1258,6 +1354,26 @@ export class RecurPost implements INodeType {
 
             if (responseData.history_data) {
               responseData = responseData.history_data;
+            }
+          }
+        }
+
+        // ==========================================
+        // WORKSPACE OPERATIONS
+        // ==========================================
+        else if (resource === 'workspace') {
+          if (operation === 'getAll') {
+            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
+              method: 'POST',
+              url: `${apiUrl}/api/workspace_list`,
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: {},
+            });
+
+            if (responseData.workspace_list) {
+              responseData = responseData.workspace_list;
             }
           }
         }

@@ -11,6 +11,7 @@ This is an n8n community node for [RecurPost](https://recurpost.com) - the socia
 - **Get Social Accounts** - Retrieve list of connected social media accounts
 - **Posting History** - Pull posting history for an account, optionally over a date range
 - **AI Content Generation** - Generate post text (with multi-turn conversation) and images using AI
+- **Workspaces** - List your workspaces and scope any operation to a specific workspace (own or shared)
 
 ## Installation
 
@@ -83,6 +84,14 @@ You'll need your RecurPost API credentials:
 | Get All | Get all connected social media accounts |
 | Get Connection URLs | Get URLs to connect new social media accounts |
 | Get History | Get posting history for a specific social account (optional start/end date range and video-update filter) |
+
+### Workspace
+
+| Operation | Description |
+|-----------|-------------|
+| Get Many | Get all workspaces you are a member of (own and shared) |
+
+Post, Library and Social Account operations have an optional **Workspace** selector. Leave it on **Default Workspace** to keep the previous behaviour, or pick a workspace to scope the operation to it — the social account / library dropdowns then only show items belonging to that workspace, and the API rejects accounts or libraries outside it.
 
 ### AI Content
 
