@@ -91,7 +91,7 @@ export class RecurPost implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'RecurPost',
     name: 'recurPost',
-    icon: 'file:recurpost.svg',
+    icon: { light: 'file:recurpost.svg', dark: 'file:recurpost.dark.svg' },
     group: ['transform'],
     version: 1,
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
