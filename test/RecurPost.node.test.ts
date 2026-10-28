@@ -1,15 +1,30 @@
 /* eslint-disable @n8n/community-nodes/no-restricted-imports -- vitest is a devDependency; tests are excluded from the published package */
 import { describe, it, expect } from 'vitest';
 import { RecurPost } from '../nodes/RecurPost/RecurPost.node';
+import { RecurPostApi } from '../credentials/RecurPostApi.credentials';
+import { flattenBody } from '../nodes/RecurPost/request';
 
 interface HttpCall {
   url: string;
   body: Record<string, unknown>;
+  options: Record<string, unknown>;
+}
+
+// A stubbed reply: a plain body (HTTP 200) or a full wire response.
+interface WireResponse {
+  statusCode: number;
+  headers?: Record<string, string>;
+  body: unknown;
+}
+
+function isWireResponse(value: unknown): value is WireResponse {
+  return typeof value === 'object' && value !== null && 'statusCode' in value;
 }
 
 // Minimal stand-in for IExecuteFunctions / ILoadOptionsFunctions. Node
 // parameters come from `params`; every HTTP call is recorded and answered
-// from `responses` (keyed by URL suffix, first match wins).
+// from `responses` (keyed by URL suffix, first match wins). A response entry
+// may be a function so a test can answer differently on each call.
 function createContext(
   params: Record<string, unknown>,
   responses: Array<[string, unknown]> = [['', { status: 200, message: 'Success' }]],
@@ -30,9 +45,16 @@ function createContext(
     getNode: () => ({ name: 'RecurPost', type: 'recurPost', typeVersion: 1 }),
     helpers: {
       httpRequestWithAuthentication: async (_credName: string, options: { url: string; body: Record<string, unknown> }) => {
-        calls.push({ url: options.url, body: options.body });
+        calls.push({ url: options.url, body: options.body, options });
         const match = responses.find(([suffix]) => options.url.endsWith(suffix));
-        return match ? match[1] : { status: 200, message: 'Success' };
+        let reply: unknown = { status: 200, message: 'Success' };
+        if (match) {
+          reply = typeof match[1] === 'function' ? match[1]() : match[1];
+        }
+        if (isWireResponse(reply)) {
+          return { statusCode: reply.statusCode, headers: reply.headers ?? {}, body: reply.body };
+        }
+        return { statusCode: 200, headers: {}, body: reply };
       },
     },
   };
@@ -269,5 +291,99 @@ describe('node description', () => {
       'getAll',
       'getHistory',
     ]);
+  });
+});
+
+describe('authentication', () => {
+  it('sends the email and API key as HTTP Basic auth, not in the body', () => {
+    const credential = new RecurPostApi();
+    const auth = credential.authenticate as { properties: { auth?: unknown; body?: unknown } };
+    expect(auth.properties.auth).toEqual({
+      username: '={{$credentials.email}}',
+      password: '={{$credentials.apiKey}}',
+    });
+    expect(auth.properties.body).toBeUndefined();
+  });
+
+  it('never puts credentials in a request body', async () => {
+    const { calls } = await run({ resource: 'workspace', operation: 'getAll' });
+    expect(calls[0].body).not.toHaveProperty('emailid');
+    expect(calls[0].body).not.toHaveProperty('pass_key');
+  });
+});
+
+describe('request helper', () => {
+  it('asks for the full response and keeps HTTP errors readable', async () => {
+    const { calls } = await run({ resource: 'workspace', operation: 'getAll' });
+    expect(calls[0].options).toMatchObject({
+      method: 'POST',
+      returnFullResponse: true,
+      ignoreHttpStatusErrors: true,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+  });
+
+  it('treats HTTP 200 with a body status other than 200 as an error carrying the API message', async () => {
+    await expect(
+      run(
+        { resource: 'library', operation: 'getAll', workspaceId: '' },
+        [['/api/library_list', { status: 400, error: 'Bad Request Please try again later' }]],
+      ),
+    ).rejects.toThrow('Bad Request Please try again later');
+  });
+
+  it('surfaces a real HTTP 403 with the API message', async () => {
+    await expect(
+      run(
+        { resource: 'library', operation: 'getAll', workspaceId: '' },
+        [['/api/library_list', { statusCode: 403, body: { status: 403, error: 'Not yours' } }]],
+      ),
+    ).rejects.toThrow('Not yours');
+  });
+
+  it('reports a 429 with the server wait message and does not retry by itself', async () => {
+    const reply = () => ({
+      statusCode: 429,
+      headers: { 'retry-after': '17' },
+      body: { status: 429, error: 'Rate limit of 60 calls per minute reached. Try again in 17 seconds.' },
+    });
+    const { ctx, calls } = createContext({ resource: 'workspace', operation: 'getAll' }, [['/api/workspace_list', reply]]);
+    const node = new RecurPost();
+
+    await expect(node.execute.call(ctx)).rejects.toMatchObject({
+      message: 'Rate limit of 60 calls per minute reached. Try again in 17 seconds.',
+      httpCode: '429',
+    });
+    expect(calls).toHaveLength(1);
+  });
+
+  it('keeps the API message when the node wraps the error for an item', async () => {
+    await expect(
+      run(
+        { resource: 'library', operation: 'getAll', workspaceId: '' },
+        [['/api/library_list', { statusCode: 404, body: { status: 404, error: 'Workspace not found or you do not have access to it.' } }]],
+      ),
+    ).rejects.toMatchObject({ message: 'Workspace not found or you do not have access to it.', httpCode: '404' });
+  });
+
+  it('flattens arrays and objects into PHP bracket keys and drops empty values', () => {
+    expect(
+      flattenBody({
+        id: [48213, 48214],
+        tabs: { facebook: { message: 'Hi' } },
+        empty: '',
+        missing: undefined,
+        flag: true,
+        off: false,
+        count: 3,
+      }),
+    ).toEqual({
+      'id[0]': '48213',
+      'id[1]': '48214',
+      'tabs[facebook][message]': 'Hi',
+      flag: '1',
+      off: '0',
+      count: '3',
+    });
   });
 });

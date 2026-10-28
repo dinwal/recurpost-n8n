@@ -10,6 +10,7 @@ import {
   NodeOperationError,
   NodeConnectionTypes,
 } from 'n8n-workflow';
+import { recurPostRequest } from './request';
 
 // Maps n8n collection field names (camelCase) to the exact RecurPost API
 // parameter names (snake_case). Only string / options fields live here;
@@ -1082,26 +1083,16 @@ export class RecurPost implements INodeType {
   methods = {
     loadOptions: {
       async getWorkspaces(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-        const credentials = await this.getCredentials('recurPostApi');
-        const apiUrl = credentials.apiUrl as string;
-
-        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-          method: 'POST',
-          url: `${apiUrl}/api/workspace_list`,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: {},
-        });
+        const response = await recurPostRequest(this, 'workspace_list', {});
 
         // Empty value = the account's default workspace (previous behaviour).
         const workspaces: INodePropertyOptions[] = [{ name: 'Default Workspace', value: '' }];
 
         if (response.status === 200 && response.workspace_list) {
-          for (const workspace of response.workspace_list) {
+          for (const workspace of response.workspace_list as IDataObject[]) {
             workspaces.push({
-              name: workspace.ownership === 'shared' ? `${workspace.ws_name} (Shared)` : workspace.ws_name,
-              value: workspace.ws_id,
+              name: workspace.ownership === 'shared' ? `${workspace.ws_name} (Shared)` : (workspace.ws_name as string),
+              value: workspace.ws_id as string,
             });
           }
         }
@@ -1110,33 +1101,23 @@ export class RecurPost implements INodeType {
       },
 
       async getSocialAccounts(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-        const credentials = await this.getCredentials('recurPostApi');
-        const apiUrl = credentials.apiUrl as string;
-
         const body: IDataObject = {};
         const workspaceId = this.getCurrentNodeParameter('workspaceId') as string;
         if (workspaceId) {
           body.workspace_id = workspaceId;
         }
 
-        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-          method: 'POST',
-          url: `${apiUrl}/api/social_account_list`,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body,
-        });
+        const response = await recurPostRequest(this, 'social_account_list', body);
 
         if (response.status !== 200 || !response.social_accounts) {
           return [];
         }
 
         const accounts: INodePropertyOptions[] = [];
-        for (const account of response.social_accounts) {
+        for (const account of response.social_accounts as IDataObject[]) {
           accounts.push({
-            name: account.smpa_name || account.smpa_id,
-            value: account.smpa_id,
+            name: (account.smpa_name || account.smpa_id) as string,
+            value: account.smpa_id as string,
           });
         }
 
@@ -1144,33 +1125,23 @@ export class RecurPost implements INodeType {
       },
 
       async getLibraries(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-        const credentials = await this.getCredentials('recurPostApi');
-        const apiUrl = credentials.apiUrl as string;
-
         const body: IDataObject = {};
         const workspaceId = this.getCurrentNodeParameter('workspaceId') as string;
         if (workspaceId) {
           body.workspace_id = workspaceId;
         }
 
-        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-          method: 'POST',
-          url: `${apiUrl}/api/library_list`,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body,
-        });
+        const response = await recurPostRequest(this, 'library_list', body);
 
         if (response.status !== 200 || !response.library_list) {
           return [];
         }
 
         const libraries: INodePropertyOptions[] = [];
-        for (const library of response.library_list) {
+        for (const library of response.library_list as IDataObject[]) {
           libraries.push({
-            name: library.cd_name || library.cd_id,
-            value: library.cd_id,
+            name: (library.cd_name || library.cd_id) as string,
+            value: library.cd_id as string,
           });
         }
 
@@ -1183,9 +1154,6 @@ export class RecurPost implements INodeType {
     const items = this.getInputData();
     const returnData: INodeExecutionData[] = [];
 
-    const credentials = await this.getCredentials('recurPostApi');
-    const apiUrl = credentials.apiUrl as string;
-
     const resource = this.getNodeParameter('resource', 0) as string;
     const operation = this.getNodeParameter('operation', 0) as string;
 
@@ -1193,7 +1161,7 @@ export class RecurPost implements INodeType {
 
     for (let i = 0; i < items.length; i++) {
       try {
-        let responseData;
+        let responseData: IDataObject | IDataObject[] = {};
 
         // Optional workspace scoping — an empty value means the account's
         // default workspace (the API's behaviour when workspace_id is omitted).
@@ -1226,17 +1194,7 @@ export class RecurPost implements INodeType {
             // each selected account separately and collect every response.
             const responses: IDataObject[] = [];
             for (const accountId of socialAccounts) {
-              const accountResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-                method: 'POST',
-                url: `${apiUrl}/api/post_content`,
-                headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: {
-                  ...baseBody,
-                  id: accountId,
-                },
-              });
+              const accountResponse = await recurPostRequest(this, 'post_content', { ...baseBody, id: accountId }, i);
               responses.push({ social_account_id: accountId, ...accountResponse });
             }
 
@@ -1249,17 +1207,10 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'library') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/library_list`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: workspaceBody,
-            });
+            responseData = await recurPostRequest(this, 'library_list', workspaceBody, i);
 
             if (responseData.library_list) {
-              responseData = responseData.library_list;
+              responseData = responseData.library_list as IDataObject[];
             }
           } else if (operation === 'addContent') {
             const libraryId = this.getNodeParameter('libraryId', i) as string;
@@ -1283,14 +1234,7 @@ export class RecurPost implements INodeType {
               body.content_expiredate = formatDateTime(libraryScheduleOptions.contentExpireDate as string, false);
             }
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/add_content_in_library`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body,
-            });
+            responseData = await recurPostRequest(this, 'add_content_in_library', body, i);
           }
         }
 
@@ -1299,30 +1243,16 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'socialAccount') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/social_account_list`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: workspaceBody,
-            });
+            responseData = await recurPostRequest(this, 'social_account_list', workspaceBody, i);
 
             if (responseData.social_accounts) {
-              responseData = responseData.social_accounts;
+              responseData = responseData.social_accounts as IDataObject[];
             }
           } else if (operation === 'getConnectionUrls') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/connect_social_account_urls`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: {},
-            });
+            responseData = await recurPostRequest(this, 'connect_social_account_urls', {}, i);
 
             if (responseData.social_links) {
-              responseData = responseData.social_links;
+              responseData = responseData.social_links as IDataObject;
             }
           } else if (operation === 'getHistory') {
             const historyAccountId = this.getNodeParameter('historyAccountId', i) as string;
@@ -1343,17 +1273,10 @@ export class RecurPost implements INodeType {
               body.is_get_video_updates = '0';
             }
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/history_data`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body,
-            });
+            responseData = await recurPostRequest(this, 'history_data', body, i);
 
             if (responseData.history_data) {
-              responseData = responseData.history_data;
+              responseData = responseData.history_data as IDataObject[];
             }
           }
         }
@@ -1363,17 +1286,10 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'workspace') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/workspace_list`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: {},
-            });
+            responseData = await recurPostRequest(this, 'workspace_list', {}, i);
 
             if (responseData.workspace_list) {
-              responseData = responseData.workspace_list;
+              responseData = responseData.workspace_list as IDataObject[];
             }
           }
         }
@@ -1411,27 +1327,11 @@ export class RecurPost implements INodeType {
               }
             }
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/generate_content_with_ai`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body,
-            });
+            responseData = await recurPostRequest(this, 'generate_content_with_ai', body, i);
           } else if (operation === 'generateImage') {
             const imagePrompt = this.getNodeParameter('imagePrompt', i) as string;
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/generate_image_with_ai`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: {
-                prompt_text: imagePrompt,
-              },
-            });
+            responseData = await recurPostRequest(this, 'generate_image_with_ai', { prompt_text: imagePrompt }, i);
           }
         }
 

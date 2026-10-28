@@ -41,12 +41,13 @@ export class RecurPostApi implements ICredentialType {
     },
   ];
 
+  // Email and API key go out as Authorization: Basic on every request, never in the body
   authenticate: IAuthenticateGeneric = {
     type: 'generic',
     properties: {
-      body: {
-        emailid: '={{$credentials.email}}',
-        pass_key: '={{$credentials.apiKey}}',
+      auth: {
+        username: '={{$credentials.email}}',
+        password: '={{$credentials.apiKey}}',
       },
     },
   };
@@ -56,7 +57,6 @@ export class RecurPostApi implements ICredentialType {
       baseURL: '={{$credentials.apiUrl}}',
       url: '/api/user_login',
       method: 'POST',
-      body: {},
     },
     rules: [
       {
