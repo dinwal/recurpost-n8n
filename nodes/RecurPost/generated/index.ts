@@ -30,7 +30,7 @@ export const generatedComposerShow = {
   resource: [
     'approval',
     'draft',
-    'post',
+    'library',
     'queue'
   ],
   operation: [

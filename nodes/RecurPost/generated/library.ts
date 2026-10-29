@@ -638,32 +638,6 @@ export const libraryOperations: OperationSpec[] = [
   },
   {
     resource: 'library',
-    operation: 'mediaList',
-    endpoint: 'media_list',
-    workspace: true,
-    params: [
-      {
-        name: 'page',
-        key: 'page',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'types',
-        key: 'types',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'search',
-        key: 'search',
-        kind: 'string',
-        required: false
-      }
-    ]
-  },
-  {
-    resource: 'library',
     operation: 'pointerList',
     endpoint: 'library_pointers',
     action: 'list',
@@ -1248,6 +1222,195 @@ export const libraryOperations: OperationSpec[] = [
         required: false
       }
     ]
+  },
+  {
+    resource: 'library',
+    operation: 'updateLibraryContent',
+    endpoint: 'library_content_update',
+    composer: true,
+    workspace: true,
+    params: [
+      {
+        name: 'libraryId',
+        key: 'library_id',
+        kind: 'options',
+        required: true
+      },
+      {
+        name: 'id',
+        key: 'id',
+        kind: 'string',
+        required: true
+      },
+      {
+        name: 'message',
+        key: 'message',
+        kind: 'string',
+        required: true
+      },
+      {
+        name: 'isTopOfQueue',
+        key: 'is_top_of_queue',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'contentLivedate',
+        key: 'content_livedate',
+        kind: 'date',
+        required: false
+      },
+      {
+        name: 'contentExpiredate',
+        key: 'content_expiredate',
+        kind: 'date',
+        required: false
+      },
+      {
+        name: 'altText',
+        key: 'alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'fbMentions',
+        key: 'fb_mentions',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'fbBackgroundId',
+        key: 'fb_background_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbThumb',
+        key: 'fb_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnThumb',
+        key: 'ln_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inThumb',
+        key: 'in_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationId',
+        key: 'in_location_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationName',
+        key: 'in_location_name',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationCity',
+        key: 'in_location_city',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationCountry',
+        key: 'in_location_country',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inImageTags',
+        key: 'in_image_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inReelTags',
+        key: 'in_reel_tags',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inCollaborators',
+        key: 'in_collaborators',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inAudioId',
+        key: 'in_audio_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioAccountId',
+        key: 'in_audio_account_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioType',
+        key: 'in_audio_type',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inAudioTitle',
+        key: 'in_audio_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioArtist',
+        key: 'in_audio_artist',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioDurationMs',
+        key: 'in_audio_duration_ms',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inAudioVolume',
+        key: 'in_audio_volume',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inVideoVolume',
+        key: 'in_video_volume',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inTrialReel',
+        key: 'in_trial_reel',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inProductTags',
+        key: 'in_product_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inReelProductTags',
+        key: 'in_reel_product_tags',
+        kind: 'json',
+        required: false
+      }
+    ]
   }
 ];
 
@@ -1397,12 +1560,6 @@ export const libraryOperationOptions = [
     action: 'Get many expired posts'
   },
   {
-    name: 'Get Many Media',
-    value: 'mediaList',
-    description: 'The images, GIFs and videos already used in the owner\'s posts, newest first',
-    action: 'Get many media'
-  },
-  {
     name: 'Get Many Pointers',
     value: 'pointerList',
     description: 'See which post each account publishes next from a library, move one account\'s pointer, or point accounts at a post',
@@ -1503,6 +1660,12 @@ export const libraryOperationOptions = [
     value: 'draftUpdate',
     description: 'List, read, edit, publish or delete the drafts of a library',
     action: 'Update draft'
+  },
+  {
+    name: 'Update Library Content',
+    value: 'updateLibraryContent',
+    description: 'Replace the text, media and network options of a library post',
+    action: 'Update library content'
   }
 ];
 
@@ -1545,7 +1708,6 @@ export const libraryProperties: INodeProperties[] = [
           'variationList',
           'draftList',
           'expiredList',
-          'mediaList',
           'pointerList',
           'shareGet',
           'commentMark',
@@ -1562,7 +1724,8 @@ export const libraryProperties: INodeProperties[] = [
           'contentShuffle',
           'update',
           'variationUpdate',
-          'draftUpdate'
+          'draftUpdate',
+          'updateLibraryContent'
         ]
       }
     },
@@ -2796,46 +2959,6 @@ export const libraryProperties: INodeProperties[] = [
     ]
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'mediaList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Page',
-        name: 'page',
-        type: 'number',
-        default: 1,
-        description: 'Page, from 1; 50 items a page. There is no total: an empty page means the end.'
-      },
-      {
-        displayName: 'Search',
-        name: 'search',
-        type: 'string',
-        default: '',
-        description: 'Text to match against the posts the media was used in'
-      },
-      {
-        displayName: 'Types',
-        name: 'types',
-        type: 'string',
-        default: '',
-        description: 'Kinds to list: any of image, gif, video, as an array or a comma-separated string. All three when omitted. Separate several values with commas.'
-      }
-    ]
-  },
-  {
     displayName: 'Library Name or ID',
     name: 'libraryId',
     type: 'options',
@@ -3972,6 +4095,304 @@ export const libraryProperties: INodeProperties[] = [
         type: 'string',
         default: '',
         description: 'Public http or https video URL. Send blank to remove it. update and publish only.'
+      }
+    ]
+  },
+  {
+    displayName: 'Library Name or ID',
+    name: 'libraryId',
+    type: 'options',
+    default: '',
+    typeOptions: {
+      loadOptionsMethod: 'getLibraries'
+    },
+    required: true,
+    description: 'Encrypted library ID the post belongs to, from /api/library_list. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    displayOptions: {
+      show: {
+        resource: [
+          'library'
+        ],
+        operation: [
+          'updateLibraryContent'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'ID',
+    name: 'id',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'Encrypted library content ID from /api/library_content_list',
+    displayOptions: {
+      show: {
+        resource: [
+          'library'
+        ],
+        operation: [
+          'updateLibraryContent'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Message',
+    name: 'message',
+    type: 'string',
+    default: '',
+    typeOptions: {
+      rows: 3
+    },
+    required: true,
+    description: 'New post text. \\r\\n is normalised to \\n.',
+    displayOptions: {
+      show: {
+        resource: [
+          'library'
+        ],
+        operation: [
+          'updateLibraryContent'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'library'
+        ],
+        operation: [
+          'updateLibraryContent'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Alt Text',
+        name: 'altText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text per image, in image_url order; a single string applies to the first image. At most 1000 characters each. Saved on the Facebook, Twitter/X, LinkedIn, Pinterest, Threads and Bluesky tabs; Instagram does not take alt text here. Separate several values with commas.'
+      },
+      {
+        displayName: 'Content Expiredate',
+        name: 'contentExpiredate',
+        type: 'dateTime',
+        default: '',
+        description: 'Last day the post may go out, YYYY-MM-DD. Blank clears it.'
+      },
+      {
+        displayName: 'Content Livedate',
+        name: 'contentLivedate',
+        type: 'dateTime',
+        default: '',
+        description: 'First day the post may go out, YYYY-MM-DD. Blank clears it.'
+      },
+      {
+        displayName: 'Facebook Background ID',
+        name: 'fbBackgroundId',
+        type: 'string',
+        default: '',
+        description: 'Facebook text background for a post without image_url or video_url: an ID from /api/facebook_backgrounds (letters, digits, underscore or dash, up to 64 characters). Applied on Facebook pages only.'
+      },
+      {
+        displayName: 'Facebook Mentions',
+        name: 'fbMentions',
+        type: 'json',
+        default: '[]',
+        description: 'Facebook pages to mention, at most 10: page IDs from /api/mention_search, as a list of IDs or of {page_id, name} objects. Write each page in the text as @&lt;page ID&gt;; the publisher turns it into the page\'s mention on Facebook pages.'
+      },
+      {
+        displayName: 'Facebook Thumb',
+        name: 'fbThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for the video on Facebook. Public image URL; copied to RecurPost storage unless host_images_on_recurpost is off. Ignored when the post has no video_url.'
+      },
+      {
+        displayName: 'Instagram Audio Account ID',
+        name: 'inAudioAccountId',
+        type: 'string',
+        default: '',
+        description: 'Encrypted ID of the Instagram account /api/instagram_audio_search ran for. Required with in_audio_id.'
+      },
+      {
+        displayName: 'Instagram Audio Artist',
+        name: 'inAudioArtist',
+        type: 'string',
+        default: '',
+        description: 'Artist of the audio, as the search returned it'
+      },
+      {
+        displayName: 'Instagram Audio Duration Ms',
+        name: 'inAudioDurationMs',
+        type: 'number',
+        default: 0,
+        description: 'Length of the audio in milliseconds, as the search returned it'
+      },
+      {
+        displayName: 'Instagram Audio ID',
+        name: 'inAudioId',
+        type: 'string',
+        default: '',
+        description: 'Instagram audio to lay under a reel, from /api/instagram_audio_search. Needs in_post_type reel, a video_url and in_audio_account_id.'
+      },
+      {
+        displayName: 'Instagram Audio Title',
+        name: 'inAudioTitle',
+        type: 'string',
+        default: '',
+        description: 'Title of the audio, as the search returned it; stored with the reel'
+      },
+      {
+        displayName: 'Instagram Audio Type',
+        name: 'inAudioType',
+        type: 'options',
+        default: 'music',
+        options: [
+          {
+            name: 'Music',
+            value: 'music'
+          },
+          {
+            name: 'Original Sound',
+            value: 'original_sound'
+          }
+        ],
+        description: 'Kind of audio behind in_audio_id'
+      },
+      {
+        displayName: 'Instagram Audio Volume',
+        name: 'inAudioVolume',
+        type: 'number',
+        default: 100,
+        description: 'Volume of the added audio, 0 to 100'
+      },
+      {
+        displayName: 'Instagram Collaborators',
+        name: 'inCollaborators',
+        type: 'string',
+        default: '',
+        description: 'Instagram usernames invited as collaborators, as a JSON array or a comma-separated string. At most 3. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Image Tags',
+        name: 'inImageTags',
+        type: 'json',
+        default: '[]',
+        description: 'People to tag on feed images. A JSON array of objects with username, x and y (fractions of the image width and height between 0 and 1) and image (1-based position in image_url, default 1). The leading @ is optional.'
+      },
+      {
+        displayName: 'Instagram Location City',
+        name: 'inLocationCity',
+        type: 'string',
+        default: '',
+        description: 'City of the tagged place, as returned by /api/instagram_locations'
+      },
+      {
+        displayName: 'Instagram Location Country',
+        name: 'inLocationCountry',
+        type: 'string',
+        default: '',
+        description: 'Country of the tagged place, as returned by /api/instagram_locations'
+      },
+      {
+        displayName: 'Instagram Location ID',
+        name: 'inLocationId',
+        type: 'string',
+        default: '',
+        description: 'Instagram place ID to tag the post with. Take ID and name from /api/instagram_locations.'
+      },
+      {
+        displayName: 'Instagram Location Name',
+        name: 'inLocationName',
+        type: 'string',
+        default: '',
+        description: 'Name of the place in in_location_id'
+      },
+      {
+        displayName: 'Instagram Product Tags',
+        name: 'inProductTags',
+        type: 'json',
+        default: '[]',
+        description: 'Instagram product tags on images: objects with account_id (encrypted, the account whose catalog holds the product), product_id (from /api/instagram_products), image (1-based position in image_url), x and y (0 to 1, default 0.5), and optionally product_name and product_image'
+      },
+      {
+        displayName: 'Instagram Reel Product Tags',
+        name: 'inReelProductTags',
+        type: 'json',
+        default: '[]',
+        description: 'Products tagged on a reel: objects with account_id (encrypted) and product_id (from /api/instagram_products), optionally product_name and image_url. Reels only.'
+      },
+      {
+        displayName: 'Instagram Reel Tags',
+        name: 'inReelTags',
+        type: 'string',
+        default: '',
+        description: 'Usernames to tag on a reel, as a JSON array or a comma-separated string. Only saved when the post has a video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Thumb',
+        name: 'inThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for an Instagram reel. Only applied when in_post_type is reel and the post has a video_url; copied to RecurPost storage because Meta fetches it at publish time.'
+      },
+      {
+        displayName: 'Instagram Trial Reel',
+        name: 'inTrialReel',
+        type: 'options',
+        default: 'manual',
+        options: [
+          {
+            name: 'Manual',
+            value: 'manual'
+          },
+          {
+            name: 'Performance',
+            value: 'performance'
+          }
+        ],
+        description: 'Publish the reel as a trial reel, shown to non-followers first. manual: you decide in Instagram when to share it with followers; performance: Instagram shares it when it does well. Reels only.'
+      },
+      {
+        displayName: 'Instagram Video Volume',
+        name: 'inVideoVolume',
+        type: 'number',
+        default: 100,
+        description: 'Volume of the reel\'s own sound, 0 to 100'
+      },
+      {
+        displayName: 'Is Top Of Queue',
+        name: 'isTopOfQueue',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: '1 posts this content next on every account the library\'s schedules cover'
+      },
+      {
+        displayName: 'LinkedIn Thumb',
+        name: 'lnThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for the video on LinkedIn. Ignored when the post has no video_url.'
       }
     ]
   }

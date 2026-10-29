@@ -5,6 +5,32 @@ import type { OperationSpec } from '../types';
 export const mediaOperations: OperationSpec[] = [
   {
     resource: 'media',
+    operation: 'list',
+    endpoint: 'media_list',
+    workspace: true,
+    params: [
+      {
+        name: 'page',
+        key: 'page',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'types',
+        key: 'types',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'search',
+        key: 'search',
+        kind: 'string',
+        required: false
+      }
+    ]
+  },
+  {
+    resource: 'media',
     operation: 'uploadUrl',
     endpoint: 'media_upload_url',
     workspace: false,
@@ -27,6 +53,12 @@ export const mediaOperations: OperationSpec[] = [
 
 export const mediaOperationOptions = [
   {
+    name: 'Get Many',
+    value: 'list',
+    description: 'The images, GIFs and videos already used in the owner\'s posts, newest first',
+    action: 'Get many medias'
+  },
+  {
     name: 'Get Upload URL',
     value: 'uploadUrl',
     description: 'Get a signed URL to upload an image or video directly to RecurPost storage',
@@ -35,6 +67,66 @@ export const mediaOperationOptions = [
 ];
 
 export const mediaProperties: INodeProperties[] = [
+  {
+    displayName: 'Workspace Name or ID',
+    name: 'workspaceId',
+    type: 'options',
+    typeOptions: {
+      loadOptionsMethod: 'getWorkspaces'
+    },
+    default: '',
+    displayOptions: {
+      show: {
+        resource: [
+          'media'
+        ],
+        operation: [
+          'list'
+        ]
+      }
+    },
+    description: 'The workspace to operate in. Leave as Default Workspace to keep using your default workspace. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+  },
+  {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'media'
+        ],
+        operation: [
+          'list'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Page',
+        name: 'page',
+        type: 'number',
+        default: 1,
+        description: 'Page, from 1; 50 items a page. There is no total: an empty page means the end.'
+      },
+      {
+        displayName: 'Search',
+        name: 'search',
+        type: 'string',
+        default: '',
+        description: 'Text to match against the posts the media was used in'
+      },
+      {
+        displayName: 'Types',
+        name: 'types',
+        type: 'string',
+        default: '',
+        description: 'Kinds to list: any of image, gif, video, as an array or a comma-separated string. All three when omitted. Separate several values with commas.'
+      }
+    ]
+  },
   {
     displayName: 'Filename',
     name: 'filename',

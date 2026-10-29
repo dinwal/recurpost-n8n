@@ -257,7 +257,6 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Get Many Content Variations | `content_variation_list` |
 | Get Many Drafts | `library_drafts:list` |
 | Get Many Expired Posts | `expired_content:list` |
-| Get Many Media | `media_list` |
 | Get Many Pointers | `library_pointers:list` |
 | Get Share Link | `library_share:get` |
 | Mark Comment | `library_comments:mark` |
@@ -275,11 +274,13 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Update | `library_update` |
 | Update Content Variation | `content_variation_update` |
 | Update Draft | `library_drafts:update` |
+| Update Library Content | `library_content_update` |
 
 ### Media
 
 | Operation | Endpoint |
 |-----------|----------|
+| Get Many | `media_list` |
 | Get Upload URL | `media_upload_url` |
 
 ### Post
@@ -290,7 +291,6 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Get URL Preview | `url_preview` |
 | Schedule | `post_content` |
 | Shorten URL | `shorten_url` |
-| Update Library Content | `library_content_update` |
 
 ### Post Label
 
@@ -464,7 +464,7 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 ### Post content fields
 
-**Post > Schedule**, **Library > Add Content**, **Draft > Save**, **Queue > Update Item**, **Post > Update Library Content** and **Approval > Edit** share the post composer: image URLs (several for a carousel), video URL, link URL, first comment, host-images toggle, a per-platform message override for all 10 networks, and the platform option groups:
+**Post > Schedule**, **Library > Add Content**, **Draft > Save**, **Queue > Update Item**, **Library > Update Library Content** and **Approval > Edit** share the post composer: image URLs (several for a carousel), video URL, link URL, first comment, host-images toggle, a per-platform message override for all 10 networks, and the platform option groups:
 
 - **Facebook** - post type (feed/reel/story), first comment
 - **Instagram** - post type, share reel to feed, first comment
