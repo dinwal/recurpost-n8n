@@ -327,7 +327,7 @@ export const socialAccountOperationOptions = [
   {
     name: 'Get X Wallet',
     value: 'xWallet',
-    description: 'Balance of the X (Twitter) URL wallet, posts it still covers, top-up packs and transactions',
+    description: 'Balance of the X (Twitter) URL wallet, posts it still covers, top-up packs, transactions and the Permit Repeated Tweets rule',
     action: 'Get x wallet'
   },
   {
