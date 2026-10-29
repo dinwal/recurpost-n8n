@@ -163,6 +163,7 @@
   },
   "moduleResource": {
     "accounts": "account",
+    "account_settings": "account",
     "ai": "aiContent",
     "approvals": "approval",
     "content_tools": "contentTool",
