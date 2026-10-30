@@ -5,185 +5,93 @@ import {
   INodePropertyOptions,
   INodeType,
   INodeTypeDescription,
+  INodeProperties,
   IDataObject,
   NodeApiError,
   NodeOperationError,
   NodeConnectionTypes,
 } from 'n8n-workflow';
+import { recurPostRequest } from './request';
+import { buildCustomizationBody, CUSTOMIZATION_SHOW, formatDateTime } from './composer';
+import { findOperation, runGeneratedOperation } from './execute';
+import { generatedOperationOptions, generatedProperties, generatedResources } from './generated';
 
-// Maps n8n collection field names (camelCase) to the exact RecurPost API
-// parameter names (snake_case). Only string / options fields live here;
-// boolean fields are handled explicitly in buildCustomizationBody() because
-// each one has its own truthy/falsy encoding on the API side.
-const PLATFORM_MESSAGE_MAP: Record<string, string> = {
-  bsMessage: 'bs_message',
-  fbMessage: 'fb_message',
-  gmbMessage: 'gmb_message',
-  inMessage: 'in_message',
-  lnMessage: 'ln_message',
-  piMessage: 'pi_message',
-  thMessage: 'th_message',
-  tkMessage: 'tk_message',
-  twMessage: 'tw_message',
-  ytMessage: 'yt_message',
-};
+type OperationOption = { name: string; value: string; description: string; action: string };
 
-const FACEBOOK_MAP: Record<string, string> = {
-  fbFirstComment: 'fb_first_comment',
-  fbPostType: 'fb_post_type',
-};
+const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
 
-const INSTAGRAM_MAP: Record<string, string> = {
-  inFirstComment: 'in_first_comment',
-  inPostType: 'in_post_type',
-};
-
-const LINKEDIN_MAP: Record<string, string> = {
-  lnDocument: 'ln_document',
-  lnDocumentTitle: 'ln_document_title',
-  lnFirstComment: 'ln_first_comment',
-};
-
-const PINTEREST_MAP: Record<string, string> = {
-  piTitle: 'pi_title',
-};
-
-const GMB_MAP: Record<string, string> = {
-  gbpCta: 'gbp_cta',
-  gbpCtaUrl: 'gbp_cta_url',
-  gbpOfferCouponCode: 'gbp_offer_coupon_code',
-  gbpOfferEndDate: 'gbp_offer_end_date',
-  gbpOfferStartDate: 'gbp_offer_start_date',
-  gbpOfferTerms: 'gbp_offer_terms',
-  gbpOfferTitle: 'gbp_offer_title',
-  gbpRedeemOfferLink: 'gbp_redeem_offer_link',
-};
-
-const YOUTUBE_MAP: Record<string, string> = {
-  ytCategory: 'yt_category',
-  ytPrivacyStatus: 'yt_privacy_status',
-  ytThumb: 'yt_thumb',
-  ytTitle: 'yt_title',
-  ytUserTags: 'yt_user_tags',
-};
-
-const TIKTOK_MAP: Record<string, string> = {
-  tkPrivacyStatus: 'tk_privacy_status',
-};
-
-const STRING_COLLECTION_MAPS: Array<[string, Record<string, string>]> = [
-  ['platformMessages', PLATFORM_MESSAGE_MAP],
-  ['facebookOptions', FACEBOOK_MAP],
-  ['instagramOptions', INSTAGRAM_MAP],
-  ['linkedinOptions', LINKEDIN_MAP],
-  ['pinterestOptions', PINTEREST_MAP],
-  ['gmbOptions', GMB_MAP],
-  ['youtubeOptions', YOUTUBE_MAP],
-  ['tiktokOptions', TIKTOK_MAP],
+// The five original resources and their hand-written operations keep their values so saved
+// workflows keep running; every other resource and operation comes from the generated files.
+const LEGACY_RESOURCES = [
+  { name: 'AI Content', value: 'aiContent' },
+  { name: 'Library', value: 'library' },
+  { name: 'Post', value: 'post' },
+  { name: 'Social Account', value: 'socialAccount' },
+  { name: 'Workspace', value: 'workspace' },
 ];
 
-// Formats an n8n dateTime value to the formats RecurPost expects.
-function formatDateTime(value: string, includeTime: boolean): string {
-  if (!value) {
-    return '';
-  }
-  const date = new Date(value);
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
-  if (!includeTime) {
-    return `${yyyy}-${mm}-${dd}`;
-  }
-  const hh = String(date.getHours()).padStart(2, '0');
-  const min = String(date.getMinutes()).padStart(2, '0');
-  const ss = String(date.getSeconds()).padStart(2, '0');
-  return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
-}
-
-// Shared media + per-platform customization options reused by both the
-// "Post → Schedule" and "Library → Add Content" operations, since the
-// underlying RecurPost API accepts the identical parameter set for both.
-const CUSTOMIZATION_SHOW = {
-  resource: ['post', 'library'],
-  operation: ['schedule', 'addContent'],
+const LEGACY_OPERATIONS: Record<string, OperationOption[]> = {
+  aiContent: [
+    { name: 'Generate Image', value: 'generateImage', description: 'Generate an image using AI', action: 'Generate image' },
+    { name: 'Generate Text', value: 'generateText', description: 'Generate post content using AI', action: 'Generate text content' },
+  ],
+  library: [
+    { name: 'Add Content', value: 'addContent', description: 'Add content to a library for recurring posts', action: 'Add content to library' },
+    { name: 'Get Many', value: 'getAll', description: 'Get many libraries', action: 'Get many libraries' },
+  ],
+  post: [
+    { name: 'Schedule', value: 'schedule', description: 'Schedule a post to social media accounts', action: 'Schedule a post' },
+  ],
+  socialAccount: [
+    { name: 'Get Connection URLs', value: 'getConnectionUrls', description: 'Get URLs to connect new social media accounts', action: 'Get connection links' },
+    { name: 'Get History', value: 'getHistory', description: 'Get posting history for a social media account', action: 'Get posting history' },
+    { name: 'Get Many', value: 'getAll', description: 'Get many connected social media accounts', action: 'Get many social accounts' },
+  ],
+  workspace: [
+    { name: 'Get Many', value: 'getAll', description: 'Get many workspaces you are a member of', action: 'Get many workspaces' },
+  ],
 };
 
-// Builds the shared media + per-platform customization portion of the request
-// body for the Post → Schedule and Library → Add Content operations.
-// Array (multiple images) and boolean params are encoded so PHP's $_POST
-// parser reconstructs them correctly (indexed bracket keys, falsy "0", etc.).
-function buildCustomizationBody(ctx: IExecuteFunctions, i: number): Record<string, string> {
-  const body: Record<string, string> = {};
+const RESOURCE_OPTIONS = [...LEGACY_RESOURCES, ...generatedResources.filter((r) => !LEGACY_RESOURCES.some((l) => l.value === r.value))].sort(byName);
 
-  // Images (array) -> image_url[0], image_url[1], ...
-  const imageUrls = (ctx.getNodeParameter('imageUrls', i, []) as string[]) || [];
-  imageUrls.filter((u) => u && u.trim() !== '').forEach((u, idx) => {
-    body[`image_url[${idx}]`] = u;
-  });
+const OPERATION_PROPERTIES: INodeProperties[] = RESOURCE_OPTIONS.map((resource) => {
+  const options = [...(LEGACY_OPERATIONS[resource.value] ?? []), ...(generatedOperationOptions[resource.value] ?? [])].sort(byName);
+  const preferred = options.find((o) => o.value === 'getAll' || o.value === 'list') ?? options[0];
+  const property: INodeProperties = {
+    displayName: 'Operation',
+    name: 'operation',
+    type: 'options',
+    noDataExpression: true,
+    default: '',
+    displayOptions: { show: { resource: [resource.value] } },
+    options,
+  };
+  property.default = preferred.value;
+  return property;
+});
 
-  // Media & general options
-  const mediaOptions = ctx.getNodeParameter('mediaOptions', i, {}) as IDataObject;
-  if (mediaOptions.videoUrl) {
-    body.video_url = mediaOptions.videoUrl as string;
+// Fills a dropdown from a list endpoint, scoped to the selected workspace when one is chosen.
+async function loadNamed(
+  ctx: ILoadOptionsFunctions,
+  endpoint: string,
+  listKey: string,
+  label: (row: IDataObject) => string = (row) => String(row.name ?? row.id),
+): Promise<INodePropertyOptions[]> {
+  const body: IDataObject = {};
+  const workspaceId = ctx.getCurrentNodeParameter('workspaceId') as string;
+  if (workspaceId) {
+    body.workspace_id = workspaceId;
   }
-  if (mediaOptions.linkUrl) {
-    body.url = mediaOptions.linkUrl as string;
-  }
-  if (mediaOptions.firstComment) {
-    body.first_comment = mediaOptions.firstComment as string;
-  }
-  // PHP treats the string "0" as falsy, so send "0"/"1" (not "false"/"true").
-  if (mediaOptions.hostImagesOnRecurpost === false) {
-    body.host_images_on_recurpost = '0';
-  }
-
-  // String / options per-platform collections (camelCase name -> API key)
-  for (const [collectionName, map] of STRING_COLLECTION_MAPS) {
-    const collection = ctx.getNodeParameter(collectionName, i, {}) as IDataObject;
-    for (const [fieldName, apiKey] of Object.entries(map)) {
-      const value = collection[fieldName];
-      if (value !== undefined && value !== '') {
-        body[apiKey] = value as string;
-      }
-    }
-  }
-
-  // Boolean per-platform fields with custom yes/no/1 encodings
-  const instagramOptions = ctx.getNodeParameter('instagramOptions', i, {}) as IDataObject;
-  if (instagramOptions.inReelShareInFeed === false) {
-    body.in_reel_share_in_feed = 'no';
-  }
-
-  const youtubeOptions = ctx.getNodeParameter('youtubeOptions', i, {}) as IDataObject;
-  if (youtubeOptions.ytVideoMadeForKids === true) {
-    body.yt_video_made_for_kids = 'yes';
-  }
-
-  const tiktokOptions = ctx.getNodeParameter('tiktokOptions', i, {}) as IDataObject;
-  if (tiktokOptions.tkAllowComments === false) {
-    body.tk_allow_comments = 'no';
-  }
-  if (tiktokOptions.tkAllowDuet === false) {
-    body.tk_allow_duet = 'no';
-  }
-  if (tiktokOptions.tkAllowStitches === false) {
-    body.tk_allow_stitches = 'no';
-  }
-  if (tiktokOptions.tkPromoteOwnBrand === true) {
-    body.tk_promote_own_brand = '1';
-  }
-  if (tiktokOptions.tkPromoteOtherBrand === true) {
-    body.tk_promote_other_brand = '1';
-  }
-
-  return body;
+  const response = await recurPostRequest(ctx, endpoint, body);
+  const rows = (response[listKey] ?? []) as IDataObject[];
+  return rows.map((row) => ({ name: label(row), value: row.id as string | number }));
 }
 
 export class RecurPost implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'RecurPost',
     name: 'recurPost',
-    icon: 'file:recurpost.svg',
+    icon: { light: 'file:recurpost.svg', dark: 'file:recurpost.dark.svg' },
     group: ['transform'],
     version: 1,
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -200,170 +108,15 @@ export class RecurPost implements INodeType {
       },
     ],
     properties: [
-      // Resource (sorted alphabetically)
       {
         displayName: 'Resource',
         name: 'resource',
         type: 'options',
         noDataExpression: true,
-        options: [
-          {
-            name: 'AI Content',
-            value: 'aiContent',
-          },
-          {
-            name: 'Library',
-            value: 'library',
-          },
-          {
-            name: 'Post',
-            value: 'post',
-          },
-          {
-            name: 'Social Account',
-            value: 'socialAccount',
-          },
-          {
-            name: 'Workspace',
-            value: 'workspace',
-          },
-        ],
+        options: RESOURCE_OPTIONS,
         default: 'post',
       },
-
-      // Operations for AI Content (sorted alphabetically)
-      {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-          show: {
-            resource: ['aiContent'],
-          },
-        },
-        options: [
-          {
-            name: 'Generate Image',
-            value: 'generateImage',
-            description: 'Generate an image using AI',
-            action: 'Generate image',
-          },
-          {
-            name: 'Generate Text',
-            value: 'generateText',
-            description: 'Generate post content using AI',
-            action: 'Generate text content',
-          },
-        ],
-        default: 'generateText',
-      },
-
-      // Operations for Library (sorted alphabetically)
-      {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-          show: {
-            resource: ['library'],
-          },
-        },
-        options: [
-          {
-            name: 'Add Content',
-            value: 'addContent',
-            description: 'Add content to a library for recurring posts',
-            action: 'Add content to library',
-          },
-          {
-            name: 'Get Many',
-            value: 'getAll',
-            description: 'Get many libraries',
-            action: 'Get many libraries',
-          },
-        ],
-        default: 'addContent',
-      },
-
-      // Operations for Post
-      {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-          show: {
-            resource: ['post'],
-          },
-        },
-        options: [
-          {
-            name: 'Schedule',
-            value: 'schedule',
-            description: 'Schedule a post to social media accounts',
-            action: 'Schedule a post',
-          },
-        ],
-        default: 'schedule',
-      },
-
-      // Operations for Social Account (sorted alphabetically)
-      {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-          show: {
-            resource: ['socialAccount'],
-          },
-        },
-        options: [
-          {
-            name: 'Get Connection URLs',
-            value: 'getConnectionUrls',
-            description: 'Get URLs to connect new social media accounts',
-            action: 'Get connection links',
-          },
-          {
-            name: 'Get History',
-            value: 'getHistory',
-            description: 'Get posting history for a social media account',
-            action: 'Get posting history',
-          },
-          {
-            name: 'Get Many',
-            value: 'getAll',
-            description: 'Get many connected social media accounts',
-            action: 'Get many social accounts',
-          },
-        ],
-        default: 'getAll',
-      },
-
-      // Operations for Workspace
-      {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-          show: {
-            resource: ['workspace'],
-          },
-        },
-        options: [
-          {
-            name: 'Get Many',
-            value: 'getAll',
-            description: 'Get many workspaces you are a member of',
-            action: 'Get many workspaces',
-          },
-        ],
-        default: 'getAll',
-      },
+      ...OPERATION_PROPERTIES,
 
       // ==========================================
       // SHARED: WORKSPACE SELECTOR
@@ -1075,6 +828,7 @@ export class RecurPost implements INodeType {
           },
         ],
       },
+      ...generatedProperties,
     ],
     usableAsTool: true,
   };
@@ -1082,26 +836,16 @@ export class RecurPost implements INodeType {
   methods = {
     loadOptions: {
       async getWorkspaces(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-        const credentials = await this.getCredentials('recurPostApi');
-        const apiUrl = credentials.apiUrl as string;
-
-        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-          method: 'POST',
-          url: `${apiUrl}/api/workspace_list`,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: {},
-        });
+        const response = await recurPostRequest(this, 'workspace_list', {});
 
         // Empty value = the account's default workspace (previous behaviour).
         const workspaces: INodePropertyOptions[] = [{ name: 'Default Workspace', value: '' }];
 
         if (response.status === 200 && response.workspace_list) {
-          for (const workspace of response.workspace_list) {
+          for (const workspace of response.workspace_list as IDataObject[]) {
             workspaces.push({
-              name: workspace.ownership === 'shared' ? `${workspace.ws_name} (Shared)` : workspace.ws_name,
-              value: workspace.ws_id,
+              name: workspace.ownership === 'shared' ? `${workspace.ws_name} (Shared)` : (workspace.ws_name as string),
+              value: workspace.ws_id as string,
             });
           }
         }
@@ -1110,33 +854,23 @@ export class RecurPost implements INodeType {
       },
 
       async getSocialAccounts(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-        const credentials = await this.getCredentials('recurPostApi');
-        const apiUrl = credentials.apiUrl as string;
-
         const body: IDataObject = {};
         const workspaceId = this.getCurrentNodeParameter('workspaceId') as string;
         if (workspaceId) {
           body.workspace_id = workspaceId;
         }
 
-        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-          method: 'POST',
-          url: `${apiUrl}/api/social_account_list`,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body,
-        });
+        const response = await recurPostRequest(this, 'social_account_list', body);
 
         if (response.status !== 200 || !response.social_accounts) {
           return [];
         }
 
         const accounts: INodePropertyOptions[] = [];
-        for (const account of response.social_accounts) {
+        for (const account of response.social_accounts as IDataObject[]) {
           accounts.push({
-            name: account.smpa_name || account.smpa_id,
-            value: account.smpa_id,
+            name: (account.smpa_name || account.smpa_id) as string,
+            value: account.smpa_id as string,
           });
         }
 
@@ -1144,37 +878,47 @@ export class RecurPost implements INodeType {
       },
 
       async getLibraries(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-        const credentials = await this.getCredentials('recurPostApi');
-        const apiUrl = credentials.apiUrl as string;
-
         const body: IDataObject = {};
         const workspaceId = this.getCurrentNodeParameter('workspaceId') as string;
         if (workspaceId) {
           body.workspace_id = workspaceId;
         }
 
-        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-          method: 'POST',
-          url: `${apiUrl}/api/library_list`,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body,
-        });
+        const response = await recurPostRequest(this, 'library_list', body);
 
         if (response.status !== 200 || !response.library_list) {
           return [];
         }
 
         const libraries: INodePropertyOptions[] = [];
-        for (const library of response.library_list) {
+        for (const library of response.library_list as IDataObject[]) {
           libraries.push({
-            name: library.cd_name || library.cd_id,
-            value: library.cd_id,
+            name: (library.cd_name || library.cd_id) as string,
+            value: library.cd_id as string,
           });
         }
 
         return libraries;
+      },
+
+      async getAccountGroups(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+        return loadNamed(this, 'account_group_list', 'groups');
+      },
+
+      async getLabels(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+        return loadNamed(this, 'label_list', 'labels');
+      },
+
+      async getSchedules(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+        return loadNamed(this, 'schedule_list', 'schedules', (row) => `${row.library} / ${row.account} / ${row.frequency} ${row.day ?? ''} ${row.time ?? ''}`.replace(/\s+/g, ' ').trim());
+      },
+
+      async getFeeds(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+        return loadNamed(this, 'feed_list', 'feeds', (row) => String(row.title || row.url));
+      },
+
+      async getRoles(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+        return loadNamed(this, 'roles', 'roles');
       },
     },
   };
@@ -1183,9 +927,6 @@ export class RecurPost implements INodeType {
     const items = this.getInputData();
     const returnData: INodeExecutionData[] = [];
 
-    const credentials = await this.getCredentials('recurPostApi');
-    const apiUrl = credentials.apiUrl as string;
-
     const resource = this.getNodeParameter('resource', 0) as string;
     const operation = this.getNodeParameter('operation', 0) as string;
 
@@ -1193,17 +934,23 @@ export class RecurPost implements INodeType {
 
     for (let i = 0; i < items.length; i++) {
       try {
-        let responseData;
+        let responseData: IDataObject | IDataObject[] = {};
 
         // Optional workspace scoping — an empty value means the account's
         // default workspace (the API's behaviour when workspace_id is omitted).
         const workspaceId = this.getNodeParameter('workspaceId', i, '') as string;
         const workspaceBody: Record<string, string> = workspaceId ? { workspace_id: workspaceId } : {};
 
+        const generated = findOperation(resource, operation);
+
+        if (generated) {
+          responseData = await runGeneratedOperation(this, generated, i);
+        }
+
         // ==========================================
         // POST OPERATIONS
         // ==========================================
-        if (resource === 'post') {
+        else if (resource === 'post') {
           if (operation === 'schedule') {
             const socialAccounts = this.getNodeParameter('socialAccounts', i) as string[];
             const content = this.getNodeParameter('content', i) as string;
@@ -1226,17 +973,7 @@ export class RecurPost implements INodeType {
             // each selected account separately and collect every response.
             const responses: IDataObject[] = [];
             for (const accountId of socialAccounts) {
-              const accountResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-                method: 'POST',
-                url: `${apiUrl}/api/post_content`,
-                headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: {
-                  ...baseBody,
-                  id: accountId,
-                },
-              });
+              const accountResponse = await recurPostRequest(this, 'post_content', { ...baseBody, id: accountId }, i);
               responses.push({ social_account_id: accountId, ...accountResponse });
             }
 
@@ -1249,17 +986,10 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'library') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/library_list`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: workspaceBody,
-            });
+            responseData = await recurPostRequest(this, 'library_list', workspaceBody, i);
 
             if (responseData.library_list) {
-              responseData = responseData.library_list;
+              responseData = responseData.library_list as IDataObject[];
             }
           } else if (operation === 'addContent') {
             const libraryId = this.getNodeParameter('libraryId', i) as string;
@@ -1283,14 +1013,7 @@ export class RecurPost implements INodeType {
               body.content_expiredate = formatDateTime(libraryScheduleOptions.contentExpireDate as string, false);
             }
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/add_content_in_library`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body,
-            });
+            responseData = await recurPostRequest(this, 'add_content_in_library', body, i);
           }
         }
 
@@ -1299,30 +1022,16 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'socialAccount') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/social_account_list`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: workspaceBody,
-            });
+            responseData = await recurPostRequest(this, 'social_account_list', workspaceBody, i);
 
             if (responseData.social_accounts) {
-              responseData = responseData.social_accounts;
+              responseData = responseData.social_accounts as IDataObject[];
             }
           } else if (operation === 'getConnectionUrls') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/connect_social_account_urls`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: {},
-            });
+            responseData = await recurPostRequest(this, 'connect_social_account_urls', {}, i);
 
             if (responseData.social_links) {
-              responseData = responseData.social_links;
+              responseData = responseData.social_links as IDataObject;
             }
           } else if (operation === 'getHistory') {
             const historyAccountId = this.getNodeParameter('historyAccountId', i) as string;
@@ -1343,17 +1052,10 @@ export class RecurPost implements INodeType {
               body.is_get_video_updates = '0';
             }
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/history_data`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body,
-            });
+            responseData = await recurPostRequest(this, 'history_data', body, i);
 
             if (responseData.history_data) {
-              responseData = responseData.history_data;
+              responseData = responseData.history_data as IDataObject[];
             }
           }
         }
@@ -1363,17 +1065,10 @@ export class RecurPost implements INodeType {
         // ==========================================
         else if (resource === 'workspace') {
           if (operation === 'getAll') {
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/workspace_list`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: {},
-            });
+            responseData = await recurPostRequest(this, 'workspace_list', {}, i);
 
             if (responseData.workspace_list) {
-              responseData = responseData.workspace_list;
+              responseData = responseData.workspace_list as IDataObject[];
             }
           }
         }
@@ -1411,27 +1106,11 @@ export class RecurPost implements INodeType {
               }
             }
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/generate_content_with_ai`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body,
-            });
+            responseData = await recurPostRequest(this, 'generate_content_with_ai', body, i);
           } else if (operation === 'generateImage') {
             const imagePrompt = this.getNodeParameter('imagePrompt', i) as string;
 
-            responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'recurPostApi', {
-              method: 'POST',
-              url: `${apiUrl}/api/generate_image_with_ai`,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: {
-                prompt_text: imagePrompt,
-              },
-            });
+            responseData = await recurPostRequest(this, 'generate_image_with_ai', { prompt_text: imagePrompt }, i);
           }
         }
 

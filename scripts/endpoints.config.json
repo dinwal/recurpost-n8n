@@ -1,0 +1,1170 @@
+{
+  "docsDir": "../recurpost-apis/data/endpoints",
+  "skip": [
+    "user_login",
+    "connect_social_account_urls",
+    "social_account_list",
+    "library_list",
+    "workspace_list",
+    "history_data",
+    "add_content_in_library",
+    "post_content",
+    "generate_content_with_ai",
+    "generate_image_with_ai"
+  ],
+  "resources": {
+    "account": {
+      "name": "Account",
+      "prefixes": [
+        "account_"
+      ]
+    },
+    "accountGroup": {
+      "name": "Account Group",
+      "prefixes": [
+        "account_group_",
+        "account_group"
+      ]
+    },
+    "aiContent": {
+      "name": "AI Content",
+      "prefixes": [
+        "ai_"
+      ]
+    },
+    "approval": {
+      "name": "Approval",
+      "prefixes": [
+        "approval_"
+      ]
+    },
+    "contentTool": {
+      "name": "Content Tool",
+      "prefixes": []
+    },
+    "customReport": {
+      "name": "Custom Report",
+      "prefixes": [
+        "custom_report_",
+        "custom_reports"
+      ]
+    },
+    "dmAutomation": {
+      "name": "DM Automation",
+      "prefixes": [
+        "dm_automation_",
+        "dm_automation"
+      ]
+    },
+    "draft": {
+      "name": "Draft",
+      "prefixes": [
+        "draft_"
+      ]
+    },
+    "feed": {
+      "name": "RSS Feed",
+      "prefixes": [
+        "feed_"
+      ]
+    },
+    "history": {
+      "name": "History",
+      "prefixes": [
+        "history_"
+      ]
+    },
+    "import": {
+      "name": "Import",
+      "prefixes": [
+        "import_"
+      ]
+    },
+    "inbox": {
+      "name": "Inbox",
+      "prefixes": [
+        "inbox_"
+      ]
+    },
+    "label": {
+      "name": "Post Label",
+      "prefixes": [
+        "label_"
+      ]
+    },
+    "library": {
+      "name": "Library",
+      "prefixes": [
+        "library_"
+      ]
+    },
+    "media": {
+      "name": "Media",
+      "prefixes": [
+        "media_"
+      ]
+    },
+    "post": {
+      "name": "Post",
+      "prefixes": [
+        "post_"
+      ]
+    },
+    "queue": {
+      "name": "Queue",
+      "prefixes": [
+        "queue_post_",
+        "queue_"
+      ]
+    },
+    "report": {
+      "name": "Report",
+      "prefixes": [
+        "report_"
+      ]
+    },
+    "role": {
+      "name": "Team Role",
+      "prefixes": [
+        "role_"
+      ]
+    },
+    "schedule": {
+      "name": "Schedule",
+      "prefixes": [
+        "schedule_"
+      ]
+    },
+    "sharedCalendar": {
+      "name": "Shared Calendar",
+      "prefixes": [
+        "shared_calendar_",
+        "shared_calendar"
+      ]
+    },
+    "socialAccount": {
+      "name": "Social Account",
+      "prefixes": [
+        "social_account_"
+      ]
+    },
+    "workflow": {
+      "name": "Workflow",
+      "prefixes": [
+        "workflow_"
+      ]
+    },
+    "workspace": {
+      "name": "Workspace",
+      "prefixes": [
+        "workspace_"
+      ]
+    }
+  },
+  "moduleResource": {
+    "accounts": "account",
+    "account_settings": "account",
+    "ai": "aiContent",
+    "approvals": "approval",
+    "content_tools": "contentTool",
+    "custom_reports": "customReport",
+    "dm_automations": "dmAutomation",
+    "drafts": "draft",
+    "feeds": "feed",
+    "groups": "accountGroup",
+    "history": "history",
+    "import": "import",
+    "inbox": "inbox",
+    "libraries": "library",
+    "library_tools": "library",
+    "media": "media",
+    "post_labels": "label",
+    "posts": "post",
+    "queue": "queue",
+    "reports": "report",
+    "schedules": "schedule",
+    "shared_calendars": "sharedCalendar",
+    "team_roles": "role",
+    "workflow_board": "workflow",
+    "workflow_settings": "workflow",
+    "workspaces": "workspace"
+  },
+  "endpointResource": {
+    "social_account_details": "socialAccount",
+    "social_account_status": "socialAccount",
+    "social_account_rename": "socialAccount",
+    "social_account_remove": "socialAccount",
+    "queue_pause": "socialAccount",
+    "tiktok_options": "socialAccount",
+    "youtube_options": "socialAccount",
+    "x_wallet": "socialAccount",
+    "facebook_backgrounds": "socialAccount",
+    "mention_search": "socialAccount",
+    "instagram_products": "socialAccount",
+    "instagram_audio_search": "socialAccount",
+    "share_connect_link": "socialAccount",
+    "instagram_locations": "socialAccount",
+    "url_preview": "post",
+    "shorten_url": "post"
+  },
+  "loaders": {
+    "workspace_id": "getWorkspaces",
+    "account_id": "getSocialAccounts",
+    "account_ids": "getSocialAccounts",
+    "force_account_ids": "getSocialAccounts",
+    "library_id": "getLibraries",
+    "library_ids": "getLibraries",
+    "target_library_id": "getLibraries",
+    "group_id": "getAccountGroups",
+    "label_id": "getLabels",
+    "label_ids": "getLabels",
+    "schedule_id": "getSchedules",
+    "feed_id": "getFeeds",
+    "role_id": "getRoles"
+  },
+  "idHints": [
+    [
+      "library id",
+      "getLibraries"
+    ],
+    [
+      "library from",
+      "getLibraries"
+    ],
+    [
+      "social account id",
+      "getSocialAccounts"
+    ],
+    [
+      "account id",
+      "getSocialAccounts"
+    ],
+    [
+      "group id",
+      "getAccountGroups"
+    ],
+    [
+      "label id",
+      "getLabels"
+    ],
+    [
+      "schedule id",
+      "getSchedules"
+    ],
+    [
+      "feed id",
+      "getFeeds"
+    ]
+  ],
+  "composerEndpoints": [
+    "approval_edit",
+    "draft_save",
+    "library_content_update",
+    "queue_post_update"
+  ],
+  "composerKeys": [
+    "image_url",
+    "video_url",
+    "url",
+    "first_comment",
+    "host_images_on_recurpost",
+    "fb_message",
+    "tw_message",
+    "ln_message",
+    "in_message",
+    "gmb_message",
+    "pi_message",
+    "yt_message",
+    "tk_message",
+    "th_message",
+    "bs_message",
+    "fb_post_type",
+    "in_post_type",
+    "in_reel_share_in_feed",
+    "fb_first_comment",
+    "ln_first_comment",
+    "in_first_comment",
+    "ln_document",
+    "ln_document_title",
+    "pi_title",
+    "gbp_cta",
+    "gbp_cta_url",
+    "gbp_offer_title",
+    "gbp_offer_start_date",
+    "gbp_offer_end_date",
+    "gbp_offer_coupon_code",
+    "gbp_offer_terms",
+    "gbp_redeem_offer_link",
+    "yt_title",
+    "yt_category",
+    "yt_privacy_status",
+    "yt_user_tags",
+    "yt_thumb",
+    "yt_video_made_for_kids",
+    "tk_privacy_status",
+    "tk_allow_comments",
+    "tk_allow_duet",
+    "tk_allow_stitches",
+    "tk_promote_own_brand",
+    "tk_promote_other_brand"
+  ],
+  "operations": {
+    "custom_fields:create": {
+      "name": "Create Custom Field",
+      "value": "customFieldCreate"
+    },
+    "custom_fields:delete": {
+      "name": "Delete Custom Field",
+      "value": "customFieldDelete"
+    },
+    "custom_fields:delete_value": {
+      "name": "Delete Custom Field Value",
+      "value": "customFieldDeleteValue"
+    },
+    "custom_fields:list": {
+      "name": "Get Many Custom Fields",
+      "value": "customFieldList"
+    },
+    "custom_fields:rename": {
+      "name": "Rename Custom Field",
+      "value": "customFieldRename"
+    },
+    "custom_fields:set_value": {
+      "name": "Set Custom Field Value",
+      "value": "customFieldSetValue"
+    },
+    "account_details": {
+      "name": "Get",
+      "value": "get",
+      "action": "Get account details"
+    },
+    "click_tracking": {
+      "name": "Set Click Tracking"
+    },
+    "account_timezone": {
+      "name": "Set Timezone"
+    },
+    "email_preferences": {
+      "name": "Get or Set Email Preferences"
+    },
+    "working_hours": {
+      "name": "Get or Set Working Hours"
+    },
+    "notifications": {
+      "name": "Get Announcements"
+    },
+    "account_update": {
+      "name": "Update",
+      "value": "update",
+      "action": "Update account profile"
+    },
+    "account_group": {
+      "name": "Get",
+      "value": "get"
+    },
+    "ai_special_days:generate": {
+      "name": "Generate Special Day Posts",
+      "value": "specialDaysGenerate"
+    },
+    "ai_special_days:list": {
+      "name": "Get Many Special Days",
+      "value": "specialDaysList"
+    },
+    "ai_templates:generate": {
+      "name": "Generate From Template",
+      "value": "templateGenerate"
+    },
+    "ai_templates:formats": {
+      "name": "Get Template Formats",
+      "value": "templateFormats"
+    },
+    "ai_templates:questions": {
+      "name": "Get Template Questions",
+      "value": "templateQuestions"
+    },
+    "ai_templates:list": {
+      "name": "Get Many Templates",
+      "value": "templateList"
+    },
+    "ai_settings:get": {
+      "name": "Get Settings",
+      "value": "settingsGet"
+    },
+    "ai_settings:set": {
+      "name": "Set Settings",
+      "value": "settingsSet"
+    },
+    "ai_to_library": {
+      "name": "Save to Library",
+      "value": "saveToLibrary"
+    },
+    "ai_variations": {
+      "name": "Suggest Variations",
+      "value": "variations"
+    },
+    "ai_week_plan": {
+      "name": "Draft Week Plan",
+      "value": "weekPlan"
+    },
+    "ai_hashtags": {
+      "name": "Suggest Hashtags",
+      "value": "hashtags"
+    },
+    "approval_decide:approve": {
+      "name": "Approve",
+      "value": "approve"
+    },
+    "approval_decide:reject": {
+      "name": "Reject",
+      "value": "reject"
+    },
+    "approval_edit": {
+      "name": "Edit",
+      "value": "edit"
+    },
+    "hashtag_groups:add": {
+      "name": "Add Hashtag Group",
+      "value": "hashtagGroupAdd"
+    },
+    "hashtag_groups:copy": {
+      "name": "Copy Hashtag Groups",
+      "value": "hashtagGroupCopy"
+    },
+    "hashtag_groups:delete": {
+      "name": "Delete Hashtag Group",
+      "value": "hashtagGroupDelete"
+    },
+    "hashtag_groups:list": {
+      "name": "Get Many Hashtag Groups",
+      "value": "hashtagGroupList"
+    },
+    "hashtag_groups:update": {
+      "name": "Update Hashtag Group",
+      "value": "hashtagGroupUpdate"
+    },
+    "tag_bags:add": {
+      "name": "Add Tag Bag",
+      "value": "tagBagAdd"
+    },
+    "tag_bags:delete": {
+      "name": "Delete Tag Bag",
+      "value": "tagBagDelete"
+    },
+    "tag_bags:list": {
+      "name": "Get Many Tag Bags",
+      "value": "tagBagList"
+    },
+    "tag_bags:update": {
+      "name": "Update Tag Bag",
+      "value": "tagBagUpdate"
+    },
+    "testimonial_templates:add": {
+      "name": "Add Testimonial Template",
+      "value": "testimonialTemplateAdd"
+    },
+    "testimonial_templates:delete": {
+      "name": "Delete Testimonial Template",
+      "value": "testimonialTemplateDelete"
+    },
+    "testimonial_templates:list": {
+      "name": "Get Many Testimonial Templates",
+      "value": "testimonialTemplateList"
+    },
+    "shortener_accounts:attach": {
+      "name": "Attach Shortener Account",
+      "value": "shortenerAccountAttach"
+    },
+    "shortener_accounts:detach": {
+      "name": "Detach Shortener Account",
+      "value": "shortenerAccountDetach"
+    },
+    "shortener_accounts:list": {
+      "name": "Get Many Shortener Accounts",
+      "value": "shortenerAccountList"
+    },
+    "catalog:businesses": {
+      "name": "Get Catalog Businesses",
+      "value": "catalogBusinesses"
+    },
+    "catalog:create": {
+      "name": "Create Catalog",
+      "value": "catalogCreate"
+    },
+    "catalog:product_save": {
+      "name": "Save Catalog Product",
+      "value": "catalogProductSave"
+    },
+    "catalog:product_delete": {
+      "name": "Delete Catalog Product",
+      "value": "catalogProductDelete"
+    },
+    "custom_reports:delete": {
+      "name": "Delete",
+      "value": "delete"
+    },
+    "custom_reports:duplicate": {
+      "name": "Duplicate",
+      "value": "duplicate"
+    },
+    "custom_reports:get": {
+      "name": "Get",
+      "value": "get"
+    },
+    "custom_reports:data": {
+      "name": "Get Data",
+      "value": "getData"
+    },
+    "custom_reports:list": {
+      "name": "Get Many",
+      "value": "list"
+    },
+    "custom_reports:save": {
+      "name": "Save",
+      "value": "save"
+    },
+    "dm_automation": {
+      "name": "Get",
+      "value": "get"
+    },
+    "dm_automation_accounts": {
+      "name": "Get Many Accounts",
+      "value": "accounts"
+    },
+    "dm_automation_posts": {
+      "name": "Get Many Posts",
+      "value": "posts"
+    },
+    "dm_automation_stats": {
+      "name": "Get Stats",
+      "value": "stats"
+    },
+    "dm_automation_status": {
+      "name": "Set Status",
+      "value": "setStatus"
+    },
+    "draft_schedule": {
+      "name": "Schedule",
+      "value": "scheduleDraft",
+      "action": "Schedule a draft"
+    },
+    "draft_save": {
+      "name": "Save",
+      "value": "save"
+    },
+    "feed_item_decide:approve": {
+      "name": "Approve Items",
+      "value": "approveItems"
+    },
+    "feed_item_decide:approve_all": {
+      "name": "Approve All Items",
+      "value": "approveAllItems"
+    },
+    "feed_item_decide:reject": {
+      "name": "Reject Items",
+      "value": "rejectItems"
+    },
+    "feed_item_decide:reject_all": {
+      "name": "Reject All Items",
+      "value": "rejectAllItems"
+    },
+    "feed_status:delete": {
+      "name": "Delete",
+      "value": "delete"
+    },
+    "feed_status:pause": {
+      "name": "Pause",
+      "value": "pause"
+    },
+    "feed_status:resume": {
+      "name": "Resume",
+      "value": "resume"
+    },
+    "feed_items": {
+      "name": "Get Many Items",
+      "value": "items"
+    },
+    "history_list": {
+      "name": "Get Many",
+      "value": "list",
+      "action": "Get many history posts"
+    },
+    "history_to_library": {
+      "name": "Copy to Library",
+      "value": "copyToLibrary"
+    },
+    "post_unpublish": {
+      "name": "Unpublish Post",
+      "value": "unpublishPost"
+    },
+    "import_accounts": {
+      "name": "Get Many Accounts",
+      "value": "accounts"
+    },
+    "import_posts": {
+      "name": "Get Many Posts",
+      "value": "posts"
+    },
+    "import_posts_more": {
+      "name": "Fetch Older Posts",
+      "value": "fetchOlderPosts"
+    },
+    "import_to_library": {
+      "name": "Import to Library",
+      "value": "toLibrary"
+    },
+    "import_refresh": {
+      "name": "Refresh",
+      "value": "refresh",
+      "action": "Refresh an import"
+    },
+    "inbox_bookmark:add": {
+      "name": "Add Bookmark",
+      "value": "bookmarkAdd"
+    },
+    "inbox_bookmark:remove": {
+      "name": "Remove Bookmark",
+      "value": "bookmarkRemove"
+    },
+    "inbox_item_labels:add": {
+      "name": "Add Labels",
+      "value": "labelsAdd"
+    },
+    "inbox_item_labels:remove": {
+      "name": "Remove Labels",
+      "value": "labelsRemove"
+    },
+    "inbox_item_labels:set": {
+      "name": "Set Labels",
+      "value": "labelsSet"
+    },
+    "inbox_assign:assign": {
+      "name": "Assign",
+      "value": "assign",
+      "action": "Assign an inbox item"
+    },
+    "inbox_assign:unassign": {
+      "name": "Unassign",
+      "value": "unassign",
+      "action": "Unassign an inbox item"
+    },
+    "inbox_delete_comment": {
+      "name": "Delete Comment",
+      "value": "deleteComment"
+    },
+    "inbox_reply_comment": {
+      "name": "Reply to Comment",
+      "value": "replyComment"
+    },
+    "inbox_reply_message": {
+      "name": "Send Message",
+      "value": "sendMessage"
+    },
+    "inbox_label_create": {
+      "name": "Create Label",
+      "value": "labelCreate"
+    },
+    "inbox_label_delete": {
+      "name": "Delete Label",
+      "value": "labelDelete"
+    },
+    "inbox_label_update": {
+      "name": "Update Label",
+      "value": "labelUpdate"
+    },
+    "inbox_label_list": {
+      "name": "Get Many Labels",
+      "value": "labelList"
+    },
+    "inbox_accounts": {
+      "name": "Get Many Accounts",
+      "value": "accounts"
+    },
+    "inbox_ai_reply": {
+      "name": "Suggest AI Reply",
+      "value": "aiReply"
+    },
+    "inbox_ai_review_summary": {
+      "name": "Get AI Review Summary",
+      "value": "aiReviewSummary"
+    },
+    "inbox_comments": {
+      "name": "Get Many Comments",
+      "value": "comments"
+    },
+    "inbox_conversation": {
+      "name": "Get Conversation",
+      "value": "conversation"
+    },
+    "inbox_item": {
+      "name": "Get Item",
+      "value": "item"
+    },
+    "inbox_list": {
+      "name": "Get Many",
+      "value": "list",
+      "action": "Get many inbox items"
+    },
+    "inbox_team_members": {
+      "name": "Get Many Team Members",
+      "value": "teamMembers"
+    },
+    "inbox_to_library": {
+      "name": "Copy to Library",
+      "value": "copyToLibrary"
+    },
+    "inbox_like:like": {
+      "name": "Like",
+      "value": "like",
+      "action": "Like an inbox item"
+    },
+    "inbox_like:unlike": {
+      "name": "Unlike",
+      "value": "unlike",
+      "action": "Unlike an inbox item"
+    },
+    "inbox_mark_reviewed:review": {
+      "name": "Mark Reviewed",
+      "value": "markReviewed",
+      "action": "Mark an inbox item reviewed"
+    },
+    "inbox_mark_reviewed:unreview": {
+      "name": "Mark Unreviewed",
+      "value": "markUnreviewed",
+      "action": "Mark an inbox item unreviewed"
+    },
+    "inbox_sync": {
+      "name": "Sync",
+      "value": "sync",
+      "action": "Sync an inbox account"
+    },
+    "label_assign:add": {
+      "name": "Add to Post",
+      "value": "addToPost"
+    },
+    "label_assign:remove": {
+      "name": "Remove From Post",
+      "value": "removeFromPost"
+    },
+    "label_assign:set": {
+      "name": "Set on Post",
+      "value": "setOnPost"
+    },
+    "library_comments:add": {
+      "name": "Add Comment",
+      "value": "commentAdd"
+    },
+    "library_comments:list": {
+      "name": "Get Many Comments",
+      "value": "commentList"
+    },
+    "library_comments:mark": {
+      "name": "Mark Comment",
+      "value": "commentMark"
+    },
+    "content_variation_add": {
+      "name": "Add Content Variation",
+      "value": "variationAdd"
+    },
+    "content_variation_delete": {
+      "name": "Delete Content Variation",
+      "value": "variationDelete"
+    },
+    "content_variation_list": {
+      "name": "Get Many Content Variations",
+      "value": "variationList"
+    },
+    "content_variation_update": {
+      "name": "Update Content Variation",
+      "value": "variationUpdate"
+    },
+    "library_bulk_edit:append": {
+      "name": "Bulk Append Text",
+      "value": "bulkAppend"
+    },
+    "library_bulk_edit:count": {
+      "name": "Bulk Count Text",
+      "value": "bulkCount"
+    },
+    "library_bulk_edit:replace": {
+      "name": "Bulk Replace Text",
+      "value": "bulkReplace"
+    },
+    "library_content_list": {
+      "name": "Get Many Content Items",
+      "value": "contentList"
+    },
+    "library_content_order:move": {
+      "name": "Reorder Content",
+      "value": "contentReorder"
+    },
+    "library_content_order:shuffle": {
+      "name": "Shuffle Content",
+      "value": "contentShuffle"
+    },
+    "library_details": {
+      "name": "Get",
+      "value": "get"
+    },
+    "library_drafts:delete": {
+      "name": "Delete Draft",
+      "value": "draftDelete"
+    },
+    "library_drafts:get": {
+      "name": "Get Draft",
+      "value": "draftGet"
+    },
+    "library_drafts:list": {
+      "name": "Get Many Drafts",
+      "value": "draftList"
+    },
+    "library_drafts:publish": {
+      "name": "Publish Draft",
+      "value": "draftPublish"
+    },
+    "library_drafts:update": {
+      "name": "Update Draft",
+      "value": "draftUpdate"
+    },
+    "expired_content:delete": {
+      "name": "Delete Expired Post",
+      "value": "expiredDelete"
+    },
+    "expired_content:expire": {
+      "name": "Expire Post",
+      "value": "expirePost"
+    },
+    "expired_content:list": {
+      "name": "Get Many Expired Posts",
+      "value": "expiredList"
+    },
+    "expired_content:restore": {
+      "name": "Restore Expired Post",
+      "value": "expiredRestore"
+    },
+    "library_pointers:list": {
+      "name": "Get Many Pointers",
+      "value": "pointerList"
+    },
+    "library_pointers:reset": {
+      "name": "Reset Pointers",
+      "value": "pointerReset"
+    },
+    "library_pointers:set": {
+      "name": "Set Pointer",
+      "value": "pointerSet"
+    },
+    "library_share:create": {
+      "name": "Create Share Link",
+      "value": "shareCreate"
+    },
+    "library_share:get": {
+      "name": "Get Share Link",
+      "value": "shareGet"
+    },
+    "library_share:invite": {
+      "name": "Email Share Link",
+      "value": "shareInvite"
+    },
+    "library_share:reset": {
+      "name": "Reset Share Link",
+      "value": "shareReset"
+    },
+    "library_pause:pause": {
+      "name": "Pause",
+      "value": "pause"
+    },
+    "library_pause:resume": {
+      "name": "Resume",
+      "value": "resume"
+    },
+    "shorten_url": {
+      "name": "Shorten URL",
+      "value": "shortenUrl"
+    },
+    "post_status": {
+      "name": "Get Status",
+      "value": "status"
+    },
+    "url_preview": {
+      "name": "Get URL Preview",
+      "value": "urlPreview"
+    },
+    "library_content_update": {
+      "name": "Update Library Content",
+      "value": "updateLibraryContent"
+    },
+    "queue_post_add_accounts": {
+      "name": "Add Accounts to Post",
+      "value": "addAccounts"
+    },
+    "queue_post_delete": {
+      "name": "Delete Items",
+      "value": "deleteItems"
+    },
+    "queue_list": {
+      "name": "Get Many",
+      "value": "list",
+      "action": "Get many queue items"
+    },
+    "queue_post_now": {
+      "name": "Publish Now",
+      "value": "publishNow"
+    },
+    "queue_post": {
+      "name": "Get Item",
+      "value": "getItem"
+    },
+    "queue_reschedule": {
+      "name": "Reschedule Items",
+      "value": "rescheduleItems"
+    },
+    "post_retry": {
+      "name": "Retry Failed Post",
+      "value": "retryPost"
+    },
+    "queue_post_update": {
+      "name": "Update Item",
+      "value": "updateItem"
+    },
+    "report_x:fetch": {
+      "name": "Buy X Report",
+      "value": "xBuy"
+    },
+    "report_x:quote": {
+      "name": "Quote X Report",
+      "value": "xQuote"
+    },
+    "report_account": {
+      "name": "Get Account Report",
+      "value": "account"
+    },
+    "report_ads": {
+      "name": "Get Ads Report",
+      "value": "ads"
+    },
+    "report_ai_chat": {
+      "name": "Ask AI About Report",
+      "value": "aiChat"
+    },
+    "report_labels": {
+      "name": "Get Label Report",
+      "value": "labels"
+    },
+    "report_pins": {
+      "name": "Get Pinterest Report",
+      "value": "pins"
+    },
+    "report_posts": {
+      "name": "Get Post Metrics",
+      "value": "posts"
+    },
+    "role_manage:create": {
+      "name": "Create",
+      "value": "create"
+    },
+    "role_manage:delete": {
+      "name": "Delete",
+      "value": "delete"
+    },
+    "role_manage:duplicate": {
+      "name": "Duplicate",
+      "value": "duplicate"
+    },
+    "role_manage:rename": {
+      "name": "Rename",
+      "value": "rename"
+    },
+    "role_manage:set_notification": {
+      "name": "Set Notification",
+      "value": "setNotification"
+    },
+    "role_manage:set_permissions": {
+      "name": "Set Permissions",
+      "value": "setPermissions"
+    },
+    "roles": {
+      "name": "Get Many",
+      "value": "list"
+    },
+    "schedule_remaining": {
+      "name": "Get Remaining Posts",
+      "value": "remaining"
+    },
+    "shared_calendar_comments:add": {
+      "name": "Add Comment",
+      "value": "commentAdd"
+    },
+    "shared_calendar_comments:list": {
+      "name": "Get Many Comments",
+      "value": "commentList"
+    },
+    "shared_calendar_comments:mark": {
+      "name": "Mark Comment",
+      "value": "commentMark"
+    },
+    "shared_calendar:create": {
+      "name": "Create",
+      "value": "create"
+    },
+    "shared_calendar:delete": {
+      "name": "Delete",
+      "value": "delete"
+    },
+    "shared_calendar:get": {
+      "name": "Get",
+      "value": "get"
+    },
+    "shared_calendar:clients": {
+      "name": "Get Many Clients",
+      "value": "clients"
+    },
+    "shared_calendar:invite_client": {
+      "name": "Invite Client",
+      "value": "inviteClient"
+    },
+    "shared_calendar:link": {
+      "name": "Set Public Link",
+      "value": "setLink"
+    },
+    "shared_calendar:remove_client": {
+      "name": "Remove Client",
+      "value": "removeClient"
+    },
+    "shared_calendar:update": {
+      "name": "Update",
+      "value": "update"
+    },
+    "social_account_details": {
+      "name": "Get",
+      "value": "get"
+    },
+    "instagram_locations": {
+      "name": "Search Instagram Locations",
+      "value": "instagramLocations"
+    },
+    "instagram_products": {
+      "name": "Get Many Instagram Products",
+      "value": "instagramProducts"
+    },
+    "social_account_status": {
+      "name": "Set Status",
+      "value": "setStatus"
+    },
+    "tiktok_options": {
+      "name": "Get TikTok Options",
+      "value": "tiktokOptions"
+    },
+    "youtube_options": {
+      "name": "Get YouTube Options",
+      "value": "youtubeOptions"
+    },
+    "share_connect_link": {
+      "name": "Email Connect Link",
+      "value": "shareConnectLink"
+    },
+    "queue_pause:pause": {
+      "name": "Pause Queue",
+      "value": "queuePause"
+    },
+    "queue_pause:resume": {
+      "name": "Resume Queue",
+      "value": "queueResume"
+    },
+    "instagram_audio_search": {
+      "name": "Search Instagram Audio",
+      "value": "instagramAudioSearch"
+    },
+    "mention_search": {
+      "name": "Search Mentions",
+      "value": "mentionSearch"
+    },
+    "workflow_card_move:advance": {
+      "name": "Advance Card",
+      "value": "cardAdvance"
+    },
+    "workflow_card_move:convert": {
+      "name": "Convert Card",
+      "value": "cardConvert"
+    },
+    "workflow_card_move:move": {
+      "name": "Move Card",
+      "value": "cardMove"
+    },
+    "workflow_card_move:reassign": {
+      "name": "Reassign Card",
+      "value": "cardReassign"
+    },
+    "workflow_card_move:request_changes": {
+      "name": "Request Card Changes",
+      "value": "cardRequestChanges"
+    },
+    "workflow_client_decision:approve": {
+      "name": "Client Approve Card",
+      "value": "clientApprove"
+    },
+    "workflow_client_decision:comment": {
+      "name": "Client Comment on Card",
+      "value": "clientComment"
+    },
+    "workflow_client_decision:reject": {
+      "name": "Client Reject Card",
+      "value": "clientReject"
+    },
+    "workflow_card_comment": {
+      "name": "Comment on Card",
+      "value": "cardComment"
+    },
+    "workflow_settings:create": {
+      "name": "Create Workflow",
+      "value": "create"
+    },
+    "workflow_settings:get": {
+      "name": "Get Workflow",
+      "value": "get"
+    },
+    "workflow_settings:settings": {
+      "name": "Update Workflow Settings",
+      "value": "updateSettings"
+    },
+    "workflow_settings:ideas": {
+      "name": "Toggle Ideas Stage",
+      "value": "toggleIdeas"
+    },
+    "workflow_urgent": {
+      "name": "Send Urgent Approval Email",
+      "value": "sendUrgent"
+    },
+    "workspace_report_emails:add": {
+      "name": "Add Report Recipient",
+      "value": "reportEmailAdd"
+    },
+    "workspace_report_emails:delete": {
+      "name": "Delete Report Recipient",
+      "value": "reportEmailDelete"
+    },
+    "workspace_report_emails:list": {
+      "name": "Get Many Report Recipients",
+      "value": "reportEmailList"
+    },
+    "workspace_report_emails:update": {
+      "name": "Update Report Recipient",
+      "value": "reportEmailUpdate"
+    },
+    "workspace_details": {
+      "name": "Get",
+      "value": "get"
+    },
+    "workspace_members": {
+      "name": "Get Many Members",
+      "value": "members"
+    },
+    "workspace_invite:invite": {
+      "name": "Invite Member",
+      "value": "invite"
+    },
+    "workspace_invite:resend": {
+      "name": "Resend Invite",
+      "value": "resendInvite"
+    }
+  }
+}
