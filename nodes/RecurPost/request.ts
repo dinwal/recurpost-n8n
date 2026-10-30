@@ -64,7 +64,8 @@ export async function recurPostRequest(
   const options: IHttpRequestOptions = {
     method: 'POST',
     url: `${apiUrl}/api/${endpoint}`,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    // The user agent names this node, so the account's API key page can list n8n among the connected tools
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': 'n8n-nodes-recurpost' },
     body: flattenBody(body),
     returnFullResponse: true,
     ignoreHttpStatusErrors: true,
