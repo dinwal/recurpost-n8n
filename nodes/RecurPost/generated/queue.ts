@@ -1035,7 +1035,7 @@ export const queueProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'New post text. Required when any content field (URL, image_url, video_url) is sent. Its presence switches the call to a content rewrite.'
+        description: 'New post text; the item is one post on one account, so this is the text that goes out. Required when any content field (URL, image_url, video_url) is sent. Its presence switches the call to a content rewrite.'
       },
       {
         displayName: 'Schedule Date Time',
