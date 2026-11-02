@@ -97,6 +97,12 @@ export const socialAccountOperations: OperationSpec[] = [
         key: 'page',
         kind: 'number',
         required: false
+      },
+      {
+        name: 'permitRepeatedTweets',
+        key: 'permit_repeated_tweets',
+        kind: 'boolean',
+        required: false
       }
     ]
   },
@@ -327,7 +333,7 @@ export const socialAccountOperationOptions = [
   {
     name: 'Get X Wallet',
     value: 'xWallet',
-    description: 'Balance of the X (Twitter) URL wallet, posts it still covers, top-up packs, transactions and the Permit Repeated Tweets rule',
+    description: 'Balance of the X (Twitter) URL wallet, posts it still covers, top-up packs and transactions; read or set the Permit Repeated Tweets rule',
     action: 'Get x wallet'
   },
   {
@@ -562,6 +568,13 @@ export const socialAccountProperties: INodeProperties[] = [
         type: 'number',
         default: 1,
         description: 'Transactions page, 20 per page. Only used when the wallet is your own.'
+      },
+      {
+        displayName: 'Permit Repeated Tweets',
+        name: 'permitRepeatedTweets',
+        type: 'boolean',
+        default: false,
+        description: 'Whether library posts and their variations may go out on X again after they have posted once. Send it to set the rule before the wallet is read: true, 1, yes or on allows the repeats; any other value stops them. Workspace owner only. Omit to read.'
       }
     ]
   },
