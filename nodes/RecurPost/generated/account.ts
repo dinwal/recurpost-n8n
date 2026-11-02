@@ -1123,7 +1123,7 @@ export const accountProperties: INodeProperties[] = [
         name: 'logoUrl',
         type: 'string',
         default: '',
-        description: 'For set, required there: the URL of an image you uploaded with /api/media_upload_url under your own account. Any other URL is refused.'
+        description: 'For set, required there: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is)'
       }
     ]
   },
@@ -1393,7 +1393,7 @@ export const accountProperties: INodeProperties[] = [
         name: 'photoUrl',
         type: 'string',
         default: '',
-        description: 'New profile photo: the URL of an image you uploaded with /api/media_upload_url under your own account. Any other URL is refused. The previous photo is removed from storage.'
+        description: 'New profile photo: a publicly reachable image URL, downloaded and stored in your RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). The previous photo is removed from storage.'
       }
     ]
   }

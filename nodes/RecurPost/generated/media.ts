@@ -28,26 +28,6 @@ export const mediaOperations: OperationSpec[] = [
         required: false
       }
     ]
-  },
-  {
-    resource: 'media',
-    operation: 'uploadUrl',
-    endpoint: 'media_upload_url',
-    workspace: false,
-    params: [
-      {
-        name: 'filename',
-        key: 'filename',
-        kind: 'string',
-        required: true
-      },
-      {
-        name: 'size',
-        key: 'size',
-        kind: 'number',
-        required: false
-      }
-    ]
   }
 ];
 
@@ -57,12 +37,6 @@ export const mediaOperationOptions = [
     value: 'list',
     description: 'The images, GIFs and videos already used in the owner\'s posts, newest first',
     action: 'Get many medias'
-  },
-  {
-    name: 'Get Upload URL',
-    value: 'uploadUrl',
-    description: 'Get a signed URL to upload an image or video directly to RecurPost storage',
-    action: 'Get upload url'
   }
 ];
 
@@ -124,50 +98,6 @@ export const mediaProperties: INodeProperties[] = [
         type: 'string',
         default: '',
         description: 'Kinds to list: any of image, gif, video, as an array or a comma-separated string. All three when omitted. Separate several values with commas.'
-      }
-    ]
-  },
-  {
-    displayName: 'Filename',
-    name: 'filename',
-    type: 'string',
-    default: '',
-    required: true,
-    description: 'Name of the file you will upload. Only the extension is used: jpg, jpeg, png, gif, webp go to your image folder; mp4, mov go to your video folder. Case-insensitive. The stored object gets a generated name, not this one.',
-    displayOptions: {
-      show: {
-        resource: [
-          'media'
-        ],
-        operation: [
-          'uploadUrl'
-        ]
-      }
-    }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'media'
-        ],
-        operation: [
-          'uploadUrl'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Size',
-        name: 'size',
-        type: 'number',
-        default: 0,
-        description: 'File size in bytes, when known. A value over 2 GB (2147483648) is refused up front; the size is not checked against the actual PUT.'
       }
     ]
   }

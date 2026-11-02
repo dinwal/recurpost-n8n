@@ -1410,7 +1410,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The template image, a URL from /api/media_upload_url under the owner\'s folder. Required when action is add.',
+    description: 'The template image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is add.',
     displayOptions: {
       show: {
         resource: [
@@ -1650,7 +1650,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'The watermark image, a URL from /api/media_upload_url under the owner\'s folder. Required when action is set and no watermark is saved yet.'
+        description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.'
       },
       {
         displayName: 'Opacity',
@@ -2177,7 +2177,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'The template image, a URL from /api/media_upload_url under the owner\'s folder. Required when action is add.'
+        description: 'The template image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is add.'
       }
     ]
   },
@@ -2233,7 +2233,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'The watermark image, a URL from /api/media_upload_url under the owner\'s folder. Required when action is set and no watermark is saved yet.'
+        description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.'
       },
       {
         displayName: 'Opacity',
@@ -2657,7 +2657,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'The template image, a URL from /api/media_upload_url under the owner\'s folder. Required when action is add.'
+        description: 'The template image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is add.'
       },
       {
         displayName: 'Template ID',
@@ -2720,7 +2720,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'The watermark image, a URL from /api/media_upload_url under the owner\'s folder. Required when action is set and no watermark is saved yet.'
+        description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.'
       },
       {
         displayName: 'Opacity',
@@ -2920,7 +2920,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The watermark image, a URL from /api/media_upload_url under the owner\'s folder. Required when action is set and no watermark is saved yet.',
+    description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.',
     displayOptions: {
       show: {
         resource: [
