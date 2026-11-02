@@ -442,6 +442,12 @@ export const accountOperations: OperationSpec[] = [
         key: 'min_social_accounts',
         kind: 'options',
         required: false
+      },
+      {
+        name: 'photoUrl',
+        key: 'photo_url',
+        kind: 'string',
+        required: false
       }
     ]
   }
@@ -565,7 +571,7 @@ export const accountOperationOptions = [
   {
     name: 'Update',
     value: 'update',
-    description: 'Update the name, email, persona or expected account count of the key owner\'s profile',
+    description: 'Update the name, email, persona, expected account count or profile photo of the key owner\'s profile',
     action: 'Update account profile'
   }
 ];
@@ -1381,6 +1387,13 @@ export const accountProperties: INodeProperties[] = [
           }
         ],
         description: 'What the account is for, as a code: 1 Blogger, 2 Coach, 3 Digital marketing professional, 4 Solopreneur, 5 Micro-entrepreneur, 6 Large-scale corporation, 7 Marketing agency, 8 Solo marketer, 9 Entrepreneur, 10 Other'
+      },
+      {
+        displayName: 'Photo URL',
+        name: 'photoUrl',
+        type: 'string',
+        default: '',
+        description: 'New profile photo: the URL of an image you uploaded with /api/media_upload_url under your own account. Any other URL is refused. The previous photo is removed from storage.'
       }
     ]
   }
