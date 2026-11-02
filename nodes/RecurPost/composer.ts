@@ -1,5 +1,61 @@
-import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
+import { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workflow';
 import { generatedComposerShow } from './generated';
+
+// The networks that take media of their own (<prefix>_image_url, <prefix>_video_url): which fields each one takes.
+// Only Instagram and Threads order a mixed list; YouTube takes a video only; Instagram, Google Business and TikTok
+// take no alt text on the API.
+const NETWORK_MEDIA = [
+  { prefix: 'bs', name: 'Bluesky', images: true, order: false, altText: true },
+  { prefix: 'fb', name: 'Facebook', images: true, order: false, altText: true },
+  { prefix: 'gmb', name: 'Google Business', images: true, order: false, altText: false },
+  { prefix: 'in', name: 'Instagram', images: true, order: true, altText: false },
+  { prefix: 'ln', name: 'LinkedIn', images: true, order: false, altText: true },
+  { prefix: 'pi', name: 'Pinterest', images: true, order: false, altText: true },
+  { prefix: 'th', name: 'Threads', images: true, order: true, altText: true },
+  { prefix: 'tk', name: 'TikTok', images: true, order: false, altText: false },
+  { prefix: 'tw', name: 'X (Twitter)', images: true, order: false, altText: true },
+  { prefix: 'yt', name: 'YouTube', images: false, order: false, altText: false },
+];
+
+function networkListOption(displayName: string, name: string, placeholder: string, description: string): INodeProperties {
+  return {
+    displayName,
+    name,
+    type: 'string',
+    typeOptions: {
+      multipleValues: true,
+      multipleValueButtonText: 'Add',
+    },
+    default: [],
+    placeholder,
+    description,
+  };
+}
+
+// The Per-Network Media collection: one entry per field a network takes, sorted by display name
+export function networkMediaOptions(): INodeProperties[] {
+  const options: INodeProperties[] = [];
+  for (const network of NETWORK_MEDIA) {
+    if (network.images) {
+      options.push(networkListOption(`${network.name} Image URLs`, `${network.prefix}ImageUrls`, 'https://example.com/square.jpg', `Images for ${network.name} instead of the shared images. Replaces the network's whole media set.`));
+    }
+    options.push({
+      displayName: `${network.name} Video URL`,
+      name: `${network.prefix}VideoUrl`,
+      type: 'string',
+      default: '',
+      placeholder: 'https://example.com/clip.mp4',
+      description: `A video (mp4/mov) for ${network.name} instead of the shared video. Replaces the network's whole media set.`,
+    });
+    if (network.order) {
+      options.push(networkListOption(`${network.name} Media Order`, `${network.prefix}MediaOrder`, 'https://example.com/clip.mp4', `The order of ${network.name}'s own images and video, as their URLs. Only read when both are given.`));
+    }
+    if (network.altText) {
+      options.push(networkListOption(`${network.name} Alt Text`, `${network.prefix}AltText`, 'Alternative text', `Alternative text for the ${network.name} images, in the same order`));
+    }
+  }
+  return options.sort((a, b) => a.displayName.localeCompare(b.displayName));
+}
 
 // Maps n8n collection field names (camelCase) to the exact RecurPost API
 // parameter names (snake_case). Only string / options fields live here;
@@ -125,6 +181,33 @@ export function buildCustomizationBody(ctx: IExecuteFunctions, i: number): Recor
   // PHP treats the string "0" as falsy, so send "0"/"1" (not "false"/"true").
   if (mediaOptions.hostImagesOnRecurpost === false) {
     body.host_images_on_recurpost = '0';
+  }
+
+  // Per-network media -> fb_image_url[0], fb_video_url, in_media_order[0], bs_alt_text[0], ...
+  // Alt text keeps its positions (a blank entry skips that image), the URL lists drop blanks.
+  const networkMedia = ctx.getNodeParameter('networkMedia', i, {}) as IDataObject;
+  for (const network of NETWORK_MEDIA) {
+    const lists: Array<[string, string, boolean]> = [
+      [`${network.prefix}ImageUrls`, `${network.prefix}_image_url`, true],
+      [`${network.prefix}MediaOrder`, `${network.prefix}_media_order`, true],
+      [`${network.prefix}AltText`, `${network.prefix}_alt_text`, false],
+    ];
+    for (const [fieldName, apiKey, dropBlanks] of lists) {
+      let values = ((networkMedia[fieldName] as string[] | undefined) ?? []).map((v) => (v ?? '').toString());
+      if (dropBlanks) {
+        values = values.filter((v) => v.trim() !== '');
+      }
+      if (values.every((v) => v.trim() === '')) {
+        continue;
+      }
+      values.forEach((v, idx) => {
+        body[`${apiKey}[${idx}]`] = v;
+      });
+    }
+    const videoUrl = networkMedia[`${network.prefix}VideoUrl`];
+    if (videoUrl) {
+      body[`${network.prefix}_video_url`] = videoUrl as string;
+    }
   }
 
   // String / options per-platform collections (camelCase name -> API key)

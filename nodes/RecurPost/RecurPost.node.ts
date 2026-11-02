@@ -12,7 +12,7 @@ import {
   NodeConnectionTypes,
 } from 'n8n-workflow';
 import { recurPostRequest } from './request';
-import { buildCustomizationBody, CUSTOMIZATION_SHOW, formatDateTime } from './composer';
+import { buildCustomizationBody, CUSTOMIZATION_SHOW, formatDateTime, networkMediaOptions } from './composer';
 import { findOperation, runGeneratedOperation } from './execute';
 import { generatedOperationOptions, generatedProperties, generatedResources } from './generated';
 
@@ -317,6 +317,18 @@ export class RecurPost implements INodeType {
             description: 'URL of a publicly accessible video (mp4/mov). Takes precedence over images.',
           },
         ],
+      },
+      {
+        displayName: 'Per-Network Media',
+        name: 'networkMedia',
+        type: 'collection',
+        placeholder: 'Add Network Media',
+        default: {},
+        displayOptions: {
+          show: CUSTOMIZATION_SHOW,
+        },
+        description: 'Media one network posts instead of the shared images and video. It replaces that network\'s whole media set; the other networks keep the shared media. Only Instagram and Threads take images and a video together.',
+        options: networkMediaOptions(),
       },
 
       // ==========================================
