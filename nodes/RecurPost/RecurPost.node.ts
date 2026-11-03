@@ -407,12 +407,27 @@ export class RecurPost implements INodeType {
         },
         options: [
           {
+            displayName: 'AI-Generated Images',
+            name: 'fbAiImages',
+            type: 'string',
+            default: '',
+            placeholder: 'https://example.com/a.jpg, https://example.com/b.jpg',
+            description: 'Images to label as AI-generated photos on Facebook: comma-separated image URLs from the post, or a JSON array of {"image_url", "provenance_type"} objects (EXPLICIT, EXPLICIT_AI_EDIT, C2PA, IPTC or INVISIBLE_WATERMARK)',
+          },
+          {
             displayName: 'First Comment',
             name: 'fbFirstComment',
             type: 'string',
             typeOptions: { rows: 2 },
             default: '',
             description: 'Facebook-specific first comment',
+          },
+          {
+            displayName: 'Made With AI',
+            name: 'fbIsAiGenerated',
+            type: 'boolean',
+            default: false,
+            description: 'Whether to label the Facebook post as made with AI (the reel label, or every image labelled as an AI-generated photo)',
           },
           {
             displayName: 'Post Type',
@@ -445,6 +460,13 @@ export class RecurPost implements INodeType {
             typeOptions: { rows: 2 },
             default: '',
             description: 'Instagram-specific first comment (feed only)',
+          },
+          {
+            displayName: 'Label as AI-Generated',
+            name: 'inIsAiGenerated',
+            type: 'boolean',
+            default: false,
+            description: 'Whether to label the Instagram post as AI-generated',
           },
           {
             displayName: 'Post Type',
@@ -502,6 +524,25 @@ export class RecurPost implements INodeType {
         ],
       },
       {
+        displayName: 'Twitter / X Options',
+        name: 'twitterOptions',
+        type: 'collection',
+        placeholder: 'Add Option',
+        default: {},
+        displayOptions: {
+          show: CUSTOMIZATION_SHOW,
+        },
+        options: [
+          {
+            displayName: 'Made With AI',
+            name: 'twMadeWithAi',
+            type: 'boolean',
+            default: false,
+            description: 'Whether to label the post as made with AI on Twitter/X',
+          },
+        ],
+      },
+      {
         displayName: 'Pinterest Options',
         name: 'pinterestOptions',
         type: 'collection',
@@ -512,11 +553,25 @@ export class RecurPost implements INodeType {
         },
         options: [
           {
+            displayName: 'AI Modified',
+            name: 'piAiModified',
+            type: 'boolean',
+            default: false,
+            description: 'Whether the Pin\'s content was generated or modified with AI (Pinterest AI disclosure)',
+          },
+          {
             displayName: 'Pin Title',
             name: 'piTitle',
             type: 'string',
             default: '',
             description: 'Title for the Pinterest pin',
+          },
+          {
+            displayName: 'Synthetic Performer',
+            name: 'piSyntheticPerformer',
+            type: 'boolean',
+            default: false,
+            description: 'Whether a person shown or heard in the Pin is AI-generated (Pinterest AI disclosure)',
           },
         ],
       },
@@ -602,6 +657,13 @@ export class RecurPost implements INodeType {
         },
         options: [
           {
+            displayName: 'Altered or Synthetic Content',
+            name: 'ytContainsSyntheticMedia',
+            type: 'boolean',
+            default: false,
+            description: 'Whether the video contains realistic content that was altered or generated with AI (YouTube shows a label)',
+          },
+          {
             displayName: 'Category',
             name: 'ytCategory',
             type: 'string',
@@ -660,6 +722,13 @@ export class RecurPost implements INodeType {
           show: CUSTOMIZATION_SHOW,
         },
         options: [
+          {
+            displayName: 'AI-Generated Content',
+            name: 'tkIsAigc',
+            type: 'boolean',
+            default: false,
+            description: 'Whether to add TikTok\'s AI-generated content label to the video',
+          },
           {
             displayName: 'Allow Comments',
             name: 'tkAllowComments',

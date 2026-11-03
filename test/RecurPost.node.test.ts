@@ -147,6 +147,35 @@ describe('request body encoding (regression)', () => {
     });
   });
 
+  it('sends the AI disclosure switches as 1 and the Facebook image list as given', async () => {
+    const { calls } = await run({
+      resource: 'post',
+      operation: 'schedule',
+      workspaceId: '',
+      socialAccounts: ['101'],
+      content: 'Labelled',
+      scheduleType: 'now',
+      imageUrls: ['https://img.test/a.jpg'],
+      facebookOptions: { fbIsAiGenerated: true, fbAiImages: 'https://img.test/a.jpg' },
+      twitterOptions: { twMadeWithAi: true },
+      instagramOptions: { inIsAiGenerated: true },
+      pinterestOptions: { piAiModified: false, piSyntheticPerformer: true },
+      youtubeOptions: { ytContainsSyntheticMedia: true },
+      tiktokOptions: { tkIsAigc: true },
+    });
+
+    expect(calls[0].body).toMatchObject({
+      fb_is_ai_generated: '1',
+      fb_ai_images: 'https://img.test/a.jpg',
+      tw_made_with_ai: '1',
+      in_is_ai_generated: '1',
+      pi_synthetic_performer: '1',
+      yt_contains_synthetic_media: '1',
+      tk_is_aigc: '1',
+    });
+    expect(calls[0].body).not.toHaveProperty('pi_ai_modified');
+  });
+
   it('formats the schedule date as Y-m-d H:i:s', async () => {
     const { calls } = await run({
       resource: 'post',

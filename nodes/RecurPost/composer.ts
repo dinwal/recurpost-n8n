@@ -75,6 +75,7 @@ const PLATFORM_MESSAGE_MAP: Record<string, string> = {
 };
 
 const FACEBOOK_MAP: Record<string, string> = {
+  fbAiImages: 'fb_ai_images',
   fbFirstComment: 'fb_first_comment',
   fbPostType: 'fb_post_type',
 };
@@ -222,14 +223,38 @@ export function buildCustomizationBody(ctx: IExecuteFunctions, i: number): Recor
   }
 
   // Boolean per-platform fields with custom yes/no/1 encodings
+  const facebookOptions = ctx.getNodeParameter('facebookOptions', i, {}) as IDataObject;
+  if (facebookOptions.fbIsAiGenerated === true) {
+    body.fb_is_ai_generated = '1';
+  }
+
+  const twitterOptions = ctx.getNodeParameter('twitterOptions', i, {}) as IDataObject;
+  if (twitterOptions.twMadeWithAi === true) {
+    body.tw_made_with_ai = '1';
+  }
+
   const instagramOptions = ctx.getNodeParameter('instagramOptions', i, {}) as IDataObject;
   if (instagramOptions.inReelShareInFeed === false) {
     body.in_reel_share_in_feed = 'no';
+  }
+  if (instagramOptions.inIsAiGenerated === true) {
+    body.in_is_ai_generated = '1';
+  }
+
+  const pinterestOptions = ctx.getNodeParameter('pinterestOptions', i, {}) as IDataObject;
+  if (pinterestOptions.piAiModified === true) {
+    body.pi_ai_modified = '1';
+  }
+  if (pinterestOptions.piSyntheticPerformer === true) {
+    body.pi_synthetic_performer = '1';
   }
 
   const youtubeOptions = ctx.getNodeParameter('youtubeOptions', i, {}) as IDataObject;
   if (youtubeOptions.ytVideoMadeForKids === true) {
     body.yt_video_made_for_kids = 'yes';
+  }
+  if (youtubeOptions.ytContainsSyntheticMedia === true) {
+    body.yt_contains_synthetic_media = '1';
   }
 
   const tiktokOptions = ctx.getNodeParameter('tiktokOptions', i, {}) as IDataObject;
@@ -247,6 +272,9 @@ export function buildCustomizationBody(ctx: IExecuteFunctions, i: number): Recor
   }
   if (tiktokOptions.tkPromoteOtherBrand === true) {
     body.tk_promote_other_brand = '1';
+  }
+  if (tiktokOptions.tkIsAigc === true) {
+    body.tk_is_aigc = '1';
   }
 
   return body;
