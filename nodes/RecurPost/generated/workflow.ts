@@ -155,8 +155,8 @@ export const workflowOperations: OperationSpec[] = [
   },
   {
     resource: 'workflow',
-    operation: 'cardCreate',
-    endpoint: 'workflow_card_create',
+    operation: 'ideaCreate',
+    endpoint: 'workflow_idea_create',
     workspace: true,
     params: [
       {
@@ -166,16 +166,66 @@ export const workflowOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'kind',
-        key: 'kind',
-        kind: 'options',
+        name: 'description',
+        key: 'description',
+        kind: 'string',
         required: false
+      },
+      {
+        name: 'platforms',
+        key: 'platforms',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'targetDate',
+        key: 'target_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'assigneeUserId',
+        key: 'assignee_user_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'shareWithClient',
+        key: 'share_with_client',
+        kind: 'boolean',
+        required: false
+      },
+      {
+        name: 'labelIds',
+        key: 'label_ids',
+        kind: 'multiOptions',
+        required: false
+      },
+      {
+        name: 'media',
+        key: 'media',
+        kind: 'json',
+        required: false
+      }
+    ]
+  },
+  {
+    resource: 'workflow',
+    operation: 'postCreate',
+    endpoint: 'workflow_post_create',
+    workspace: true,
+    params: [
+      {
+        name: 'title',
+        key: 'title',
+        kind: 'string',
+        required: true
       },
       {
         name: 'stageId',
         key: 'stage_id',
         kind: 'number',
-        required: false
+        required: true
       },
       {
         name: 'description',
@@ -872,8 +922,70 @@ export const workflowOperations: OperationSpec[] = [
   },
   {
     resource: 'workflow',
-    operation: 'cardEdit',
-    endpoint: 'workflow_card_edit',
+    operation: 'ideaEdit',
+    endpoint: 'workflow_idea_edit',
+    workspace: true,
+    params: [
+      {
+        name: 'id',
+        key: 'id',
+        kind: 'number',
+        required: true
+      },
+      {
+        name: 'title',
+        key: 'title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'description',
+        key: 'description',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'platforms',
+        key: 'platforms',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'targetDate',
+        key: 'target_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'assigneeUserId',
+        key: 'assignee_user_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'shareWithClient',
+        key: 'share_with_client',
+        kind: 'boolean',
+        required: false
+      },
+      {
+        name: 'labelIds',
+        key: 'label_ids',
+        kind: 'multiOptions',
+        required: false
+      },
+      {
+        name: 'media',
+        key: 'media',
+        kind: 'json',
+        required: false
+      }
+    ]
+  },
+  {
+    resource: 'workflow',
+    operation: 'postEdit',
+    endpoint: 'workflow_post_edit',
     workspace: true,
     params: [
       {
@@ -1837,10 +1949,16 @@ export const workflowOperationOptions = [
     action: 'Convert card'
   },
   {
-    name: 'Create Card',
-    value: 'cardCreate',
-    description: 'Create an idea or a post card',
-    action: 'Create card'
+    name: 'Create Idea',
+    value: 'ideaCreate',
+    description: 'Create an idea card in the Ideas column',
+    action: 'Create idea'
+  },
+  {
+    name: 'Create Post',
+    value: 'postCreate',
+    description: 'Create a post card in a stage',
+    action: 'Create post'
   },
   {
     name: 'Create Workflow',
@@ -1861,10 +1979,16 @@ export const workflowOperationOptions = [
     action: 'Delete stage'
   },
   {
-    name: 'Edit Card',
-    value: 'cardEdit',
-    description: 'Change a card: its fields, media and per-network customisations',
-    action: 'Edit card'
+    name: 'Edit Idea',
+    value: 'ideaEdit',
+    description: 'Change an idea card',
+    action: 'Edit idea'
+  },
+  {
+    name: 'Edit Post',
+    value: 'postEdit',
+    description: 'Change a post card: its fields, media and per-network customisations',
+    action: 'Edit post'
   },
   {
     name: 'Get Board',
@@ -1949,11 +2073,13 @@ export const workflowProperties: INodeProperties[] = [
           'clientReject',
           'cardComment',
           'cardConvert',
-          'cardCreate',
+          'ideaCreate',
+          'postCreate',
           'create',
           'cardDelete',
           'stageDelete',
-          'cardEdit',
+          'ideaEdit',
+          'postEdit',
           'board',
           'card',
           'get',
@@ -2317,7 +2443,7 @@ export const workflowProperties: INodeProperties[] = [
           'workflow'
         ],
         operation: [
-          'cardCreate'
+          'ideaCreate'
         ]
       }
     }
@@ -2334,7 +2460,117 @@ export const workflowProperties: INodeProperties[] = [
           'workflow'
         ],
         operation: [
-          'cardCreate'
+          'ideaCreate'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Assignee User ID',
+        name: 'assigneeUserId',
+        type: 'string',
+        default: '',
+        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage.'
+      },
+      {
+        displayName: 'Description',
+        name: 'description',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Description or caption draft'
+      },
+      {
+        displayName: 'Label Names or IDs',
+        name: 'labelIds',
+        type: 'multiOptions',
+        default: [],
+        typeOptions: {
+          loadOptionsMethod: 'getLabels'
+        },
+        description: 'Plain numeric label IDs (array or comma-separated) of the owner\'s labels. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      },
+      {
+        displayName: 'Media',
+        name: 'media',
+        type: 'json',
+        default: '[]',
+        description: 'Up to 10 attachments as publicly reachable http or https URLs. Each entry is a URL string or {URL, type} with type image or video; without a type, .mp4, .mov, .m4v and .webm count as video.'
+      },
+      {
+        displayName: 'Platforms',
+        name: 'platforms',
+        type: 'string',
+        default: '',
+        description: 'Platform keys (array, JSON-encoded array string or comma-separated): instagram, facebook, linkedin, twitter, google, pinterest, youtube, tiktok, threads, bluesky. Separate several values with commas.'
+      },
+      {
+        displayName: 'Share With Client',
+        name: 'shareWithClient',
+        type: 'boolean',
+        default: false,
+        description: 'Whether the idea is shared with the client. Defaults to the workflow setting for ideas; the app needs a client calendar in the workspace to share one.'
+      },
+      {
+        displayName: 'Target Date',
+        name: 'targetDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Target date in the owner\'s wall clock, YYYY-MM-DD or YYYY-MM-DD HH:MM'
+      }
+    ]
+  },
+  {
+    displayName: 'Title',
+    name: 'title',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'Card title',
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'postCreate'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Stage ID',
+    name: 'stageId',
+    type: 'number',
+    default: 0,
+    required: true,
+    description: 'The stage the post starts in, from columns[].stage_id of /api/workflow_board',
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'postCreate'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'postCreate'
         ]
       }
     },
@@ -2888,23 +3124,6 @@ export const workflowProperties: INodeProperties[] = [
         description: 'Volume of the video\'s own sound under the track, 0 to 100; 0 mutes it'
       },
       {
-        displayName: 'Kind',
-        name: 'kind',
-        type: 'options',
-        default: 'idea',
-        options: [
-          {
-            name: 'Idea',
-            value: 'idea'
-          },
-          {
-            name: 'Post',
-            value: 'post'
-          }
-        ],
-        description: 'Idea or post'
-      },
-      {
         displayName: 'Label Names or IDs',
         name: 'labelIds',
         type: 'multiOptions',
@@ -3075,13 +3294,6 @@ export const workflowProperties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description: 'Whether the card is shared with the client for approval. Defaults to the workflow setting.'
-      },
-      {
-        displayName: 'Stage ID',
-        name: 'stageId',
-        type: 'number',
-        default: 0,
-        description: 'Required for a post: the stage it starts in, from columns[].stage_id of /api/workflow_board. Ideas take none.'
       },
       {
         displayName: 'Target Date',
@@ -3565,14 +3777,14 @@ export const workflowProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain numeric card ID',
+    description: 'Plain numeric ID of the idea',
     displayOptions: {
       show: {
         resource: [
           'workflow'
         ],
         operation: [
-          'cardEdit'
+          'ideaEdit'
         ]
       }
     }
@@ -3589,7 +3801,106 @@ export const workflowProperties: INodeProperties[] = [
           'workflow'
         ],
         operation: [
-          'cardEdit'
+          'ideaEdit'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Assignee User ID',
+        name: 'assigneeUserId',
+        type: 'string',
+        default: '',
+        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage.'
+      },
+      {
+        displayName: 'Description',
+        name: 'description',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Description or caption draft. Send an empty string to clear it.'
+      },
+      {
+        displayName: 'Label Names or IDs',
+        name: 'labelIds',
+        type: 'multiOptions',
+        default: [],
+        typeOptions: {
+          loadOptionsMethod: 'getLabels'
+        },
+        description: 'Plain numeric label IDs (array or comma-separated) of the owner\'s labels. Replaces the current labels; an empty value clears them. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      },
+      {
+        displayName: 'Media',
+        name: 'media',
+        type: 'json',
+        default: '[]',
+        description: 'Up to 10 attachments as publicly reachable http or https URLs. Each entry is a URL string or {URL, type} with type image or video; without a type, .mp4, .mov, .m4v and .webm count as video. Replaces the current media.'
+      },
+      {
+        displayName: 'Platforms',
+        name: 'platforms',
+        type: 'string',
+        default: '',
+        description: 'Platform keys (array, JSON-encoded array string or comma-separated): instagram, facebook, linkedin, twitter, google, pinterest, youtube, tiktok, threads, bluesky. Separate several values with commas.'
+      },
+      {
+        displayName: 'Share With Client',
+        name: 'shareWithClient',
+        type: 'boolean',
+        default: false,
+        description: 'Whether the card is shared with the client for approval'
+      },
+      {
+        displayName: 'Target Date',
+        name: 'targetDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Target date in the owner\'s wall clock, YYYY-MM-DD or YYYY-MM-DD HH:MM. Send an empty string to clear.'
+      },
+      {
+        displayName: 'Title',
+        name: 'title',
+        type: 'string',
+        default: '',
+        description: 'New title; blank or missing keeps the stored one'
+      }
+    ]
+  },
+  {
+    displayName: 'ID',
+    name: 'id',
+    type: 'number',
+    default: 0,
+    required: true,
+    description: 'Plain numeric ID of the post card',
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'postEdit'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'postEdit'
         ]
       }
     },

@@ -420,11 +420,13 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Client Reject Card | `workflow_client_reject` |
 | Comment on Card | `workflow_card_comment` |
 | Convert Card | `workflow_card_convert` |
-| Create Card | `workflow_card_create` |
+| Create Idea | `workflow_idea_create` |
+| Create Post | `workflow_post_create` |
 | Create Workflow | `workflow_settings_create` |
 | Delete Card | `workflow_card_delete` |
 | Delete Stage | `workflow_stage_delete` |
-| Edit Card | `workflow_card_edit` |
+| Edit Idea | `workflow_idea_edit` |
+| Edit Post | `workflow_post_edit` |
 | Get Board | `workflow_board` |
 | Get Card | `workflow_card` |
 | Get Workflow | `workflow_settings_get` |
