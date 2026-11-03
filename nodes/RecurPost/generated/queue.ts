@@ -436,7 +436,7 @@ export const queueOperationOptions = [
   {
     name: 'Update Item',
     value: 'updateItem',
-    description: 'Move a queued item to a new time, replace its content, or both',
+    description: 'Move a queued item to a new time, change the post behind it, or both',
     action: 'Update item'
   }
 ];
@@ -1035,14 +1035,14 @@ export const queueProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'New post text; the item is one post on one account, so this is the text that goes out. Required when any content field (URL, image_url, video_url) is sent. Its presence switches the call to a content rewrite.'
+        description: 'New shared text for every network of the post. Optional: left out, the stored text stays; a network\'s own text (fb_message and the rest) wins over it for that network.'
       },
       {
         displayName: 'Schedule Date Time',
         name: 'scheduleDateTime',
         type: 'dateTime',
         default: '',
-        description: 'New time, in the future. Required when no message is sent. A value with an offset or Z (2026-10-25T09:30:00+05:30) is taken as is; a bare YYYY-MM-DD HH:MM:SS is read in the workspace owner\'s timezone.'
+        description: 'New time, in the future. Required when no content field is sent. A value with an offset or Z (2026-10-25T09:30:00+05:30) is taken as is; a bare YYYY-MM-DD HH:MM:SS is read in the workspace owner\'s timezone.'
       },
       {
         displayName: 'Twitter Thread',
