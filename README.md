@@ -50,23 +50,23 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Create Custom Field | `custom_fields:create` |
-| Delete White Label | `white_label:delete` |
-| Delete Custom Field | `custom_fields:delete` |
-| Delete Custom Field Value | `custom_fields:delete_value` |
+| Create Custom Field | `custom_fields_create` |
+| Delete White Label | `white_label_delete` |
+| Delete Custom Field | `custom_fields_delete` |
+| Delete Custom Field Value | `custom_fields_delete_value` |
 | Get | `account_details` |
 | Get Announcements | `notifications` |
 | Get Billing Invoices | `billing_invoices` |
-| Get White Label | `white_label:get` |
+| Get White Label | `white_label_get` |
 | Get Limits | `account_limits` |
-| Get Many Custom Fields | `custom_fields:list` |
+| Get Many Custom Fields | `custom_fields_list` |
 | Get or Set Email Preferences | `email_preferences` |
 | Get or Set Working Hours | `working_hours` |
 | Get Plan | `plan_details` |
-| Rename Custom Field | `custom_fields:rename` |
-| Set White Label | `white_label:set` |
+| Rename Custom Field | `custom_fields_rename` |
+| Set White Label | `white_label_set` |
 | Set Click Tracking | `click_tracking` |
-| Set Custom Field Value | `custom_fields:set_value` |
+| Set Custom Field Value | `custom_fields_set_value` |
 | Set Timezone | `account_timezone` |
 | Update | `account_update` |
 
@@ -84,18 +84,18 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Operation | Endpoint |
 |-----------|----------|
 | Draft Week Plan | `ai_week_plan` |
-| Generate From Template | `ai_templates:generate` |
+| Generate From Template | `ai_templates_generate` |
 | Generate Image | `generate_image_with_ai` |
-| Generate Special Day Posts | `ai_special_days:generate` |
+| Generate Special Day Posts | `ai_special_days_generate` |
 | Generate Text | `generate_content_with_ai` |
 | Get Credits | `ai_credits` |
-| Get Many Special Days | `ai_special_days:list` |
-| Get Many Templates | `ai_templates:list` |
-| Get Settings | `ai_settings:get` |
-| Get Template Formats | `ai_templates:formats` |
-| Get Template Questions | `ai_templates:questions` |
+| Get Many Special Days | `ai_special_days_list` |
+| Get Many Templates | `ai_templates_list` |
+| Get Settings | `ai_settings_get` |
+| Get Template Formats | `ai_templates_formats` |
+| Get Template Questions | `ai_templates_questions` |
 | Save to Library | `ai_to_library` |
-| Set Settings | `ai_settings:set` |
+| Set Settings | `ai_settings_set` |
 | Suggest Hashtags | `ai_hashtags` |
 | Suggest Variations | `ai_variations` |
 
@@ -389,10 +389,10 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Get TikTok Options | `tiktok_options` |
 | Get X Wallet | `x_wallet` |
 | Get YouTube Options | `youtube_options` |
-| Pause Queue | `queue_pause:pause` |
+| Pause Queue | `queue_pause` |
 | Remove | `social_account_remove` |
 | Rename | `social_account_rename` |
-| Resume Queue | `queue_pause:resume` |
+| Resume Queue | `queue_resume` |
 | Search Instagram Audio | `instagram_audio_search` |
 | Search Instagram Locations | `instagram_locations` |
 | Search Mentions | `mention_search` |

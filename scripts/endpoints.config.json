@@ -205,7 +205,8 @@
     "share_connect_link": "socialAccount",
     "instagram_locations": "socialAccount",
     "url_preview": "post",
-    "shorten_url": "post"
+    "shorten_url": "post",
+    "queue_resume": "socialAccount"
   },
   "loaders": {
     "workspace_id": "getWorkspaces",
@@ -344,27 +345,27 @@
     "bs_alt_text"
   ],
   "operations": {
-    "custom_fields:create": {
+    "custom_fields_create": {
       "name": "Create Custom Field",
       "value": "customFieldCreate"
     },
-    "custom_fields:delete": {
+    "custom_fields_delete": {
       "name": "Delete Custom Field",
       "value": "customFieldDelete"
     },
-    "custom_fields:delete_value": {
+    "custom_fields_delete_value": {
       "name": "Delete Custom Field Value",
       "value": "customFieldDeleteValue"
     },
-    "custom_fields:list": {
+    "custom_fields_list": {
       "name": "Get Many Custom Fields",
       "value": "customFieldList"
     },
-    "custom_fields:rename": {
+    "custom_fields_rename": {
       "name": "Rename Custom Field",
       "value": "customFieldRename"
     },
-    "custom_fields:set_value": {
+    "custom_fields_set_value": {
       "name": "Set Custom Field Value",
       "value": "customFieldSetValue"
     },
@@ -397,35 +398,35 @@
       "name": "Get Many",
       "value": "list"
     },
-    "ai_special_days:generate": {
+    "ai_special_days_generate": {
       "name": "Generate Special Day Posts",
       "value": "specialDaysGenerate"
     },
-    "ai_special_days:list": {
+    "ai_special_days_list": {
       "name": "Get Many Special Days",
       "value": "specialDaysList"
     },
-    "ai_templates:generate": {
+    "ai_templates_generate": {
       "name": "Generate From Template",
       "value": "templateGenerate"
     },
-    "ai_templates:formats": {
+    "ai_templates_formats": {
       "name": "Get Template Formats",
       "value": "templateFormats"
     },
-    "ai_templates:questions": {
+    "ai_templates_questions": {
       "name": "Get Template Questions",
       "value": "templateQuestions"
     },
-    "ai_templates:list": {
+    "ai_templates_list": {
       "name": "Get Many Templates",
       "value": "templateList"
     },
-    "ai_settings:get": {
+    "ai_settings_get": {
       "name": "Get Settings",
       "value": "settingsGet"
     },
-    "ai_settings:set": {
+    "ai_settings_set": {
       "name": "Set Settings",
       "value": "settingsSet"
     },
@@ -1097,11 +1098,11 @@
       "name": "Email Connect Link",
       "value": "shareConnectLink"
     },
-    "queue_pause:pause": {
+    "queue_pause": {
       "name": "Pause Queue",
       "value": "queuePause"
     },
-    "queue_pause:resume": {
+    "queue_resume": {
       "name": "Resume Queue",
       "value": "queueResume"
     },

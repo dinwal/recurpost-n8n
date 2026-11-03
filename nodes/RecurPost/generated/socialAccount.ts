@@ -124,7 +124,6 @@ export const socialAccountOperations: OperationSpec[] = [
     resource: 'socialAccount',
     operation: 'queuePause',
     endpoint: 'queue_pause',
-    action: 'pause',
     workspace: true,
     params: [
       {
@@ -185,17 +184,9 @@ export const socialAccountOperations: OperationSpec[] = [
   {
     resource: 'socialAccount',
     operation: 'queueResume',
-    endpoint: 'queue_pause',
-    action: 'resume',
+    endpoint: 'queue_resume',
     workspace: true,
-    params: [
-      {
-        name: 'resumeAt',
-        key: 'resume_at',
-        kind: 'datetime',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'socialAccount',
@@ -345,7 +336,7 @@ export const socialAccountOperationOptions = [
   {
     name: 'Pause Queue',
     value: 'queuePause',
-    description: 'Pause or resume the whole posting queue of the workspace owner',
+    description: 'Pause the whole posting queue of the workspace owner',
     action: 'Pause queue'
   },
   {
@@ -363,7 +354,7 @@ export const socialAccountOperationOptions = [
   {
     name: 'Resume Queue',
     value: 'queueResume',
-    description: 'Pause or resume the whole posting queue of the workspace owner',
+    description: 'Resume the posting queue of the workspace owner',
     action: 'Resume queue'
   },
   {
@@ -629,7 +620,7 @@ export const socialAccountProperties: INodeProperties[] = [
         name: 'resumeAt',
         type: 'dateTime',
         default: '',
-        description: 'With action=pause only: when the queue resumes by itself, YYYY-MM-DD HH:MM:SS in the account owner\'s timezone. Must be in the future. Ignored on resume.'
+        description: 'When the queue resumes by itself, YYYY-MM-DD HH:MM:SS in the account owner\'s timezone. Must be in the future. Left out, the queue stays paused until you resume it.'
       }
     ]
   },
@@ -726,32 +717,6 @@ export const socialAccountProperties: INodeProperties[] = [
         type: 'string',
         default: '',
         description: 'IANA zone name for the account, in any case; the canonical spelling is saved. Omit to keep the current zone.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'socialAccount'
-        ],
-        operation: [
-          'queueResume'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Resume At',
-        name: 'resumeAt',
-        type: 'dateTime',
-        default: '',
-        description: 'With action=pause only: when the queue resumes by itself, YYYY-MM-DD HH:MM:SS in the account owner\'s timezone. Must be in the future. Ignored on resume.'
       }
     ]
   },

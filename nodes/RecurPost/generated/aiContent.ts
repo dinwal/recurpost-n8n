@@ -45,8 +45,7 @@ export const aiContentOperations: OperationSpec[] = [
   {
     resource: 'aiContent',
     operation: 'templateGenerate',
-    endpoint: 'ai_templates',
-    action: 'generate',
+    endpoint: 'ai_templates_generate',
     workspace: true,
     params: [
       {
@@ -96,8 +95,7 @@ export const aiContentOperations: OperationSpec[] = [
   {
     resource: 'aiContent',
     operation: 'specialDaysGenerate',
-    endpoint: 'ai_special_days',
-    action: 'generate',
+    endpoint: 'ai_special_days_generate',
     workspace: true,
     params: [
       {
@@ -148,131 +146,31 @@ export const aiContentOperations: OperationSpec[] = [
   {
     resource: 'aiContent',
     operation: 'specialDaysList',
-    endpoint: 'ai_special_days',
-    action: 'list',
+    endpoint: 'ai_special_days_list',
+    unwrap: 'days',
     workspace: true,
-    params: [
-      {
-        name: 'day',
-        key: 'day',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'network',
-        key: 'network',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'instruction',
-        key: 'instruction',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'question',
-        key: 'question',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'chatId',
-        key: 'chat_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'history',
-        key: 'history',
-        kind: 'json',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'aiContent',
     operation: 'templateList',
-    endpoint: 'ai_templates',
-    action: 'list',
+    endpoint: 'ai_templates_list',
+    unwrap: 'templates',
     workspace: true,
-    params: [
-      {
-        name: 'templateId',
-        key: 'template_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'format',
-        key: 'format',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'answers',
-        key: 'answers',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'instruction',
-        key: 'instruction',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'question',
-        key: 'question',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'chatId',
-        key: 'chat_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'history',
-        key: 'history',
-        kind: 'json',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'aiContent',
     operation: 'settingsGet',
-    endpoint: 'ai_settings',
-    action: 'get',
+    endpoint: 'ai_settings_get',
     workspace: true,
-    params: [
-      {
-        name: 'tone',
-        key: 'tone',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'persona',
-        key: 'persona',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'inboxInstructions',
-        key: 'inbox_instructions',
-        kind: 'string',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'aiContent',
     operation: 'templateFormats',
-    endpoint: 'ai_templates',
-    action: 'formats',
+    endpoint: 'ai_templates_formats',
+    unwrap: 'categories',
     workspace: true,
     params: [
       {
@@ -280,50 +178,14 @@ export const aiContentOperations: OperationSpec[] = [
         key: 'template_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'format',
-        key: 'format',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'answers',
-        key: 'answers',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'instruction',
-        key: 'instruction',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'question',
-        key: 'question',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'chatId',
-        key: 'chat_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'history',
-        key: 'history',
-        kind: 'json',
-        required: false
       }
     ]
   },
   {
     resource: 'aiContent',
     operation: 'templateQuestions',
-    endpoint: 'ai_templates',
-    action: 'questions',
+    endpoint: 'ai_templates_questions',
+    unwrap: 'questions',
     workspace: true,
     params: [
       {
@@ -331,42 +193,6 @@ export const aiContentOperations: OperationSpec[] = [
         key: 'template_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'format',
-        key: 'format',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'answers',
-        key: 'answers',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'instruction',
-        key: 'instruction',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'question',
-        key: 'question',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'chatId',
-        key: 'chat_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'history',
-        key: 'history',
-        kind: 'json',
-        required: false
       }
     ]
   },
@@ -400,8 +226,7 @@ export const aiContentOperations: OperationSpec[] = [
   {
     resource: 'aiContent',
     operation: 'settingsSet',
-    endpoint: 'ai_settings',
-    action: 'set',
+    endpoint: 'ai_settings_set',
     workspace: true,
     params: [
       {
@@ -496,13 +321,13 @@ export const aiContentOperationOptions = [
   {
     name: 'Generate From Template',
     value: 'templateGenerate',
-    description: 'The app\'s AI post templates: list them, read a template\'s questions and formats, and generate a post from your answers',
+    description: 'Write a post from an AI template with your answers, and refine it',
     action: 'Generate from template'
   },
   {
     name: 'Generate Special Day Posts',
     value: 'specialDaysGenerate',
-    description: 'The calendar of occasions the app suggests posting about, and a post written for one of them on a network',
+    description: 'Write a post about an occasion for one network, and refine it',
     action: 'Generate special day posts'
   },
   {
@@ -514,31 +339,31 @@ export const aiContentOperationOptions = [
   {
     name: 'Get Many Special Days',
     value: 'specialDaysList',
-    description: 'The calendar of occasions the app suggests posting about, and a post written for one of them on a network',
+    description: 'The calendar of occasions the app suggests posting about',
     action: 'Get many special days'
   },
   {
     name: 'Get Many Templates',
     value: 'templateList',
-    description: 'The app\'s AI post templates: list them, read a template\'s questions and formats, and generate a post from your answers',
+    description: 'List the app\'s AI post templates',
     action: 'Get many templates'
   },
   {
     name: 'Get Settings',
     value: 'settingsGet',
-    description: 'Read or change the brand voice the AI writes with: tone, persona and inbox reply instructions',
+    description: 'Read the brand voice the AI writes with: tone, persona and inbox reply instructions',
     action: 'Get settings'
   },
   {
     name: 'Get Template Formats',
     value: 'templateFormats',
-    description: 'The app\'s AI post templates: list them, read a template\'s questions and formats, and generate a post from your answers',
+    description: 'The output formats an AI template offers, by category',
     action: 'Get template formats'
   },
   {
     name: 'Get Template Questions',
     value: 'templateQuestions',
-    description: 'The app\'s AI post templates: list them, read a template\'s questions and formats, and generate a post from your answers',
+    description: 'The questions an AI template asks',
     action: 'Get template questions'
   },
   {
@@ -550,7 +375,7 @@ export const aiContentOperationOptions = [
   {
     name: 'Set Settings',
     value: 'settingsSet',
-    description: 'Read or change the brand voice the AI writes with: tone, persona and inbox reply instructions',
+    description: 'Change the brand voice the AI writes with, field by field',
     action: 'Set settings'
   },
   {
@@ -707,7 +532,7 @@ export const aiContentProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain template ID from list. Required when action is questions, formats or generate.',
+    description: 'Plain template ID from /api/ai_templates_list',
     displayOptions: {
       show: {
         resource: [
@@ -725,7 +550,7 @@ export const aiContentProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is generate: the text of one of the template\'s formats (from formats), up to 500 characters',
+    description: 'The text of one of the template\'s formats (from /api/ai_templates_formats), up to 500 characters',
     displayOptions: {
       show: {
         resource: [
@@ -743,7 +568,7 @@ export const aiContentProperties: INodeProperties[] = [
     type: 'json',
     default: '{}',
     required: true,
-    description: 'Required when action is generate: your answers to the template\'s questions, as an object {question label: answer} or an array of {question, answer}; 1 to 30 entries, each question up to 500 and each answer up to 5000 characters. A JSON body value or a JSON string.',
+    description: 'Your answers to the template\'s questions, as an object {question label: answer} or an array of {question, answer}; 1 to 30 entries, each question up to 500 and each answer up to 5000 characters. A JSON body value or a JSON string.',
     displayOptions: {
       show: {
         resource: [
@@ -791,14 +616,14 @@ export const aiContentProperties: INodeProperties[] = [
         name: 'instruction',
         type: 'string',
         default: '',
-        description: 'Generate: extra guidance for the writer (length, audience, words to avoid), up to 2000 characters; longer text is cut'
+        description: 'Extra guidance for the writer (length, audience, words to avoid), up to 2000 characters; longer text is cut'
       },
       {
         displayName: 'Question',
         name: 'question',
         type: 'string',
         default: '',
-        description: 'Generate: on a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
+        description: 'On a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
       }
     ]
   },
@@ -808,7 +633,7 @@ export const aiContentProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is generate: the occasion\'s name, normally a name from list (any text up to 200 characters is accepted)',
+    description: 'The occasion\'s name, normally a name from /api/ai_special_days_list (any text up to 200 characters is accepted)',
     displayOptions: {
       show: {
         resource: [
@@ -826,7 +651,7 @@ export const aiContentProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is generate: the network to write for, as a key (facebook, twitter, linkedin, instagram, pinterest, google_my_business, tiktok, youtube, threads, bluesky) or a network name; up to 50 characters. A key is turned into the app\'s network name, any other value is handed to the writer as given.',
+    description: 'The network to write for, as a key (facebook, twitter, linkedin, instagram, pinterest, google_my_business, tiktok, youtube, threads, bluesky) or a network name; up to 50 characters. A key is turned into the app\'s network name, any other value is handed to the writer as given.',
     displayOptions: {
       show: {
         resource: [
@@ -874,205 +699,14 @@ export const aiContentProperties: INodeProperties[] = [
         name: 'instruction',
         type: 'string',
         default: '',
-        description: 'Generate: extra guidance (mention a product, a length, a hashtag), up to 2000 characters; longer text is cut'
+        description: 'Extra guidance (mention a product, a length, a hashtag), up to 2000 characters; longer text is cut'
       },
       {
         displayName: 'Question',
         name: 'question',
         type: 'string',
         default: '',
-        description: 'Generate: on a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'aiContent'
-        ],
-        operation: [
-          'specialDaysList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Chat ID',
-        name: 'chatId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted chat ID returned by an earlier answer of this or another AI endpoint (the same value /api/generate_content_with_ai calls ai_id). Send it with history to refine that answer; leave it out to start fresh. Must be a chat of the workspace owner\'s account.'
-      },
-      {
-        displayName: 'Day',
-        name: 'day',
-        type: 'string',
-        default: '',
-        description: 'Required when action is generate: the occasion\'s name, normally a name from list (any text up to 200 characters is accepted)'
-      },
-      {
-        displayName: 'History',
-        name: 'history',
-        type: 'json',
-        default: '[]',
-        description: 'The history array of the previous response, unchanged: up to 40 turns of {role, content} where role is user or assistant and content is 1 to 20000 characters. Required with chat_id. A JSON body array or a JSON string. Do not append your new question yourself.'
-      },
-      {
-        displayName: 'Instruction',
-        name: 'instruction',
-        type: 'string',
-        default: '',
-        description: 'Generate: extra guidance (mention a product, a length, a hashtag), up to 2000 characters; longer text is cut'
-      },
-      {
-        displayName: 'Network',
-        name: 'network',
-        type: 'string',
-        default: '',
-        description: 'Required when action is generate: the network to write for, as a key (facebook, twitter, linkedin, instagram, pinterest, google_my_business, tiktok, youtube, threads, bluesky) or a network name; up to 50 characters. A key is turned into the app\'s network name, any other value is handed to the writer as given.'
-      },
-      {
-        displayName: 'Question',
-        name: 'question',
-        type: 'string',
-        default: '',
-        description: 'Generate: on a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'aiContent'
-        ],
-        operation: [
-          'templateList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Answers',
-        name: 'answers',
-        type: 'json',
-        default: '{}',
-        description: 'Required when action is generate: your answers to the template\'s questions, as an object {question label: answer} or an array of {question, answer}; 1 to 30 entries, each question up to 500 and each answer up to 5000 characters. A JSON body value or a JSON string.'
-      },
-      {
-        displayName: 'Chat ID',
-        name: 'chatId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted chat ID returned by an earlier answer of this or another AI endpoint (the same value /api/generate_content_with_ai calls ai_id). Send it with history to refine that answer; leave it out to start fresh. Must be a chat of the workspace owner\'s account.'
-      },
-      {
-        displayName: 'Format',
-        name: 'format',
-        type: 'string',
-        default: '',
-        description: 'Required when action is generate: the text of one of the template\'s formats (from formats), up to 500 characters'
-      },
-      {
-        displayName: 'History',
-        name: 'history',
-        type: 'json',
-        default: '[]',
-        description: 'The history array of the previous response, unchanged: up to 40 turns of {role, content} where role is user or assistant and content is 1 to 20000 characters. Required with chat_id. A JSON body array or a JSON string. Do not append your new question yourself.'
-      },
-      {
-        displayName: 'Instruction',
-        name: 'instruction',
-        type: 'string',
-        default: '',
-        description: 'Generate: extra guidance for the writer (length, audience, words to avoid), up to 2000 characters; longer text is cut'
-      },
-      {
-        displayName: 'Question',
-        name: 'question',
-        type: 'string',
-        default: '',
-        description: 'Generate: on a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
-      },
-      {
-        displayName: 'Template ID',
-        name: 'templateId',
-        type: 'number',
-        default: 0,
-        description: 'Plain template ID from list. Required when action is questions, formats or generate.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'aiContent'
-        ],
-        operation: [
-          'settingsGet'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Inbox Instructions',
-        name: 'inboxInstructions',
-        type: 'string',
-        default: '',
-        description: 'Set: instructions for AI-drafted inbox replies, up to 2000 characters; an empty value clears them'
-      },
-      {
-        displayName: 'Persona',
-        name: 'persona',
-        type: 'string',
-        default: '',
-        description: 'Set: the brand persona the AI writes as, up to 2000 characters; an empty value clears it'
-      },
-      {
-        displayName: 'Tone',
-        name: 'tone',
-        type: 'options',
-        default: 'neutral',
-        options: [
-          {
-            name: 'Cooperative',
-            value: 'cooperative'
-          },
-          {
-            name: 'Friendly',
-            value: 'friendly'
-          },
-          {
-            name: 'Funny',
-            value: 'funny'
-          },
-          {
-            name: 'Neutral',
-            value: 'neutral'
-          },
-          {
-            name: 'Sad',
-            value: 'sad'
-          }
-        ],
-        description: 'Set: neutral, cooperative, friendly, funny or sad (the app\'s codes 1 to 5 are accepted too). Send an empty value to clear the tone.'
+        description: 'On a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
       }
     ]
   },
@@ -1082,7 +716,7 @@ export const aiContentProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain template ID from list. Required when action is questions, formats or generate.',
+    description: 'Plain template ID from /api/ai_templates_list',
     displayOptions: {
       show: {
         resource: [
@@ -1095,73 +729,12 @@ export const aiContentProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'aiContent'
-        ],
-        operation: [
-          'templateFormats'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Answers',
-        name: 'answers',
-        type: 'json',
-        default: '{}',
-        description: 'Required when action is generate: your answers to the template\'s questions, as an object {question label: answer} or an array of {question, answer}; 1 to 30 entries, each question up to 500 and each answer up to 5000 characters. A JSON body value or a JSON string.'
-      },
-      {
-        displayName: 'Chat ID',
-        name: 'chatId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted chat ID returned by an earlier answer of this or another AI endpoint (the same value /api/generate_content_with_ai calls ai_id). Send it with history to refine that answer; leave it out to start fresh. Must be a chat of the workspace owner\'s account.'
-      },
-      {
-        displayName: 'Format',
-        name: 'format',
-        type: 'string',
-        default: '',
-        description: 'Required when action is generate: the text of one of the template\'s formats (from formats), up to 500 characters'
-      },
-      {
-        displayName: 'History',
-        name: 'history',
-        type: 'json',
-        default: '[]',
-        description: 'The history array of the previous response, unchanged: up to 40 turns of {role, content} where role is user or assistant and content is 1 to 20000 characters. Required with chat_id. A JSON body array or a JSON string. Do not append your new question yourself.'
-      },
-      {
-        displayName: 'Instruction',
-        name: 'instruction',
-        type: 'string',
-        default: '',
-        description: 'Generate: extra guidance for the writer (length, audience, words to avoid), up to 2000 characters; longer text is cut'
-      },
-      {
-        displayName: 'Question',
-        name: 'question',
-        type: 'string',
-        default: '',
-        description: 'Generate: on a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
-      }
-    ]
-  },
-  {
     displayName: 'Template ID',
     name: 'templateId',
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain template ID from list. Required when action is questions, formats or generate.',
+    description: 'Plain template ID from /api/ai_templates_list',
     displayOptions: {
       show: {
         resource: [
@@ -1172,67 +745,6 @@ export const aiContentProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'aiContent'
-        ],
-        operation: [
-          'templateQuestions'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Answers',
-        name: 'answers',
-        type: 'json',
-        default: '{}',
-        description: 'Required when action is generate: your answers to the template\'s questions, as an object {question label: answer} or an array of {question, answer}; 1 to 30 entries, each question up to 500 and each answer up to 5000 characters. A JSON body value or a JSON string.'
-      },
-      {
-        displayName: 'Chat ID',
-        name: 'chatId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted chat ID returned by an earlier answer of this or another AI endpoint (the same value /api/generate_content_with_ai calls ai_id). Send it with history to refine that answer; leave it out to start fresh. Must be a chat of the workspace owner\'s account.'
-      },
-      {
-        displayName: 'Format',
-        name: 'format',
-        type: 'string',
-        default: '',
-        description: 'Required when action is generate: the text of one of the template\'s formats (from formats), up to 500 characters'
-      },
-      {
-        displayName: 'History',
-        name: 'history',
-        type: 'json',
-        default: '[]',
-        description: 'The history array of the previous response, unchanged: up to 40 turns of {role, content} where role is user or assistant and content is 1 to 20000 characters. Required with chat_id. A JSON body array or a JSON string. Do not append your new question yourself.'
-      },
-      {
-        displayName: 'Instruction',
-        name: 'instruction',
-        type: 'string',
-        default: '',
-        description: 'Generate: extra guidance for the writer (length, audience, words to avoid), up to 2000 characters; longer text is cut'
-      },
-      {
-        displayName: 'Question',
-        name: 'question',
-        type: 'string',
-        default: '',
-        description: 'Generate: on a refinement, what to change in the answer (up to 5000 characters), sent with chat_id and history. Leave it out on the first generation.'
-      }
-    ]
   },
   {
     displayName: 'Library Names or IDs',
@@ -1310,14 +822,14 @@ export const aiContentProperties: INodeProperties[] = [
         name: 'inboxInstructions',
         type: 'string',
         default: '',
-        description: 'Set: instructions for AI-drafted inbox replies, up to 2000 characters; an empty value clears them'
+        description: 'Instructions for AI-drafted inbox replies, up to 2000 characters; an empty value clears them'
       },
       {
         displayName: 'Persona',
         name: 'persona',
         type: 'string',
         default: '',
-        description: 'Set: the brand persona the AI writes as, up to 2000 characters; an empty value clears it'
+        description: 'The brand persona the AI writes as, up to 2000 characters; an empty value clears it'
       },
       {
         displayName: 'Tone',
@@ -1346,7 +858,7 @@ export const aiContentProperties: INodeProperties[] = [
             value: 'sad'
           }
         ],
-        description: 'Set: neutral, cooperative, friendly, funny or sad (the app\'s codes 1 to 5 are accepted too). Send an empty value to clear the tone.'
+        description: 'Neutral, cooperative, friendly, funny or sad (the app\'s codes 1 to 5 are accepted too). Send an empty value to clear the tone.'
       }
     ]
   },

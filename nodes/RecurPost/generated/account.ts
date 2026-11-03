@@ -6,17 +6,10 @@ export const accountOperations: OperationSpec[] = [
   {
     resource: 'account',
     operation: 'customFieldCreate',
-    endpoint: 'custom_fields',
-    action: 'create',
+    endpoint: 'custom_fields_create',
     unwrap: 'custom_fields',
     workspace: true,
     params: [
-      {
-        name: 'fieldId',
-        key: 'field_id',
-        kind: 'number',
-        required: false
-      },
       {
         name: 'name',
         key: 'name',
@@ -28,26 +21,13 @@ export const accountOperations: OperationSpec[] = [
         key: 'values',
         kind: 'json',
         required: false
-      },
-      {
-        name: 'accountId',
-        key: 'account_id',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'value',
-        key: 'value',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'account',
     operation: 'customFieldDelete',
-    endpoint: 'custom_fields',
-    action: 'delete',
+    endpoint: 'custom_fields_delete',
     confirm: true,
     unwrap: 'custom_fields',
     workspace: true,
@@ -57,32 +37,13 @@ export const accountOperations: OperationSpec[] = [
         key: 'field_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'accountId',
-        key: 'account_id',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'value',
-        key: 'value',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'account',
     operation: 'customFieldDeleteValue',
-    endpoint: 'custom_fields',
-    action: 'delete_value',
+    endpoint: 'custom_fields_delete_value',
     unwrap: 'custom_fields',
     workspace: true,
     params: [
@@ -93,30 +54,17 @@ export const accountOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'accountId',
         key: 'account_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'value',
-        key: 'value',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'account',
     operation: 'whiteLabelDelete',
-    endpoint: 'white_label',
-    action: 'delete',
+    endpoint: 'white_label_delete',
     workspace: false,
     params: []
   },
@@ -183,36 +131,10 @@ export const accountOperations: OperationSpec[] = [
   {
     resource: 'account',
     operation: 'customFieldList',
-    endpoint: 'custom_fields',
-    action: 'list',
+    endpoint: 'custom_fields_list',
     unwrap: 'custom_fields',
     workspace: true,
-    params: [
-      {
-        name: 'fieldId',
-        key: 'field_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'accountId',
-        key: 'account_id',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'value',
-        key: 'value',
-        kind: 'string',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'account',
@@ -278,16 +200,14 @@ export const accountOperations: OperationSpec[] = [
   {
     resource: 'account',
     operation: 'whiteLabelGet',
-    endpoint: 'white_label',
-    action: 'get',
+    endpoint: 'white_label_get',
     workspace: false,
     params: []
   },
   {
     resource: 'account',
     operation: 'customFieldRename',
-    endpoint: 'custom_fields',
-    action: 'rename',
+    endpoint: 'custom_fields_rename',
     unwrap: 'custom_fields',
     workspace: true,
     params: [
@@ -302,18 +222,6 @@ export const accountOperations: OperationSpec[] = [
         key: 'name',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'accountId',
-        key: 'account_id',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'value',
-        key: 'value',
-        kind: 'string',
-        required: false
       }
     ]
   },
@@ -340,8 +248,7 @@ export const accountOperations: OperationSpec[] = [
   {
     resource: 'account',
     operation: 'customFieldSetValue',
-    endpoint: 'custom_fields',
-    action: 'set_value',
+    endpoint: 'custom_fields_set_value',
     unwrap: 'custom_fields',
     workspace: true,
     params: [
@@ -350,12 +257,6 @@ export const accountOperations: OperationSpec[] = [
         key: 'field_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
       },
       {
         name: 'accountId',
@@ -388,15 +289,14 @@ export const accountOperations: OperationSpec[] = [
   {
     resource: 'account',
     operation: 'whiteLabelSet',
-    endpoint: 'white_label',
-    action: 'set',
+    endpoint: 'white_label_set',
     workspace: false,
     params: [
       {
         name: 'logoUrl',
         key: 'logo_url',
         kind: 'string',
-        required: false
+        required: true
       }
     ]
   },
@@ -450,25 +350,25 @@ export const accountOperationOptions = [
   {
     name: 'Create Custom Field',
     value: 'customFieldCreate',
-    description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
+    description: 'Create a custom field, optionally with first values',
     action: 'Create custom field'
   },
   {
     name: 'Delete Custom Field',
     value: 'customFieldDelete',
-    description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
+    description: 'Delete a custom field and every account\'s value for it',
     action: 'Delete custom field'
   },
   {
     name: 'Delete Custom Field Value',
     value: 'customFieldDeleteValue',
-    description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
+    description: 'Remove one account\'s value for a custom field',
     action: 'Delete custom field value'
   },
   {
     name: 'Delete White Label',
     value: 'whiteLabelDelete',
-    description: 'Read, set or remove the white-label logo printed on your reports, an account-level setting',
+    description: 'Remove the white-label logo so reports print the RecurPost logo again',
     action: 'Delete white label'
   },
   {
@@ -498,7 +398,7 @@ export const accountOperationOptions = [
   {
     name: 'Get Many Custom Fields',
     value: 'customFieldList',
-    description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
+    description: 'List the custom fields of the account with every account\'s value',
     action: 'Get many custom fields'
   },
   {
@@ -522,13 +422,13 @@ export const accountOperationOptions = [
   {
     name: 'Get White Label',
     value: 'whiteLabelGet',
-    description: 'Read, set or remove the white-label logo printed on your reports, an account-level setting',
+    description: 'Read the white-label logo printed on your reports',
     action: 'Get white label'
   },
   {
     name: 'Rename Custom Field',
     value: 'customFieldRename',
-    description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
+    description: 'Rename a custom field',
     action: 'Rename custom field'
   },
   {
@@ -540,7 +440,7 @@ export const accountOperationOptions = [
   {
     name: 'Set Custom Field Value',
     value: 'customFieldSetValue',
-    description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
+    description: 'Set one account\'s value for a custom field',
     action: 'Set custom field value'
   },
   {
@@ -552,7 +452,7 @@ export const accountOperationOptions = [
   {
     name: 'Set White Label',
     value: 'whiteLabelSet',
-    description: 'Read, set or remove the white-label logo printed on your reports, an account-level setting',
+    description: 'Set the white-label logo printed on your reports from an image URL',
     action: 'Set white label'
   },
   {
@@ -600,7 +500,7 @@ export const accountProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Field name, 1 to 50 characters; the placeholder becomes [[name]]. Required for create and rename.',
+    description: 'Field name, 1 to 50 characters; the placeholder becomes [[name]]',
     displayOptions: {
       show: {
         resource: [
@@ -629,36 +529,12 @@ export const accountProperties: INodeProperties[] = [
       }
     },
     options: [
-      {
-        displayName: 'Account Name or ID',
-        name: 'accountId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account ID. Required for set_value and delete_value. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Field ID',
-        name: 'fieldId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the field from the list. Required for rename, set_value, delete_value and delete.'
-      },
-      {
-        displayName: 'Value',
-        name: 'value',
-        type: 'string',
-        default: '',
-        description: 'The account\'s value, 1 to 500 characters. Required for set_value.'
-      },
       {
         displayName: 'Values',
         name: 'values',
         type: 'json',
         default: '[]',
-        description: 'For create: the first values, as an array (or JSON string) of objects with account_id (encrypted) and value (1 to 500 characters)'
+        description: 'The first values, as an array (or JSON string) of objects with account_id (encrypted) and value (1 to 500 characters)'
       }
     ]
   },
@@ -668,7 +544,7 @@ export const accountProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the field from the list. Required for rename, set_value, delete_value and delete.',
+    description: 'Plain integer ID of the field from /api/custom_fields_list',
     displayOptions: {
       show: {
         resource: [
@@ -681,55 +557,12 @@ export const accountProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'account'
-        ],
-        operation: [
-          'customFieldDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Name or ID',
-        name: 'accountId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account ID. Required for set_value and delete_value. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Field name, 1 to 50 characters; the placeholder becomes [[name]]. Required for create and rename.'
-      },
-      {
-        displayName: 'Value',
-        name: 'value',
-        type: 'string',
-        default: '',
-        description: 'The account\'s value, 1 to 500 characters. Required for set_value.'
-      }
-    ]
-  },
-  {
     displayName: 'Field ID',
     name: 'fieldId',
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the field from the list. Required for rename, set_value, delete_value and delete.',
+    description: 'Plain integer ID of the field from /api/custom_fields_list',
     displayOptions: {
       show: {
         resource: [
@@ -750,7 +583,7 @@ export const accountProperties: INodeProperties[] = [
       loadOptionsMethod: 'getSocialAccounts'
     },
     required: true,
-    description: 'Encrypted social account ID. Required for set_value and delete_value. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted social account ID. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -761,39 +594,6 @@ export const accountProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'account'
-        ],
-        operation: [
-          'customFieldDeleteValue'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Field name, 1 to 50 characters; the placeholder becomes [[name]]. Required for create and rename.'
-      },
-      {
-        displayName: 'Value',
-        name: 'value',
-        type: 'string',
-        default: '',
-        description: 'The account\'s value, 1 to 500 characters. Required for set_value.'
-      }
-    ]
   },
   {
     displayName: 'Additional Fields',
@@ -868,56 +668,6 @@ export const accountProperties: INodeProperties[] = [
         type: 'dateTime',
         default: '',
         description: 'Day to count posts on, YYYY-MM-DD. Defaults to today in the owner\'s timezone.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'account'
-        ],
-        operation: [
-          'customFieldList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Name or ID',
-        name: 'accountId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account ID. Required for set_value and delete_value. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Field ID',
-        name: 'fieldId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the field from the list. Required for rename, set_value, delete_value and delete.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Field name, 1 to 50 characters; the placeholder becomes [[name]]. Required for create and rename.'
-      },
-      {
-        displayName: 'Value',
-        name: 'value',
-        type: 'string',
-        default: '',
-        description: 'The account\'s value, 1 to 500 characters. Required for set_value.'
       }
     ]
   },
@@ -1018,7 +768,7 @@ export const accountProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the field from the list. Required for rename, set_value, delete_value and delete.',
+    description: 'Plain integer ID of the field from /api/custom_fields_list',
     displayOptions: {
       show: {
         resource: [
@@ -1036,7 +786,7 @@ export const accountProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Field name, 1 to 50 characters; the placeholder becomes [[name]]. Required for create and rename.',
+    description: 'The new field name, 1 to 50 characters; the placeholder becomes [[name]]',
     displayOptions: {
       show: {
         resource: [
@@ -1047,42 +797,6 @@ export const accountProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'account'
-        ],
-        operation: [
-          'customFieldRename'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Name or ID',
-        name: 'accountId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account ID. Required for set_value and delete_value. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Value',
-        name: 'value',
-        type: 'string',
-        default: '',
-        description: 'The account\'s value, 1 to 500 characters. Required for set_value.'
-      }
-    ]
   },
   {
     displayName: 'Account Name or ID',
@@ -1129,7 +843,7 @@ export const accountProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the field from the list. Required for rename, set_value, delete_value and delete.',
+    description: 'Plain integer ID of the field from /api/custom_fields_list',
     displayOptions: {
       show: {
         resource: [
@@ -1150,7 +864,7 @@ export const accountProperties: INodeProperties[] = [
       loadOptionsMethod: 'getSocialAccounts'
     },
     required: true,
-    description: 'Encrypted social account ID. Required for set_value and delete_value. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted social account ID. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -1168,7 +882,7 @@ export const accountProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The account\'s value, 1 to 500 characters. Required for set_value.',
+    description: 'The account\'s value, 1 to 500 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1179,32 +893,6 @@ export const accountProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'account'
-        ],
-        operation: [
-          'customFieldSetValue'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Field name, 1 to 50 characters; the placeholder becomes [[name]]. Required for create and rename.'
-      }
-    ]
   },
   {
     displayName: 'Timezone',
@@ -1225,11 +913,12 @@ export const accountProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
+    displayName: 'Logo URL',
+    name: 'logoUrl',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'A publicly reachable image URL, downloaded and stored in your RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is)',
     displayOptions: {
       show: {
         resource: [
@@ -1239,16 +928,7 @@ export const accountProperties: INodeProperties[] = [
           'whiteLabelSet'
         ]
       }
-    },
-    options: [
-      {
-        displayName: 'Logo URL',
-        name: 'logoUrl',
-        type: 'string',
-        default: '',
-        description: 'For set, required there: a publicly reachable image URL, downloaded and stored in your RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is)'
-      }
-    ]
+    }
   },
   {
     displayName: 'Additional Fields',
