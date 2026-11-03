@@ -993,27 +993,27 @@
       "name": "Get Post Metrics",
       "value": "posts"
     },
-    "role_manage:create": {
+    "role_create": {
       "name": "Create",
       "value": "create"
     },
-    "role_manage:delete": {
+    "role_delete": {
       "name": "Delete",
       "value": "delete"
     },
-    "role_manage:duplicate": {
+    "role_duplicate": {
       "name": "Duplicate",
       "value": "duplicate"
     },
-    "role_manage:rename": {
+    "role_rename": {
       "name": "Rename",
       "value": "rename"
     },
-    "role_manage:set_notification": {
+    "role_set_notification": {
       "name": "Set Notification",
       "value": "setNotification"
     },
-    "role_manage:set_permissions": {
+    "role_set_permissions": {
       "name": "Set Permissions",
       "value": "setPermissions"
     },
@@ -1169,19 +1169,19 @@
       "name": "Send Urgent Approval Email",
       "value": "sendUrgent"
     },
-    "workspace_report_emails:add": {
+    "workspace_report_emails_add": {
       "name": "Add Report Recipient",
       "value": "reportEmailAdd"
     },
-    "workspace_report_emails:delete": {
+    "workspace_report_emails_delete": {
       "name": "Delete Report Recipient",
       "value": "reportEmailDelete"
     },
-    "workspace_report_emails:list": {
+    "workspace_report_emails_list": {
       "name": "Get Many Report Recipients",
       "value": "reportEmailList"
     },
-    "workspace_report_emails:update": {
+    "workspace_report_emails_update": {
       "name": "Update Report Recipient",
       "value": "reportEmailUpdate"
     },
@@ -1193,11 +1193,11 @@
       "name": "Get Many Members",
       "value": "members"
     },
-    "workspace_invite:invite": {
+    "workspace_invite": {
       "name": "Invite Member",
       "value": "invite"
     },
-    "workspace_invite:resend": {
+    "workspace_invite_resend": {
       "name": "Resend Invite",
       "value": "resendInvite"
     }

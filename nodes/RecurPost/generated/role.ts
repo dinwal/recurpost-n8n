@@ -6,16 +6,9 @@ export const roleOperations: OperationSpec[] = [
   {
     resource: 'role',
     operation: 'create',
-    endpoint: 'role_manage',
-    action: 'create',
+    endpoint: 'role_create',
     workspace: true,
     params: [
-      {
-        name: 'roleId',
-        key: 'role_id',
-        kind: 'options',
-        required: false
-      },
       {
         name: 'name',
         key: 'name',
@@ -27,26 +20,13 @@ export const roleOperations: OperationSpec[] = [
         key: 'template',
         kind: 'options',
         required: false
-      },
-      {
-        name: 'permissions',
-        key: 'permissions',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'notificationKey',
-        key: 'notification_key',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'role',
     operation: 'delete',
-    endpoint: 'role_manage',
-    action: 'delete',
+    endpoint: 'role_delete',
     confirm: true,
     workspace: true,
     params: [
@@ -55,32 +35,13 @@ export const roleOperations: OperationSpec[] = [
         key: 'role_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'permissions',
-        key: 'permissions',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'notificationKey',
-        key: 'notification_key',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'role',
     operation: 'duplicate',
-    endpoint: 'role_manage',
-    action: 'duplicate',
+    endpoint: 'role_duplicate',
     workspace: true,
     params: [
       {
@@ -88,24 +49,6 @@ export const roleOperations: OperationSpec[] = [
         key: 'role_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'permissions',
-        key: 'permissions',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'notificationKey',
-        key: 'notification_key',
-        kind: 'string',
-        required: false
       }
     ]
   },
@@ -126,8 +69,7 @@ export const roleOperations: OperationSpec[] = [
   {
     resource: 'role',
     operation: 'rename',
-    endpoint: 'role_manage',
-    action: 'rename',
+    endpoint: 'role_rename',
     workspace: true,
     params: [
       {
@@ -141,26 +83,13 @@ export const roleOperations: OperationSpec[] = [
         key: 'name',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'permissions',
-        key: 'permissions',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'notificationKey',
-        key: 'notification_key',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'role',
     operation: 'setNotification',
-    endpoint: 'role_manage',
-    action: 'set_notification',
+    endpoint: 'role_set_notification',
     workspace: true,
     params: [
       {
@@ -168,18 +97,6 @@ export const roleOperations: OperationSpec[] = [
         key: 'role_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'permissions',
-        key: 'permissions',
-        kind: 'list',
-        required: false
       },
       {
         name: 'notificationKey',
@@ -204,8 +121,7 @@ export const roleOperations: OperationSpec[] = [
   {
     resource: 'role',
     operation: 'setPermissions',
-    endpoint: 'role_manage',
-    action: 'set_permissions',
+    endpoint: 'role_set_permissions',
     workspace: true,
     params: [
       {
@@ -215,22 +131,10 @@ export const roleOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'permissions',
         key: 'permissions',
         kind: 'list',
         required: true
-      },
-      {
-        name: 'notificationKey',
-        key: 'notification_key',
-        kind: 'string',
-        required: false
       }
     ]
   }
@@ -240,19 +144,19 @@ export const roleOperationOptions = [
   {
     name: 'Create',
     value: 'create',
-    description: 'Create, rename, duplicate or delete a role, or set its permissions and notifications',
+    description: 'Create a role, optionally from a stock template',
     action: 'Create a team role'
   },
   {
     name: 'Delete',
     value: 'delete',
-    description: 'Create, rename, duplicate or delete a role, or set its permissions and notifications',
+    description: 'Delete a role that no member holds and no workflow stage uses',
     action: 'Delete a team role'
   },
   {
     name: 'Duplicate',
     value: 'duplicate',
-    description: 'Create, rename, duplicate or delete a role, or set its permissions and notifications',
+    description: 'Copy a role with its permissions and notifications',
     action: 'Duplicate a team role'
   },
   {
@@ -264,19 +168,19 @@ export const roleOperationOptions = [
   {
     name: 'Rename',
     value: 'rename',
-    description: 'Create, rename, duplicate or delete a role, or set its permissions and notifications',
+    description: 'Rename a role',
     action: 'Rename a team role'
   },
   {
     name: 'Set Notification',
     value: 'setNotification',
-    description: 'Create, rename, duplicate or delete a role, or set its permissions and notifications',
+    description: 'Set the email and mobile switches of one notification for a role',
     action: 'Set notification'
   },
   {
     name: 'Set Permissions',
     value: 'setPermissions',
-    description: 'Create, rename, duplicate or delete a role, or set its permissions and notifications',
+    description: 'Replace the permission keys of a role',
     action: 'Set permissions'
   }
 ];
@@ -314,7 +218,7 @@ export const roleProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is create or rename: the role name, 1 to 40 characters. Surrounding spaces are trimmed.',
+    description: 'The role name, 1 to 40 characters. Surrounding spaces are trimmed.',
     displayOptions: {
       show: {
         resource: [
@@ -343,30 +247,6 @@ export const roleProperties: INodeProperties[] = [
       }
     },
     options: [
-      {
-        displayName: 'Notification Key',
-        name: 'notificationKey',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_notification: one of notification_keys of /api/roles'
-      },
-      {
-        displayName: 'Permissions',
-        name: 'permissions',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_permissions: the full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.'
-      },
-      {
-        displayName: 'Role Name or ID',
-        name: 'roleId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getRoles'
-        },
-        description: 'Required for every action except create: plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
       {
         displayName: 'Template',
         name: 'template',
@@ -390,7 +270,7 @@ export const roleProperties: INodeProperties[] = [
             value: 'writer'
           }
         ],
-        description: 'With create: start from a stock template, contributor, writer, editor or publisher. Case does not matter. Omit for an empty role.'
+        description: 'Start from a stock template, contributor, writer, editor or publisher. Case does not matter. Omit for an empty role.'
       }
     ]
   },
@@ -403,7 +283,7 @@ export const roleProperties: INodeProperties[] = [
       loadOptionsMethod: 'getRoles'
     },
     required: true,
-    description: 'Required for every action except create: plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -414,46 +294,6 @@ export const roleProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'role'
-        ],
-        operation: [
-          'delete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create or rename: the role name, 1 to 40 characters. Surrounding spaces are trimmed.'
-      },
-      {
-        displayName: 'Notification Key',
-        name: 'notificationKey',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_notification: one of notification_keys of /api/roles'
-      },
-      {
-        displayName: 'Permissions',
-        name: 'permissions',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_permissions: the full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.'
-      }
-    ]
   },
   {
     displayName: 'Role Name or ID',
@@ -464,7 +304,7 @@ export const roleProperties: INodeProperties[] = [
       loadOptionsMethod: 'getRoles'
     },
     required: true,
-    description: 'Required for every action except create: plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -475,46 +315,6 @@ export const roleProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'role'
-        ],
-        operation: [
-          'duplicate'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create or rename: the role name, 1 to 40 characters. Surrounding spaces are trimmed.'
-      },
-      {
-        displayName: 'Notification Key',
-        name: 'notificationKey',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_notification: one of notification_keys of /api/roles'
-      },
-      {
-        displayName: 'Permissions',
-        name: 'permissions',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_permissions: the full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.'
-      }
-    ]
   },
   {
     displayName: 'Additional Fields',
@@ -554,7 +354,7 @@ export const roleProperties: INodeProperties[] = [
       loadOptionsMethod: 'getRoles'
     },
     required: true,
-    description: 'Required for every action except create: plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -572,7 +372,7 @@ export const roleProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is create or rename: the role name, 1 to 40 characters. Surrounding spaces are trimmed.',
+    description: 'The new role name, 1 to 40 characters. Surrounding spaces are trimmed.',
     displayOptions: {
       show: {
         resource: [
@@ -585,39 +385,6 @@ export const roleProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'role'
-        ],
-        operation: [
-          'rename'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Notification Key',
-        name: 'notificationKey',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_notification: one of notification_keys of /api/roles'
-      },
-      {
-        displayName: 'Permissions',
-        name: 'permissions',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_permissions: the full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.'
-      }
-    ]
-  },
-  {
     displayName: 'Role Name or ID',
     name: 'roleId',
     type: 'options',
@@ -626,7 +393,7 @@ export const roleProperties: INodeProperties[] = [
       loadOptionsMethod: 'getRoles'
     },
     required: true,
-    description: 'Required for every action except create: plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -644,7 +411,7 @@ export const roleProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is set_notification: one of notification_keys of /api/roles',
+    description: 'One of notification_keys of /api/roles',
     displayOptions: {
       show: {
         resource: [
@@ -678,28 +445,14 @@ export const roleProperties: INodeProperties[] = [
         name: 'email',
         type: 'boolean',
         default: false,
-        description: 'Whether with set_notification: whether members with this role get the email. Defaults to false when left out.'
+        description: 'Whether members with this role get the email. Defaults to false when left out.'
       },
       {
         displayName: 'Mobile',
         name: 'mobile',
         type: 'boolean',
         default: false,
-        description: 'Whether with set_notification: whether they get the mobile push. Defaults to false when left out.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create or rename: the role name, 1 to 40 characters. Surrounding spaces are trimmed.'
-      },
-      {
-        displayName: 'Permissions',
-        name: 'permissions',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_permissions: the full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.'
+        description: 'Whether they get the mobile push. Defaults to false when left out.'
       }
     ]
   },
@@ -712,7 +465,7 @@ export const roleProperties: INodeProperties[] = [
       loadOptionsMethod: 'getRoles'
     },
     required: true,
-    description: 'Required for every action except create: plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Plain role ID from /api/roles. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -730,7 +483,7 @@ export const roleProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is set_permissions: the full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.',
+    description: 'The full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.',
     displayOptions: {
       show: {
         resource: [
@@ -741,38 +494,5 @@ export const roleProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'role'
-        ],
-        operation: [
-          'setPermissions'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create or rename: the role name, 1 to 40 characters. Surrounding spaces are trimmed.'
-      },
-      {
-        displayName: 'Notification Key',
-        name: 'notificationKey',
-        type: 'string',
-        default: '',
-        description: 'Required when action is set_notification: one of notification_keys of /api/roles'
-      }
-    ]
   }
 ];

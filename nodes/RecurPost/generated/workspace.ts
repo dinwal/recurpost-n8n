@@ -6,8 +6,7 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'librariesAdd',
-    endpoint: 'workspace_libraries',
-    action: 'add',
+    endpoint: 'workspace_libraries_add',
     workspace: true,
     params: [
       {
@@ -21,8 +20,7 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'reportEmailAdd',
-    endpoint: 'workspace_report_emails',
-    action: 'add',
+    endpoint: 'workspace_report_emails_add',
     unwrap: 'recipients',
     workspace: true,
     params: [
@@ -31,12 +29,6 @@ export const workspaceOperations: OperationSpec[] = [
         key: 'email',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'reportId',
-        key: 'report_id',
-        kind: 'number',
-        required: false
       },
       {
         name: 'frequency',
@@ -55,8 +47,7 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'socialAccountsAdd',
-    endpoint: 'workspace_social_accounts',
-    action: 'add',
+    endpoint: 'workspace_social_accounts_add',
     workspace: true,
     params: [
       {
@@ -117,17 +108,10 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'reportEmailDelete',
-    endpoint: 'workspace_report_emails',
-    action: 'delete',
+    endpoint: 'workspace_report_emails_delete',
     unwrap: 'recipients',
     workspace: true,
     params: [
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'reportId',
         key: 'report_id',
@@ -153,30 +137,15 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'reportEmailList',
-    endpoint: 'workspace_report_emails',
-    action: 'list',
+    endpoint: 'workspace_report_emails_list',
     unwrap: 'recipients',
     workspace: true,
-    params: [
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'reportId',
-        key: 'report_id',
-        kind: 'number',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'workspace',
     operation: 'invite',
     endpoint: 'workspace_invite',
-    action: 'invite',
     workspace: true,
     params: [
       {
@@ -190,20 +159,13 @@ export const workspaceOperations: OperationSpec[] = [
         key: 'role',
         kind: 'string',
         required: false
-      },
-      {
-        name: 'userId',
-        key: 'user_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'workspace',
     operation: 'librariesRemove',
-    endpoint: 'workspace_libraries',
-    action: 'remove',
+    endpoint: 'workspace_libraries_remove',
     workspace: true,
     params: [
       {
@@ -232,8 +194,7 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'socialAccountsRemove',
-    endpoint: 'workspace_social_accounts',
-    action: 'remove',
+    endpoint: 'workspace_social_accounts_remove',
     workspace: true,
     params: [
       {
@@ -247,16 +208,9 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'resendInvite',
-    endpoint: 'workspace_invite',
-    action: 'resend',
+    endpoint: 'workspace_invite_resend',
     workspace: true,
     params: [
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'userId',
         key: 'user_id',
@@ -320,17 +274,10 @@ export const workspaceOperations: OperationSpec[] = [
   {
     resource: 'workspace',
     operation: 'reportEmailUpdate',
-    endpoint: 'workspace_report_emails',
-    action: 'update',
+    endpoint: 'workspace_report_emails_update',
     unwrap: 'recipients',
     workspace: true,
     params: [
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'reportId',
         key: 'report_id',
@@ -363,19 +310,19 @@ export const workspaceOperationOptions = [
   {
     name: 'Add Libraries',
     value: 'librariesAdd',
-    description: 'Add libraries to a workspace or remove them from it',
+    description: 'Add libraries to a workspace',
     action: 'Add libraries'
   },
   {
     name: 'Add Report Recipient',
     value: 'reportEmailAdd',
-    description: 'List, add, update or delete the client report recipients of a workspace',
+    description: 'Add a client report recipient with a weekly or monthly schedule',
     action: 'Add report recipient'
   },
   {
     name: 'Add Social Accounts',
     value: 'socialAccountsAdd',
-    description: 'Add social accounts to a workspace or remove them from it',
+    description: 'Add social accounts to a workspace',
     action: 'Add social accounts'
   },
   {
@@ -399,7 +346,7 @@ export const workspaceOperationOptions = [
   {
     name: 'Delete Report Recipient',
     value: 'reportEmailDelete',
-    description: 'List, add, update or delete the client report recipients of a workspace',
+    description: 'Remove a client report recipient',
     action: 'Delete report recipient'
   },
   {
@@ -417,19 +364,19 @@ export const workspaceOperationOptions = [
   {
     name: 'Get Many Report Recipients',
     value: 'reportEmailList',
-    description: 'List, add, update or delete the client report recipients of a workspace',
+    description: 'List the client report recipients of a workspace',
     action: 'Get many report recipients'
   },
   {
     name: 'Invite Member',
     value: 'invite',
-    description: 'Invite a member by email, or send a pending invite again',
+    description: 'Invite a member to a workspace by email, with an optional role',
     action: 'Invite member'
   },
   {
     name: 'Remove Libraries',
     value: 'librariesRemove',
-    description: 'Add libraries to a workspace or remove them from it',
+    description: 'Remove libraries from a workspace',
     action: 'Remove libraries'
   },
   {
@@ -441,13 +388,13 @@ export const workspaceOperationOptions = [
   {
     name: 'Remove Social Accounts',
     value: 'socialAccountsRemove',
-    description: 'Add social accounts to a workspace or remove them from it',
+    description: 'Remove social accounts from a workspace',
     action: 'Remove social accounts'
   },
   {
     name: 'Resend Invite',
     value: 'resendInvite',
-    description: 'Invite a member by email, or send a pending invite again',
+    description: 'Mail a pending workspace invite again',
     action: 'Resend invite'
   },
   {
@@ -465,7 +412,7 @@ export const workspaceOperationOptions = [
   {
     name: 'Update Report Recipient',
     value: 'reportEmailUpdate',
-    description: 'List, add, update or delete the client report recipients of a workspace',
+    description: 'Change the schedule of a client report recipient or switch it off and on',
     action: 'Update report recipient'
   }
 ];
@@ -535,7 +482,7 @@ export const workspaceProperties: INodeProperties[] = [
     default: '',
     placeholder: 'name@email.com',
     required: true,
-    description: 'Required when action is add: the address to add',
+    description: 'The address to add',
     displayOptions: {
       show: {
         resource: [
@@ -569,7 +516,7 @@ export const workspaceProperties: INodeProperties[] = [
         name: 'day',
         type: 'number',
         default: 0,
-        description: 'With add or update: the day the report goes out, 1 (Monday) to 7 (Sunday) for weekly, 1 to 28 for monthly. Defaults to 1 on add and to the current value on update.'
+        description: 'The day the report goes out, 1 (Monday) to 7 (Sunday) for weekly, 1 to 28 for monthly'
       },
       {
         displayName: 'Frequency',
@@ -586,14 +533,7 @@ export const workspaceProperties: INodeProperties[] = [
             value: 'weekly'
           }
         ],
-        description: 'With add or update: weekly or monthly. Defaults to weekly on add and to the current value on update.'
-      },
-      {
-        displayName: 'Report ID',
-        name: 'reportId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is update or delete: plain recipient ID from recipients[].ID'
+        description: 'Weekly or monthly'
       }
     ]
   },
@@ -688,7 +628,7 @@ export const workspaceProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Required when action is update or delete: plain recipient ID from recipients[].ID',
+    description: 'Plain recipient ID from recipients[].ID of /api/workspace_report_emails_list',
     displayOptions: {
       show: {
         resource: [
@@ -701,74 +641,13 @@ export const workspaceProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'workspace'
-        ],
-        operation: [
-          'reportEmailDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is add: the address to add'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'workspace'
-        ],
-        operation: [
-          'reportEmailList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is add: the address to add'
-      },
-      {
-        displayName: 'Report ID',
-        name: 'reportId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is update or delete: plain recipient ID from recipients[].ID'
-      }
-    ]
-  },
-  {
     displayName: 'Email',
     name: 'email',
     type: 'string',
     default: '',
     placeholder: 'name@email.com',
     required: true,
-    description: 'Required when action=invite: address to invite',
+    description: 'Address to invite',
     displayOptions: {
       show: {
         resource: [
@@ -802,14 +681,7 @@ export const workspaceProperties: INodeProperties[] = [
         name: 'role',
         type: 'string',
         default: '',
-        description: 'With action=invite: a role ID or role name from /api/workspace_details, case-insensitive. Omit, or send 0, for no role.'
-      },
-      {
-        displayName: 'User ID',
-        name: 'userId',
-        type: 'string',
-        default: '',
-        description: 'Required when action=resend: encrypted user ID from pending_invites[].ID of /api/workspace_details or /api/workspace_members'
+        description: 'A role ID or role name from /api/workspace_details, case-insensitive. Omit, or send 0, for no role.'
       }
     ]
   },
@@ -879,7 +751,7 @@ export const workspaceProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action=resend: encrypted user ID from pending_invites[].ID of /api/workspace_details or /api/workspace_members',
+    description: 'Encrypted user ID from pending_invites[].ID of /api/workspace_details or /api/workspace_members',
     displayOptions: {
       show: {
         resource: [
@@ -890,33 +762,6 @@ export const workspaceProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'workspace'
-        ],
-        operation: [
-          'resendInvite'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action=invite: address to invite'
-      }
-    ]
   },
   {
     displayName: 'Additional Fields',
@@ -1016,7 +861,7 @@ export const workspaceProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Required when action is update or delete: plain recipient ID from recipients[].ID',
+    description: 'Plain recipient ID from recipients[].ID of /api/workspace_report_emails_list',
     displayOptions: {
       show: {
         resource: [
@@ -1050,22 +895,14 @@ export const workspaceProperties: INodeProperties[] = [
         name: 'active',
         type: 'boolean',
         default: false,
-        description: 'Whether with update: false switches the report off for this recipient, true switches it back on. Left out, the current state is kept.'
+        description: 'Whether false switches the report off for this recipient, true switches it back on. Left out, the current state is kept.'
       },
       {
         displayName: 'Day',
         name: 'day',
         type: 'number',
         default: 0,
-        description: 'With add or update: the day the report goes out, 1 (Monday) to 7 (Sunday) for weekly, 1 to 28 for monthly. Defaults to 1 on add and to the current value on update.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is add: the address to add'
+        description: 'The day the report goes out, 1 (Monday) to 7 (Sunday) for weekly, 1 to 28 for monthly. Left out, the current value is kept.'
       },
       {
         displayName: 'Frequency',
@@ -1082,7 +919,7 @@ export const workspaceProperties: INodeProperties[] = [
             value: 'weekly'
           }
         ],
-        description: 'With add or update: weekly or monthly. Defaults to weekly on add and to the current value on update.'
+        description: 'Weekly or monthly. Left out, the current value is kept.'
       }
     ]
   }

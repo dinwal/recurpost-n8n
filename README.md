@@ -402,13 +402,13 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Create | `role_manage:create` |
-| Delete | `role_manage:delete` |
-| Duplicate | `role_manage:duplicate` |
+| Create | `role_create` |
+| Delete | `role_delete` |
+| Duplicate | `role_duplicate` |
 | Get Many | `roles` |
-| Rename | `role_manage:rename` |
-| Set Notification | `role_manage:set_notification` |
-| Set Permissions | `role_manage:set_permissions` |
+| Rename | `role_rename` |
+| Set Notification | `role_set_notification` |
+| Set Permissions | `role_set_permissions` |
 
 ### Workflow
 
@@ -439,25 +439,25 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Add Libraries | `workspace_libraries:add` |
-| Add Report Recipient | `workspace_report_emails:add` |
-| Add Social Accounts | `workspace_social_accounts:add` |
+| Add Libraries | `workspace_libraries_add` |
+| Add Report Recipient | `workspace_report_emails_add` |
+| Add Social Accounts | `workspace_social_accounts_add` |
 | Clone | `workspace_clone` |
 | Create | `workspace_create` |
 | Delete | `workspace_delete` |
-| Delete Report Recipient | `workspace_report_emails:delete` |
+| Delete Report Recipient | `workspace_report_emails_delete` |
 | Get | `workspace_details` |
 | Get Many | `workspace_list` |
 | Get Many Members | `workspace_members` |
-| Get Many Report Recipients | `workspace_report_emails:list` |
-| Invite Member | `workspace_invite:invite` |
-| Remove Libraries | `workspace_libraries:remove` |
+| Get Many Report Recipients | `workspace_report_emails_list` |
+| Invite Member | `workspace_invite` |
+| Remove Libraries | `workspace_libraries_remove` |
 | Remove Member | `workspace_member_remove` |
-| Remove Social Accounts | `workspace_social_accounts:remove` |
-| Resend Invite | `workspace_invite:resend` |
+| Remove Social Accounts | `workspace_social_accounts_remove` |
+| Resend Invite | `workspace_invite_resend` |
 | Update | `workspace_update` |
 | Update Member | `workspace_member_update` |
-| Update Report Recipient | `workspace_report_emails:update` |
+| Update Report Recipient | `workspace_report_emails_update` |
 
 ### Post content fields
 
