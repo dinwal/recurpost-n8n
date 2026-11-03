@@ -40,7 +40,7 @@ The API allows a number of calls per minute per account and answers `429` with t
 
 ## Operations
 
-The node exposes the whole RecurPost public API: 295 operations across 24 resources. Every operation maps to one endpoint documented at [developers.recurpost.com](https://developers.recurpost.com/); the endpoint name is shown next to each operation so you can look up field details there.
+The node exposes the whole RecurPost public API: 287 operations across 24 resources. Every operation maps to one endpoint documented at [developers.recurpost.com](https://developers.recurpost.com/); the endpoint name is shown next to each operation so you can look up field details there.
 
 Required fields appear at the top of the node; everything optional is under **Additional Fields**. Operations that act in a workspace have a **Workspace** selector; leave it on **Default Workspace** to use your default one. Dropdowns for social accounts, libraries, account groups, labels, schedules, RSS feeds and team roles load from your account and follow the selected workspace.
 
