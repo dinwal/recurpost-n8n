@@ -5,6 +5,20 @@ import type { OperationSpec } from '../types';
 export const postOperations: OperationSpec[] = [
   {
     resource: 'post',
+    operation: 'details',
+    endpoint: 'post_details',
+    workspace: true,
+    params: [
+      {
+        name: 'postId',
+        key: 'post_id',
+        kind: 'number',
+        required: true
+      }
+    ]
+  },
+  {
+    resource: 'post',
     operation: 'status',
     endpoint: 'post_status',
     workspace: true,
@@ -55,6 +69,12 @@ export const postOperations: OperationSpec[] = [
 
 export const postOperationOptions = [
   {
+    name: 'Get',
+    value: 'details',
+    description: 'The full content of a post by its ID, in the fields post_content takes, with its accounts',
+    action: 'Get a post'
+  },
+  {
     name: 'Get Status',
     value: 'status',
     description: 'Where a post stands on every account it was sent to',
@@ -89,11 +109,30 @@ export const postProperties: INodeProperties[] = [
           'post'
         ],
         operation: [
+          'details',
           'status'
         ]
       }
     },
     description: 'The workspace to operate in. Leave as Default Workspace to keep using your default workspace. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+  },
+  {
+    displayName: 'Post ID',
+    name: 'postId',
+    type: 'number',
+    default: 0,
+    required: true,
+    description: 'Plain integer post ID (post_data.ID from /api/post_content, ID from /api/history_list). Not encrypted.',
+    displayOptions: {
+      show: {
+        resource: [
+          'post'
+        ],
+        operation: [
+          'details'
+        ]
+      }
+    }
   },
   {
     displayName: 'ID',
