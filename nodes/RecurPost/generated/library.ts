@@ -237,6 +237,18 @@ export const libraryOperations: OperationSpec[] = [
         key: 'one_time_use',
         kind: 'boolean',
         required: false
+      },
+      {
+        name: 'seasonalFrom',
+        key: 'seasonal_from',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'seasonalTo',
+        key: 'seasonal_to',
+        kind: 'string',
+        required: false
       }
     ]
   },
@@ -1454,7 +1466,7 @@ export const libraryOperationOptions = [
   {
     name: 'Create',
     value: 'create',
-    description: 'Create a content library in the workspace',
+    description: 'Create a content library in the workspace, seasonal or not',
     action: 'Create a library'
   },
   {
@@ -2197,6 +2209,20 @@ export const libraryProperties: INodeProperties[] = [
         type: 'boolean',
         default: false,
         description: 'Whether make it a one-time-use library: each post leaves the library once it has published. Accepts true/false, 1/0 or the words yes/no, as /api/library_update does.'
+      },
+      {
+        displayName: 'Seasonal From',
+        name: 'seasonalFrom',
+        type: 'string',
+        default: '',
+        description: 'First day of the season as MM/DD (zero-padded, e.g. 12/01). Send it with seasonal_to to create a seasonal library; one without the other is a 400. Left out, the library is not seasonal.'
+      },
+      {
+        displayName: 'Seasonal To',
+        name: 'seasonalTo',
+        type: 'string',
+        default: '',
+        description: 'Last day of the season as MM/DD. Required when seasonal_from is sent.'
       }
     ]
   },
