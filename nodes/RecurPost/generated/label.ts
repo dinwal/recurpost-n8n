@@ -12,7 +12,7 @@ export const labelOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: false
       },
       {
@@ -85,7 +85,7 @@ export const labelOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: false
       },
       {
@@ -111,7 +111,7 @@ export const labelOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: false
       },
       {
@@ -282,9 +282,9 @@ export const labelProperties: INodeProperties[] = [
       {
         displayName: 'Post ID',
         name: 'postId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of a scheduled post, as returned by /api/post_content and the queue endpoints. Required when content_id is not sent; never send both.'
+        type: 'string',
+        default: '',
+        description: 'Encrypted ID of a scheduled post, as returned by /api/post_content and the queue endpoints. Required when content_id is not sent; never send both.'
       }
     ]
   },
@@ -445,9 +445,9 @@ export const labelProperties: INodeProperties[] = [
       {
         displayName: 'Post ID',
         name: 'postId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of a scheduled post, as returned by /api/post_content and the queue endpoints. Required when content_id is not sent; never send both.'
+        type: 'string',
+        default: '',
+        description: 'Encrypted ID of a scheduled post, as returned by /api/post_content and the queue endpoints. Required when content_id is not sent; never send both.'
       }
     ]
   },
@@ -488,9 +488,9 @@ export const labelProperties: INodeProperties[] = [
       {
         displayName: 'Post ID',
         name: 'postId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of a scheduled post, as returned by /api/post_content and the queue endpoints. Required when content_id is not sent; never send both.'
+        type: 'string',
+        default: '',
+        description: 'Encrypted ID of a scheduled post, as returned by /api/post_content and the queue endpoints. Required when content_id is not sent; never send both.'
       }
     ]
   },

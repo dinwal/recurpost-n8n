@@ -12,7 +12,7 @@ export const postOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       }
     ]
@@ -26,7 +26,7 @@ export const postOperations: OperationSpec[] = [
       {
         name: 'id',
         key: 'id',
-        kind: 'number',
+        kind: 'string',
         required: true
       }
     ]
@@ -119,10 +119,10 @@ export const postProperties: INodeProperties[] = [
   {
     displayName: 'Post ID',
     name: 'postId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain integer post ID (post_data.ID from /api/post_content, ID from /api/history_list). Not encrypted.',
+    description: 'Encrypted post ID (post_data.ID from /api/post_content, ID from /api/history_list). Not encrypted.',
     displayOptions: {
       show: {
         resource: [
@@ -137,10 +137,10 @@ export const postProperties: INodeProperties[] = [
   {
     displayName: 'ID',
     name: 'id',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain integer post ID (post_data.ID from /api/post_content). Not encrypted.',
+    description: 'Encrypted post ID (post_data.ID from /api/post_content). Not encrypted.',
     displayOptions: {
       show: {
         resource: [

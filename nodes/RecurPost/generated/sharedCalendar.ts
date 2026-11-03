@@ -12,7 +12,7 @@ export const sharedCalendarOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -98,7 +98,7 @@ export const sharedCalendarOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -132,7 +132,7 @@ export const sharedCalendarOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -332,10 +332,10 @@ export const sharedCalendarProperties: INodeProperties[] = [
   {
     displayName: 'Post ID',
     name: 'postId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain post ID, items[].post_id of /api/queue_list (the ID shared by the queue items of one post)',
+    description: 'Encrypted post ID, items[].post_id of /api/queue_list (the ID shared by the queue items of one post)',
     displayOptions: {
       show: {
         resource: [
@@ -457,10 +457,10 @@ export const sharedCalendarProperties: INodeProperties[] = [
   {
     displayName: 'Post ID',
     name: 'postId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain post ID, items[].post_id of /api/queue_list (the ID shared by the queue items of one post)',
+    description: 'Encrypted post ID, items[].post_id of /api/queue_list (the ID shared by the queue items of one post)',
     displayOptions: {
       show: {
         resource: [
@@ -520,10 +520,10 @@ export const sharedCalendarProperties: INodeProperties[] = [
   {
     displayName: 'Post ID',
     name: 'postId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain post ID, items[].post_id of /api/queue_list (the ID shared by the queue items of one post)',
+    description: 'Encrypted post ID, items[].post_id of /api/queue_list (the ID shared by the queue items of one post)',
     displayOptions: {
       show: {
         resource: [

@@ -12,7 +12,7 @@ export const historyOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -83,7 +83,7 @@ export const historyOperations: OperationSpec[] = [
       {
         name: 'queueItemId',
         key: 'queue_item_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       }
     ]
@@ -137,10 +137,10 @@ export const historyProperties: INodeProperties[] = [
   {
     displayName: 'Post ID',
     name: 'postId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain integer post ID from /api/history_list (history_data[].ID)',
+    description: 'Encrypted post ID from /api/history_list (history_data[].ID)',
     displayOptions: {
       show: {
         resource: [
@@ -250,10 +250,10 @@ export const historyProperties: INodeProperties[] = [
   {
     displayName: 'Queue Item ID',
     name: 'queueItemId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain integer ID of the published item (one account at one time), from /api/history_list or /api/post_status',
+    description: 'Encrypted ID of the published item (one account at one time), from /api/history_list or /api/post_status',
     displayOptions: {
       show: {
         resource: [

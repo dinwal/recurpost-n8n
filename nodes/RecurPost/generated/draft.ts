@@ -12,7 +12,7 @@ export const draftOperations: OperationSpec[] = [
       {
         name: 'draftId',
         key: 'draft_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       }
     ]
@@ -65,7 +65,7 @@ export const draftOperations: OperationSpec[] = [
       {
         name: 'draftId',
         key: 'draft_id',
-        kind: 'number',
+        kind: 'string',
         required: false
       },
       {
@@ -163,7 +163,7 @@ export const draftOperations: OperationSpec[] = [
       {
         name: 'draftId',
         key: 'draft_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -230,10 +230,10 @@ export const draftProperties: INodeProperties[] = [
   {
     displayName: 'Draft ID',
     name: 'draftId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain numeric draft ID from /api/draft_save or /api/draft_list',
+    description: 'Encrypted draft ID from /api/draft_save or /api/draft_list',
     displayOptions: {
       show: {
         resource: [
@@ -357,9 +357,9 @@ export const draftProperties: INodeProperties[] = [
       {
         displayName: 'Draft ID',
         name: 'draftId',
-        type: 'number',
-        default: 0,
-        description: 'Plain numeric ID of an existing draft (from /api/draft_list). When sent, that draft is replaced instead of a new one being created.'
+        type: 'string',
+        default: '',
+        description: 'Encrypted ID of an existing draft (from /api/draft_list). When sent, that draft is replaced instead of a new one being created.'
       },
       {
         displayName: 'Facebook Thumb',
@@ -457,10 +457,10 @@ export const draftProperties: INodeProperties[] = [
   {
     displayName: 'Draft ID',
     name: 'draftId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain numeric draft ID from /api/draft_save or /api/draft_list',
+    description: 'Encrypted draft ID from /api/draft_save or /api/draft_list',
     displayOptions: {
       show: {
         resource: [

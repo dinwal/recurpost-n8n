@@ -12,7 +12,7 @@ export const queueOperations: OperationSpec[] = [
       {
         name: 'postId',
         key: 'post_id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -32,7 +32,7 @@ export const queueOperations: OperationSpec[] = [
       {
         name: 'id',
         key: 'id',
-        kind: 'list',
+        kind: 'string',
         required: true
       }
     ]
@@ -78,7 +78,7 @@ export const queueOperations: OperationSpec[] = [
       {
         name: 'id',
         key: 'id',
-        kind: 'number',
+        kind: 'string',
         required: true
       }
     ]
@@ -136,7 +136,7 @@ export const queueOperations: OperationSpec[] = [
       {
         name: 'id',
         key: 'id',
-        kind: 'list',
+        kind: 'string',
         required: true
       }
     ]
@@ -156,7 +156,7 @@ export const queueOperations: OperationSpec[] = [
       {
         name: 'id',
         key: 'id',
-        kind: 'list',
+        kind: 'string',
         required: false
       },
       {
@@ -188,7 +188,7 @@ export const queueOperations: OperationSpec[] = [
       {
         name: 'id',
         key: 'id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -209,7 +209,7 @@ export const queueOperations: OperationSpec[] = [
       {
         name: 'id',
         key: 'id',
-        kind: 'number',
+        kind: 'string',
         required: true
       },
       {
@@ -472,10 +472,10 @@ export const queueProperties: INodeProperties[] = [
   {
     displayName: 'Post ID',
     name: 'postId',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Plain integer post ID grouping the queue items of one post',
+    description: 'Encrypted post ID grouping the queue items of one post',
     displayOptions: {
       show: {
         resource: [
@@ -509,12 +509,12 @@ export const queueProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'IDs',
+    displayName: 'ID',
     name: 'id',
     type: 'string',
     default: '',
     required: true,
-    description: 'Queue item IDs (plain integers): one ID, a comma-separated list or an array, at most 50. Separate several values with commas.',
+    description: 'Encrypted queue item IDs: one ID, a comma-separated list or an array, at most 50',
     displayOptions: {
       show: {
         resource: [
@@ -582,10 +582,10 @@ export const queueProperties: INodeProperties[] = [
   {
     displayName: 'ID',
     name: 'id',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Queue item ID (plain integer) from /api/queue_list',
+    description: 'Queue item ID (encrypted) from /api/queue_list',
     displayOptions: {
       show: {
         resource: [
@@ -665,12 +665,12 @@ export const queueProperties: INodeProperties[] = [
     ]
   },
   {
-    displayName: 'IDs',
+    displayName: 'ID',
     name: 'id',
     type: 'string',
     default: '',
     required: true,
-    description: 'Queue item IDs (plain integers) of one post: one ID, a comma-separated list or an array, at most 50. Separate several values with commas.',
+    description: 'Encrypted queue item IDs of one post: one ID, a comma-separated list or an array, at most 50',
     displayOptions: {
       show: {
         resource: [
@@ -735,11 +735,11 @@ export const queueProperties: INodeProperties[] = [
         description: 'Day to move, YYYY-MM-DD in the owner\'s timezone. Required when ID is not sent; ignored when it is.'
       },
       {
-        displayName: 'IDs',
+        displayName: 'ID',
         name: 'id',
         type: 'string',
         default: '',
-        description: 'Queue item IDs (plain integers): one ID, a comma-separated list or an array, at most 50. Required when from_date is not sent. Separate several values with commas.'
+        description: 'Encrypted queue item IDs: one ID, a comma-separated list or an array, at most 50. Required when from_date is not sent.'
       },
       {
         displayName: 'Library Name or ID',
@@ -756,10 +756,10 @@ export const queueProperties: INodeProperties[] = [
   {
     displayName: 'ID',
     name: 'id',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Queue item ID (plain integer) of the failed post',
+    description: 'Queue item ID (encrypted) of the failed post',
     displayOptions: {
       show: {
         resource: [
@@ -800,10 +800,10 @@ export const queueProperties: INodeProperties[] = [
   {
     displayName: 'ID',
     name: 'id',
-    type: 'number',
-    default: 0,
+    type: 'string',
+    default: '',
     required: true,
-    description: 'Queue item ID (plain integer) from /api/queue_list',
+    description: 'Queue item ID (encrypted) from /api/queue_list',
     displayOptions: {
       show: {
         resource: [
