@@ -198,18 +198,6 @@ export const dmAutomationOperations: OperationSpec[] = [
     workspace: true,
     params: [
       {
-        name: 'fromDate',
-        key: 'from_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'toDate',
-        key: 'to_date',
-        kind: 'date',
-        required: false
-      },
-      {
         name: 'groupBy',
         key: 'group_by',
         kind: 'options',
@@ -413,7 +401,7 @@ export const dmAutomationOperationOptions = [
   {
     name: 'Get Stats',
     value: 'stats',
-    description: 'Daily counters of your automations over a date window, by day, automation or account',
+    description: 'The automation counters of the last 30 days, by day, automation or account',
     action: 'Get stats'
   },
   {
@@ -785,13 +773,6 @@ export const dmAutomationProperties: INodeProperties[] = [
         description: 'Plain numeric automation ID; only rows of this automation are summed. When account_id is also given the automation must be on that account.'
       },
       {
-        displayName: 'From Date',
-        name: 'fromDate',
-        type: 'dateTime',
-        default: '',
-        description: 'First day of the window, YYYY-MM-DD. Defaults to 29 days before to_date.'
-      },
-      {
         displayName: 'Group By',
         name: 'groupBy',
         type: 'options',
@@ -811,13 +792,6 @@ export const dmAutomationProperties: INodeProperties[] = [
           }
         ],
         description: 'Day gives one row per calendar day, newest first. automation gives one row per automation, account one per account, both in ascending ID order.'
-      },
-      {
-        displayName: 'To Date',
-        name: 'toDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Last day of the window, YYYY-MM-DD. Defaults to today (UTC). Must not be before from_date; the window spans at most 90 days.'
       }
     ]
   },
