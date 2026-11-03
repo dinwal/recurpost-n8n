@@ -6,8 +6,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'commentAdd',
-    endpoint: 'library_comments',
-    action: 'add',
+    endpoint: 'library_comments_add',
     workspace: true,
     params: [
       {
@@ -21,18 +20,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'text',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'commentId',
-        key: 'comment_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'unread',
-        key: 'unread',
-        kind: 'boolean',
-        required: false
       }
     ]
   },
@@ -66,17 +53,10 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'bulkAppend',
-    endpoint: 'library_bulk_edit',
-    action: 'append',
+    endpoint: 'library_bulk_edit_append',
     confirm: true,
     workspace: true,
     params: [
-      {
-        name: 'searchText',
-        key: 'search_text',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'text',
         key: 'text',
@@ -106,8 +86,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'bulkCount',
-    endpoint: 'library_bulk_edit',
-    action: 'count',
+    endpoint: 'library_bulk_edit_count',
     workspace: true,
     params: [
       {
@@ -115,12 +94,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'search_text',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'text',
-        key: 'text',
-        kind: 'string',
-        required: false
       },
       {
         name: 'libraryId',
@@ -145,8 +118,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'bulkReplace',
-    endpoint: 'library_bulk_edit',
-    action: 'replace',
+    endpoint: 'library_bulk_edit_replace',
     confirm: true,
     workspace: true,
     params: [
@@ -159,12 +131,6 @@ export const libraryOperations: OperationSpec[] = [
       {
         name: 'replaceText',
         key: 'replace_text',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'text',
-        key: 'text',
         kind: 'string',
         required: false
       },
@@ -255,8 +221,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'shareCreate',
-    endpoint: 'library_share',
-    action: 'create',
+    endpoint: 'library_share_create',
     workspace: true,
     params: [
       {
@@ -264,12 +229,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
       }
     ]
   },
@@ -338,8 +297,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'draftDelete',
-    endpoint: 'library_drafts',
-    action: 'delete',
+    endpoint: 'library_drafts_delete',
     confirm: true,
     workspace: true,
     params: [
@@ -354,20 +312,13 @@ export const libraryOperations: OperationSpec[] = [
         key: 'content_id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'liveDate',
-        key: 'live_date',
-        kind: 'date',
-        required: false
       }
     ]
   },
   {
     resource: 'library',
     operation: 'expiredDelete',
-    endpoint: 'expired_content',
-    action: 'delete',
+    endpoint: 'expired_content_delete',
     confirm: true,
     workspace: true,
     params: [
@@ -376,12 +327,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'content_id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'libraryIds',
-        key: 'library_ids',
-        kind: 'multiOptions',
-        required: false
       }
     ]
   },
@@ -402,8 +347,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'shareInvite',
-    endpoint: 'library_share',
-    action: 'invite',
+    endpoint: 'library_share_invite',
     workspace: true,
     params: [
       {
@@ -423,8 +367,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'expirePost',
-    endpoint: 'expired_content',
-    action: 'expire',
+    endpoint: 'expired_content_expire',
     workspace: true,
     params: [
       {
@@ -432,12 +375,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'content_id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'libraryIds',
-        key: 'library_ids',
-        kind: 'multiOptions',
-        required: false
       }
     ]
   },
@@ -472,8 +409,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'draftGet',
-    endpoint: 'library_drafts',
-    action: 'get',
+    endpoint: 'library_drafts_get',
     workspace: true,
     params: [
       {
@@ -487,20 +423,13 @@ export const libraryOperations: OperationSpec[] = [
         key: 'content_id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'liveDate',
-        key: 'live_date',
-        kind: 'date',
-        required: false
       }
     ]
   },
   {
     resource: 'library',
     operation: 'commentList',
-    endpoint: 'library_comments',
-    action: 'list',
+    endpoint: 'library_comments_list',
     workspace: true,
     params: [
       {
@@ -508,24 +437,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'content_id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'text',
-        key: 'text',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'commentId',
-        key: 'comment_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'unread',
-        key: 'unread',
-        kind: 'boolean',
-        required: false
       },
       {
         name: 'page',
@@ -585,8 +496,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'draftList',
-    endpoint: 'library_drafts',
-    action: 'list',
+    endpoint: 'library_drafts_list',
     workspace: true,
     params: [
       {
@@ -596,21 +506,9 @@ export const libraryOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'contentId',
-        key: 'content_id',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'page',
         key: 'page',
         kind: 'number',
-        required: false
-      },
-      {
-        name: 'liveDate',
-        key: 'live_date',
-        kind: 'date',
         required: false
       }
     ]
@@ -618,22 +516,9 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'expiredList',
-    endpoint: 'expired_content',
-    action: 'list',
+    endpoint: 'expired_content_list',
     workspace: true,
     params: [
-      {
-        name: 'contentId',
-        key: 'content_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'libraryIds',
-        key: 'library_ids',
-        kind: 'multiOptions',
-        required: false
-      },
       {
         name: 'page',
         key: 'page',
@@ -651,8 +536,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'pointerList',
-    endpoint: 'library_pointers',
-    action: 'list',
+    endpoint: 'library_pointers_list',
     unwrap: 'pointers',
     workspace: true,
     params: [
@@ -661,38 +545,13 @@ export const libraryOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'accountId',
-        key: 'account_id',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'position',
-        key: 'position',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'accountIds',
-        key: 'account_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
-        name: 'contentId',
-        key: 'content_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'library',
     operation: 'shareGet',
-    endpoint: 'library_share',
-    action: 'get',
+    endpoint: 'library_share_get',
     workspace: true,
     params: [
       {
@@ -700,34 +559,15 @@ export const libraryOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'library',
     operation: 'commentMark',
-    endpoint: 'library_comments',
-    action: 'mark',
+    endpoint: 'library_comments_mark',
     workspace: true,
     params: [
-      {
-        name: 'contentId',
-        key: 'content_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'text',
-        key: 'text',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'commentId',
         key: 'comment_id',
@@ -785,8 +625,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'draftPublish',
-    endpoint: 'library_drafts',
-    action: 'publish',
+    endpoint: 'library_drafts_publish',
     workspace: true,
     params: [
       {
@@ -838,12 +677,6 @@ export const libraryOperations: OperationSpec[] = [
         required: false
       },
       {
-        name: 'liveDate',
-        key: 'live_date',
-        kind: 'date',
-        required: false
-      },
-      {
         name: 'expireDate',
         key: 'expire_date',
         kind: 'date',
@@ -887,9 +720,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'pointerReset',
-    endpoint: 'library_pointers',
-    action: 'reset',
-    unwrap: 'pointers',
+    endpoint: 'library_pointers_reset',
     workspace: true,
     params: [
       {
@@ -897,18 +728,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'accountId',
-        key: 'account_id',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'position',
-        key: 'position',
-        kind: 'number',
-        required: false
       },
       {
         name: 'accountIds',
@@ -927,8 +746,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'shareReset',
-    endpoint: 'library_share',
-    action: 'reset',
+    endpoint: 'library_share_reset',
     workspace: true,
     params: [
       {
@@ -936,20 +754,14 @@ export const libraryOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'library',
     operation: 'expiredRestore',
-    endpoint: 'expired_content',
-    action: 'restore',
+    endpoint: 'expired_content_restore',
+    unwrap: 'new_ids',
     workspace: true,
     params: [
       {
@@ -1015,9 +827,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'pointerSet',
-    endpoint: 'library_pointers',
-    action: 'set',
-    unwrap: 'pointers',
+    endpoint: 'library_pointers_set',
     workspace: true,
     params: [
       {
@@ -1037,18 +847,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'position',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'accountIds',
-        key: 'account_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
-        name: 'contentId',
-        key: 'content_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
@@ -1147,8 +945,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'draftUpdate',
-    endpoint: 'library_drafts',
-    action: 'update',
+    endpoint: 'library_drafts_update',
     workspace: true,
     params: [
       {
@@ -1414,7 +1211,7 @@ export const libraryOperationOptions = [
   {
     name: 'Add Comment',
     value: 'commentAdd',
-    description: 'List the comments on a library post, add one as a team member, or mark one read or unread',
+    description: 'Add a comment on a library post as a team member',
     action: 'Add comment'
   },
   {
@@ -1426,19 +1223,19 @@ export const libraryOperationOptions = [
   {
     name: 'Bulk Append Text',
     value: 'bulkAppend',
-    description: 'Count a text across posts, replace it everywhere, or append a line to every post',
+    description: 'Append a line to every post of a library or workspace',
     action: 'Bulk append text'
   },
   {
     name: 'Bulk Count Text',
     value: 'bulkCount',
-    description: 'Count a text across posts, replace it everywhere, or append a line to every post',
+    description: 'Count how often a text appears across the posts of a library or workspace',
     action: 'Bulk count text'
   },
   {
     name: 'Bulk Replace Text',
     value: 'bulkReplace',
-    description: 'Count a text across posts, replace it everywhere, or append a line to every post',
+    description: 'Replace a text everywhere in the posts of a library or workspace',
     action: 'Bulk replace text'
   },
   {
@@ -1456,7 +1253,7 @@ export const libraryOperationOptions = [
   {
     name: 'Create Share Link',
     value: 'shareCreate',
-    description: 'Read, create or reset a library\'s public share link, or email it to a client',
+    description: 'Switch on a library\'s public share link',
     action: 'Create share link'
   },
   {
@@ -1480,13 +1277,13 @@ export const libraryOperationOptions = [
   {
     name: 'Delete Draft',
     value: 'draftDelete',
-    description: 'List, read, edit, publish or delete the drafts of a library',
+    description: 'Delete a draft of a library with its media',
     action: 'Delete draft'
   },
   {
     name: 'Delete Expired Post',
     value: 'expiredDelete',
-    description: 'List posts that left their library, restore one as a copy, delete one for good, or expire a live post',
+    description: 'Delete an expired post and its media for good',
     action: 'Delete expired post'
   },
   {
@@ -1498,13 +1295,13 @@ export const libraryOperationOptions = [
   {
     name: 'Email Share Link',
     value: 'shareInvite',
-    description: 'Read, create or reset a library\'s public share link, or email it to a client',
+    description: 'Email a library\'s share link to a client',
     action: 'Email share link'
   },
   {
     name: 'Expire Post',
     value: 'expirePost',
-    description: 'List posts that left their library, restore one as a copy, delete one for good, or expire a live post',
+    description: 'Take a live post or draft out of its library into expired content',
     action: 'Expire post'
   },
   {
@@ -1522,13 +1319,13 @@ export const libraryOperationOptions = [
   {
     name: 'Get Draft',
     value: 'draftGet',
-    description: 'List, read, edit, publish or delete the drafts of a library',
+    description: 'Read one draft of a library with its live and expire dates',
     action: 'Get draft'
   },
   {
     name: 'Get Many Comments',
     value: 'commentList',
-    description: 'List the comments on a library post, add one as a team member, or mark one read or unread',
+    description: 'List the comments on a library post',
     action: 'Get many comments'
   },
   {
@@ -1546,31 +1343,31 @@ export const libraryOperationOptions = [
   {
     name: 'Get Many Drafts',
     value: 'draftList',
-    description: 'List, read, edit, publish or delete the drafts of a library',
+    description: 'List the drafts of a library',
     action: 'Get many drafts'
   },
   {
     name: 'Get Many Expired Posts',
     value: 'expiredList',
-    description: 'List posts that left their library, restore one as a copy, delete one for good, or expire a live post',
+    description: 'List the posts that left their library',
     action: 'Get many expired posts'
   },
   {
     name: 'Get Many Pointers',
     value: 'pointerList',
-    description: 'See which post each account publishes next from a library, move one account\'s pointer, or point accounts at a post',
+    description: 'See which post each account publishes next from a library',
     action: 'Get many pointers'
   },
   {
     name: 'Get Share Link',
     value: 'shareGet',
-    description: 'Read, create or reset a library\'s public share link, or email it to a client',
+    description: 'Read whether a library has a public share link and its address',
     action: 'Get share link'
   },
   {
     name: 'Mark Comment',
     value: 'commentMark',
-    description: 'List the comments on a library post, add one as a team member, or mark one read or unread',
+    description: 'Mark a library post comment read or unread',
     action: 'Mark comment'
   },
   {
@@ -1588,7 +1385,7 @@ export const libraryOperationOptions = [
   {
     name: 'Publish Draft',
     value: 'draftPublish',
-    description: 'List, read, edit, publish or delete the drafts of a library',
+    description: 'Clear the live date of a draft so it joins the library now',
     action: 'Publish draft'
   },
   {
@@ -1600,19 +1397,19 @@ export const libraryOperationOptions = [
   {
     name: 'Reset Pointers',
     value: 'pointerReset',
-    description: 'See which post each account publishes next from a library, move one account\'s pointer, or point accounts at a post',
+    description: 'Point accounts at a post so they publish it next',
     action: 'Reset pointers'
   },
   {
     name: 'Reset Share Link',
     value: 'shareReset',
-    description: 'Read, create or reset a library\'s public share link, or email it to a client',
+    description: 'Issue a new address for a library\'s share link',
     action: 'Reset share link'
   },
   {
     name: 'Restore Expired Post',
     value: 'expiredRestore',
-    description: 'List posts that left their library, restore one as a copy, delete one for good, or expire a live post',
+    description: 'Copy an expired post back into one or more libraries',
     action: 'Restore expired post'
   },
   {
@@ -1630,7 +1427,7 @@ export const libraryOperationOptions = [
   {
     name: 'Set Pointer',
     value: 'pointerSet',
-    description: 'See which post each account publishes next from a library, move one account\'s pointer, or point accounts at a post',
+    description: 'Move one account\'s pointer to a position in the library\'s order',
     action: 'Set pointer'
   },
   {
@@ -1654,7 +1451,7 @@ export const libraryOperationOptions = [
   {
     name: 'Update Draft',
     value: 'draftUpdate',
-    description: 'List, read, edit, publish or delete the drafts of a library',
+    description: 'Change a draft of a library field by field',
     action: 'Update draft'
   },
   {
@@ -1733,7 +1530,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted library post ID. Required when action is list or add; ignored for mark, which finds the post from the comment.',
+    description: 'Encrypted library post ID',
     displayOptions: {
       show: {
         resource: [
@@ -1754,7 +1551,7 @@ export const libraryProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'Comment text, 1 to 2000 characters. Required when action is add.',
+    description: 'Comment text, 1 to 2000 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1765,39 +1562,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'commentAdd'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Comment ID',
-        name: 'commentId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the comment, from the list. Required when action is mark.'
-      },
-      {
-        displayName: 'Unread',
-        name: 'unread',
-        type: 'boolean',
-        default: false,
-        description: 'Whether mark: true marks the comment unread, false or missing marks it read'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',
@@ -1868,7 +1632,7 @@ export const libraryProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'Line added at the end of every post, 1 to 500 characters. Required when action is append.',
+    description: 'Line added at the end of every post, 1 to 500 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1920,16 +1684,6 @@ export const libraryProperties: INodeProperties[] = [
           loadOptionsMethod: 'getLibraries'
         },
         description: 'Encrypted library ID to limit the operation to one library. Without it every post of the workspace is in scope. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Search Text',
-        name: 'searchText',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Text to look for, 1 to 500 characters. Required when action is count or replace.'
       }
     ]
   },
@@ -1942,7 +1696,7 @@ export const libraryProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'Text to look for, 1 to 500 characters. Required when action is count or replace.',
+    description: 'Text to look for, 1 to 500 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1994,16 +1748,6 @@ export const libraryProperties: INodeProperties[] = [
           loadOptionsMethod: 'getLibraries'
         },
         description: 'Encrypted library ID to limit the operation to one library. Without it every post of the workspace is in scope. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Text',
-        name: 'text',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Line added at the end of every post, 1 to 500 characters. Required when action is append.'
       }
     ]
   },
@@ -2016,7 +1760,7 @@ export const libraryProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'Text to look for, 1 to 500 characters. Required when action is count or replace.',
+    description: 'Text to look for, 1 to 500 characters',
     displayOptions: {
       show: {
         resource: [
@@ -2077,17 +1821,7 @@ export const libraryProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'Text that replaces each occurrence, at most 500 characters; blank or missing removes the text. Read when action is replace.'
-      },
-      {
-        displayName: 'Text',
-        name: 'text',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Line added at the end of every post, 1 to 500 characters. Required when action is append.'
+        description: 'Text that replaces each occurrence, at most 500 characters; blank or missing removes the text'
       }
     ]
   },
@@ -2230,33 +1964,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'shareCreate'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Address the link is mailed to. Required when action is invite.'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',
@@ -2402,7 +2109,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted ID of the draft. Required for every action but list; it must be a draft of this library.',
+    description: 'Encrypted ID of the draft; it must be a draft of this library',
     displayOptions: {
       show: {
         resource: [
@@ -2413,32 +2120,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'draftDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Live Date',
-        name: 'liveDate',
-        type: 'dateTime',
-        default: '',
-        description: 'YYYY-MM-DD the draft goes live. update must leave the draft with a live date; publish clears it whatever you send.'
-      }
-    ]
   },
   {
     displayName: 'Content ID',
@@ -2446,7 +2127,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted post ID. Required when action is restore, delete or expire. For restore and delete it must be an expired post (from the list); for expire a post that is not expired yet.',
+    description: 'Encrypted ID of an expired post, from /api/expired_content_list',
     displayOptions: {
       show: {
         resource: [
@@ -2457,35 +2138,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'expiredDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Library Names or IDs',
-        name: 'libraryIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getLibraries'
-        },
-        description: 'Encrypted IDs of the libraries to copy the post into: one ID, a comma-separated string or an array, at most 50. Required when action is restore. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      }
-    ]
   },
   {
     displayName: 'ID',
@@ -2533,7 +2185,7 @@ export const libraryProperties: INodeProperties[] = [
     default: '',
     placeholder: 'name@email.com',
     required: true,
-    description: 'Address the link is mailed to. Required when action is invite.',
+    description: 'Address the link is mailed to',
     displayOptions: {
       show: {
         resource: [
@@ -2551,7 +2203,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted post ID. Required when action is restore, delete or expire. For restore and delete it must be an expired post (from the list); for expire a post that is not expired yet.',
+    description: 'Encrypted ID of a post that is not expired yet',
     displayOptions: {
       show: {
         resource: [
@@ -2562,35 +2214,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'expirePost'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Library Names or IDs',
-        name: 'libraryIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getLibraries'
-        },
-        description: 'Encrypted IDs of the libraries to copy the post into: one ID, a comma-separated string or an array, at most 50. Required when action is restore. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',
@@ -2658,7 +2281,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted ID of the draft. Required for every action but list; it must be a draft of this library.',
+    description: 'Encrypted ID of the draft; it must be a draft of this library',
     displayOptions: {
       show: {
         resource: [
@@ -2669,32 +2292,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'draftGet'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Live Date',
-        name: 'liveDate',
-        type: 'dateTime',
-        default: '',
-        description: 'YYYY-MM-DD the draft goes live. update must leave the draft with a live date; publish clears it whatever you send.'
-      }
-    ]
   },
   {
     displayName: 'Content ID',
@@ -2702,7 +2299,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted library post ID. Required when action is list or add; ignored for mark, which finds the post from the comment.',
+    description: 'Encrypted library post ID',
     displayOptions: {
       show: {
         resource: [
@@ -2732,35 +2329,11 @@ export const libraryProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Comment ID',
-        name: 'commentId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the comment, from the list. Required when action is mark.'
-      },
-      {
         displayName: 'Page',
         name: 'page',
         type: 'number',
         default: 1,
-        description: 'Page of the list, from 1; 6 comments a page. Read when action is list.'
-      },
-      {
-        displayName: 'Text',
-        name: 'text',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Comment text, 1 to 2000 characters. Required when action is add.'
-      },
-      {
-        displayName: 'Unread',
-        name: 'unread',
-        type: 'boolean',
-        default: false,
-        description: 'Whether mark: true marks the comment unread, false or missing marks it read'
+        description: 'Page of the list, from 1; 6 comments a page'
       }
     ]
   },
@@ -2896,25 +2469,11 @@ export const libraryProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Content ID',
-        name: 'contentId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the draft. Required for every action but list; it must be a draft of this library.'
-      },
-      {
-        displayName: 'Live Date',
-        name: 'liveDate',
-        type: 'dateTime',
-        default: '',
-        description: 'YYYY-MM-DD the draft goes live. update must leave the draft with a live date; publish clears it whatever you send.'
-      },
-      {
         displayName: 'Page',
         name: 'page',
         type: 'number',
         default: 1,
-        description: 'Page of the list, from 1; 20 drafts a page. Read when action is list.'
+        description: 'Page of the list, from 1; 20 drafts a page'
       }
     ]
   },
@@ -2936,35 +2495,18 @@ export const libraryProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Content ID',
-        name: 'contentId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted post ID. Required when action is restore, delete or expire. For restore and delete it must be an expired post (from the list); for expire a post that is not expired yet.'
-      },
-      {
-        displayName: 'Library Names or IDs',
-        name: 'libraryIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getLibraries'
-        },
-        description: 'Encrypted IDs of the libraries to copy the post into: one ID, a comma-separated string or an array, at most 50. Required when action is restore. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
         displayName: 'Page',
         name: 'page',
         type: 'number',
         default: 1,
-        description: 'Page of the list, from 1. Read when action is list.'
+        description: 'Page of the list, from 1'
       },
       {
         displayName: 'Per Page',
         name: 'perPage',
         type: 'number',
         default: 20,
-        description: 'Posts per page, 1 to 50. Read when action is list.'
+        description: 'Posts per page, 1 to 50'
       }
     ]
   },
@@ -2990,59 +2532,6 @@ export const libraryProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'pointerList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Name or ID',
-        name: 'accountId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account ID whose pointer to move. Required when action is set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Account Names or IDs',
-        name: 'accountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Required when action is reset. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Content ID',
-        name: 'contentId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the post the accounts publish next; it must be in the library. Required when action is reset.'
-      },
-      {
-        displayName: 'Position',
-        name: 'position',
-        type: 'number',
-        default: 0,
-        description: 'Position in the library\'s order the account publishes next, 1 to the number of posts. Required when action is set.'
-      }
-    ]
-  },
-  {
     displayName: 'Library Name or ID',
     name: 'libraryId',
     type: 'options',
@@ -3062,33 +2551,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'shareGet'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Address the link is mailed to. Required when action is invite.'
-      }
-    ]
   },
   {
     displayName: 'Comment ID',
@@ -3096,7 +2558,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the comment, from the list. Required when action is mark.',
+    description: 'Plain integer ID of the comment, from /api/library_comments_list',
     displayOptions: {
       show: {
         resource: [
@@ -3126,28 +2588,11 @@ export const libraryProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Content ID',
-        name: 'contentId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted library post ID. Required when action is list or add; ignored for mark, which finds the post from the comment.'
-      },
-      {
-        displayName: 'Text',
-        name: 'text',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Comment text, 1 to 2000 characters. Required when action is add.'
-      },
-      {
         displayName: 'Unread',
         name: 'unread',
         type: 'boolean',
         default: false,
-        description: 'Whether mark: true marks the comment unread, false or missing marks it read'
+        description: 'Whether true marks the comment unread, false or missing marks it read'
       }
     ]
   },
@@ -3253,7 +2698,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted ID of the draft. Required for every action but list; it must be a draft of this library.',
+    description: 'Encrypted ID of the draft; it must be a draft of this library',
     displayOptions: {
       show: {
         resource: [
@@ -3290,35 +2735,28 @@ export const libraryProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'Link description. update and publish only.'
+        description: 'Link description'
       },
       {
         displayName: 'Expire Date',
         name: 'expireDate',
         type: 'dateTime',
         default: '',
-        description: 'YYYY-MM-DD the post stops recurring; blank clears it. update and publish only.'
+        description: 'YYYY-MM-DD the post stops recurring; blank clears it'
       },
       {
         displayName: 'Google Business Cta Type',
         name: 'gmbCtaType',
         type: 'number',
         default: 0,
-        description: 'Google Business call-to-action code as the app stores it: 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 1 clears the button. update and publish only.'
+        description: 'Google Business call-to-action code as the app stores it: 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 1 clears the button.'
       },
       {
         displayName: 'Image URL',
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'Public http or https image URL, one image. Send blank to remove it. update and publish only.'
-      },
-      {
-        displayName: 'Live Date',
-        name: 'liveDate',
-        type: 'dateTime',
-        default: '',
-        description: 'YYYY-MM-DD the draft goes live. update must leave the draft with a live date; publish clears it whatever you send.'
+        description: 'Public http or https image URL, one image. Send blank to remove it.'
       },
       {
         displayName: 'Message',
@@ -3328,28 +2766,28 @@ export const libraryProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'New post text. update and publish only.'
+        description: 'New post text'
       },
       {
         displayName: 'Title',
         name: 'title',
         type: 'string',
         default: '',
-        description: 'Link title. update and publish only.'
+        description: 'Link title'
       },
       {
         displayName: 'URL',
         name: 'url',
         type: 'string',
         default: '',
-        description: 'Public http or https link. Send blank to remove it. update and publish only.'
+        description: 'Public http or https link. Send blank to remove it.'
       },
       {
         displayName: 'Video URL',
         name: 'videoUrl',
         type: 'string',
         default: '',
-        description: 'Public http or https video URL. Send blank to remove it. update and publish only.'
+        description: 'Public http or https video URL. Send blank to remove it.'
       }
     ]
   },
@@ -3440,7 +2878,7 @@ export const libraryProperties: INodeProperties[] = [
       loadOptionsMethod: 'getSocialAccounts'
     },
     required: true,
-    description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Required when action is reset. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -3458,7 +2896,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted ID of the post the accounts publish next; it must be in the library. Required when action is reset.',
+    description: 'Encrypted ID of the post the accounts publish next; it must be in the library',
     displayOptions: {
       show: {
         resource: [
@@ -3469,42 +2907,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'pointerReset'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Name or ID',
-        name: 'accountId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account ID whose pointer to move. Required when action is set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Position',
-        name: 'position',
-        type: 'number',
-        default: 0,
-        description: 'Position in the library\'s order the account publishes next, 1 to the number of posts. Required when action is set.'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',
@@ -3528,39 +2930,12 @@ export const libraryProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'shareReset'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Address the link is mailed to. Required when action is invite.'
-      }
-    ]
-  },
-  {
     displayName: 'Content ID',
     name: 'contentId',
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted post ID. Required when action is restore, delete or expire. For restore and delete it must be an expired post (from the list); for expire a post that is not expired yet.',
+    description: 'Encrypted ID of an expired post, from /api/expired_content_list',
     displayOptions: {
       show: {
         resource: [
@@ -3581,7 +2956,7 @@ export const libraryProperties: INodeProperties[] = [
       loadOptionsMethod: 'getLibraries'
     },
     required: true,
-    description: 'Encrypted IDs of the libraries to copy the post into: one ID, a comma-separated string or an array, at most 50. Required when action is restore. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted IDs of the libraries to copy the post into: one ID, a comma-separated string or an array, at most 50. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -3708,7 +3083,7 @@ export const libraryProperties: INodeProperties[] = [
       loadOptionsMethod: 'getSocialAccounts'
     },
     required: true,
-    description: 'Encrypted social account ID whose pointer to move. Required when action is set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted social account ID whose pointer to move. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -3726,7 +3101,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Position in the library\'s order the account publishes next, 1 to the number of posts. Required when action is set.',
+    description: 'Position in the library\'s order the account publishes next, 1 to the number of posts',
     displayOptions: {
       show: {
         resource: [
@@ -3737,42 +3112,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'pointerSet'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Names or IDs',
-        name: 'accountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Required when action is reset. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Content ID',
-        name: 'contentId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the post the accounts publish next; it must be in the library. Required when action is reset.'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',
@@ -3975,7 +3314,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted ID of the draft. Required for every action but list; it must be a draft of this library.',
+    description: 'Encrypted ID of the draft; it must be a draft of this library',
     displayOptions: {
       show: {
         resource: [
@@ -4012,35 +3351,35 @@ export const libraryProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'Link description. update and publish only.'
+        description: 'Link description'
       },
       {
         displayName: 'Expire Date',
         name: 'expireDate',
         type: 'dateTime',
         default: '',
-        description: 'YYYY-MM-DD the post stops recurring; blank clears it. update and publish only.'
+        description: 'YYYY-MM-DD the post stops recurring; blank clears it'
       },
       {
         displayName: 'Google Business Cta Type',
         name: 'gmbCtaType',
         type: 'number',
         default: 0,
-        description: 'Google Business call-to-action code as the app stores it: 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 1 clears the button. update and publish only.'
+        description: 'Google Business call-to-action code as the app stores it: 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 1 clears the button.'
       },
       {
         displayName: 'Image URL',
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'Public http or https image URL, one image. Send blank to remove it. update and publish only.'
+        description: 'Public http or https image URL, one image. Send blank to remove it.'
       },
       {
         displayName: 'Live Date',
         name: 'liveDate',
         type: 'dateTime',
         default: '',
-        description: 'YYYY-MM-DD the draft goes live. update must leave the draft with a live date; publish clears it whatever you send.'
+        description: 'YYYY-MM-DD the draft goes live; the draft must keep one'
       },
       {
         displayName: 'Message',
@@ -4050,28 +3389,28 @@ export const libraryProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'New post text. update and publish only.'
+        description: 'New post text'
       },
       {
         displayName: 'Title',
         name: 'title',
         type: 'string',
         default: '',
-        description: 'Link title. update and publish only.'
+        description: 'Link title'
       },
       {
         displayName: 'URL',
         name: 'url',
         type: 'string',
         default: '',
-        description: 'Public http or https link. Send blank to remove it. update and publish only.'
+        description: 'Public http or https link. Send blank to remove it.'
       },
       {
         displayName: 'Video URL',
         name: 'videoUrl',
         type: 'string',
         default: '',
-        description: 'Public http or https video URL. Send blank to remove it. update and publish only.'
+        description: 'Public http or https video URL. Send blank to remove it.'
       }
     ]
   },

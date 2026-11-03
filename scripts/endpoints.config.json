@@ -785,15 +785,15 @@
       "name": "Set on Post",
       "value": "setOnPost"
     },
-    "library_comments:add": {
+    "library_comments_add": {
       "name": "Add Comment",
       "value": "commentAdd"
     },
-    "library_comments:list": {
+    "library_comments_list": {
       "name": "Get Many Comments",
       "value": "commentList"
     },
-    "library_comments:mark": {
+    "library_comments_mark": {
       "name": "Mark Comment",
       "value": "commentMark"
     },
@@ -813,15 +813,15 @@
       "name": "Update Content Variation",
       "value": "variationUpdate"
     },
-    "library_bulk_edit:append": {
+    "library_bulk_edit_append": {
       "name": "Bulk Append Text",
       "value": "bulkAppend"
     },
-    "library_bulk_edit:count": {
+    "library_bulk_edit_count": {
       "name": "Bulk Count Text",
       "value": "bulkCount"
     },
-    "library_bulk_edit:replace": {
+    "library_bulk_edit_replace": {
       "name": "Bulk Replace Text",
       "value": "bulkReplace"
     },
@@ -841,67 +841,67 @@
       "name": "Get",
       "value": "get"
     },
-    "library_drafts:delete": {
+    "library_drafts_delete": {
       "name": "Delete Draft",
       "value": "draftDelete"
     },
-    "library_drafts:get": {
+    "library_drafts_get": {
       "name": "Get Draft",
       "value": "draftGet"
     },
-    "library_drafts:list": {
+    "library_drafts_list": {
       "name": "Get Many Drafts",
       "value": "draftList"
     },
-    "library_drafts:publish": {
+    "library_drafts_publish": {
       "name": "Publish Draft",
       "value": "draftPublish"
     },
-    "library_drafts:update": {
+    "library_drafts_update": {
       "name": "Update Draft",
       "value": "draftUpdate"
     },
-    "expired_content:delete": {
+    "expired_content_delete": {
       "name": "Delete Expired Post",
       "value": "expiredDelete"
     },
-    "expired_content:expire": {
+    "expired_content_expire": {
       "name": "Expire Post",
       "value": "expirePost"
     },
-    "expired_content:list": {
+    "expired_content_list": {
       "name": "Get Many Expired Posts",
       "value": "expiredList"
     },
-    "expired_content:restore": {
+    "expired_content_restore": {
       "name": "Restore Expired Post",
       "value": "expiredRestore"
     },
-    "library_pointers:list": {
+    "library_pointers_list": {
       "name": "Get Many Pointers",
       "value": "pointerList"
     },
-    "library_pointers:reset": {
+    "library_pointers_reset": {
       "name": "Reset Pointers",
       "value": "pointerReset"
     },
-    "library_pointers:set": {
+    "library_pointers_set": {
       "name": "Set Pointer",
       "value": "pointerSet"
     },
-    "library_share:create": {
+    "library_share_create": {
       "name": "Create Share Link",
       "value": "shareCreate"
     },
-    "library_share:get": {
+    "library_share_get": {
       "name": "Get Share Link",
       "value": "shareGet"
     },
-    "library_share:invite": {
+    "library_share_invite": {
       "name": "Email Share Link",
       "value": "shareInvite"
     },
-    "library_share:reset": {
+    "library_share_reset": {
       "name": "Reset Share Link",
       "value": "shareReset"
     },
@@ -1026,47 +1026,47 @@
       "name": "Get Remaining Posts",
       "value": "remaining"
     },
-    "shared_calendar_comments:add": {
+    "shared_calendar_comments_add": {
       "name": "Add Comment",
       "value": "commentAdd"
     },
-    "shared_calendar_comments:list": {
+    "shared_calendar_comments_list": {
       "name": "Get Many Comments",
       "value": "commentList"
     },
-    "shared_calendar_comments:mark": {
+    "shared_calendar_comments_mark": {
       "name": "Mark Comment",
       "value": "commentMark"
     },
-    "shared_calendar:create": {
+    "shared_calendar_create": {
       "name": "Create",
       "value": "create"
     },
-    "shared_calendar:delete": {
+    "shared_calendar_delete": {
       "name": "Delete",
       "value": "delete"
     },
-    "shared_calendar:get": {
+    "shared_calendar_get": {
       "name": "Get",
       "value": "get"
     },
-    "shared_calendar:clients": {
+    "shared_calendar_clients": {
       "name": "Get Many Clients",
       "value": "clients"
     },
-    "shared_calendar:invite_client": {
+    "shared_calendar_invite_client": {
       "name": "Invite Client",
       "value": "inviteClient"
     },
-    "shared_calendar:link": {
+    "shared_calendar_link": {
       "name": "Set Public Link",
       "value": "setLink"
     },
-    "shared_calendar:remove_client": {
+    "shared_calendar_remove_client": {
       "name": "Remove Client",
       "value": "removeClient"
     },
-    "shared_calendar:update": {
+    "shared_calendar_update": {
       "name": "Update",
       "value": "update"
     },

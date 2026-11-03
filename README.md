@@ -229,49 +229,49 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Add Comment | `library_comments:add` |
+| Add Comment | `library_comments_add` |
 | Add Content | `add_content_in_library` |
 | Add Content Variation | `content_variation_add` |
-| Bulk Append Text | `library_bulk_edit:append` |
-| Bulk Count Text | `library_bulk_edit:count` |
-| Bulk Replace Text | `library_bulk_edit:replace` |
+| Bulk Append Text | `library_bulk_edit_append` |
+| Bulk Count Text | `library_bulk_edit_count` |
+| Bulk Replace Text | `library_bulk_edit_replace` |
 | Copy Content | `library_content_copy` |
 | Create | `library_create` |
-| Create Share Link | `library_share:create` |
+| Create Share Link | `library_share_create` |
 | Delete | `library_delete` |
 | Delete Content | `library_content_delete` |
 | Delete Content Variation | `content_variation_delete` |
-| Delete Draft | `library_drafts:delete` |
-| Delete Expired Post | `expired_content:delete` |
+| Delete Draft | `library_drafts_delete` |
+| Delete Expired Post | `expired_content_delete` |
 | Duplicate | `library_duplicate` |
-| Email Share Link | `library_share:invite` |
-| Expire Post | `expired_content:expire` |
+| Email Share Link | `library_share_invite` |
+| Expire Post | `expired_content_expire` |
 | Get | `library_details` |
 | Get Content | `library_content` |
-| Get Draft | `library_drafts:get` |
+| Get Draft | `library_drafts_get` |
 | Get Many | `library_list` |
-| Get Many Comments | `library_comments:list` |
+| Get Many Comments | `library_comments_list` |
 | Get Many Content Items | `library_content_list` |
 | Get Many Content Variations | `content_variation_list` |
-| Get Many Drafts | `library_drafts:list` |
-| Get Many Expired Posts | `expired_content:list` |
-| Get Many Pointers | `library_pointers:list` |
-| Get Share Link | `library_share:get` |
-| Mark Comment | `library_comments:mark` |
+| Get Many Drafts | `library_drafts_list` |
+| Get Many Expired Posts | `expired_content_list` |
+| Get Many Pointers | `library_pointers_list` |
+| Get Share Link | `library_share_get` |
+| Mark Comment | `library_comments_mark` |
 | Move Content | `library_content_move` |
 | Pause | `library_pause` |
-| Publish Draft | `library_drafts:publish` |
+| Publish Draft | `library_drafts_publish` |
 | Reorder Content | `library_content_order_move` |
-| Reset Pointers | `library_pointers:reset` |
-| Reset Share Link | `library_share:reset` |
-| Restore Expired Post | `expired_content:restore` |
+| Reset Pointers | `library_pointers_reset` |
+| Reset Share Link | `library_share_reset` |
+| Restore Expired Post | `expired_content_restore` |
 | Resume | `library_resume` |
 | Search Content | `library_content_search` |
-| Set Pointer | `library_pointers:set` |
+| Set Pointer | `library_pointers_set` |
 | Shuffle Content | `library_content_order_shuffle` |
 | Update | `library_update` |
 | Update Content Variation | `content_variation_update` |
-| Update Draft | `library_drafts:update` |
+| Update Draft | `library_drafts_update` |
 | Update Library Content | `library_content_update` |
 
 ### Media
@@ -363,17 +363,17 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Add Comment | `shared_calendar_comments:add` |
-| Create | `shared_calendar:create` |
-| Delete | `shared_calendar:delete` |
-| Get | `shared_calendar:get` |
-| Get Many Clients | `shared_calendar:clients` |
-| Get Many Comments | `shared_calendar_comments:list` |
-| Invite Client | `shared_calendar:invite_client` |
-| Mark Comment | `shared_calendar_comments:mark` |
-| Remove Client | `shared_calendar:remove_client` |
-| Set Public Link | `shared_calendar:link` |
-| Update | `shared_calendar:update` |
+| Add Comment | `shared_calendar_comments_add` |
+| Create | `shared_calendar_create` |
+| Delete | `shared_calendar_delete` |
+| Get | `shared_calendar_get` |
+| Get Many Clients | `shared_calendar_clients` |
+| Get Many Comments | `shared_calendar_comments_list` |
+| Invite Client | `shared_calendar_invite_client` |
+| Mark Comment | `shared_calendar_comments_mark` |
+| Remove Client | `shared_calendar_remove_client` |
+| Set Public Link | `shared_calendar_link` |
+| Update | `shared_calendar_update` |
 
 ### Social Account
 

@@ -6,8 +6,7 @@ export const sharedCalendarOperations: OperationSpec[] = [
   {
     resource: 'sharedCalendar',
     operation: 'commentAdd',
-    endpoint: 'shared_calendar_comments',
-    action: 'add',
+    endpoint: 'shared_calendar_comments_add',
     workspace: true,
     params: [
       {
@@ -21,26 +20,13 @@ export const sharedCalendarOperations: OperationSpec[] = [
         key: 'comment',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'read',
-        key: 'read',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'page',
-        key: 'page',
-        kind: 'number',
-        required: false
       }
     ]
   },
   {
     resource: 'sharedCalendar',
     operation: 'create',
-    endpoint: 'shared_calendar',
-    action: 'create',
+    endpoint: 'shared_calendar_create',
     workspace: true,
     params: [
       {
@@ -77,24 +63,6 @@ export const sharedCalendarOperations: OperationSpec[] = [
         name: 'pin',
         key: 'pin',
         kind: 'string',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'clientId',
-        key: 'client_id',
-        kind: 'number',
         required: false
       }
     ]
@@ -102,198 +70,29 @@ export const sharedCalendarOperations: OperationSpec[] = [
   {
     resource: 'sharedCalendar',
     operation: 'delete',
-    endpoint: 'shared_calendar',
-    action: 'delete',
+    endpoint: 'shared_calendar_delete',
     confirm: true,
     workspace: true,
-    params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'neverExpires',
-        key: 'never_expires',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'commentsAllowed',
-        key: 'comments_allowed',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'pin',
-        key: 'pin',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'clientId',
-        key: 'client_id',
-        kind: 'number',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'sharedCalendar',
     operation: 'get',
-    endpoint: 'shared_calendar',
-    action: 'get',
+    endpoint: 'shared_calendar_get',
     workspace: true,
-    params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'neverExpires',
-        key: 'never_expires',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'commentsAllowed',
-        key: 'comments_allowed',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'pin',
-        key: 'pin',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'clientId',
-        key: 'client_id',
-        kind: 'number',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'sharedCalendar',
     operation: 'clients',
-    endpoint: 'shared_calendar',
-    action: 'clients',
+    endpoint: 'shared_calendar_clients',
     workspace: true,
-    params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'neverExpires',
-        key: 'never_expires',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'commentsAllowed',
-        key: 'comments_allowed',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'pin',
-        key: 'pin',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'clientId',
-        key: 'client_id',
-        kind: 'number',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'sharedCalendar',
     operation: 'commentList',
-    endpoint: 'shared_calendar_comments',
-    action: 'list',
+    endpoint: 'shared_calendar_comments_list',
     workspace: true,
     params: [
       {
@@ -301,18 +100,6 @@ export const sharedCalendarOperations: OperationSpec[] = [
         key: 'post_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'comment',
-        key: 'comment',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'read',
-        key: 'read',
-        kind: 'boolean',
-        required: false
       },
       {
         name: 'page',
@@ -325,71 +112,21 @@ export const sharedCalendarOperations: OperationSpec[] = [
   {
     resource: 'sharedCalendar',
     operation: 'inviteClient',
-    endpoint: 'shared_calendar',
-    action: 'invite_client',
+    endpoint: 'shared_calendar_invite_client',
     workspace: true,
     params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'neverExpires',
-        key: 'never_expires',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'commentsAllowed',
-        key: 'comments_allowed',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'pin',
-        key: 'pin',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      },
       {
         name: 'email',
         key: 'email',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'clientId',
-        key: 'client_id',
-        kind: 'number',
-        required: false
       }
     ]
   },
   {
     resource: 'sharedCalendar',
     operation: 'commentMark',
-    endpoint: 'shared_calendar_comments',
-    action: 'mark',
+    endpoint: 'shared_calendar_comments_mark',
     workspace: true,
     params: [
       {
@@ -397,12 +134,6 @@ export const sharedCalendarOperations: OperationSpec[] = [
         key: 'post_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'comment',
-        key: 'comment',
-        kind: 'string',
-        required: false
       },
       {
         name: 'read',
@@ -427,58 +158,9 @@ export const sharedCalendarOperations: OperationSpec[] = [
   {
     resource: 'sharedCalendar',
     operation: 'removeClient',
-    endpoint: 'shared_calendar',
-    action: 'remove_client',
+    endpoint: 'shared_calendar_remove_client',
     workspace: true,
     params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'neverExpires',
-        key: 'never_expires',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'commentsAllowed',
-        key: 'comments_allowed',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'pin',
-        key: 'pin',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'clientId',
         key: 'client_id',
@@ -490,71 +172,21 @@ export const sharedCalendarOperations: OperationSpec[] = [
   {
     resource: 'sharedCalendar',
     operation: 'setLink',
-    endpoint: 'shared_calendar',
-    action: 'link',
+    endpoint: 'shared_calendar_link',
     workspace: true,
     params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'neverExpires',
-        key: 'never_expires',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'commentsAllowed',
-        key: 'comments_allowed',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'pin',
-        key: 'pin',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'enabled',
         key: 'enabled',
         kind: 'boolean',
         required: true
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'clientId',
-        key: 'client_id',
-        kind: 'number',
-        required: false
       }
     ]
   },
   {
     resource: 'sharedCalendar',
     operation: 'update',
-    endpoint: 'shared_calendar',
-    action: 'update',
+    endpoint: 'shared_calendar_update',
     workspace: true,
     params: [
       {
@@ -591,24 +223,6 @@ export const sharedCalendarOperations: OperationSpec[] = [
         name: 'pin',
         key: 'pin',
         kind: 'string',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'email',
-        key: 'email',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'clientId',
-        key: 'client_id',
-        kind: 'number',
         required: false
       }
     ]
@@ -619,67 +233,67 @@ export const sharedCalendarOperationOptions = [
   {
     name: 'Add Comment',
     value: 'commentAdd',
-    description: 'List, add or mark as read the client calendar comments on a queued post',
+    description: 'Add a comment on a queued post in your name',
     action: 'Add comment'
   },
   {
     name: 'Create',
     value: 'create',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'Create the workspace\'s client calendar',
     action: 'Create a shared calendar'
   },
   {
     name: 'Delete',
     value: 'delete',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'Delete the workspace\'s client calendar with its people and comments',
     action: 'Delete a shared calendar'
   },
   {
     name: 'Get',
     value: 'get',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'Read the workspace\'s client calendar',
     action: 'Get a shared calendar'
   },
   {
     name: 'Get Many Clients',
     value: 'clients',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'List the people on the client calendar',
     action: 'Get many clients'
   },
   {
     name: 'Get Many Comments',
     value: 'commentList',
-    description: 'List, add or mark as read the client calendar comments on a queued post',
+    description: 'List the client calendar comments on a queued post',
     action: 'Get many comments'
   },
   {
     name: 'Invite Client',
     value: 'inviteClient',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'Mail the client calendar link to a person and add them',
     action: 'Invite client'
   },
   {
     name: 'Mark Comment',
     value: 'commentMark',
-    description: 'List, add or mark as read the client calendar comments on a queued post',
+    description: 'Mark the client calendar comments on a queued post read or unread',
     action: 'Mark comment'
   },
   {
     name: 'Remove Client',
     value: 'removeClient',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'Take a person off the client calendar',
     action: 'Remove client'
   },
   {
     name: 'Set Public Link',
     value: 'setLink',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'Switch the client calendar\'s public link on or off',
     action: 'Set public link'
   },
   {
     name: 'Update',
     value: 'update',
-    description: 'Read, create, change, link, delete the workspace\'s client calendar, or manage the people on it',
+    description: 'Change the workspace\'s client calendar',
     action: 'Update a shared calendar'
   }
 ];
@@ -742,7 +356,7 @@ export const sharedCalendarProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'Required when action is add: the comment, 1 to 2000 characters. Surrounding spaces are trimmed.',
+    description: 'The comment, 1 to 2000 characters. Surrounding spaces are trimmed.',
     displayOptions: {
       show: {
         resource: [
@@ -755,45 +369,12 @@ export const sharedCalendarProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'sharedCalendar'
-        ],
-        operation: [
-          'commentAdd'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Page',
-        name: 'page',
-        type: 'number',
-        default: 1,
-        description: 'Page of the list, 6 comments per page'
-      },
-      {
-        displayName: 'Read',
-        name: 'read',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is mark: true marks as read, false as unread'
-      }
-    ]
-  },
-  {
     displayName: 'Name',
     name: 'name',
     type: 'string',
     default: '',
     required: true,
-    description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.',
+    description: 'The calendar\'s name, 1 to 100 characters',
     displayOptions: {
       show: {
         resource: [
@@ -811,7 +392,7 @@ export const sharedCalendarProperties: INodeProperties[] = [
     type: 'dateTime',
     default: '',
     required: true,
-    description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.',
+    description: 'First day the client sees, YYYY-MM-DD',
     displayOptions: {
       show: {
         resource: [
@@ -841,40 +422,18 @@ export const sharedCalendarProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Client ID',
-        name: 'clientId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is remove_client: plain ID from people[].ID of action clients'
-      },
-      {
         displayName: 'Comments Allowed',
         name: 'commentsAllowed',
         type: 'boolean',
         default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is invite_client: the address to mail the calendar link to'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is link: true makes the public link work, false switches it off'
+        description: 'Whether the client may comment on posts. Defaults to false.'
       },
       {
         displayName: 'End Date',
         name: 'endDate',
         type: 'dateTime',
         default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
+        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required unless never_expires is true.'
       },
       {
         displayName: 'Never Expires',
@@ -891,265 +450,7 @@ export const sharedCalendarProperties: INodeProperties[] = [
         typeOptions: {
           password: true
         },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'sharedCalendar'
-        ],
-        operation: [
-          'delete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Client ID',
-        name: 'clientId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is remove_client: plain ID from people[].ID of action clients'
-      },
-      {
-        displayName: 'Comments Allowed',
-        name: 'commentsAllowed',
-        type: 'boolean',
-        default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is invite_client: the address to mail the calendar link to'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is link: true makes the public link work, false switches it off'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.'
-      },
-      {
-        displayName: 'Never Expires',
-        name: 'neverExpires',
-        type: 'boolean',
-        default: false,
-        description: 'Whether true keeps the calendar open with no end date; end_date is then ignored'
-      },
-      {
-        displayName: 'Pin',
-        name: 'pin',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          password: true
-        },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'sharedCalendar'
-        ],
-        operation: [
-          'get'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Client ID',
-        name: 'clientId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is remove_client: plain ID from people[].ID of action clients'
-      },
-      {
-        displayName: 'Comments Allowed',
-        name: 'commentsAllowed',
-        type: 'boolean',
-        default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is invite_client: the address to mail the calendar link to'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is link: true makes the public link work, false switches it off'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.'
-      },
-      {
-        displayName: 'Never Expires',
-        name: 'neverExpires',
-        type: 'boolean',
-        default: false,
-        description: 'Whether true keeps the calendar open with no end date; end_date is then ignored'
-      },
-      {
-        displayName: 'Pin',
-        name: 'pin',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          password: true
-        },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'sharedCalendar'
-        ],
-        operation: [
-          'clients'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Client ID',
-        name: 'clientId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is remove_client: plain ID from people[].ID of action clients'
-      },
-      {
-        displayName: 'Comments Allowed',
-        name: 'commentsAllowed',
-        type: 'boolean',
-        default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is invite_client: the address to mail the calendar link to'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is link: true makes the public link work, false switches it off'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.'
-      },
-      {
-        displayName: 'Never Expires',
-        name: 'neverExpires',
-        type: 'boolean',
-        default: false,
-        description: 'Whether true keeps the calendar open with no end date; end_date is then ignored'
-      },
-      {
-        displayName: 'Pin',
-        name: 'pin',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          password: true
-        },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.'
+        description: 'A 4-digit PIN the client must enter to open the calendar'
       }
     ]
   },
@@ -1189,28 +490,11 @@ export const sharedCalendarProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Comment',
-        name: 'comment',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Required when action is add: the comment, 1 to 2000 characters. Surrounding spaces are trimmed.'
-      },
-      {
         displayName: 'Page',
         name: 'page',
         type: 'number',
         default: 1,
         description: 'Page of the list, 6 comments per page'
-      },
-      {
-        displayName: 'Read',
-        name: 'read',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is mark: true marks as read, false as unread'
       }
     ]
   },
@@ -1221,7 +505,7 @@ export const sharedCalendarProperties: INodeProperties[] = [
     default: '',
     placeholder: 'name@email.com',
     required: true,
-    description: 'Required when action is invite_client: the address to mail the calendar link to',
+    description: 'The address to mail the calendar link to',
     displayOptions: {
       show: {
         resource: [
@@ -1232,84 +516,6 @@ export const sharedCalendarProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'sharedCalendar'
-        ],
-        operation: [
-          'inviteClient'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Client ID',
-        name: 'clientId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is remove_client: plain ID from people[].ID of action clients'
-      },
-      {
-        displayName: 'Comments Allowed',
-        name: 'commentsAllowed',
-        type: 'boolean',
-        default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is link: true makes the public link work, false switches it off'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.'
-      },
-      {
-        displayName: 'Never Expires',
-        name: 'neverExpires',
-        type: 'boolean',
-        default: false,
-        description: 'Whether true keeps the calendar open with no end date; end_date is then ignored'
-      },
-      {
-        displayName: 'Pin',
-        name: 'pin',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          password: true
-        },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.'
-      }
-    ]
   },
   {
     displayName: 'Post ID',
@@ -1335,7 +541,7 @@ export const sharedCalendarProperties: INodeProperties[] = [
     type: 'boolean',
     default: false,
     required: true,
-    description: 'Whether required when action is mark: true marks as read, false as unread',
+    description: 'Whether true marks as read, false as unread',
     displayOptions: {
       show: {
         resource: [
@@ -1365,21 +571,11 @@ export const sharedCalendarProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Comment',
-        name: 'comment',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Required when action is add: the comment, 1 to 2000 characters. Surrounding spaces are trimmed.'
-      },
-      {
         displayName: 'Comment ID',
         name: 'commentId',
         type: 'number',
         default: 0,
-        description: 'With mark: plain ID of one comment from comments[].ID. Left out, every comment of the post is marked.'
+        description: 'Plain ID of one comment from comments[].ID. Left out, every comment of the post is marked.'
       },
       {
         displayName: 'Page',
@@ -1396,7 +592,7 @@ export const sharedCalendarProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Required when action is remove_client: plain ID from people[].ID of action clients',
+    description: 'Plain ID from people[].ID of /api/shared_calendar_clients',
     displayOptions: {
       show: {
         resource: [
@@ -1407,85 +603,6 @@ export const sharedCalendarProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'sharedCalendar'
-        ],
-        operation: [
-          'removeClient'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Comments Allowed',
-        name: 'commentsAllowed',
-        type: 'boolean',
-        default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is invite_client: the address to mail the calendar link to'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is link: true makes the public link work, false switches it off'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.'
-      },
-      {
-        displayName: 'Never Expires',
-        name: 'neverExpires',
-        type: 'boolean',
-        default: false,
-        description: 'Whether true keeps the calendar open with no end date; end_date is then ignored'
-      },
-      {
-        displayName: 'Pin',
-        name: 'pin',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          password: true
-        },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.'
-      }
-    ]
   },
   {
     displayName: 'Enabled',
@@ -1493,7 +610,7 @@ export const sharedCalendarProperties: INodeProperties[] = [
     type: 'boolean',
     default: false,
     required: true,
-    description: 'Whether required when action is link: true makes the public link work, false switches it off',
+    description: 'Whether true makes the public link work, false switches it off',
     displayOptions: {
       show: {
         resource: [
@@ -1504,85 +621,6 @@ export const sharedCalendarProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'sharedCalendar'
-        ],
-        operation: [
-          'setLink'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Client ID',
-        name: 'clientId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is remove_client: plain ID from people[].ID of action clients'
-      },
-      {
-        displayName: 'Comments Allowed',
-        name: 'commentsAllowed',
-        type: 'boolean',
-        default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is invite_client: the address to mail the calendar link to'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.'
-      },
-      {
-        displayName: 'Never Expires',
-        name: 'neverExpires',
-        type: 'boolean',
-        default: false,
-        description: 'Whether true keeps the calendar open with no end date; end_date is then ignored'
-      },
-      {
-        displayName: 'Pin',
-        name: 'pin',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          password: true
-        },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.'
-      }
-    ]
   },
   {
     displayName: 'Additional Fields',
@@ -1602,47 +640,25 @@ export const sharedCalendarProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Client ID',
-        name: 'clientId',
-        type: 'number',
-        default: 0,
-        description: 'Required when action is remove_client: plain ID from people[].ID of action clients'
-      },
-      {
         displayName: 'Comments Allowed',
         name: 'commentsAllowed',
         type: 'boolean',
         default: false,
-        description: 'Whether the client may comment on posts. Defaults to false on create.'
-      },
-      {
-        displayName: 'Email',
-        name: 'email',
-        type: 'string',
-        default: '',
-        placeholder: 'name@email.com',
-        description: 'Required when action is invite_client: the address to mail the calendar link to'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is link: true makes the public link work, false switches it off'
+        description: 'Whether the client may comment on posts'
       },
       {
         displayName: 'End Date',
         name: 'endDate',
         type: 'dateTime',
         default: '',
-        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date. Required on create unless never_expires is true.'
+        description: 'Last day the client sees, YYYY-MM-DD, on or after start_date'
       },
       {
         displayName: 'Name',
         name: 'name',
         type: 'string',
         default: '',
-        description: 'Required when action is create: the calendar\'s name, 1 to 100 characters. Optional on update.'
+        description: 'The calendar\'s name, 1 to 100 characters'
       },
       {
         displayName: 'Never Expires',
@@ -1659,14 +675,14 @@ export const sharedCalendarProperties: INodeProperties[] = [
         typeOptions: {
           password: true
         },
-        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string on update to remove it.'
+        description: 'A 4-digit PIN the client must enter to open the calendar. Send an empty string to remove it.'
       },
       {
         displayName: 'Start Date',
         name: 'startDate',
         type: 'dateTime',
         default: '',
-        description: 'Required when action is create: first day the client sees, YYYY-MM-DD. Optional on update.'
+        description: 'First day the client sees, YYYY-MM-DD'
       }
     ]
   }
