@@ -94,6 +94,20 @@ export const customReportOperations: OperationSpec[] = [
   },
   {
     resource: 'customReport',
+    operation: 'metrics',
+    endpoint: 'custom_report_metrics',
+    workspace: false,
+    params: [
+      {
+        name: 'network',
+        key: 'network',
+        kind: 'options',
+        required: false
+      }
+    ]
+  },
+  {
+    resource: 'customReport',
     operation: 'pdf',
     endpoint: 'custom_report_pdf',
     workspace: true,
@@ -129,6 +143,13 @@ export const customReportOperations: OperationSpec[] = [
         required: false
       }
     ]
+  },
+  {
+    resource: 'customReport',
+    operation: 'templates',
+    endpoint: 'custom_report_templates',
+    workspace: false,
+    params: []
   },
   {
     resource: 'customReport',
@@ -208,10 +229,22 @@ export const customReportOperationOptions = [
     action: 'Get many custom reports'
   },
   {
+    name: 'Get Metrics',
+    value: 'metrics',
+    description: 'Every metric a custom report tile can carry, with its networks, graph types and comparisons',
+    action: 'Get metrics'
+  },
+  {
     name: 'Get PDF',
     value: 'pdf',
     description: 'A custom report as a PDF for its own period or a given one, produced now or emailed',
     action: 'Get pdf'
+  },
+  {
+    name: 'Get Templates',
+    value: 'templates',
+    description: 'Every gallery template with its tiles, ready to send to custom_reports_save',
+    action: 'Get templates'
   },
   {
     name: 'Save',
@@ -386,6 +419,78 @@ export const customReportProperties: INodeProperties[] = [
     ]
   },
   {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'customReport'
+        ],
+        operation: [
+          'metrics'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Network',
+        name: 'network',
+        type: 'options',
+        default: 'facebook_page',
+        options: [
+          {
+            name: 'Bluesky',
+            value: 'bluesky'
+          },
+          {
+            name: 'Facebook Page',
+            value: 'facebook_page'
+          },
+          {
+            name: 'Google Business',
+            value: 'google_business'
+          },
+          {
+            name: 'Instagram',
+            value: 'instagram'
+          },
+          {
+            name: 'Linkedin Page',
+            value: 'linkedin_page'
+          },
+          {
+            name: 'Linkedin Profile',
+            value: 'linkedin_profile'
+          },
+          {
+            name: 'Pinterest',
+            value: 'pinterest'
+          },
+          {
+            name: 'Threads',
+            value: 'threads'
+          },
+          {
+            name: 'Tiktok',
+            value: 'tiktok'
+          },
+          {
+            name: 'Twitter',
+            value: 'twitter'
+          },
+          {
+            name: 'Youtube',
+            value: 'youtube'
+          }
+        ],
+        description: 'Keep only the metrics this network reports: one of the network names above. Case does not matter.'
+      }
+    ]
+  },
+  {
     displayName: 'Report ID',
     name: 'reportId',
     type: 'number',
@@ -526,7 +631,7 @@ export const customReportProperties: INodeProperties[] = [
         name: 'tiles',
         type: 'json',
         default: '[]',
-        description: 'Save: the tiles of the canvas, in display order, as a JSON array or a JSON string. Each tile is an object. A metric tile: metricId (a metric key of the app\'s custom report canvas, 1 to 60 lowercase letters, digits and hyphens, for example followers or impressions), title (up to 120 characters), viz (number, line, area, bar, pie, list, table, funnel, gauge, heat or map; default number), size (quarter, third, half, threeq or full; default quarter) and compare (blank, previous for the comparison window or network). A note tile: metricId note, title, size and body (up to 5000 characters). At most 60 tiles and 200000 bytes of JSON.'
+        description: 'Save: the tiles of the canvas, in display order, as a JSON array or a JSON string. Each tile is an object. A metric tile: metricId (a metric key from /api/custom_report_metrics, for example followers or impressions; a legacy key is stored under its current one), title (up to 120 characters), viz (one of the metric\'s graph types; its default graph when left out), size (quarter, third, half, threeq or full; default quarter) and compare (blank, previous for the previous period or network for the split by account; each only where the metric\'s comparisons list that graph type). A note tile: metricId note, title, size and body (up to 5000 characters). At most 60 tiles and 200000 bytes of JSON.'
       }
     ]
   }

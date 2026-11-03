@@ -148,6 +148,8 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Get | `custom_reports_get` |
 | Get Data | `custom_reports_data` |
 | Get Many | `custom_reports_list` |
+| Get Metrics | `custom_report_metrics` |
+| Get Templates | `custom_report_templates` |
 | Get PDF | `custom_report_pdf` |
 | Save | `custom_reports_save` |
 
