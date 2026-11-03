@@ -393,9 +393,9 @@
       "value": "update",
       "action": "Update account profile"
     },
-    "account_group": {
-      "name": "Get",
-      "value": "get"
+    "account_groups": {
+      "name": "Get Many",
+      "value": "list"
     },
     "ai_special_days:generate": {
       "name": "Generate Special Day Posts",

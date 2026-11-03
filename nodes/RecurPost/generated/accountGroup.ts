@@ -45,25 +45,18 @@ export const accountGroupOperations: OperationSpec[] = [
   },
   {
     resource: 'accountGroup',
-    operation: 'get',
-    endpoint: 'account_group',
+    operation: 'list',
+    endpoint: 'account_groups',
+    unwrap: 'groups',
     workspace: true,
     params: [
       {
         name: 'id',
         key: 'id',
         kind: 'options',
-        required: true
+        required: false
       }
     ]
-  },
-  {
-    resource: 'accountGroup',
-    operation: 'list',
-    endpoint: 'account_group_list',
-    unwrap: 'groups',
-    workspace: true,
-    params: []
   },
   {
     resource: 'accountGroup',
@@ -113,15 +106,9 @@ export const accountGroupOperationOptions = [
     action: 'Delete an account group'
   },
   {
-    name: 'Get',
-    value: 'get',
-    description: 'Read one group with its accounts',
-    action: 'Get an account group'
-  },
-  {
     name: 'Get Many',
     value: 'list',
-    description: 'List every account group of the workspace owner with the IDs of its accounts',
+    description: 'List the account groups of the workspace owner with their accounts, or read one group by ID',
     action: 'Get many account groups'
   },
   {
@@ -149,7 +136,6 @@ export const accountGroupProperties: INodeProperties[] = [
         operation: [
           'create',
           'delete',
-          'get',
           'list',
           'update'
         ]
@@ -220,7 +206,7 @@ export const accountGroupProperties: INodeProperties[] = [
       loadOptionsMethod: 'getAccountGroups'
     },
     required: true,
-    description: 'Encrypted group ID from /api/account_group_list. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted group ID from /api/account_groups. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -233,25 +219,33 @@ export const accountGroupProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Account Group Name or ID',
-    name: 'id',
-    type: 'options',
-    default: '',
-    typeOptions: {
-      loadOptionsMethod: 'getAccountGroups'
-    },
-    required: true,
-    description: 'Encrypted group ID from /api/account_group_list. Exactly one ID. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
     displayOptions: {
       show: {
         resource: [
           'accountGroup'
         ],
         operation: [
-          'get'
+          'list'
         ]
       }
-    }
+    },
+    options: [
+      {
+        displayName: 'Account Group Name or ID',
+        name: 'id',
+        type: 'options',
+        default: '',
+        typeOptions: {
+          loadOptionsMethod: 'getAccountGroups'
+        },
+        description: 'Encrypted group ID, to read one group. Exactly one ID. Left out, every group of the owner is returned. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      }
+    ]
   },
   {
     displayName: 'Account Group Name or ID',
@@ -262,7 +256,7 @@ export const accountGroupProperties: INodeProperties[] = [
       loadOptionsMethod: 'getAccountGroups'
     },
     required: true,
-    description: 'Encrypted group ID from /api/account_group_list. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted group ID from /api/account_groups. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
