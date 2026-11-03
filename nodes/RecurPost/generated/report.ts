@@ -56,8 +56,7 @@ export const reportOperations: OperationSpec[] = [
   {
     resource: 'report',
     operation: 'xBuy',
-    endpoint: 'report_x',
-    action: 'fetch',
+    endpoint: 'report_x_fetch',
     confirm: true,
     workspace: true,
     params: [
@@ -330,8 +329,7 @@ export const reportOperations: OperationSpec[] = [
   {
     resource: 'report',
     operation: 'xQuote',
-    endpoint: 'report_x',
-    action: 'quote',
+    endpoint: 'report_x_quote',
     workspace: true,
     params: [
       {
@@ -378,7 +376,7 @@ export const reportOperationOptions = [
   {
     name: 'Buy X Report',
     value: 'xBuy',
-    description: 'Price, then buy, the X (Twitter) analytics of an account for a period; paid from the caller\'s X Wallet',
+    description: 'Buy the X (Twitter) analytics of an account for a period from the caller\'s X Wallet',
     action: 'Buy x report'
   },
   {
@@ -420,7 +418,7 @@ export const reportOperationOptions = [
   {
     name: 'Quote X Report',
     value: 'xQuote',
-    description: 'Price, then buy, the X (Twitter) analytics of an account for a period; paid from the caller\'s X Wallet',
+    description: 'Price the X (Twitter) analytics of an account for a period before buying them',
     action: 'Quote x report'
   }
 ];
@@ -604,7 +602,7 @@ export const reportProperties: INodeProperties[] = [
         name: 'forceRefresh',
         type: 'boolean',
         default: false,
-        description: 'Whether true fetches (and pays for) the whole period again, replacing what is stored. Sent on both actions; on quote it prices the full refetch.'
+        description: 'Whether true fetches (and pays for) the whole period again, replacing what is stored'
       },
       {
         displayName: 'Period',
@@ -1201,7 +1199,7 @@ export const reportProperties: INodeProperties[] = [
         name: 'forceRefresh',
         type: 'boolean',
         default: false,
-        description: 'Whether true fetches (and pays for) the whole period again, replacing what is stored. Sent on both actions; on quote it prices the full refetch.'
+        description: 'Whether true prices the full refetch of the period, replacing what is stored'
       },
       {
         displayName: 'Period',

@@ -6,8 +6,7 @@ export const labelOperations: OperationSpec[] = [
   {
     resource: 'label',
     operation: 'addToPost',
-    endpoint: 'label_assign',
-    action: 'add',
+    endpoint: 'label_assign_add',
     workspace: true,
     params: [
       {
@@ -80,8 +79,7 @@ export const labelOperations: OperationSpec[] = [
   {
     resource: 'label',
     operation: 'removeFromPost',
-    endpoint: 'label_assign',
-    action: 'remove',
+    endpoint: 'label_assign_remove',
     workspace: true,
     params: [
       {
@@ -107,8 +105,7 @@ export const labelOperations: OperationSpec[] = [
   {
     resource: 'label',
     operation: 'setOnPost',
-    endpoint: 'label_assign',
-    action: 'set',
+    endpoint: 'label_assign_set',
     workspace: true,
     params: [
       {
@@ -169,7 +166,7 @@ export const labelOperationOptions = [
   {
     name: 'Add to Post',
     value: 'addToPost',
-    description: 'Set, add or remove labels on one scheduled post or one library post',
+    description: 'Add labels to one scheduled post or one library post',
     action: 'Add to post'
   },
   {
@@ -193,13 +190,13 @@ export const labelOperationOptions = [
   {
     name: 'Remove From Post',
     value: 'removeFromPost',
-    description: 'Set, add or remove labels on one scheduled post or one library post',
+    description: 'Remove labels from one scheduled post or one library post',
     action: 'Remove from post'
   },
   {
     name: 'Set on Post',
     value: 'setOnPost',
-    description: 'Set, add or remove labels on one scheduled post or one library post',
+    description: 'Replace the labels on one scheduled post or one library post',
     action: 'Set on post'
   },
   {
@@ -246,7 +243,7 @@ export const labelProperties: INodeProperties[] = [
       loadOptionsMethod: 'getLabels'
     },
     required: true,
-    description: 'Plain integer label IDs as a JSON array or a comma-separated string. Required for add and remove. With set an empty or missing list clears every label from the post. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Plain integer label IDs as a JSON array or a comma-separated string; at least one. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -409,7 +406,7 @@ export const labelProperties: INodeProperties[] = [
       loadOptionsMethod: 'getLabels'
     },
     required: true,
-    description: 'Plain integer label IDs as a JSON array or a comma-separated string. Required for add and remove. With set an empty or missing list clears every label from the post. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Plain integer label IDs as a JSON array or a comma-separated string; at least one. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -486,7 +483,7 @@ export const labelProperties: INodeProperties[] = [
         typeOptions: {
           loadOptionsMethod: 'getLabels'
         },
-        description: 'Plain integer label IDs as a JSON array or a comma-separated string. Required for add and remove. With set an empty or missing list clears every label from the post. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+        description: 'Plain integer label IDs as a JSON array or a comma-separated string. Empty or left out to clear every label. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
       },
       {
         displayName: 'Post ID',

@@ -772,7 +772,6 @@ export const libraryOperations: OperationSpec[] = [
     resource: 'library',
     operation: 'pause',
     endpoint: 'library_pause',
-    action: 'pause',
     workspace: true,
     params: [
       {
@@ -861,8 +860,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'contentReorder',
-    endpoint: 'library_content_order',
-    action: 'move',
+    endpoint: 'library_content_order_move',
     unwrap: 'order',
     workspace: true,
     params: [
@@ -971,8 +969,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'resume',
-    endpoint: 'library_pause',
-    action: 'resume',
+    endpoint: 'library_resume',
     workspace: true,
     params: [
       {
@@ -1058,8 +1055,7 @@ export const libraryOperations: OperationSpec[] = [
   {
     resource: 'library',
     operation: 'contentShuffle',
-    endpoint: 'library_content_order',
-    action: 'shuffle',
+    endpoint: 'library_content_order_shuffle',
     unwrap: 'order',
     workspace: true,
     params: [
@@ -1068,18 +1064,6 @@ export const libraryOperations: OperationSpec[] = [
         key: 'id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'contentId',
-        key: 'content_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'position',
-        key: 'position',
-        kind: 'number',
-        required: false
       }
     ]
   },
@@ -1598,7 +1582,7 @@ export const libraryOperationOptions = [
   {
     name: 'Pause',
     value: 'pause',
-    description: 'Pause a library so it stops filling its schedules, or resume it',
+    description: 'Pause a library so it stops filling its schedules',
     action: 'Pause a library'
   },
   {
@@ -1610,7 +1594,7 @@ export const libraryOperationOptions = [
   {
     name: 'Reorder Content',
     value: 'contentReorder',
-    description: 'Move a post to a position in a library\'s publishing order, or shuffle the whole order',
+    description: 'Move a post to a position in a library\'s publishing order',
     action: 'Reorder content'
   },
   {
@@ -1634,7 +1618,7 @@ export const libraryOperationOptions = [
   {
     name: 'Resume',
     value: 'resume',
-    description: 'Pause a library so it stops filling its schedules, or resume it',
+    description: 'Resume a paused library',
     action: 'Resume a library'
   },
   {
@@ -1652,7 +1636,7 @@ export const libraryOperationOptions = [
   {
     name: 'Shuffle Content',
     value: 'contentShuffle',
-    description: 'Move a post to a position in a library\'s publishing order, or shuffle the whole order',
+    description: 'Shuffle a library\'s publishing order',
     action: 'Shuffle content'
   },
   {
@@ -3396,7 +3380,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted ID of the post to move. Required when action is move; the post must be in the library.',
+    description: 'Encrypted ID of the post to move; the post must be in the library',
     displayOptions: {
       show: {
         resource: [
@@ -3414,7 +3398,7 @@ export const libraryProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'New position, 1 to the number of posts in the library (1 publishes next). Required when action is move.',
+    description: 'New position, 1 to the number of posts in the library (1 publishes next)',
     displayOptions: {
       show: {
         resource: [
@@ -3810,39 +3794,6 @@ export const libraryProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'library'
-        ],
-        operation: [
-          'contentShuffle'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Content ID',
-        name: 'contentId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the post to move. Required when action is move; the post must be in the library.'
-      },
-      {
-        displayName: 'Position',
-        name: 'position',
-        type: 'number',
-        default: 0,
-        description: 'New position, 1 to the number of posts in the library (1 publishes next). Required when action is move.'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',

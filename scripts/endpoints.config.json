@@ -446,11 +446,11 @@
       "name": "Suggest Hashtags",
       "value": "hashtags"
     },
-    "approval_decide:approve": {
+    "approval_approve": {
       "name": "Approve",
       "value": "approve"
     },
-    "approval_decide:reject": {
+    "approval_reject": {
       "name": "Reject",
       "value": "reject"
     },
@@ -587,31 +587,31 @@
       "name": "Save",
       "value": "save"
     },
-    "feed_item_decide:approve": {
+    "feed_item_approve": {
       "name": "Approve Items",
       "value": "approveItems"
     },
-    "feed_item_decide:approve_all": {
+    "feed_item_approve_all": {
       "name": "Approve All Items",
       "value": "approveAllItems"
     },
-    "feed_item_decide:reject": {
+    "feed_item_reject": {
       "name": "Reject Items",
       "value": "rejectItems"
     },
-    "feed_item_decide:reject_all": {
+    "feed_item_reject_all": {
       "name": "Reject All Items",
       "value": "rejectAllItems"
     },
-    "feed_status:delete": {
+    "feed_delete": {
       "name": "Delete",
       "value": "delete"
     },
-    "feed_status:pause": {
+    "feed_pause": {
       "name": "Pause",
       "value": "pause"
     },
-    "feed_status:resume": {
+    "feed_resume": {
       "name": "Resume",
       "value": "resume"
     },
@@ -653,32 +653,32 @@
       "value": "refresh",
       "action": "Refresh an import"
     },
-    "inbox_bookmark:add": {
+    "inbox_bookmark_add": {
       "name": "Add Bookmark",
       "value": "bookmarkAdd"
     },
-    "inbox_bookmark:remove": {
+    "inbox_bookmark_remove": {
       "name": "Remove Bookmark",
       "value": "bookmarkRemove"
     },
-    "inbox_item_labels:add": {
+    "inbox_item_labels_add": {
       "name": "Add Labels",
       "value": "labelsAdd"
     },
-    "inbox_item_labels:remove": {
+    "inbox_item_labels_remove": {
       "name": "Remove Labels",
       "value": "labelsRemove"
     },
-    "inbox_item_labels:set": {
+    "inbox_item_labels_set": {
       "name": "Set Labels",
       "value": "labelsSet"
     },
-    "inbox_assign:assign": {
+    "inbox_assign": {
       "name": "Assign",
       "value": "assign",
       "action": "Assign an inbox item"
     },
-    "inbox_assign:unassign": {
+    "inbox_unassign": {
       "name": "Unassign",
       "value": "unassign",
       "action": "Unassign an inbox item"
@@ -748,22 +748,22 @@
       "name": "Copy to Library",
       "value": "copyToLibrary"
     },
-    "inbox_like:like": {
+    "inbox_like": {
       "name": "Like",
       "value": "like",
       "action": "Like an inbox item"
     },
-    "inbox_like:unlike": {
+    "inbox_unlike": {
       "name": "Unlike",
       "value": "unlike",
       "action": "Unlike an inbox item"
     },
-    "inbox_mark_reviewed:review": {
+    "inbox_mark_reviewed": {
       "name": "Mark Reviewed",
       "value": "markReviewed",
       "action": "Mark an inbox item reviewed"
     },
-    "inbox_mark_reviewed:unreview": {
+    "inbox_mark_unreviewed": {
       "name": "Mark Unreviewed",
       "value": "markUnreviewed",
       "action": "Mark an inbox item unreviewed"
@@ -773,15 +773,15 @@
       "value": "sync",
       "action": "Sync an inbox account"
     },
-    "label_assign:add": {
+    "label_assign_add": {
       "name": "Add to Post",
       "value": "addToPost"
     },
-    "label_assign:remove": {
+    "label_assign_remove": {
       "name": "Remove From Post",
       "value": "removeFromPost"
     },
-    "label_assign:set": {
+    "label_assign_set": {
       "name": "Set on Post",
       "value": "setOnPost"
     },
@@ -829,11 +829,11 @@
       "name": "Get Many Content Items",
       "value": "contentList"
     },
-    "library_content_order:move": {
+    "library_content_order_move": {
       "name": "Reorder Content",
       "value": "contentReorder"
     },
-    "library_content_order:shuffle": {
+    "library_content_order_shuffle": {
       "name": "Shuffle Content",
       "value": "contentShuffle"
     },
@@ -905,11 +905,11 @@
       "name": "Reset Share Link",
       "value": "shareReset"
     },
-    "library_pause:pause": {
+    "library_pause": {
       "name": "Pause",
       "value": "pause"
     },
-    "library_pause:resume": {
+    "library_resume": {
       "name": "Resume",
       "value": "resume"
     },
@@ -962,11 +962,11 @@
       "name": "Update Item",
       "value": "updateItem"
     },
-    "report_x:fetch": {
+    "report_x_fetch": {
       "name": "Buy X Report",
       "value": "xBuy"
     },
-    "report_x:quote": {
+    "report_x_quote": {
       "name": "Quote X Report",
       "value": "xQuote"
     },

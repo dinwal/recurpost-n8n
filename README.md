@@ -103,12 +103,12 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Approve | `approval_decide:approve` |
+| Approve | `approval_approve` |
 | Comment | `approval_comment` |
 | Delete | `approval_delete` |
 | Edit | `approval_edit` |
 | Get Many | `approval_list` |
-| Reject | `approval_decide:reject` |
+| Reject | `approval_reject` |
 | Resend | `approval_resend` |
 
 ### Content Tool
@@ -196,9 +196,9 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Add Bookmark | `inbox_bookmark:add` |
-| Add Labels | `inbox_item_labels:add` |
-| Assign | `inbox_assign:assign` |
+| Add Bookmark | `inbox_bookmark_add` |
+| Add Labels | `inbox_item_labels_add` |
+| Assign | `inbox_assign` |
 | Copy to Library | `inbox_to_library` |
 | Create Label | `inbox_label_create` |
 | Delete Comment | `inbox_delete_comment` |
@@ -211,18 +211,18 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Get Many Comments | `inbox_comments` |
 | Get Many Labels | `inbox_label_list` |
 | Get Many Team Members | `inbox_team_members` |
-| Like | `inbox_like:like` |
-| Mark Reviewed | `inbox_mark_reviewed:review` |
-| Mark Unreviewed | `inbox_mark_reviewed:unreview` |
-| Remove Bookmark | `inbox_bookmark:remove` |
-| Remove Labels | `inbox_item_labels:remove` |
+| Like | `inbox_like` |
+| Mark Reviewed | `inbox_mark_reviewed` |
+| Mark Unreviewed | `inbox_mark_unreviewed` |
+| Remove Bookmark | `inbox_bookmark_remove` |
+| Remove Labels | `inbox_item_labels_remove` |
 | Reply to Comment | `inbox_reply_comment` |
 | Send Message | `inbox_reply_message` |
-| Set Labels | `inbox_item_labels:set` |
+| Set Labels | `inbox_item_labels_set` |
 | Suggest AI Reply | `inbox_ai_reply` |
 | Sync | `inbox_sync` |
-| Unassign | `inbox_assign:unassign` |
-| Unlike | `inbox_like:unlike` |
+| Unassign | `inbox_unassign` |
+| Unlike | `inbox_unlike` |
 | Update Label | `inbox_label_update` |
 
 ### Library
@@ -259,16 +259,16 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Get Share Link | `library_share:get` |
 | Mark Comment | `library_comments:mark` |
 | Move Content | `library_content_move` |
-| Pause | `library_pause:pause` |
+| Pause | `library_pause` |
 | Publish Draft | `library_drafts:publish` |
-| Reorder Content | `library_content_order:move` |
+| Reorder Content | `library_content_order_move` |
 | Reset Pointers | `library_pointers:reset` |
 | Reset Share Link | `library_share:reset` |
 | Restore Expired Post | `expired_content:restore` |
-| Resume | `library_pause:resume` |
+| Resume | `library_resume` |
 | Search Content | `library_content_search` |
 | Set Pointer | `library_pointers:set` |
-| Shuffle Content | `library_content_order:shuffle` |
+| Shuffle Content | `library_content_order_shuffle` |
 | Update | `library_update` |
 | Update Content Variation | `content_variation_update` |
 | Update Draft | `library_drafts:update` |
@@ -293,12 +293,12 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Add to Post | `label_assign:add` |
+| Add to Post | `label_assign_add` |
 | Create | `label_create` |
 | Delete | `label_delete` |
 | Get Many | `label_list` |
-| Remove From Post | `label_assign:remove` |
-| Set on Post | `label_assign:set` |
+| Remove From Post | `label_assign_remove` |
+| Set on Post | `label_assign_set` |
 | Update | `label_update` |
 
 ### Queue
@@ -320,30 +320,30 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Operation | Endpoint |
 |-----------|----------|
 | Ask AI About Report | `report_ai_chat` |
-| Buy X Report | `report_x:fetch` |
+| Buy X Report | `report_x_fetch` |
 | Get Account Report | `report_account` |
 | Get Ads Report | `report_ads` |
 | Get Label Report | `report_labels` |
 | Get PDF | `report_pdf` |
 | Get Pinterest Report | `report_pins` |
 | Get Post Metrics | `report_posts` |
-| Quote X Report | `report_x:quote` |
+| Quote X Report | `report_x_quote` |
 
 ### RSS Feed
 
 | Operation | Endpoint |
 |-----------|----------|
-| Approve All Items | `feed_item_decide:approve_all` |
-| Approve Items | `feed_item_decide:approve` |
+| Approve All Items | `feed_item_approve_all` |
+| Approve Items | `feed_item_approve` |
 | Create | `feed_create` |
-| Delete | `feed_status:delete` |
+| Delete | `feed_delete` |
 | Get Many | `feed_list` |
 | Get Many Items | `feed_items` |
-| Pause | `feed_status:pause` |
+| Pause | `feed_pause` |
 | Refresh | `feed_refresh` |
-| Reject All Items | `feed_item_decide:reject_all` |
-| Reject Items | `feed_item_decide:reject` |
-| Resume | `feed_status:resume` |
+| Reject All Items | `feed_item_reject_all` |
+| Reject Items | `feed_item_reject` |
+| Resume | `feed_resume` |
 | Update | `feed_update` |
 
 ### Schedule

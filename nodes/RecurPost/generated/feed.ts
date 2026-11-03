@@ -6,8 +6,7 @@ export const feedOperations: OperationSpec[] = [
   {
     resource: 'feed',
     operation: 'approveAllItems',
-    endpoint: 'feed_item_decide',
-    action: 'approve_all',
+    endpoint: 'feed_item_approve_all',
     confirm: true,
     workspace: true,
     params: [
@@ -22,20 +21,13 @@ export const feedOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'itemIds',
-        key: 'item_ids',
-        kind: 'list',
-        required: false
       }
     ]
   },
   {
     resource: 'feed',
     operation: 'approveItems',
-    endpoint: 'feed_item_decide',
-    action: 'approve',
+    endpoint: 'feed_item_approve',
     workspace: true,
     params: [
       {
@@ -117,8 +109,7 @@ export const feedOperations: OperationSpec[] = [
   {
     resource: 'feed',
     operation: 'delete',
-    endpoint: 'feed_status',
-    action: 'delete',
+    endpoint: 'feed_delete',
     workspace: true,
     params: [
       {
@@ -185,8 +176,7 @@ export const feedOperations: OperationSpec[] = [
   {
     resource: 'feed',
     operation: 'pause',
-    endpoint: 'feed_status',
-    action: 'pause',
+    endpoint: 'feed_pause',
     workspace: true,
     params: [
       {
@@ -226,8 +216,7 @@ export const feedOperations: OperationSpec[] = [
   {
     resource: 'feed',
     operation: 'rejectAllItems',
-    endpoint: 'feed_item_decide',
-    action: 'reject_all',
+    endpoint: 'feed_item_reject_all',
     confirm: true,
     workspace: true,
     params: [
@@ -242,20 +231,13 @@ export const feedOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'itemIds',
-        key: 'item_ids',
-        kind: 'list',
-        required: false
       }
     ]
   },
   {
     resource: 'feed',
     operation: 'rejectItems',
-    endpoint: 'feed_item_decide',
-    action: 'reject',
+    endpoint: 'feed_item_reject',
     workspace: true,
     params: [
       {
@@ -281,8 +263,7 @@ export const feedOperations: OperationSpec[] = [
   {
     resource: 'feed',
     operation: 'resume',
-    endpoint: 'feed_status',
-    action: 'resume',
+    endpoint: 'feed_resume',
     workspace: true,
     params: [
       {
@@ -367,13 +348,13 @@ export const feedOperationOptions = [
   {
     name: 'Approve All Items',
     value: 'approveAllItems',
-    description: 'Approve or reject waiting feed articles, one by one or all at once',
+    description: 'Approve every waiting article of a feed into the library',
     action: 'Approve all items'
   },
   {
     name: 'Approve Items',
     value: 'approveItems',
-    description: 'Approve or reject waiting feed articles, one by one or all at once',
+    description: 'Approve waiting feed articles into the library',
     action: 'Approve items'
   },
   {
@@ -385,7 +366,7 @@ export const feedOperationOptions = [
   {
     name: 'Delete',
     value: 'delete',
-    description: 'Pause, resume or delete a feed of a library',
+    description: 'Delete a feed from a library',
     action: 'Delete a rss feed'
   },
   {
@@ -403,7 +384,7 @@ export const feedOperationOptions = [
   {
     name: 'Pause',
     value: 'pause',
-    description: 'Pause, resume or delete a feed of a library',
+    description: 'Pause a feed of a library',
     action: 'Pause a rss feed'
   },
   {
@@ -415,19 +396,19 @@ export const feedOperationOptions = [
   {
     name: 'Reject All Items',
     value: 'rejectAllItems',
-    description: 'Approve or reject waiting feed articles, one by one or all at once',
+    description: 'Empty the waiting list of a feed',
     action: 'Reject all items'
   },
   {
     name: 'Reject Items',
     value: 'rejectItems',
-    description: 'Approve or reject waiting feed articles, one by one or all at once',
+    description: 'Reject waiting feed articles',
     action: 'Reject items'
   },
   {
     name: 'Resume',
     value: 'resume',
-    description: 'Pause, resume or delete a feed of a library',
+    description: 'Resume a paused feed of a library',
     action: 'Resume a rss feed'
   },
   {
@@ -513,32 +494,6 @@ export const feedProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'feed'
-        ],
-        operation: [
-          'approveAllItems'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Item IDs',
-        name: 'itemIds',
-        type: 'string',
-        default: '',
-        description: 'Plain integer item IDs from /api/feed_items: one ID, a comma-separated string or an array, at most 50; every ID must be waiting in this feed and library. Required when action is approve or reject. Separate several values with commas.'
-      }
-    ]
-  },
-  {
     displayName: 'RSS Feed Name or ID',
     name: 'id',
     type: 'options',
@@ -586,7 +541,7 @@ export const feedProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Plain integer item IDs from /api/feed_items: one ID, a comma-separated string or an array, at most 50; every ID must be waiting in this feed and library. Required when action is approve or reject. Separate several values with commas.',
+    description: 'Plain integer item IDs from /api/feed_items: one ID, a comma-separated string or an array, at most 50; every ID must be waiting in this feed and library. Separate several values with commas.',
     displayOptions: {
       show: {
         resource: [
@@ -1004,32 +959,6 @@ export const feedProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'feed'
-        ],
-        operation: [
-          'rejectAllItems'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Item IDs',
-        name: 'itemIds',
-        type: 'string',
-        default: '',
-        description: 'Plain integer item IDs from /api/feed_items: one ID, a comma-separated string or an array, at most 50; every ID must be waiting in this feed and library. Required when action is approve or reject. Separate several values with commas.'
-      }
-    ]
-  },
-  {
     displayName: 'RSS Feed Name or ID',
     name: 'id',
     type: 'options',
@@ -1077,7 +1006,7 @@ export const feedProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Plain integer item IDs from /api/feed_items: one ID, a comma-separated string or an array, at most 50; every ID must be waiting in this feed and library. Required when action is approve or reject. Separate several values with commas.',
+    description: 'Plain integer item IDs from /api/feed_items: one ID, a comma-separated string or an array, at most 50; every ID must be waiting in this feed and library. Separate several values with commas.',
     displayOptions: {
       show: {
         resource: [

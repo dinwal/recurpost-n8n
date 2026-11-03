@@ -6,8 +6,7 @@ export const approvalOperations: OperationSpec[] = [
   {
     resource: 'approval',
     operation: 'approve',
-    endpoint: 'approval_decide',
-    action: 'approve',
+    endpoint: 'approval_approve',
     workspace: true,
     params: [
       {
@@ -15,12 +14,6 @@ export const approvalOperations: OperationSpec[] = [
         key: 'id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'message',
-        key: 'message',
-        kind: 'string',
-        required: false
       }
     ]
   },
@@ -266,8 +259,7 @@ export const approvalOperations: OperationSpec[] = [
   {
     resource: 'approval',
     operation: 'reject',
-    endpoint: 'approval_decide',
-    action: 'reject',
+    endpoint: 'approval_reject',
     workspace: true,
     params: [
       {
@@ -304,7 +296,7 @@ export const approvalOperationOptions = [
   {
     name: 'Approve',
     value: 'approve',
-    description: 'Approve a waiting library post into its library, or reject it with a message for the author',
+    description: 'Approve a waiting library post into its library',
     action: 'Approve an approval'
   },
   {
@@ -334,7 +326,7 @@ export const approvalOperationOptions = [
   {
     name: 'Reject',
     value: 'reject',
-    description: 'Approve a waiting library post into its library, or reject it with a message for the author',
+    description: 'Reject a waiting library post with a message for the author',
     action: 'Reject an approval'
   },
   {
@@ -389,35 +381,6 @@ export const approvalProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'approval'
-        ],
-        operation: [
-          'approve'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Message',
-        name: 'message',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Required when action is reject: what the author should change. Ignored on approve.'
-      }
-    ]
   },
   {
     displayName: 'Content ID',
@@ -824,7 +787,7 @@ export const approvalProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'Required when action is reject: what the author should change. Ignored on approve.',
+    description: 'What the author should change',
     displayOptions: {
       show: {
         resource: [

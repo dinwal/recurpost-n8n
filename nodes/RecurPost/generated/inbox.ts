@@ -6,8 +6,7 @@ export const inboxOperations: OperationSpec[] = [
   {
     resource: 'inbox',
     operation: 'bookmarkAdd',
-    endpoint: 'inbox_bookmark',
-    action: 'add',
+    endpoint: 'inbox_bookmark_add',
     workspace: true,
     params: [
       {
@@ -21,8 +20,7 @@ export const inboxOperations: OperationSpec[] = [
   {
     resource: 'inbox',
     operation: 'labelsAdd',
-    endpoint: 'inbox_item_labels',
-    action: 'add',
+    endpoint: 'inbox_item_labels_add',
     unwrap: 'items',
     workspace: true,
     params: [
@@ -44,7 +42,6 @@ export const inboxOperations: OperationSpec[] = [
     resource: 'inbox',
     operation: 'assign',
     endpoint: 'inbox_assign',
-    action: 'assign',
     workspace: true,
     params: [
       {
@@ -324,7 +321,6 @@ export const inboxOperations: OperationSpec[] = [
     resource: 'inbox',
     operation: 'like',
     endpoint: 'inbox_like',
-    action: 'like',
     workspace: true,
     params: [
       {
@@ -345,7 +341,6 @@ export const inboxOperations: OperationSpec[] = [
     resource: 'inbox',
     operation: 'markReviewed',
     endpoint: 'inbox_mark_reviewed',
-    action: 'review',
     workspace: true,
     params: [
       {
@@ -359,8 +354,7 @@ export const inboxOperations: OperationSpec[] = [
   {
     resource: 'inbox',
     operation: 'markUnreviewed',
-    endpoint: 'inbox_mark_reviewed',
-    action: 'unreview',
+    endpoint: 'inbox_mark_unreviewed',
     workspace: true,
     params: [
       {
@@ -374,8 +368,7 @@ export const inboxOperations: OperationSpec[] = [
   {
     resource: 'inbox',
     operation: 'bookmarkRemove',
-    endpoint: 'inbox_bookmark',
-    action: 'remove',
+    endpoint: 'inbox_bookmark_remove',
     workspace: true,
     params: [
       {
@@ -389,8 +382,7 @@ export const inboxOperations: OperationSpec[] = [
   {
     resource: 'inbox',
     operation: 'labelsRemove',
-    endpoint: 'inbox_item_labels',
-    action: 'remove',
+    endpoint: 'inbox_item_labels_remove',
     unwrap: 'items',
     workspace: true,
     params: [
@@ -469,8 +461,7 @@ export const inboxOperations: OperationSpec[] = [
   {
     resource: 'inbox',
     operation: 'labelsSet',
-    endpoint: 'inbox_item_labels',
-    action: 'set',
+    endpoint: 'inbox_item_labels_set',
     unwrap: 'items',
     workspace: true,
     params: [
@@ -525,8 +516,7 @@ export const inboxOperations: OperationSpec[] = [
   {
     resource: 'inbox',
     operation: 'unassign',
-    endpoint: 'inbox_assign',
-    action: 'unassign',
+    endpoint: 'inbox_unassign',
     workspace: true,
     params: [
       {
@@ -534,20 +524,13 @@ export const inboxOperations: OperationSpec[] = [
         key: 'id',
         kind: 'list',
         required: true
-      },
-      {
-        name: 'userId',
-        key: 'user_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'inbox',
     operation: 'unlike',
-    endpoint: 'inbox_like',
-    action: 'unlike',
+    endpoint: 'inbox_unlike',
     workspace: true,
     params: [
       {
@@ -590,19 +573,19 @@ export const inboxOperationOptions = [
   {
     name: 'Add Bookmark',
     value: 'bookmarkAdd',
-    description: 'Bookmarks items or removes the bookmark',
+    description: 'Bookmark inbox items',
     action: 'Add bookmark'
   },
   {
     name: 'Add Labels',
     value: 'labelsAdd',
-    description: 'Puts labels on items of one account, takes them off, or replaces them',
+    description: 'Put labels on inbox items of one account',
     action: 'Add labels'
   },
   {
     name: 'Assign',
     value: 'assign',
-    description: 'Assigns items of one account to a team member, or unassigns them',
+    description: 'Assign inbox items of one account to a team member',
     action: 'Assign an inbox item'
   },
   {
@@ -680,31 +663,31 @@ export const inboxOperationOptions = [
   {
     name: 'Like',
     value: 'like',
-    description: 'Likes or unlikes the post of an item, or one of its comments',
+    description: 'Like the post of an inbox item, or one of its comments',
     action: 'Like an inbox item'
   },
   {
     name: 'Mark Reviewed',
     value: 'markReviewed',
-    description: 'Marks items as reviewed, or puts them back to to_review',
+    description: 'Mark inbox items as reviewed',
     action: 'Mark an inbox item reviewed'
   },
   {
     name: 'Mark Unreviewed',
     value: 'markUnreviewed',
-    description: 'Marks items as reviewed, or puts them back to to_review',
+    description: 'Put reviewed inbox items back to to_review',
     action: 'Mark an inbox item unreviewed'
   },
   {
     name: 'Remove Bookmark',
     value: 'bookmarkRemove',
-    description: 'Bookmarks items or removes the bookmark',
+    description: 'Remove the bookmark from inbox items',
     action: 'Remove bookmark'
   },
   {
     name: 'Remove Labels',
     value: 'labelsRemove',
-    description: 'Puts labels on items of one account, takes them off, or replaces them',
+    description: 'Take labels off inbox items of one account',
     action: 'Remove labels'
   },
   {
@@ -722,7 +705,7 @@ export const inboxOperationOptions = [
   {
     name: 'Set Labels',
     value: 'labelsSet',
-    description: 'Puts labels on items of one account, takes them off, or replaces them',
+    description: 'Replace the labels of inbox items of one account',
     action: 'Set labels'
   },
   {
@@ -740,13 +723,13 @@ export const inboxOperationOptions = [
   {
     name: 'Unassign',
     value: 'unassign',
-    description: 'Assigns items of one account to a team member, or unassigns them',
+    description: 'Clear the assignment of inbox items',
     action: 'Unassign an inbox item'
   },
   {
     name: 'Unlike',
     value: 'unlike',
-    description: 'Likes or unlikes the post of an item, or one of its comments',
+    description: 'Remove a like from the post of an inbox item, or from one of its comments',
     action: 'Unlike an inbox item'
   },
   {
@@ -850,7 +833,7 @@ export const inboxProperties: INodeProperties[] = [
       loadOptionsMethod: 'getLabels'
     },
     required: true,
-    description: 'Label IDs (plain integers) of that account, as an array or a comma-separated string. Required for add and remove; may be empty with set to clear every label. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Label IDs (plain integers) of that account, as an array or a comma-separated string. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -886,7 +869,7 @@ export const inboxProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted user ID from /api/inbox_team_members. Required when action is assign; ignored for unassign.',
+    description: 'Encrypted user ID from /api/inbox_team_members',
     displayOptions: {
       show: {
         resource: [
@@ -1479,7 +1462,7 @@ export const inboxProperties: INodeProperties[] = [
       loadOptionsMethod: 'getLabels'
     },
     required: true,
-    description: 'Label IDs (plain integers) of that account, as an array or a comma-separated string. Required for add and remove; may be empty with set to clear every label. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Label IDs (plain integers) of that account, as an array or a comma-separated string. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -1671,7 +1654,7 @@ export const inboxProperties: INodeProperties[] = [
         typeOptions: {
           loadOptionsMethod: 'getLabels'
         },
-        description: 'Label IDs (plain integers) of that account, as an array or a comma-separated string. Required for add and remove; may be empty with set to clear every label. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+        description: 'Label IDs (plain integers) of that account, as an array or a comma-separated string. Empty or left out to clear every label. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
       }
     ]
   },
@@ -1757,32 +1740,6 @@ export const inboxProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'inbox'
-        ],
-        operation: [
-          'unassign'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'User ID',
-        name: 'userId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted user ID from /api/inbox_team_members. Required when action is assign; ignored for unassign.'
-      }
-    ]
   },
   {
     displayName: 'ID',
