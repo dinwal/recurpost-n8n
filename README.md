@@ -420,16 +420,17 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Client Reject Card | `workflow_client_reject` |
 | Comment on Card | `workflow_card_comment` |
 | Convert Card | `workflow_card_convert` |
+| Create Card | `workflow_card_create` |
 | Create Workflow | `workflow_settings_create` |
 | Delete Card | `workflow_card_delete` |
 | Delete Stage | `workflow_stage_delete` |
+| Edit Card | `workflow_card_edit` |
 | Get Board | `workflow_board` |
 | Get Card | `workflow_card` |
 | Get Workflow | `workflow_settings_get` |
 | Move Card | `workflow_card_move` |
 | Reassign Card | `workflow_card_reassign` |
 | Request Card Changes | `workflow_card_request_changes` |
-| Save Card | `workflow_card_save` |
 | Save Stage | `workflow_stage_save` |
 | Send Urgent Approval Email | `workflow_urgent` |
 | Toggle Ideas Stage | `workflow_settings_ideas` |

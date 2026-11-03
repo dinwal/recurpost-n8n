@@ -155,6 +155,680 @@ export const workflowOperations: OperationSpec[] = [
   },
   {
     resource: 'workflow',
+    operation: 'cardCreate',
+    endpoint: 'workflow_card_create',
+    workspace: true,
+    params: [
+      {
+        name: 'title',
+        key: 'title',
+        kind: 'string',
+        required: true
+      },
+      {
+        name: 'kind',
+        key: 'kind',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'stageId',
+        key: 'stage_id',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'description',
+        key: 'description',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'platforms',
+        key: 'platforms',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'accountIds',
+        key: 'account_ids',
+        kind: 'multiOptions',
+        required: false
+      },
+      {
+        name: 'targetDate',
+        key: 'target_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'assigneeUserId',
+        key: 'assignee_user_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'shareWithClient',
+        key: 'share_with_client',
+        kind: 'boolean',
+        required: false
+      },
+      {
+        name: 'labelIds',
+        key: 'label_ids',
+        kind: 'multiOptions',
+        required: false
+      },
+      {
+        name: 'media',
+        key: 'media',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'schedule',
+        key: 'schedule',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'altText',
+        key: 'alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'fbImageUrl',
+        key: 'fb_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'fbVideoUrl',
+        key: 'fb_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbAltText',
+        key: 'fb_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'twImageUrl',
+        key: 'tw_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'twVideoUrl',
+        key: 'tw_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'twAltText',
+        key: 'tw_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'lnImageUrl',
+        key: 'ln_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'lnVideoUrl',
+        key: 'ln_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnAltText',
+        key: 'ln_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inImageUrl',
+        key: 'in_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inVideoUrl',
+        key: 'in_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inMediaOrder',
+        key: 'in_media_order',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'gmbImageUrl',
+        key: 'gmb_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'gmbVideoUrl',
+        key: 'gmb_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piImageUrl',
+        key: 'pi_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'piVideoUrl',
+        key: 'pi_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piAltText',
+        key: 'pi_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'ytVideoUrl',
+        key: 'yt_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'tkImageUrl',
+        key: 'tk_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'tkVideoUrl',
+        key: 'tk_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'thImageUrl',
+        key: 'th_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'thVideoUrl',
+        key: 'th_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'thMediaOrder',
+        key: 'th_media_order',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'thAltText',
+        key: 'th_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'bsImageUrl',
+        key: 'bs_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'bsVideoUrl',
+        key: 'bs_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'bsAltText',
+        key: 'bs_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'fbMessage',
+        key: 'fb_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'twMessage',
+        key: 'tw_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'twMadeWithAi',
+        key: 'tw_made_with_ai',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'lnMessage',
+        key: 'ln_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inMessage',
+        key: 'in_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gmbMessage',
+        key: 'gmb_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piMessage',
+        key: 'pi_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytMessage',
+        key: 'yt_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'tkMessage',
+        key: 'tk_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'thMessage',
+        key: 'th_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'bsMessage',
+        key: 'bs_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'firstComment',
+        key: 'first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbFirstComment',
+        key: 'fb_first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnFirstComment',
+        key: 'ln_first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inFirstComment',
+        key: 'in_first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbPostType',
+        key: 'fb_post_type',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'fbThumb',
+        key: 'fb_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbMentions',
+        key: 'fb_mentions',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'fbBackgroundId',
+        key: 'fb_background_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbIsAiGenerated',
+        key: 'fb_is_ai_generated',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'fbAiImages',
+        key: 'fb_ai_images',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'lnDocument',
+        key: 'ln_document',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnDocumentTitle',
+        key: 'ln_document_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnThumb',
+        key: 'ln_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inPostType',
+        key: 'in_post_type',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inReelShareInFeed',
+        key: 'in_reel_share_in_feed',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inThumb',
+        key: 'in_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationId',
+        key: 'in_location_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationName',
+        key: 'in_location_name',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationCity',
+        key: 'in_location_city',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationCountry',
+        key: 'in_location_country',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inImageTags',
+        key: 'in_image_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inReelTags',
+        key: 'in_reel_tags',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inCollaborators',
+        key: 'in_collaborators',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inAudioId',
+        key: 'in_audio_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioAccountId',
+        key: 'in_audio_account_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioType',
+        key: 'in_audio_type',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inAudioTitle',
+        key: 'in_audio_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioArtist',
+        key: 'in_audio_artist',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioDurationMs',
+        key: 'in_audio_duration_ms',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inAudioVolume',
+        key: 'in_audio_volume',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inVideoVolume',
+        key: 'in_video_volume',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inTrialReel',
+        key: 'in_trial_reel',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inProductTags',
+        key: 'in_product_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inReelProductTags',
+        key: 'in_reel_product_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inIsAiGenerated',
+        key: 'in_is_ai_generated',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'piTitle',
+        key: 'pi_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piAiModified',
+        key: 'pi_ai_modified',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'piSyntheticPerformer',
+        key: 'pi_synthetic_performer',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'gbpCta',
+        key: 'gbp_cta',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'gbpCtaUrl',
+        key: 'gbp_cta_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpOfferTitle',
+        key: 'gbp_offer_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpOfferStartDate',
+        key: 'gbp_offer_start_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'gbpOfferEndDate',
+        key: 'gbp_offer_end_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'gbpOfferCouponCode',
+        key: 'gbp_offer_coupon_code',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpOfferTerms',
+        key: 'gbp_offer_terms',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpRedeemOfferLink',
+        key: 'gbp_redeem_offer_link',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytTitle',
+        key: 'yt_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytCategory',
+        key: 'yt_category',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'ytPrivacyStatus',
+        key: 'yt_privacy_status',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'ytUserTags',
+        key: 'yt_user_tags',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytThumb',
+        key: 'yt_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytVideoMadeForKids',
+        key: 'yt_video_made_for_kids',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'ytContainsSyntheticMedia',
+        key: 'yt_contains_synthetic_media',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkPrivacyStatus',
+        key: 'tk_privacy_status',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkAllowComments',
+        key: 'tk_allow_comments',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkAllowDuet',
+        key: 'tk_allow_duet',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkAllowStitches',
+        key: 'tk_allow_stitches',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkPromoteOwnBrand',
+        key: 'tk_promote_own_brand',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkPromoteOtherBrand',
+        key: 'tk_promote_other_brand',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkIsAigc',
+        key: 'tk_is_aigc',
+        kind: 'options',
+        required: false
+      }
+    ]
+  },
+  {
+    resource: 'workflow',
     operation: 'create',
     endpoint: 'workflow_settings_create',
     workspace: true,
@@ -193,6 +867,680 @@ export const workflowOperations: OperationSpec[] = [
         key: 'stage_id',
         kind: 'number',
         required: true
+      }
+    ]
+  },
+  {
+    resource: 'workflow',
+    operation: 'cardEdit',
+    endpoint: 'workflow_card_edit',
+    workspace: true,
+    params: [
+      {
+        name: 'id',
+        key: 'id',
+        kind: 'number',
+        required: true
+      },
+      {
+        name: 'title',
+        key: 'title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'description',
+        key: 'description',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'platforms',
+        key: 'platforms',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'accountIds',
+        key: 'account_ids',
+        kind: 'multiOptions',
+        required: false
+      },
+      {
+        name: 'targetDate',
+        key: 'target_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'assigneeUserId',
+        key: 'assignee_user_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'shareWithClient',
+        key: 'share_with_client',
+        kind: 'boolean',
+        required: false
+      },
+      {
+        name: 'labelIds',
+        key: 'label_ids',
+        kind: 'multiOptions',
+        required: false
+      },
+      {
+        name: 'media',
+        key: 'media',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'schedule',
+        key: 'schedule',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'clearCustomizations',
+        key: 'clear_customizations',
+        kind: 'boolean',
+        required: false
+      },
+      {
+        name: 'altText',
+        key: 'alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'fbImageUrl',
+        key: 'fb_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'fbVideoUrl',
+        key: 'fb_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbAltText',
+        key: 'fb_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'twImageUrl',
+        key: 'tw_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'twVideoUrl',
+        key: 'tw_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'twAltText',
+        key: 'tw_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'lnImageUrl',
+        key: 'ln_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'lnVideoUrl',
+        key: 'ln_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnAltText',
+        key: 'ln_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inImageUrl',
+        key: 'in_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inVideoUrl',
+        key: 'in_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inMediaOrder',
+        key: 'in_media_order',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'gmbImageUrl',
+        key: 'gmb_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'gmbVideoUrl',
+        key: 'gmb_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piImageUrl',
+        key: 'pi_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'piVideoUrl',
+        key: 'pi_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piAltText',
+        key: 'pi_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'ytVideoUrl',
+        key: 'yt_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'tkImageUrl',
+        key: 'tk_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'tkVideoUrl',
+        key: 'tk_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'thImageUrl',
+        key: 'th_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'thVideoUrl',
+        key: 'th_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'thMediaOrder',
+        key: 'th_media_order',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'thAltText',
+        key: 'th_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'bsImageUrl',
+        key: 'bs_image_url',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'bsVideoUrl',
+        key: 'bs_video_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'bsAltText',
+        key: 'bs_alt_text',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'fbMessage',
+        key: 'fb_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'twMessage',
+        key: 'tw_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'twMadeWithAi',
+        key: 'tw_made_with_ai',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'lnMessage',
+        key: 'ln_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inMessage',
+        key: 'in_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gmbMessage',
+        key: 'gmb_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piMessage',
+        key: 'pi_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytMessage',
+        key: 'yt_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'tkMessage',
+        key: 'tk_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'thMessage',
+        key: 'th_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'bsMessage',
+        key: 'bs_message',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'firstComment',
+        key: 'first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbFirstComment',
+        key: 'fb_first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnFirstComment',
+        key: 'ln_first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inFirstComment',
+        key: 'in_first_comment',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbPostType',
+        key: 'fb_post_type',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'fbThumb',
+        key: 'fb_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbMentions',
+        key: 'fb_mentions',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'fbBackgroundId',
+        key: 'fb_background_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'fbIsAiGenerated',
+        key: 'fb_is_ai_generated',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'fbAiImages',
+        key: 'fb_ai_images',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'lnDocument',
+        key: 'ln_document',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnDocumentTitle',
+        key: 'ln_document_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'lnThumb',
+        key: 'ln_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inPostType',
+        key: 'in_post_type',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inReelShareInFeed',
+        key: 'in_reel_share_in_feed',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inThumb',
+        key: 'in_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationId',
+        key: 'in_location_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationName',
+        key: 'in_location_name',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationCity',
+        key: 'in_location_city',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inLocationCountry',
+        key: 'in_location_country',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inImageTags',
+        key: 'in_image_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inReelTags',
+        key: 'in_reel_tags',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inCollaborators',
+        key: 'in_collaborators',
+        kind: 'list',
+        required: false
+      },
+      {
+        name: 'inAudioId',
+        key: 'in_audio_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioAccountId',
+        key: 'in_audio_account_id',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioType',
+        key: 'in_audio_type',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inAudioTitle',
+        key: 'in_audio_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioArtist',
+        key: 'in_audio_artist',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'inAudioDurationMs',
+        key: 'in_audio_duration_ms',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inAudioVolume',
+        key: 'in_audio_volume',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inVideoVolume',
+        key: 'in_video_volume',
+        kind: 'number',
+        required: false
+      },
+      {
+        name: 'inTrialReel',
+        key: 'in_trial_reel',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'inProductTags',
+        key: 'in_product_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inReelProductTags',
+        key: 'in_reel_product_tags',
+        kind: 'json',
+        required: false
+      },
+      {
+        name: 'inIsAiGenerated',
+        key: 'in_is_ai_generated',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'piTitle',
+        key: 'pi_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'piAiModified',
+        key: 'pi_ai_modified',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'piSyntheticPerformer',
+        key: 'pi_synthetic_performer',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'gbpCta',
+        key: 'gbp_cta',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'gbpCtaUrl',
+        key: 'gbp_cta_url',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpOfferTitle',
+        key: 'gbp_offer_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpOfferStartDate',
+        key: 'gbp_offer_start_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'gbpOfferEndDate',
+        key: 'gbp_offer_end_date',
+        kind: 'datetime',
+        required: false
+      },
+      {
+        name: 'gbpOfferCouponCode',
+        key: 'gbp_offer_coupon_code',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpOfferTerms',
+        key: 'gbp_offer_terms',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'gbpRedeemOfferLink',
+        key: 'gbp_redeem_offer_link',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytTitle',
+        key: 'yt_title',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytCategory',
+        key: 'yt_category',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'ytPrivacyStatus',
+        key: 'yt_privacy_status',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'ytUserTags',
+        key: 'yt_user_tags',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytThumb',
+        key: 'yt_thumb',
+        kind: 'string',
+        required: false
+      },
+      {
+        name: 'ytVideoMadeForKids',
+        key: 'yt_video_made_for_kids',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'ytContainsSyntheticMedia',
+        key: 'yt_contains_synthetic_media',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkPrivacyStatus',
+        key: 'tk_privacy_status',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkAllowComments',
+        key: 'tk_allow_comments',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkAllowDuet',
+        key: 'tk_allow_duet',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkAllowStitches',
+        key: 'tk_allow_stitches',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkPromoteOwnBrand',
+        key: 'tk_promote_own_brand',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkPromoteOtherBrand',
+        key: 'tk_promote_other_brand',
+        kind: 'options',
+        required: false
+      },
+      {
+        name: 'tkIsAigc',
+        key: 'tk_is_aigc',
+        kind: 'options',
+        required: false
       }
     ]
   },
@@ -305,92 +1653,6 @@ export const workflowOperations: OperationSpec[] = [
         name: 'assigneeUserId',
         key: 'assignee_user_id',
         kind: 'string',
-        required: false
-      }
-    ]
-  },
-  {
-    resource: 'workflow',
-    operation: 'cardSave',
-    endpoint: 'workflow_card_save',
-    workspace: true,
-    params: [
-      {
-        name: 'title',
-        key: 'title',
-        kind: 'string',
-        required: true
-      },
-      {
-        name: 'id',
-        key: 'id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'kind',
-        key: 'kind',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'stageId',
-        key: 'stage_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'description',
-        key: 'description',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'platforms',
-        key: 'platforms',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'accountIds',
-        key: 'account_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
-        name: 'targetDate',
-        key: 'target_date',
-        kind: 'datetime',
-        required: false
-      },
-      {
-        name: 'assigneeUserId',
-        key: 'assignee_user_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'shareWithClient',
-        key: 'share_with_client',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'labelIds',
-        key: 'label_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
-        name: 'media',
-        key: 'media',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'schedule',
-        key: 'schedule',
-        kind: 'json',
         required: false
       }
     ]
@@ -575,6 +1837,12 @@ export const workflowOperationOptions = [
     action: 'Convert card'
   },
   {
+    name: 'Create Card',
+    value: 'cardCreate',
+    description: 'Create an idea or a post card',
+    action: 'Create card'
+  },
+  {
     name: 'Create Workflow',
     value: 'create',
     description: 'Create the workflow from a template',
@@ -591,6 +1859,12 @@ export const workflowOperationOptions = [
     value: 'stageDelete',
     description: 'Delete a stage of the workflow',
     action: 'Delete stage'
+  },
+  {
+    name: 'Edit Card',
+    value: 'cardEdit',
+    description: 'Change a card: its fields, media and per-network customisations',
+    action: 'Edit card'
   },
   {
     name: 'Get Board',
@@ -627,12 +1901,6 @@ export const workflowOperationOptions = [
     value: 'cardRequestChanges',
     description: 'Send a card back to the author with a comment',
     action: 'Request card changes'
-  },
-  {
-    name: 'Save Card',
-    value: 'cardSave',
-    description: 'Create an idea or a post card, or update an existing card',
-    action: 'Save card'
   },
   {
     name: 'Save Stage',
@@ -681,16 +1949,17 @@ export const workflowProperties: INodeProperties[] = [
           'clientReject',
           'cardComment',
           'cardConvert',
+          'cardCreate',
           'create',
           'cardDelete',
           'stageDelete',
+          'cardEdit',
           'board',
           'card',
           'get',
           'cardMove',
           'cardReassign',
           'cardRequestChanges',
-          'cardSave',
           'stageSave',
           'sendUrgent',
           'toggleIdeas',
@@ -1036,6 +2305,1189 @@ export const workflowProperties: INodeProperties[] = [
     ]
   },
   {
+    displayName: 'Title',
+    name: 'title',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'Card title',
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'cardCreate'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'cardCreate'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Account Names or IDs',
+        name: 'accountIds',
+        type: 'multiOptions',
+        default: [],
+        typeOptions: {
+          loadOptionsMethod: 'getSocialAccounts'
+        },
+        description: 'Encrypted social account IDs (array or comma-separated) the card will publish to. They must belong to the workspace owner, and the app requires them to be connected to the card\'s workspace. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      },
+      {
+        displayName: 'Alt Text',
+        name: 'altText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text per image, in image_url order; a single string applies to the first image. At most 1000 characters each. Saved on the Facebook, Twitter/X, LinkedIn, Pinterest, Threads and Bluesky tabs; Instagram does not take alt text here. Separate several values with commas.'
+      },
+      {
+        displayName: 'Assignee User ID',
+        name: 'assigneeUserId',
+        type: 'string',
+        default: '',
+        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage.'
+      },
+      {
+        displayName: 'Bluesky Alt Text',
+        name: 'bsAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the bs_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Bluesky Image URL',
+        name: 'bsImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Bluesky accounts instead of image_url, same rules and hosting as image_url. At most 4 images on Bluesky. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with bs_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Bluesky Message',
+        name: 'bsMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Bluesky accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Bluesky Video URL',
+        name: 'bsVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Bluesky accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with bs_image_url.'
+      },
+      {
+        displayName: 'Description',
+        name: 'description',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Description or caption draft'
+      },
+      {
+        displayName: 'Facebook AI Images',
+        name: 'fbAiImages',
+        type: 'json',
+        default: '[]',
+        description: 'Images to label as AI-generated photos on Facebook, named by the original URLs given in image_url (or fb_image_url when Facebook has its own images). A JSON array of URL strings, or of objects with image_url and provenance_type: EXPLICIT (declared by you, the default), EXPLICIT_AI_EDIT (edited with AI), C2PA (content credentials in the file), IPTC (IPTC AI metadata in the file) or INVISIBLE_WATERMARK. Labels the Facebook tab on its own, without fb_is_ai_generated. A URL that is not one of the post\'s Facebook images, or any other provenance type, answers 400.'
+      },
+      {
+        displayName: 'Facebook Alt Text',
+        name: 'fbAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the fb_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Facebook Background ID',
+        name: 'fbBackgroundId',
+        type: 'string',
+        default: '',
+        description: 'Facebook text background for a post without image_url or video_url: an ID from /api/facebook_backgrounds (letters, digits, underscore or dash, up to 64 characters). Applied on Facebook pages only.'
+      },
+      {
+        displayName: 'Facebook First Comment',
+        name: 'fbFirstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Facebook first comment; overrides first_comment on Facebook'
+      },
+      {
+        displayName: 'Facebook Image URL',
+        name: 'fbImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Facebook accounts instead of image_url, same rules and hosting as image_url. At most 15 images on Facebook. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with fb_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Facebook Is AI Generated',
+        name: 'fbIsAiGenerated',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Label the Facebook post as made with AI. On a reel (fb_post_type=reel) Facebook shows its AI label on the reel; on an image post every image on the Facebook tab is labelled as an AI-generated photo, declared by you. Use fb_ai_images to label only some images or to give the provenance type.'
+      },
+      {
+        displayName: 'Facebook Mentions',
+        name: 'fbMentions',
+        type: 'json',
+        default: '[]',
+        description: 'Facebook pages to mention, up to 10: page IDs from /api/mention_search, as a JSON array of IDs or of objects with page_id and name. Write @&lt;page ID&gt; in the text where each mention should appear; the publisher turns it into the page\'s mention on Facebook Pages. An ID that is not all digits answers 400.'
+      },
+      {
+        displayName: 'Facebook Message',
+        name: 'fbMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Facebook accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Facebook Post Type',
+        name: 'fbPostType',
+        type: 'options',
+        default: 'feed',
+        options: [
+          {
+            name: 'Feed',
+            value: 'feed'
+          },
+          {
+            name: 'Reel',
+            value: 'reel'
+          },
+          {
+            name: 'Story',
+            value: 'story'
+          }
+        ],
+        description: 'Facebook post type. Case-insensitive; an unknown value keeps feed.'
+      },
+      {
+        displayName: 'Facebook Thumb',
+        name: 'fbThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for the video on Facebook. Public image URL; copied to RecurPost storage unless host_images_on_recurpost is off. Ignored when the post has no video_url.'
+      },
+      {
+        displayName: 'Facebook Video URL',
+        name: 'fbVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Facebook accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with fb_image_url.'
+      },
+      {
+        displayName: 'First Comment',
+        name: 'firstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'First comment posted right after the post, commonly hashtags. Applied on Facebook Pages, LinkedIn and Instagram feed posts unless a network-specific first comment is given.'
+      },
+      {
+        displayName: 'Google Business Cta',
+        name: 'gbpCta',
+        type: 'options',
+        default: 'None',
+        options: [
+          {
+            name: 'Book',
+            value: 'Book'
+          },
+          {
+            name: 'Buy',
+            value: 'Buy'
+          },
+          {
+            name: 'Call Now',
+            value: 'Call now'
+          },
+          {
+            name: 'Learn More',
+            value: 'Learn more'
+          },
+          {
+            name: 'None',
+            value: 'None'
+          },
+          {
+            name: 'Offer',
+            value: 'Offer'
+          },
+          {
+            name: 'Order Online',
+            value: 'Order online'
+          },
+          {
+            name: 'Sign Up',
+            value: 'Sign up'
+          }
+        ],
+        description: 'Call-to-action button on the Google Business post. Case-insensitive. An unknown value or None saves no button. On a link post with no CTA given, Learn more pointing at the link is set automatically.'
+      },
+      {
+        displayName: 'Google Business Cta URL',
+        name: 'gbpCtaUrl',
+        type: 'string',
+        default: '',
+        description: 'Link the button opens. Not used for Call now. With gbp_cta=Offer and no gbp_redeem_offer_link, this value doubles as the redeem link.'
+      },
+      {
+        displayName: 'Google Business Image URL',
+        name: 'gmbImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Google Business accounts instead of image_url, same rules and hosting as image_url. At most 1 image on Google Business. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with gmb_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Google Business Message',
+        name: 'gmbMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Google Business accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Google Business Offer Coupon Code',
+        name: 'gbpOfferCouponCode',
+        type: 'string',
+        default: '',
+        description: 'Coupon code shown on the offer'
+      },
+      {
+        displayName: 'Google Business Offer End Date',
+        name: 'gbpOfferEndDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Offer end, YYYY-MM-DD HH:MM:SS in the workspace owner\'s timezone, after the start. Stored as sent without a check, like the start.'
+      },
+      {
+        displayName: 'Google Business Offer Start Date',
+        name: 'gbpOfferStartDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Offer start, YYYY-MM-DD HH:MM:SS in the workspace owner\'s timezone. Stored as sent without a check; the publisher reads the date and the time from it, so a date alone means midnight and a value that is not a date makes the offer fail on Google.'
+      },
+      {
+        displayName: 'Google Business Offer Terms',
+        name: 'gbpOfferTerms',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Terms and conditions of the offer'
+      },
+      {
+        displayName: 'Google Business Offer Title',
+        name: 'gbpOfferTitle',
+        type: 'string',
+        default: '',
+        description: 'Offer title; offer fields are used when gbp_cta is Offer'
+      },
+      {
+        displayName: 'Google Business Redeem Offer Link',
+        name: 'gbpRedeemOfferLink',
+        type: 'string',
+        default: '',
+        description: 'Link to redeem the offer'
+      },
+      {
+        displayName: 'Google Business Video URL',
+        name: 'gmbVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Google Business accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with gmb_image_url.'
+      },
+      {
+        displayName: 'Instagram Audio Account ID',
+        name: 'inAudioAccountId',
+        type: 'string',
+        default: '',
+        description: 'Encrypted ID of the Instagram account the audio search ran for (the account_id in that answer). Required with in_audio_id.'
+      },
+      {
+        displayName: 'Instagram Audio Artist',
+        name: 'inAudioArtist',
+        type: 'string',
+        default: '',
+        description: 'Artist from the search, stored for display'
+      },
+      {
+        displayName: 'Instagram Audio Duration Ms',
+        name: 'inAudioDurationMs',
+        type: 'number',
+        default: 0,
+        description: 'Track length in milliseconds from the search; 0 when omitted'
+      },
+      {
+        displayName: 'Instagram Audio ID',
+        name: 'inAudioId',
+        type: 'string',
+        default: '',
+        description: 'Music for an Instagram reel: a track ID from /api/instagram_audio_search. Needs in_post_type reel, a video_url and in_audio_account_id; ignored on feed and story posts.'
+      },
+      {
+        displayName: 'Instagram Audio Title',
+        name: 'inAudioTitle',
+        type: 'string',
+        default: '',
+        description: 'Track title from the search, stored for display'
+      },
+      {
+        displayName: 'Instagram Audio Type',
+        name: 'inAudioType',
+        type: 'options',
+        default: 'music',
+        options: [
+          {
+            name: 'Music',
+            value: 'music'
+          },
+          {
+            name: 'Original Sound',
+            value: 'original_sound'
+          }
+        ],
+        description: 'Kind of track, as the search returned it'
+      },
+      {
+        displayName: 'Instagram Audio Volume',
+        name: 'inAudioVolume',
+        type: 'number',
+        default: 100,
+        description: 'Volume of the added track, 0 to 100'
+      },
+      {
+        displayName: 'Instagram Collaborators',
+        name: 'inCollaborators',
+        type: 'string',
+        default: '',
+        description: 'Instagram usernames invited as collaborators, as a JSON array or a comma-separated string. At most 3; more answer 400. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram First Comment',
+        name: 'inFirstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Instagram first comment (feed posts only); overrides first_comment on Instagram'
+      },
+      {
+        displayName: 'Instagram Image Tags',
+        name: 'inImageTags',
+        type: 'json',
+        default: '[]',
+        description: 'People to tag on feed images. A JSON array of objects with username, x and y (fractions of the image width and height between 0 and 1) and image (1-based position in image_url, default 1). The leading @ is optional. Any entry missing a username, with coordinates outside 0..1 or pointing past the last image answers 400.'
+      },
+      {
+        displayName: 'Instagram Image URL',
+        name: 'inImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Instagram accounts instead of image_url, same rules and hosting as image_url. At most 10 media in all, images and video together on Instagram. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. May be combined with in_video_url into a carousel; in_media_order sets the order. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Is AI Generated',
+        name: 'inIsAiGenerated',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Label the Instagram post as AI-generated. Instagram shows its AI label on the post.'
+      },
+      {
+        displayName: 'Instagram Location City',
+        name: 'inLocationCity',
+        type: 'string',
+        default: '',
+        description: 'City of the tagged place, as returned by /api/instagram_locations'
+      },
+      {
+        displayName: 'Instagram Location Country',
+        name: 'inLocationCountry',
+        type: 'string',
+        default: '',
+        description: 'Country of the tagged place, as returned by /api/instagram_locations'
+      },
+      {
+        displayName: 'Instagram Location ID',
+        name: 'inLocationId',
+        type: 'string',
+        default: '',
+        description: 'Instagram place ID to tag the post with. Take ID and name from /api/instagram_locations. in_location_name is required with it.'
+      },
+      {
+        displayName: 'Instagram Location Name',
+        name: 'inLocationName',
+        type: 'string',
+        default: '',
+        description: 'Name of the place in in_location_id, required with it'
+      },
+      {
+        displayName: 'Instagram Media Order',
+        name: 'inMediaOrder',
+        type: 'string',
+        default: '',
+        description: 'The order of Instagram\'s own media as a list of the URLs given in in_image_url and in_video_url. Media left out of the list follow, video first. Only read when both are sent. Any other URL answers 400. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Message',
+        name: 'inMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Instagram accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Instagram Post Type',
+        name: 'inPostType',
+        type: 'options',
+        default: 'feed',
+        options: [
+          {
+            name: 'Feed',
+            value: 'feed'
+          },
+          {
+            name: 'Reel',
+            value: 'reel'
+          },
+          {
+            name: 'Story',
+            value: 'story'
+          }
+        ],
+        description: 'Instagram post type. Case-insensitive; an unknown value keeps feed. A reel needs a video_url.'
+      },
+      {
+        displayName: 'Instagram Product Tags',
+        name: 'inProductTags',
+        type: 'json',
+        default: '[]',
+        description: 'Shopping tags on feed images. A JSON array of objects with account_id (encrypted Instagram account), product_id (from /api/instagram_products), image (1-based position in image_url, default 1), x and y (fractions 0 to 1, default 0.5) and optional product_name and product_image for display. Only kept on the Instagram tab.'
+      },
+      {
+        displayName: 'Instagram Reel Product Tags',
+        name: 'inReelProductTags',
+        type: 'json',
+        default: '[]',
+        description: 'Shopping tags on a reel. A JSON array of objects with account_id (encrypted Instagram account), product_id (from /api/instagram_products) and optional product_name and image_url for display. Needs in_post_type reel.'
+      },
+      {
+        displayName: 'Instagram Reel Share In Feed',
+        name: 'inReelShareInFeed',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Whether a reel also appears in the profile feed. Only read when in_post_type is reel.'
+      },
+      {
+        displayName: 'Instagram Reel Tags',
+        name: 'inReelTags',
+        type: 'string',
+        default: '',
+        description: 'Usernames to tag on a reel, as a JSON array or a comma-separated string. Only saved when the post has a video_url; answers 400 without one. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Thumb',
+        name: 'inThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for an Instagram reel. Only applied when in_post_type is reel and the post has a video_url; copied to RecurPost storage because Meta fetches it at publish time.'
+      },
+      {
+        displayName: 'Instagram Trial Reel',
+        name: 'inTrialReel',
+        type: 'options',
+        default: 'manual',
+        options: [
+          {
+            name: 'Manual',
+            value: 'manual'
+          },
+          {
+            name: 'Performance',
+            value: 'performance'
+          }
+        ],
+        description: 'Publish the reel as an Instagram trial reel (shown to non-followers first): manual leaves sharing to everyone up to you, performance lets Instagram share it when it does well. Reels only.'
+      },
+      {
+        displayName: 'Instagram Video URL',
+        name: 'inVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Instagram accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. May be combined with in_image_url into a carousel.'
+      },
+      {
+        displayName: 'Instagram Video Volume',
+        name: 'inVideoVolume',
+        type: 'number',
+        default: 100,
+        description: 'Volume of the video\'s own sound under the track, 0 to 100; 0 mutes it'
+      },
+      {
+        displayName: 'Kind',
+        name: 'kind',
+        type: 'options',
+        default: 'idea',
+        options: [
+          {
+            name: 'Idea',
+            value: 'idea'
+          },
+          {
+            name: 'Post',
+            value: 'post'
+          }
+        ],
+        description: 'Idea or post'
+      },
+      {
+        displayName: 'Label Names or IDs',
+        name: 'labelIds',
+        type: 'multiOptions',
+        default: [],
+        typeOptions: {
+          loadOptionsMethod: 'getLabels'
+        },
+        description: 'Plain numeric label IDs (array or comma-separated) of the owner\'s labels. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      },
+      {
+        displayName: 'LinkedIn Alt Text',
+        name: 'lnAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the ln_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'LinkedIn Document',
+        name: 'lnDocument',
+        type: 'string',
+        default: '',
+        description: 'Public URL of a document to post as a LinkedIn document (carousel) post: PDF, PPT, PPTX, DOC or DOCX, detected from the file bytes, not the file name. The file is downloaded and stored on RecurPost storage and the LinkedIn tab becomes a document post. A file of another type is left as given and ignored by the publisher. Google Drive share links are resolved.'
+      },
+      {
+        displayName: 'LinkedIn Document Title',
+        name: 'lnDocumentTitle',
+        type: 'string',
+        default: '',
+        description: 'Title shown on the LinkedIn document. Defaults to the file name without its extension.'
+      },
+      {
+        displayName: 'LinkedIn First Comment',
+        name: 'lnFirstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'LinkedIn first comment; overrides first_comment on LinkedIn'
+      },
+      {
+        displayName: 'LinkedIn Image URL',
+        name: 'lnImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for LinkedIn accounts instead of image_url, same rules and hosting as image_url. At most 20 images on LinkedIn. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with ln_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'LinkedIn Message',
+        name: 'lnMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for LinkedIn accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'LinkedIn Thumb',
+        name: 'lnThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for the video on LinkedIn. Ignored when the post has no video_url.'
+      },
+      {
+        displayName: 'LinkedIn Video URL',
+        name: 'lnVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for LinkedIn accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with ln_image_url.'
+      },
+      {
+        displayName: 'Media',
+        name: 'media',
+        type: 'json',
+        default: '[]',
+        description: 'Up to 10 attachments as publicly reachable http or https URLs. Each entry is a URL string or {URL, type} with type image or video; without a type, .mp4, .mov, .m4v and .webm count as video.'
+      },
+      {
+        displayName: 'Pinterest AI Modified',
+        name: 'piAiModified',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Pinterest AI disclosure: the Pin\'s content was generated or modified with AI'
+      },
+      {
+        displayName: 'Pinterest Alt Text',
+        name: 'piAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the pi_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Pinterest Image URL',
+        name: 'piImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Pinterest accounts instead of image_url, same rules and hosting as image_url. At most 1 image on Pinterest. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with pi_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Pinterest Message',
+        name: 'piMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Pinterest accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Pinterest Synthetic Performer',
+        name: 'piSyntheticPerformer',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Pinterest AI disclosure: a person shown or heard in the Pin is AI-generated'
+      },
+      {
+        displayName: 'Pinterest Title',
+        name: 'piTitle',
+        type: 'string',
+        default: '',
+        description: 'Pin title. The destination link of the pin is URL or the first link in the text.'
+      },
+      {
+        displayName: 'Pinterest Video URL',
+        name: 'piVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Pinterest accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with pi_image_url.'
+      },
+      {
+        displayName: 'Platforms',
+        name: 'platforms',
+        type: 'string',
+        default: '',
+        description: 'Platform keys (array, JSON-encoded array string or comma-separated): instagram, facebook, linkedin, twitter, google, pinterest, youtube, tiktok, threads, bluesky. Separate several values with commas.'
+      },
+      {
+        displayName: 'Schedule',
+        name: 'schedule',
+        type: 'json',
+        default: '[]',
+        description: 'Draft schedule slots, one object per slot: {account_id, at} with at as YYYY-MM-DD HH:MM (wall clock of that account\'s timezone), or {account_id, date, best_time: true} with date as YYYY-MM-DD to let RecurPost pick the best time that day. account_id is an encrypted account ID.'
+      },
+      {
+        displayName: 'Share With Client',
+        name: 'shareWithClient',
+        type: 'boolean',
+        default: false,
+        description: 'Whether the card is shared with the client for approval. Defaults to the workflow setting.'
+      },
+      {
+        displayName: 'Stage ID',
+        name: 'stageId',
+        type: 'number',
+        default: 0,
+        description: 'Required for a post: the stage it starts in, from columns[].stage_id of /api/workflow_board. Ideas take none.'
+      },
+      {
+        displayName: 'Target Date',
+        name: 'targetDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Target date in the owner\'s wall clock, YYYY-MM-DD or YYYY-MM-DD HH:MM'
+      },
+      {
+        displayName: 'Threads Alt Text',
+        name: 'thAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the th_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Threads Image URL',
+        name: 'thImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Threads accounts instead of image_url, same rules and hosting as image_url. At most 20 media in all, images and video together on Threads. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. May be combined with th_video_url into a carousel; th_media_order sets the order. Separate several values with commas.'
+      },
+      {
+        displayName: 'Threads Media Order',
+        name: 'thMediaOrder',
+        type: 'string',
+        default: '',
+        description: 'The order of Threads\'s own media as a list of the URLs given in th_image_url and th_video_url. Media left out of the list follow, video first. Only read when both are sent. Any other URL answers 400. Separate several values with commas.'
+      },
+      {
+        displayName: 'Threads Message',
+        name: 'thMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Threads accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Threads Video URL',
+        name: 'thVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Threads accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. May be combined with th_image_url into a carousel.'
+      },
+      {
+        displayName: 'TikTok Allow Comments',
+        name: 'tkAllowComments',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Allow comments on the TikTok video. Only no switches it off.'
+      },
+      {
+        displayName: 'TikTok Allow Duet',
+        name: 'tkAllowDuet',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Allow duets. Only no switches it off.'
+      },
+      {
+        displayName: 'TikTok Allow Stitches',
+        name: 'tkAllowStitches',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Allow stitches. Only no switches it off.'
+      },
+      {
+        displayName: 'TikTok Image URL',
+        name: 'tkImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for TikTok accounts instead of image_url, same rules and hosting as image_url. At most 10 images on TikTok. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with tk_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'TikTok Is Aigc',
+        name: 'tkIsAigc',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Add TikTok\'s AI-generated content label to the video'
+      },
+      {
+        displayName: 'TikTok Message',
+        name: 'tkMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for TikTok accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'TikTok Privacy Status',
+        name: 'tkPrivacyStatus',
+        type: 'options',
+        default: 'Public to Everyone',
+        options: [
+          {
+            name: 'Mutual Follow Friends',
+            value: 'Mutual Follow Friends'
+          },
+          {
+            name: 'Public To Everyone',
+            value: 'Public to Everyone'
+          },
+          {
+            name: 'Self Only',
+            value: 'Self Only'
+          }
+        ],
+        description: 'Who can watch the TikTok video. Case-insensitive, spaces or underscores. Any other value is saved as Public to Everyone; omitted leaves it unset. /api/tiktok_options lists what the account allows.'
+      },
+      {
+        displayName: 'TikTok Promote Other Brand',
+        name: 'tkPromoteOtherBrand',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Set to 1 to mark the video as branded content for a third party'
+      },
+      {
+        displayName: 'TikTok Promote Own Brand',
+        name: 'tkPromoteOwnBrand',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Set to 1 to mark the video as promoting your own brand (TikTok\'s content disclosure)'
+      },
+      {
+        displayName: 'TikTok Video URL',
+        name: 'tkVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for TikTok accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with tk_image_url.'
+      },
+      {
+        displayName: 'Twitter / X Alt Text',
+        name: 'twAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the tw_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Twitter / X Image URL',
+        name: 'twImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Twitter/X accounts instead of image_url, same rules and hosting as image_url. At most 4 images on Twitter/X. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with tw_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Twitter / X Made With AI',
+        name: 'twMadeWithAi',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Label the post as made with AI on Twitter/X. X shows the label on the post.'
+      },
+      {
+        displayName: 'Twitter / X Message',
+        name: 'twMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Twitter/X accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Twitter / X Video URL',
+        name: 'twVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Twitter/X accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with tw_image_url.'
+      },
+      {
+        displayName: 'YouTube Category',
+        name: 'ytCategory',
+        type: 'options',
+        default: 'Film & Animation',
+        options: [
+          {
+            name: 'Autos & Vehicles',
+            value: 'Autos & Vehicles'
+          },
+          {
+            name: 'Comedy',
+            value: 'Comedy'
+          },
+          {
+            name: 'Education',
+            value: 'Education'
+          },
+          {
+            name: 'Entertainment',
+            value: 'Entertainment'
+          },
+          {
+            name: 'Film & Animation',
+            value: 'Film & Animation'
+          },
+          {
+            name: 'Gaming',
+            value: 'Gaming'
+          },
+          {
+            name: 'Howto & Style',
+            value: 'Howto & Style'
+          },
+          {
+            name: 'Music',
+            value: 'Music'
+          },
+          {
+            name: 'News & Politics',
+            value: 'News & Politics'
+          },
+          {
+            name: 'Nonprofits & Activism',
+            value: 'Nonprofits & Activism'
+          },
+          {
+            name: 'People & Blogs',
+            value: 'People & Blogs'
+          },
+          {
+            name: 'Pets & Animals',
+            value: 'Pets & Animals'
+          },
+          {
+            name: 'Science & Technology',
+            value: 'Science & Technology'
+          },
+          {
+            name: 'Sports',
+            value: 'Sports'
+          },
+          {
+            name: 'Travel & Events',
+            value: 'Travel & Events'
+          }
+        ],
+        description: 'Category name, matched exactly against the list. An unknown or missing name falls back to the default category of the workspace owner\'s YouTube settings (Entertainment when none is set).'
+      },
+      {
+        displayName: 'YouTube Contains Synthetic Media',
+        name: 'ytContainsSyntheticMedia',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Tell viewers the video contains realistic content that was altered or generated with AI. YouTube shows a label on the video.'
+      },
+      {
+        displayName: 'YouTube Message',
+        name: 'ytMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for YouTube accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview. On YouTube this is the video description.'
+      },
+      {
+        displayName: 'YouTube Privacy Status',
+        name: 'ytPrivacyStatus',
+        type: 'options',
+        default: 'public',
+        options: [
+          {
+            name: 'Private',
+            value: 'private'
+          },
+          {
+            name: 'Public',
+            value: 'public'
+          },
+          {
+            name: 'Unlisted',
+            value: 'unlisted'
+          }
+        ],
+        description: 'Video privacy. Lower-cased and stored as given, so use one of the listed values; an unknown value reaches YouTube and fails there. Nothing is stored when it is omitted and the publisher then uploads the video as public.'
+      },
+      {
+        displayName: 'YouTube Thumb',
+        name: 'ytThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom thumbnail URL for the YouTube video. Public image URL; copied to RecurPost storage unless host_images_on_recurpost is off.'
+      },
+      {
+        displayName: 'YouTube Title',
+        name: 'ytTitle',
+        type: 'string',
+        default: '',
+        description: 'Video title. YouTube needs a video_url; message or yt_message is the description.'
+      },
+      {
+        displayName: 'YouTube User Tags',
+        name: 'ytUserTags',
+        type: 'string',
+        default: '',
+        description: 'Video tags, comma-separated'
+      },
+      {
+        displayName: 'YouTube Video Made For Kids',
+        name: 'ytVideoMadeForKids',
+        type: 'options',
+        default: 'no',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Whether the video is made for kids. Only yes switches it on.'
+      },
+      {
+        displayName: 'YouTube Video URL',
+        name: 'ytVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for YouTube accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. YouTube takes a video only, so there is no yt_image_url.'
+      }
+    ]
+  },
+  {
     displayName: 'Additional Fields',
     name: 'additionalFields',
     type: 'collection',
@@ -1106,6 +3558,1179 @@ export const workflowProperties: INodeProperties[] = [
         ]
       }
     }
+  },
+  {
+    displayName: 'ID',
+    name: 'id',
+    type: 'number',
+    default: 0,
+    required: true,
+    description: 'Plain numeric card ID',
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'cardEdit'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'workflow'
+        ],
+        operation: [
+          'cardEdit'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Account Names or IDs',
+        name: 'accountIds',
+        type: 'multiOptions',
+        default: [],
+        typeOptions: {
+          loadOptionsMethod: 'getSocialAccounts'
+        },
+        description: 'Encrypted social account IDs (array or comma-separated) the card will publish to. They must belong to the workspace owner, and the app requires them to be connected to the card\'s workspace. Send an empty string or empty array to clear. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      },
+      {
+        displayName: 'Alt Text',
+        name: 'altText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text per image, in image_url order; a single string applies to the first image. At most 1000 characters each. Saved on the Facebook, Twitter/X, LinkedIn, Pinterest, Threads and Bluesky tabs; Instagram does not take alt text here. Separate several values with commas.'
+      },
+      {
+        displayName: 'Assignee User ID',
+        name: 'assigneeUserId',
+        type: 'string',
+        default: '',
+        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage.'
+      },
+      {
+        displayName: 'Bluesky Alt Text',
+        name: 'bsAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the bs_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Bluesky Image URL',
+        name: 'bsImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Bluesky accounts instead of image_url, same rules and hosting as image_url. At most 4 images on Bluesky. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with bs_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Bluesky Message',
+        name: 'bsMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Bluesky accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Bluesky Video URL',
+        name: 'bsVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Bluesky accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with bs_image_url.'
+      },
+      {
+        displayName: 'Clear Customizations',
+        name: 'clearCustomizations',
+        type: 'boolean',
+        default: false,
+        description: 'Whether true drops every stored per-network customisation of the card; the shared description and media stay. Ignored when customisation fields are sent along.'
+      },
+      {
+        displayName: 'Description',
+        name: 'description',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Description or caption draft. Send an empty string to clear it.'
+      },
+      {
+        displayName: 'Facebook AI Images',
+        name: 'fbAiImages',
+        type: 'json',
+        default: '[]',
+        description: 'Images to label as AI-generated photos on Facebook, named by the original URLs given in image_url (or fb_image_url when Facebook has its own images). A JSON array of URL strings, or of objects with image_url and provenance_type: EXPLICIT (declared by you, the default), EXPLICIT_AI_EDIT (edited with AI), C2PA (content credentials in the file), IPTC (IPTC AI metadata in the file) or INVISIBLE_WATERMARK. Labels the Facebook tab on its own, without fb_is_ai_generated. A URL that is not one of the post\'s Facebook images, or any other provenance type, answers 400.'
+      },
+      {
+        displayName: 'Facebook Alt Text',
+        name: 'fbAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the fb_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Facebook Background ID',
+        name: 'fbBackgroundId',
+        type: 'string',
+        default: '',
+        description: 'Facebook text background for a post without image_url or video_url: an ID from /api/facebook_backgrounds (letters, digits, underscore or dash, up to 64 characters). Applied on Facebook pages only.'
+      },
+      {
+        displayName: 'Facebook First Comment',
+        name: 'fbFirstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Facebook first comment; overrides first_comment on Facebook'
+      },
+      {
+        displayName: 'Facebook Image URL',
+        name: 'fbImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Facebook accounts instead of image_url, same rules and hosting as image_url. At most 15 images on Facebook. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with fb_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Facebook Is AI Generated',
+        name: 'fbIsAiGenerated',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Label the Facebook post as made with AI. On a reel (fb_post_type=reel) Facebook shows its AI label on the reel; on an image post every image on the Facebook tab is labelled as an AI-generated photo, declared by you. Use fb_ai_images to label only some images or to give the provenance type.'
+      },
+      {
+        displayName: 'Facebook Mentions',
+        name: 'fbMentions',
+        type: 'json',
+        default: '[]',
+        description: 'Facebook pages to mention, up to 10: page IDs from /api/mention_search, as a JSON array of IDs or of objects with page_id and name. Write @&lt;page ID&gt; in the text where each mention should appear; the publisher turns it into the page\'s mention on Facebook Pages. An ID that is not all digits answers 400.'
+      },
+      {
+        displayName: 'Facebook Message',
+        name: 'fbMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Facebook accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Facebook Post Type',
+        name: 'fbPostType',
+        type: 'options',
+        default: 'feed',
+        options: [
+          {
+            name: 'Feed',
+            value: 'feed'
+          },
+          {
+            name: 'Reel',
+            value: 'reel'
+          },
+          {
+            name: 'Story',
+            value: 'story'
+          }
+        ],
+        description: 'Facebook post type. Case-insensitive; an unknown value keeps feed.'
+      },
+      {
+        displayName: 'Facebook Thumb',
+        name: 'fbThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for the video on Facebook. Public image URL; copied to RecurPost storage unless host_images_on_recurpost is off. Ignored when the post has no video_url.'
+      },
+      {
+        displayName: 'Facebook Video URL',
+        name: 'fbVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Facebook accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with fb_image_url.'
+      },
+      {
+        displayName: 'First Comment',
+        name: 'firstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'First comment posted right after the post, commonly hashtags. Applied on Facebook Pages, LinkedIn and Instagram feed posts unless a network-specific first comment is given.'
+      },
+      {
+        displayName: 'Google Business Cta',
+        name: 'gbpCta',
+        type: 'options',
+        default: 'None',
+        options: [
+          {
+            name: 'Book',
+            value: 'Book'
+          },
+          {
+            name: 'Buy',
+            value: 'Buy'
+          },
+          {
+            name: 'Call Now',
+            value: 'Call now'
+          },
+          {
+            name: 'Learn More',
+            value: 'Learn more'
+          },
+          {
+            name: 'None',
+            value: 'None'
+          },
+          {
+            name: 'Offer',
+            value: 'Offer'
+          },
+          {
+            name: 'Order Online',
+            value: 'Order online'
+          },
+          {
+            name: 'Sign Up',
+            value: 'Sign up'
+          }
+        ],
+        description: 'Call-to-action button on the Google Business post. Case-insensitive. An unknown value or None saves no button. On a link post with no CTA given, Learn more pointing at the link is set automatically.'
+      },
+      {
+        displayName: 'Google Business Cta URL',
+        name: 'gbpCtaUrl',
+        type: 'string',
+        default: '',
+        description: 'Link the button opens. Not used for Call now. With gbp_cta=Offer and no gbp_redeem_offer_link, this value doubles as the redeem link.'
+      },
+      {
+        displayName: 'Google Business Image URL',
+        name: 'gmbImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Google Business accounts instead of image_url, same rules and hosting as image_url. At most 1 image on Google Business. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with gmb_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Google Business Message',
+        name: 'gmbMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Google Business accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Google Business Offer Coupon Code',
+        name: 'gbpOfferCouponCode',
+        type: 'string',
+        default: '',
+        description: 'Coupon code shown on the offer'
+      },
+      {
+        displayName: 'Google Business Offer End Date',
+        name: 'gbpOfferEndDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Offer end, YYYY-MM-DD HH:MM:SS in the workspace owner\'s timezone, after the start. Stored as sent without a check, like the start.'
+      },
+      {
+        displayName: 'Google Business Offer Start Date',
+        name: 'gbpOfferStartDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Offer start, YYYY-MM-DD HH:MM:SS in the workspace owner\'s timezone. Stored as sent without a check; the publisher reads the date and the time from it, so a date alone means midnight and a value that is not a date makes the offer fail on Google.'
+      },
+      {
+        displayName: 'Google Business Offer Terms',
+        name: 'gbpOfferTerms',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Terms and conditions of the offer'
+      },
+      {
+        displayName: 'Google Business Offer Title',
+        name: 'gbpOfferTitle',
+        type: 'string',
+        default: '',
+        description: 'Offer title; offer fields are used when gbp_cta is Offer'
+      },
+      {
+        displayName: 'Google Business Redeem Offer Link',
+        name: 'gbpRedeemOfferLink',
+        type: 'string',
+        default: '',
+        description: 'Link to redeem the offer'
+      },
+      {
+        displayName: 'Google Business Video URL',
+        name: 'gmbVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Google Business accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with gmb_image_url.'
+      },
+      {
+        displayName: 'Instagram Audio Account ID',
+        name: 'inAudioAccountId',
+        type: 'string',
+        default: '',
+        description: 'Encrypted ID of the Instagram account the audio search ran for (the account_id in that answer). Required with in_audio_id.'
+      },
+      {
+        displayName: 'Instagram Audio Artist',
+        name: 'inAudioArtist',
+        type: 'string',
+        default: '',
+        description: 'Artist from the search, stored for display'
+      },
+      {
+        displayName: 'Instagram Audio Duration Ms',
+        name: 'inAudioDurationMs',
+        type: 'number',
+        default: 0,
+        description: 'Track length in milliseconds from the search; 0 when omitted'
+      },
+      {
+        displayName: 'Instagram Audio ID',
+        name: 'inAudioId',
+        type: 'string',
+        default: '',
+        description: 'Music for an Instagram reel: a track ID from /api/instagram_audio_search. Needs in_post_type reel, a video_url and in_audio_account_id; ignored on feed and story posts.'
+      },
+      {
+        displayName: 'Instagram Audio Title',
+        name: 'inAudioTitle',
+        type: 'string',
+        default: '',
+        description: 'Track title from the search, stored for display'
+      },
+      {
+        displayName: 'Instagram Audio Type',
+        name: 'inAudioType',
+        type: 'options',
+        default: 'music',
+        options: [
+          {
+            name: 'Music',
+            value: 'music'
+          },
+          {
+            name: 'Original Sound',
+            value: 'original_sound'
+          }
+        ],
+        description: 'Kind of track, as the search returned it'
+      },
+      {
+        displayName: 'Instagram Audio Volume',
+        name: 'inAudioVolume',
+        type: 'number',
+        default: 100,
+        description: 'Volume of the added track, 0 to 100'
+      },
+      {
+        displayName: 'Instagram Collaborators',
+        name: 'inCollaborators',
+        type: 'string',
+        default: '',
+        description: 'Instagram usernames invited as collaborators, as a JSON array or a comma-separated string. At most 3; more answer 400. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram First Comment',
+        name: 'inFirstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Instagram first comment (feed posts only); overrides first_comment on Instagram'
+      },
+      {
+        displayName: 'Instagram Image Tags',
+        name: 'inImageTags',
+        type: 'json',
+        default: '[]',
+        description: 'People to tag on feed images. A JSON array of objects with username, x and y (fractions of the image width and height between 0 and 1) and image (1-based position in image_url, default 1). The leading @ is optional. Any entry missing a username, with coordinates outside 0..1 or pointing past the last image answers 400.'
+      },
+      {
+        displayName: 'Instagram Image URL',
+        name: 'inImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Instagram accounts instead of image_url, same rules and hosting as image_url. At most 10 media in all, images and video together on Instagram. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. May be combined with in_video_url into a carousel; in_media_order sets the order. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Is AI Generated',
+        name: 'inIsAiGenerated',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Label the Instagram post as AI-generated. Instagram shows its AI label on the post.'
+      },
+      {
+        displayName: 'Instagram Location City',
+        name: 'inLocationCity',
+        type: 'string',
+        default: '',
+        description: 'City of the tagged place, as returned by /api/instagram_locations'
+      },
+      {
+        displayName: 'Instagram Location Country',
+        name: 'inLocationCountry',
+        type: 'string',
+        default: '',
+        description: 'Country of the tagged place, as returned by /api/instagram_locations'
+      },
+      {
+        displayName: 'Instagram Location ID',
+        name: 'inLocationId',
+        type: 'string',
+        default: '',
+        description: 'Instagram place ID to tag the post with. Take ID and name from /api/instagram_locations. in_location_name is required with it.'
+      },
+      {
+        displayName: 'Instagram Location Name',
+        name: 'inLocationName',
+        type: 'string',
+        default: '',
+        description: 'Name of the place in in_location_id, required with it'
+      },
+      {
+        displayName: 'Instagram Media Order',
+        name: 'inMediaOrder',
+        type: 'string',
+        default: '',
+        description: 'The order of Instagram\'s own media as a list of the URLs given in in_image_url and in_video_url. Media left out of the list follow, video first. Only read when both are sent. Any other URL answers 400. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Message',
+        name: 'inMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Instagram accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Instagram Post Type',
+        name: 'inPostType',
+        type: 'options',
+        default: 'feed',
+        options: [
+          {
+            name: 'Feed',
+            value: 'feed'
+          },
+          {
+            name: 'Reel',
+            value: 'reel'
+          },
+          {
+            name: 'Story',
+            value: 'story'
+          }
+        ],
+        description: 'Instagram post type. Case-insensitive; an unknown value keeps feed. A reel needs a video_url.'
+      },
+      {
+        displayName: 'Instagram Product Tags',
+        name: 'inProductTags',
+        type: 'json',
+        default: '[]',
+        description: 'Shopping tags on feed images. A JSON array of objects with account_id (encrypted Instagram account), product_id (from /api/instagram_products), image (1-based position in image_url, default 1), x and y (fractions 0 to 1, default 0.5) and optional product_name and product_image for display. Only kept on the Instagram tab.'
+      },
+      {
+        displayName: 'Instagram Reel Product Tags',
+        name: 'inReelProductTags',
+        type: 'json',
+        default: '[]',
+        description: 'Shopping tags on a reel. A JSON array of objects with account_id (encrypted Instagram account), product_id (from /api/instagram_products) and optional product_name and image_url for display. Needs in_post_type reel.'
+      },
+      {
+        displayName: 'Instagram Reel Share In Feed',
+        name: 'inReelShareInFeed',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Whether a reel also appears in the profile feed. Only read when in_post_type is reel.'
+      },
+      {
+        displayName: 'Instagram Reel Tags',
+        name: 'inReelTags',
+        type: 'string',
+        default: '',
+        description: 'Usernames to tag on a reel, as a JSON array or a comma-separated string. Only saved when the post has a video_url; answers 400 without one. Separate several values with commas.'
+      },
+      {
+        displayName: 'Instagram Thumb',
+        name: 'inThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for an Instagram reel. Only applied when in_post_type is reel and the post has a video_url; copied to RecurPost storage because Meta fetches it at publish time.'
+      },
+      {
+        displayName: 'Instagram Trial Reel',
+        name: 'inTrialReel',
+        type: 'options',
+        default: 'manual',
+        options: [
+          {
+            name: 'Manual',
+            value: 'manual'
+          },
+          {
+            name: 'Performance',
+            value: 'performance'
+          }
+        ],
+        description: 'Publish the reel as an Instagram trial reel (shown to non-followers first): manual leaves sharing to everyone up to you, performance lets Instagram share it when it does well. Reels only.'
+      },
+      {
+        displayName: 'Instagram Video URL',
+        name: 'inVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Instagram accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. May be combined with in_image_url into a carousel.'
+      },
+      {
+        displayName: 'Instagram Video Volume',
+        name: 'inVideoVolume',
+        type: 'number',
+        default: 100,
+        description: 'Volume of the video\'s own sound under the track, 0 to 100; 0 mutes it'
+      },
+      {
+        displayName: 'Label Names or IDs',
+        name: 'labelIds',
+        type: 'multiOptions',
+        default: [],
+        typeOptions: {
+          loadOptionsMethod: 'getLabels'
+        },
+        description: 'Plain numeric label IDs (array or comma-separated) of the owner\'s labels. Replaces the current labels; an empty value clears them. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      },
+      {
+        displayName: 'LinkedIn Alt Text',
+        name: 'lnAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the ln_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'LinkedIn Document',
+        name: 'lnDocument',
+        type: 'string',
+        default: '',
+        description: 'Public URL of a document to post as a LinkedIn document (carousel) post: PDF, PPT, PPTX, DOC or DOCX, detected from the file bytes, not the file name. The file is downloaded and stored on RecurPost storage and the LinkedIn tab becomes a document post. A file of another type is left as given and ignored by the publisher. Google Drive share links are resolved.'
+      },
+      {
+        displayName: 'LinkedIn Document Title',
+        name: 'lnDocumentTitle',
+        type: 'string',
+        default: '',
+        description: 'Title shown on the LinkedIn document. Defaults to the file name without its extension.'
+      },
+      {
+        displayName: 'LinkedIn First Comment',
+        name: 'lnFirstComment',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'LinkedIn first comment; overrides first_comment on LinkedIn'
+      },
+      {
+        displayName: 'LinkedIn Image URL',
+        name: 'lnImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for LinkedIn accounts instead of image_url, same rules and hosting as image_url. At most 20 images on LinkedIn. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with ln_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'LinkedIn Message',
+        name: 'lnMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for LinkedIn accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'LinkedIn Thumb',
+        name: 'lnThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom cover image URL for the video on LinkedIn. Ignored when the post has no video_url.'
+      },
+      {
+        displayName: 'LinkedIn Video URL',
+        name: 'lnVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for LinkedIn accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with ln_image_url.'
+      },
+      {
+        displayName: 'Media',
+        name: 'media',
+        type: 'json',
+        default: '[]',
+        description: 'Up to 10 attachments as publicly reachable http or https URLs. Each entry is a URL string or {URL, type} with type image or video; without a type, .mp4, .mov, .m4v and .webm count as video. Replaces the current media.'
+      },
+      {
+        displayName: 'Pinterest AI Modified',
+        name: 'piAiModified',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Pinterest AI disclosure: the Pin\'s content was generated or modified with AI'
+      },
+      {
+        displayName: 'Pinterest Alt Text',
+        name: 'piAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the pi_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Pinterest Image URL',
+        name: 'piImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Pinterest accounts instead of image_url, same rules and hosting as image_url. At most 1 image on Pinterest. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with pi_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Pinterest Message',
+        name: 'piMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Pinterest accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Pinterest Synthetic Performer',
+        name: 'piSyntheticPerformer',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Pinterest AI disclosure: a person shown or heard in the Pin is AI-generated'
+      },
+      {
+        displayName: 'Pinterest Title',
+        name: 'piTitle',
+        type: 'string',
+        default: '',
+        description: 'Pin title. The destination link of the pin is URL or the first link in the text.'
+      },
+      {
+        displayName: 'Pinterest Video URL',
+        name: 'piVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Pinterest accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with pi_image_url.'
+      },
+      {
+        displayName: 'Platforms',
+        name: 'platforms',
+        type: 'string',
+        default: '',
+        description: 'Platform keys (array, JSON-encoded array string or comma-separated): instagram, facebook, linkedin, twitter, google, pinterest, youtube, tiktok, threads, bluesky. Separate several values with commas.'
+      },
+      {
+        displayName: 'Schedule',
+        name: 'schedule',
+        type: 'json',
+        default: '[]',
+        description: 'Draft schedule slots, one object per slot: {account_id, at} with at as YYYY-MM-DD HH:MM (wall clock of that account\'s timezone), or {account_id, date, best_time: true} with date as YYYY-MM-DD to let RecurPost pick the best time that day. account_id is an encrypted account ID. Replaces the current slots; an empty list clears them.'
+      },
+      {
+        displayName: 'Share With Client',
+        name: 'shareWithClient',
+        type: 'boolean',
+        default: false,
+        description: 'Whether the card is shared with the client for approval'
+      },
+      {
+        displayName: 'Target Date',
+        name: 'targetDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Target date in the owner\'s wall clock, YYYY-MM-DD or YYYY-MM-DD HH:MM. Send an empty string to clear.'
+      },
+      {
+        displayName: 'Threads Alt Text',
+        name: 'thAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the th_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Threads Image URL',
+        name: 'thImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Threads accounts instead of image_url, same rules and hosting as image_url. At most 20 media in all, images and video together on Threads. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. May be combined with th_video_url into a carousel; th_media_order sets the order. Separate several values with commas.'
+      },
+      {
+        displayName: 'Threads Media Order',
+        name: 'thMediaOrder',
+        type: 'string',
+        default: '',
+        description: 'The order of Threads\'s own media as a list of the URLs given in th_image_url and th_video_url. Media left out of the list follow, video first. Only read when both are sent. Any other URL answers 400. Separate several values with commas.'
+      },
+      {
+        displayName: 'Threads Message',
+        name: 'thMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Threads accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Threads Video URL',
+        name: 'thVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Threads accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. May be combined with th_image_url into a carousel.'
+      },
+      {
+        displayName: 'TikTok Allow Comments',
+        name: 'tkAllowComments',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Allow comments on the TikTok video. Only no switches it off.'
+      },
+      {
+        displayName: 'TikTok Allow Duet',
+        name: 'tkAllowDuet',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Allow duets. Only no switches it off.'
+      },
+      {
+        displayName: 'TikTok Allow Stitches',
+        name: 'tkAllowStitches',
+        type: 'options',
+        default: 'yes',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Allow stitches. Only no switches it off.'
+      },
+      {
+        displayName: 'TikTok Image URL',
+        name: 'tkImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for TikTok accounts instead of image_url, same rules and hosting as image_url. At most 10 images on TikTok. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with tk_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'TikTok Is Aigc',
+        name: 'tkIsAigc',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Add TikTok\'s AI-generated content label to the video'
+      },
+      {
+        displayName: 'TikTok Message',
+        name: 'tkMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for TikTok accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'TikTok Privacy Status',
+        name: 'tkPrivacyStatus',
+        type: 'options',
+        default: 'Public to Everyone',
+        options: [
+          {
+            name: 'Mutual Follow Friends',
+            value: 'Mutual Follow Friends'
+          },
+          {
+            name: 'Public To Everyone',
+            value: 'Public to Everyone'
+          },
+          {
+            name: 'Self Only',
+            value: 'Self Only'
+          }
+        ],
+        description: 'Who can watch the TikTok video. Case-insensitive, spaces or underscores. Any other value is saved as Public to Everyone; omitted leaves it unset. /api/tiktok_options lists what the account allows.'
+      },
+      {
+        displayName: 'TikTok Promote Other Brand',
+        name: 'tkPromoteOtherBrand',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Set to 1 to mark the video as branded content for a third party'
+      },
+      {
+        displayName: 'TikTok Promote Own Brand',
+        name: 'tkPromoteOwnBrand',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Set to 1 to mark the video as promoting your own brand (TikTok\'s content disclosure)'
+      },
+      {
+        displayName: 'TikTok Video URL',
+        name: 'tkVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for TikTok accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with tk_image_url.'
+      },
+      {
+        displayName: 'Title',
+        name: 'title',
+        type: 'string',
+        default: '',
+        description: 'New title; blank or missing keeps the stored one'
+      },
+      {
+        displayName: 'Twitter / X Alt Text',
+        name: 'twAltText',
+        type: 'string',
+        default: '',
+        description: 'Alternative text for the tw_image_url images, in that order; at most 1000 characters each. The shared alt_text is not applied to a network that has its own images. Separate several values with commas.'
+      },
+      {
+        displayName: 'Twitter / X Image URL',
+        name: 'twImageUrl',
+        type: 'string',
+        default: '',
+        description: 'Images for Twitter/X accounts instead of image_url, same rules and hosting as image_url. At most 4 images on Twitter/X. Replaces that network\'s whole media set and marks its tab as customised; the other networks keep the shared media. Cannot be combined with tw_video_url. Separate several values with commas.'
+      },
+      {
+        displayName: 'Twitter / X Made With AI',
+        name: 'twMadeWithAi',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Label the post as made with AI on Twitter/X. X shows the label on the post.'
+      },
+      {
+        displayName: 'Twitter / X Message',
+        name: 'twMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for Twitter/X accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview.'
+      },
+      {
+        displayName: 'Twitter / X Video URL',
+        name: 'twVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for Twitter/X accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. Cannot be combined with tw_image_url.'
+      },
+      {
+        displayName: 'YouTube Category',
+        name: 'ytCategory',
+        type: 'options',
+        default: 'Film & Animation',
+        options: [
+          {
+            name: 'Autos & Vehicles',
+            value: 'Autos & Vehicles'
+          },
+          {
+            name: 'Comedy',
+            value: 'Comedy'
+          },
+          {
+            name: 'Education',
+            value: 'Education'
+          },
+          {
+            name: 'Entertainment',
+            value: 'Entertainment'
+          },
+          {
+            name: 'Film & Animation',
+            value: 'Film & Animation'
+          },
+          {
+            name: 'Gaming',
+            value: 'Gaming'
+          },
+          {
+            name: 'Howto & Style',
+            value: 'Howto & Style'
+          },
+          {
+            name: 'Music',
+            value: 'Music'
+          },
+          {
+            name: 'News & Politics',
+            value: 'News & Politics'
+          },
+          {
+            name: 'Nonprofits & Activism',
+            value: 'Nonprofits & Activism'
+          },
+          {
+            name: 'People & Blogs',
+            value: 'People & Blogs'
+          },
+          {
+            name: 'Pets & Animals',
+            value: 'Pets & Animals'
+          },
+          {
+            name: 'Science & Technology',
+            value: 'Science & Technology'
+          },
+          {
+            name: 'Sports',
+            value: 'Sports'
+          },
+          {
+            name: 'Travel & Events',
+            value: 'Travel & Events'
+          }
+        ],
+        description: 'Category name, matched exactly against the list. An unknown or missing name falls back to the default category of the workspace owner\'s YouTube settings (Entertainment when none is set).'
+      },
+      {
+        displayName: 'YouTube Contains Synthetic Media',
+        name: 'ytContainsSyntheticMedia',
+        type: 'options',
+        default: 0,
+        options: [
+          {
+            name: '0',
+            value: 0
+          },
+          {
+            name: '1',
+            value: 1
+          }
+        ],
+        description: 'Tell viewers the video contains realistic content that was altered or generated with AI. YouTube shows a label on the video.'
+      },
+      {
+        displayName: 'YouTube Message',
+        name: 'ytMessage',
+        type: 'string',
+        default: '',
+        typeOptions: {
+          rows: 3
+        },
+        description: 'Text for YouTube accounts when it should differ from message. On a text-only post the first link in this text becomes that network\'s link preview. On YouTube this is the video description.'
+      },
+      {
+        displayName: 'YouTube Privacy Status',
+        name: 'ytPrivacyStatus',
+        type: 'options',
+        default: 'public',
+        options: [
+          {
+            name: 'Private',
+            value: 'private'
+          },
+          {
+            name: 'Public',
+            value: 'public'
+          },
+          {
+            name: 'Unlisted',
+            value: 'unlisted'
+          }
+        ],
+        description: 'Video privacy. Lower-cased and stored as given, so use one of the listed values; an unknown value reaches YouTube and fails there. Nothing is stored when it is omitted and the publisher then uploads the video as public.'
+      },
+      {
+        displayName: 'YouTube Thumb',
+        name: 'ytThumb',
+        type: 'string',
+        default: '',
+        description: 'Custom thumbnail URL for the YouTube video. Public image URL; copied to RecurPost storage unless host_images_on_recurpost is off.'
+      },
+      {
+        displayName: 'YouTube Title',
+        name: 'ytTitle',
+        type: 'string',
+        default: '',
+        description: 'Video title. YouTube needs a video_url; message or yt_message is the description.'
+      },
+      {
+        displayName: 'YouTube User Tags',
+        name: 'ytUserTags',
+        type: 'string',
+        default: '',
+        description: 'Video tags, comma-separated'
+      },
+      {
+        displayName: 'YouTube Video Made For Kids',
+        name: 'ytVideoMadeForKids',
+        type: 'options',
+        default: 'no',
+        options: [
+          {
+            name: 'No',
+            value: 'no'
+          },
+          {
+            name: 'Yes',
+            value: 'yes'
+          }
+        ],
+        description: 'Whether the video is made for kids. Only yes switches it on.'
+      },
+      {
+        displayName: 'YouTube Video URL',
+        name: 'ytVideoUrl',
+        type: 'string',
+        default: '',
+        description: 'A video for YouTube accounts instead of video_url, same rules and hosting as video_url (mp4 or mov, paid plan). Replaces that network\'s whole media set and marks its tab as customised. YouTube takes a video only, so there is no yt_image_url.'
+      }
+    ]
   },
   {
     displayName: 'Additional Fields',
@@ -1318,146 +4943,6 @@ export const workflowProperties: INodeProperties[] = [
         type: 'number',
         default: 0,
         description: 'Stage to send the card back to, from return_stages of /api/workflow_card. Defaults to return_default_stage_id.'
-      }
-    ]
-  },
-  {
-    displayName: 'Title',
-    name: 'title',
-    type: 'string',
-    default: '',
-    required: true,
-    description: 'Card title. Required on create; on update a blank or missing title keeps the stored one.',
-    displayOptions: {
-      show: {
-        resource: [
-          'workflow'
-        ],
-        operation: [
-          'cardSave'
-        ]
-      }
-    }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'workflow'
-        ],
-        operation: [
-          'cardSave'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Names or IDs',
-        name: 'accountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account IDs (array or comma-separated) the card will publish to. They must belong to the workspace owner, and the app requires them to be connected to the card\'s workspace. Send an empty string or empty array to clear. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Assignee User ID',
-        name: 'assigneeUserId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage.'
-      },
-      {
-        displayName: 'Description',
-        name: 'description',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Description or caption draft. Send an empty string to clear it.'
-      },
-      {
-        displayName: 'ID',
-        name: 'id',
-        type: 'number',
-        default: 0,
-        description: 'Plain numeric card ID to update. Omit to create.'
-      },
-      {
-        displayName: 'Kind',
-        name: 'kind',
-        type: 'options',
-        default: 'idea',
-        options: [
-          {
-            name: 'Idea',
-            value: 'idea'
-          },
-          {
-            name: 'Post',
-            value: 'post'
-          }
-        ],
-        description: 'On create only: idea or post'
-      },
-      {
-        displayName: 'Label Names or IDs',
-        name: 'labelIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getLabels'
-        },
-        description: 'Plain numeric label IDs (array or comma-separated) of the owner\'s labels. Replaces the current labels; an empty value clears them. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Media',
-        name: 'media',
-        type: 'json',
-        default: '[]',
-        description: 'Up to 10 attachments as publicly reachable http or https URLs. Each entry is a URL string or {URL, type} with type image or video; without a type, .mp4, .mov, .m4v and .webm count as video. Replaces the current media.'
-      },
-      {
-        displayName: 'Platforms',
-        name: 'platforms',
-        type: 'string',
-        default: '',
-        description: 'Platform keys (array, JSON-encoded array string or comma-separated): instagram, facebook, linkedin, twitter, google, pinterest, youtube, tiktok, threads, bluesky. Separate several values with commas.'
-      },
-      {
-        displayName: 'Schedule',
-        name: 'schedule',
-        type: 'json',
-        default: '[]',
-        description: 'Draft schedule slots, one object per slot: {account_id, at} with at as YYYY-MM-DD HH:MM (wall clock of that account\'s timezone), or {account_id, date, best_time: true} with date as YYYY-MM-DD to let RecurPost pick the best time that day. account_id is an encrypted account ID. Replaces the current slots; an empty list clears them.'
-      },
-      {
-        displayName: 'Share With Client',
-        name: 'shareWithClient',
-        type: 'boolean',
-        default: false,
-        description: 'Whether the card is shared with the client for approval. Defaults to the workflow setting on create.'
-      },
-      {
-        displayName: 'Stage ID',
-        name: 'stageId',
-        type: 'number',
-        default: 0,
-        description: 'Required when creating a post: the stage it starts in, from columns[].stage_id of /api/workflow_board. Ignored on update; move cards with /api/workflow_card_move.'
-      },
-      {
-        displayName: 'Target Date',
-        name: 'targetDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Target date in the owner\'s wall clock, YYYY-MM-DD or YYYY-MM-DD HH:MM. Send an empty string to clear.'
       }
     ]
   },
