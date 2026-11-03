@@ -6,8 +6,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'cardAdvance',
-    endpoint: 'workflow_card_move',
-    action: 'advance',
+    endpoint: 'workflow_card_advance',
     workspace: true,
     params: [
       {
@@ -17,27 +16,9 @@ export const workflowOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'to',
-        key: 'to',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'toScheduled',
         key: 'to_scheduled',
         kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'userId',
-        key: 'user_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'comment',
-        key: 'comment',
-        kind: 'string',
         required: false
       },
       {
@@ -51,8 +32,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'clientApprove',
-    endpoint: 'workflow_client_decision',
-    action: 'approve',
+    endpoint: 'workflow_client_approve',
     workspace: true,
     params: [
       {
@@ -60,12 +40,6 @@ export const workflowOperations: OperationSpec[] = [
         key: 'card_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'feedback',
-        key: 'feedback',
-        kind: 'string',
-        required: false
       },
       {
         name: 'clientName',
@@ -78,8 +52,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'clientComment',
-    endpoint: 'workflow_client_decision',
-    action: 'comment',
+    endpoint: 'workflow_client_comment',
     workspace: true,
     params: [
       {
@@ -105,8 +78,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'clientReject',
-    endpoint: 'workflow_client_decision',
-    action: 'reject',
+    endpoint: 'workflow_client_reject',
     workspace: true,
     params: [
       {
@@ -158,8 +130,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'cardConvert',
-    endpoint: 'workflow_card_move',
-    action: 'convert',
+    endpoint: 'workflow_card_convert',
     workspace: true,
     params: [
       {
@@ -169,27 +140,9 @@ export const workflowOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'to',
-        key: 'to',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'shareWithClient',
         key: 'share_with_client',
         kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'userId',
-        key: 'user_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'comment',
-        key: 'comment',
-        kind: 'string',
         required: false
       },
       {
@@ -203,20 +156,13 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'create',
-    endpoint: 'workflow_settings',
-    action: 'create',
+    endpoint: 'workflow_settings_create',
     workspace: true,
     params: [
       {
         name: 'template',
         key: 'template',
         kind: 'options',
-        required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
         required: false
       }
     ]
@@ -238,8 +184,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'stageDelete',
-    endpoint: 'workflow_stage',
-    action: 'delete',
+    endpoint: 'workflow_stage_delete',
     confirm: true,
     workspace: true,
     params: [
@@ -248,60 +193,6 @@ export const workflowOperations: OperationSpec[] = [
         key: 'stage_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'type',
-        key: 'type',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'color',
-        key: 'color',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'position',
-        key: 'position',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'timeoutHours',
-        key: 'timeout_hours',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'timeoutPolicy',
-        key: 'timeout_policy',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'rescheduleByDays',
-        key: 'reschedule_by_days',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'rejectToStageId',
-        key: 'reject_to_stage_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'roles',
-        key: 'roles',
-        kind: 'list',
-        required: false
       }
     ]
   },
@@ -336,23 +227,14 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'get',
-    endpoint: 'workflow_settings',
-    action: 'get',
+    endpoint: 'workflow_settings_get',
     workspace: true,
-    params: [
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'workflow',
     operation: 'cardMove',
     endpoint: 'workflow_card_move',
-    action: 'move',
     workspace: true,
     params: [
       {
@@ -366,18 +248,6 @@ export const workflowOperations: OperationSpec[] = [
         key: 'to',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'userId',
-        key: 'user_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'comment',
-        key: 'comment',
-        kind: 'string',
-        required: false
       },
       {
         name: 'assigneeUserId',
@@ -390,8 +260,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'cardReassign',
-    endpoint: 'workflow_card_move',
-    action: 'reassign',
+    endpoint: 'workflow_card_reassign',
     workspace: true,
     params: [
       {
@@ -401,36 +270,17 @@ export const workflowOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'to',
-        key: 'to',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'userId',
         key: 'user_id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'comment',
-        key: 'comment',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'assigneeUserId',
-        key: 'assignee_user_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'workflow',
     operation: 'cardRequestChanges',
-    endpoint: 'workflow_card_move',
-    action: 'request_changes',
+    endpoint: 'workflow_card_request_changes',
     workspace: true,
     params: [
       {
@@ -438,18 +288,6 @@ export const workflowOperations: OperationSpec[] = [
         key: 'id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'to',
-        key: 'to',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'userId',
-        key: 'user_id',
-        kind: 'string',
-        required: false
       },
       {
         name: 'comment',
@@ -560,8 +398,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'stageSave',
-    endpoint: 'workflow_stage',
-    action: 'save',
+    endpoint: 'workflow_stage_save',
     workspace: true,
     params: [
       {
@@ -655,8 +492,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'toggleIdeas',
-    endpoint: 'workflow_settings',
-    action: 'ideas',
+    endpoint: 'workflow_settings_ideas',
     workspace: true,
     params: [
       {
@@ -670,8 +506,7 @@ export const workflowOperations: OperationSpec[] = [
   {
     resource: 'workflow',
     operation: 'updateSettings',
-    endpoint: 'workflow_settings',
-    action: 'settings',
+    endpoint: 'workflow_settings_update',
     workspace: true,
     params: [
       {
@@ -697,12 +532,6 @@ export const workflowOperations: OperationSpec[] = [
         key: 'allow_clients_to_suggest_ideas',
         kind: 'boolean',
         required: false
-      },
-      {
-        name: 'enabled',
-        key: 'enabled',
-        kind: 'boolean',
-        required: false
       }
     ]
   }
@@ -712,25 +541,25 @@ export const workflowOperationOptions = [
   {
     name: 'Advance Card',
     value: 'cardAdvance',
-    description: 'Move, advance, convert, reassign a card or send it back for changes',
+    description: 'Move a card to the next column, or straight to Scheduled',
     action: 'Advance card'
   },
   {
     name: 'Client Approve Card',
     value: 'clientApprove',
-    description: 'Record a client\'s approve, reject or comment on a card, for integrations that collect the client\'s answer elsewhere',
+    description: 'Record a client\'s approval of a card, for integrations that collect the client\'s answer elsewhere',
     action: 'Client approve card'
   },
   {
     name: 'Client Comment on Card',
     value: 'clientComment',
-    description: 'Record a client\'s approve, reject or comment on a card, for integrations that collect the client\'s answer elsewhere',
+    description: 'Add a client\'s comment to a card without moving it',
     action: 'Client comment on card'
   },
   {
     name: 'Client Reject Card',
     value: 'clientReject',
-    description: 'Record a client\'s approve, reject or comment on a card, for integrations that collect the client\'s answer elsewhere',
+    description: 'Record a client\'s rejection of a card with their feedback',
     action: 'Client reject card'
   },
   {
@@ -742,13 +571,13 @@ export const workflowOperationOptions = [
   {
     name: 'Convert Card',
     value: 'cardConvert',
-    description: 'Move, advance, convert, reassign a card or send it back for changes',
+    description: 'Turn an idea into a post in the first work stage',
     action: 'Convert card'
   },
   {
     name: 'Create Workflow',
     value: 'create',
-    description: 'Read the workflow with its stages, create it, change its switches or toggle the Ideas stage',
+    description: 'Create the workflow from a template',
     action: 'Create workflow'
   },
   {
@@ -760,7 +589,7 @@ export const workflowOperationOptions = [
   {
     name: 'Delete Stage',
     value: 'stageDelete',
-    description: 'Add a stage, change one or delete one',
+    description: 'Delete a stage of the workflow',
     action: 'Delete stage'
   },
   {
@@ -778,25 +607,25 @@ export const workflowOperationOptions = [
   {
     name: 'Get Workflow',
     value: 'get',
-    description: 'Read the workflow with its stages, create it, change its switches or toggle the Ideas stage',
+    description: 'Read the workflow with its stages and switches',
     action: 'Get workflow'
   },
   {
     name: 'Move Card',
     value: 'cardMove',
-    description: 'Move, advance, convert, reassign a card or send it back for changes',
+    description: 'Move a card to a stage, or back to Ideas',
     action: 'Move card'
   },
   {
     name: 'Reassign Card',
     value: 'cardReassign',
-    description: 'Move, advance, convert, reassign a card or send it back for changes',
+    description: 'Set or clear the assignee of a card',
     action: 'Reassign card'
   },
   {
     name: 'Request Card Changes',
     value: 'cardRequestChanges',
-    description: 'Move, advance, convert, reassign a card or send it back for changes',
+    description: 'Send a card back to the author with a comment',
     action: 'Request card changes'
   },
   {
@@ -808,7 +637,7 @@ export const workflowOperationOptions = [
   {
     name: 'Save Stage',
     value: 'stageSave',
-    description: 'Add a stage, change one or delete one',
+    description: 'Add a stage to the workflow or change one',
     action: 'Save stage'
   },
   {
@@ -820,13 +649,13 @@ export const workflowOperationOptions = [
   {
     name: 'Toggle Ideas Stage',
     value: 'toggleIdeas',
-    description: 'Read the workflow with its stages, create it, change its switches or toggle the Ideas stage',
+    description: 'Switch the Ideas column on or off',
     action: 'Toggle ideas stage'
   },
   {
     name: 'Update Workflow Settings',
     value: 'updateSettings',
-    description: 'Read the workflow with its stages, create it, change its switches or toggle the Ideas stage',
+    description: 'Change the workflow switches',
     action: 'Update workflow settings'
   }
 ];
@@ -911,38 +740,14 @@ export const workflowProperties: INodeProperties[] = [
         name: 'assigneeUserId',
         type: 'string',
         default: '',
-        description: 'For every action except reassign: encrypted user ID to assign the card to where it lands'
-      },
-      {
-        displayName: 'Comment',
-        name: 'comment',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Required for request_changes: what the author should change. Added to the card\'s activity.'
-      },
-      {
-        displayName: 'To',
-        name: 'to',
-        type: 'string',
-        default: '',
-        description: 'Required for move: a stage_id from the board, or the word ideas. Only open stages accept cards; a scheduled post cannot move back.'
+        description: 'Encrypted user ID to assign the card to where it lands'
       },
       {
         displayName: 'To Scheduled',
         name: 'toScheduled',
         type: 'boolean',
         default: false,
-        description: 'Whether for advance: true to jump straight to the Scheduled column instead of the next stage. Requires the card to pass the schedule gates.'
-      },
-      {
-        displayName: 'User ID',
-        name: 'userId',
-        type: 'string',
-        default: '',
-        description: 'Required for reassign: encrypted user ID from members[], or 0 to clear the assignee'
+        description: 'Whether true to jump straight to the Scheduled column instead of the next stage. Requires the card to pass the schedule gates.'
       }
     ]
   },
@@ -987,13 +792,6 @@ export const workflowProperties: INodeProperties[] = [
         type: 'string',
         default: '',
         description: 'Name shown as the actor in the card\'s activity, up to 100 characters; markup is stripped. The app shows Client when empty.'
-      },
-      {
-        displayName: 'Feedback',
-        name: 'feedback',
-        type: 'string',
-        default: '',
-        description: 'The client\'s words. Required for reject and comment, at least 10 characters.'
       }
     ]
   },
@@ -1021,7 +819,7 @@ export const workflowProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The client\'s words. Required for reject and comment, at least 10 characters.',
+    description: 'The client\'s words, at least 10 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1083,7 +881,7 @@ export const workflowProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The client\'s words. Required for reject and comment, at least 10 characters.',
+    description: 'The client\'s words, at least 10 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1226,38 +1024,14 @@ export const workflowProperties: INodeProperties[] = [
         name: 'assigneeUserId',
         type: 'string',
         default: '',
-        description: 'For every action except reassign: encrypted user ID to assign the card to where it lands'
-      },
-      {
-        displayName: 'Comment',
-        name: 'comment',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Required for request_changes: what the author should change. Added to the card\'s activity.'
+        description: 'Encrypted user ID to assign the card to where it lands'
       },
       {
         displayName: 'Share With Client',
         name: 'shareWithClient',
         type: 'boolean',
         default: false,
-        description: 'Whether for convert: whether the new post is shared with the client. Defaults to the workflow setting.'
-      },
-      {
-        displayName: 'To',
-        name: 'to',
-        type: 'string',
-        default: '',
-        description: 'Required for move: a stage_id from the board, or the word ideas. Only open stages accept cards; a scheduled post cannot move back.'
-      },
-      {
-        displayName: 'User ID',
-        name: 'userId',
-        type: 'string',
-        default: '',
-        description: 'Required for reassign: encrypted user ID from members[], or 0 to clear the assignee'
+        description: 'Whether the new post is shared with the client. Defaults to the workflow setting.'
       }
     ]
   },
@@ -1279,13 +1053,6 @@ export const workflowProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is ideas: true shows the Ideas column, false hides it'
-      },
-      {
         displayName: 'Template',
         name: 'template',
         type: 'options',
@@ -1300,7 +1067,7 @@ export const workflowProperties: INodeProperties[] = [
             value: 'standard'
           }
         ],
-        description: 'With create: blank or standard'
+        description: 'Blank or standard'
       }
     ]
   },
@@ -1328,7 +1095,7 @@ export const workflowProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain stage ID from stages[].ID of /api/workflow_settings. Required with delete; with save names the stage to change, omit it to add one.',
+    description: 'Plain stage ID from stages[].ID of /api/workflow_settings_get',
     displayOptions: {
       show: {
         resource: [
@@ -1339,184 +1106,6 @@ export const workflowProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'workflow'
-        ],
-        operation: [
-          'stageDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Color',
-        name: 'color',
-        type: 'options',
-        default: 'blue',
-        options: [
-          {
-            name: 'Blue',
-            value: 'blue'
-          },
-          {
-            name: 'Green',
-            value: 'green'
-          },
-          {
-            name: 'Orange',
-            value: 'orange'
-          },
-          {
-            name: 'Pink',
-            value: 'pink'
-          },
-          {
-            name: 'Purple',
-            value: 'purple'
-          },
-          {
-            name: 'Red',
-            value: 'red'
-          },
-          {
-            name: 'Teal',
-            value: 'teal'
-          },
-          {
-            name: 'Yellow',
-            value: 'yellow'
-          }
-        ],
-        description: 'Blue, orange, teal, green, purple, red, yellow or pink'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Required when adding: stage name, 1 to 60 characters'
-      },
-      {
-        displayName: 'Position',
-        name: 'position',
-        type: 'number',
-        default: 0,
-        description: 'Place in the board order, 1 first. Defaults to 1 when adding and to the current place on a change.'
-      },
-      {
-        displayName: 'Reject To Stage ID',
-        name: 'rejectToStageId',
-        type: 'number',
-        default: 0,
-        description: 'On the client stage: the stage a post the client rejects goes back to'
-      },
-      {
-        displayName: 'Reschedule By Days',
-        name: 'rescheduleByDays',
-        type: 'number',
-        default: 1,
-        description: 'With the reschedule policy: how many days the post is pushed by, 1 to 30'
-      },
-      {
-        displayName: 'Roles',
-        name: 'roles',
-        type: 'string',
-        default: '',
-        description: 'The roles that work the stage, as role IDs or names (array or comma-separated), from /api/roles. Replaces the current roles; ignored on a client stage, which has none. Separate several values with commas.'
-      },
-      {
-        displayName: 'Timeout Hours',
-        name: 'timeoutHours',
-        type: 'options',
-        default: 0,
-        options: [
-          {
-            name: '0',
-            value: 0
-          },
-          {
-            name: '168',
-            value: 168
-          },
-          {
-            name: '24',
-            value: 24
-          },
-          {
-            name: '4',
-            value: 4
-          },
-          {
-            name: '48',
-            value: 48
-          },
-          {
-            name: '72',
-            value: 72
-          },
-          {
-            name: '8',
-            value: 8
-          }
-        ],
-        description: 'Hours before the timeout policy runs: 0 for none, or one of 4, 8, 24, 48, 72, 168'
-      },
-      {
-        displayName: 'Timeout Policy',
-        name: 'timeoutPolicy',
-        type: 'options',
-        default: 'hold',
-        options: [
-          {
-            name: 'Auto Approve',
-            value: 'auto_approve'
-          },
-          {
-            name: 'Escalate',
-            value: 'escalate'
-          },
-          {
-            name: 'Hold',
-            value: 'hold'
-          },
-          {
-            name: 'Reschedule',
-            value: 'reschedule'
-          }
-        ],
-        description: 'What happens when the timeout passes: hold, auto_approve, escalate, or reschedule on the client stage only. Read only when timeout_hours is not 0.'
-      },
-      {
-        displayName: 'Type',
-        name: 'type',
-        type: 'options',
-        default: 'work',
-        options: [
-          {
-            name: 'Client',
-            value: 'client'
-          },
-          {
-            name: 'Review',
-            value: 'review'
-          },
-          {
-            name: 'Work',
-            value: 'work'
-          }
-        ],
-        description: 'Required when adding: work, review or client'
-      }
-    ]
   },
   {
     displayName: 'Additional Fields',
@@ -1563,32 +1152,6 @@ export const workflowProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'workflow'
-        ],
-        operation: [
-          'get'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is ideas: true shows the Ideas column, false hides it'
-      }
-    ]
-  },
-  {
     displayName: 'ID',
     name: 'id',
     type: 'number',
@@ -1612,7 +1175,7 @@ export const workflowProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required for move: a stage_id from the board, or the word ideas. Only open stages accept cards; a scheduled post cannot move back.',
+    description: 'A stage_id from the board, or the word ideas. Only open stages accept cards; a scheduled post cannot move back.',
     displayOptions: {
       show: {
         resource: [
@@ -1646,24 +1209,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'assigneeUserId',
         type: 'string',
         default: '',
-        description: 'For every action except reassign: encrypted user ID to assign the card to where it lands'
-      },
-      {
-        displayName: 'Comment',
-        name: 'comment',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Required for request_changes: what the author should change. Added to the card\'s activity.'
-      },
-      {
-        displayName: 'User ID',
-        name: 'userId',
-        type: 'string',
-        default: '',
-        description: 'Required for reassign: encrypted user ID from members[], or 0 to clear the assignee'
+        description: 'Encrypted user ID to assign the card to where it lands'
       }
     ]
   },
@@ -1691,7 +1237,7 @@ export const workflowProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Required for reassign: encrypted user ID from members[], or 0 to clear the assignee',
+    description: 'Encrypted user ID from members[], or 0 to clear the assignee',
     displayOptions: {
       show: {
         resource: [
@@ -1702,49 +1248,6 @@ export const workflowProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'workflow'
-        ],
-        operation: [
-          'cardReassign'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Assignee User ID',
-        name: 'assigneeUserId',
-        type: 'string',
-        default: '',
-        description: 'For every action except reassign: encrypted user ID to assign the card to where it lands'
-      },
-      {
-        displayName: 'Comment',
-        name: 'comment',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Required for request_changes: what the author should change. Added to the card\'s activity.'
-      },
-      {
-        displayName: 'To',
-        name: 'to',
-        type: 'string',
-        default: '',
-        description: 'Required for move: a stage_id from the board, or the word ideas. Only open stages accept cards; a scheduled post cannot move back.'
-      }
-    ]
   },
   {
     displayName: 'ID',
@@ -1773,7 +1276,7 @@ export const workflowProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'Required for request_changes: what the author should change. Added to the card\'s activity.',
+    description: 'What the author should change. Added to the card\'s activity.',
     displayOptions: {
       show: {
         resource: [
@@ -1807,28 +1310,14 @@ export const workflowProperties: INodeProperties[] = [
         name: 'assigneeUserId',
         type: 'string',
         default: '',
-        description: 'For every action except reassign: encrypted user ID to assign the card to where it lands'
+        description: 'Encrypted user ID to assign the card to where it lands'
       },
       {
         displayName: 'Return Stage ID',
         name: 'returnStageId',
         type: 'number',
         default: 0,
-        description: 'For request_changes: stage to send the card back to, from return_stages of /api/workflow_card. Defaults to return_default_stage_id.'
-      },
-      {
-        displayName: 'To',
-        name: 'to',
-        type: 'string',
-        default: '',
-        description: 'Required for move: a stage_id from the board, or the word ideas. Only open stages accept cards; a scheduled post cannot move back.'
-      },
-      {
-        displayName: 'User ID',
-        name: 'userId',
-        type: 'string',
-        default: '',
-        description: 'Required for reassign: encrypted user ID from members[], or 0 to clear the assignee'
+        description: 'Stage to send the card back to, from return_stages of /api/workflow_card. Defaults to return_default_stage_id.'
       }
     ]
   },
@@ -2070,7 +1559,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'stageId',
         type: 'number',
         default: 0,
-        description: 'Plain stage ID from stages[].ID of /api/workflow_settings. Required with delete; with save names the stage to change, omit it to add one.'
+        description: 'Plain stage ID from stages[].ID of /api/workflow_settings_get: the stage to change. Omit it to add one.'
       },
       {
         displayName: 'Timeout Hours',
@@ -2215,7 +1704,7 @@ export const workflowProperties: INodeProperties[] = [
     type: 'boolean',
     default: false,
     required: true,
-    description: 'Whether required when action is ideas: true shows the Ideas column, false hides it',
+    description: 'Whether true shows the Ideas column, false hides it',
     displayOptions: {
       show: {
         resource: [
@@ -2249,35 +1738,28 @@ export const workflowProperties: INodeProperties[] = [
         name: 'allowClientsToSuggestIdeas',
         type: 'boolean',
         default: false,
-        description: 'Whether with settings: clients may add ideas from the client calendar'
-      },
-      {
-        displayName: 'Enabled',
-        name: 'enabled',
-        type: 'boolean',
-        default: false,
-        description: 'Whether required when action is ideas: true shows the Ideas column, false hides it'
+        description: 'Whether clients may add ideas from the client calendar'
       },
       {
         displayName: 'Request Approval On Ideas',
         name: 'requestApprovalOnIdeas',
         type: 'boolean',
         default: false,
-        description: 'Whether with settings: ideas are sent to the client for approval too'
+        description: 'Whether ideas are sent to the client for approval too'
       },
       {
         displayName: 'Require Approval On All Posts',
         name: 'requireApprovalOnAllPosts',
         type: 'boolean',
         default: false,
-        description: 'Whether with settings: every post needs client approval before it is scheduled. At least one of the four switches must be sent.'
+        description: 'Whether every post needs client approval before it is scheduled. At least one of the four switches must be sent.'
       },
       {
         displayName: 'Show Ideas To Client',
         name: 'showIdeasToClient',
         type: 'boolean',
         default: false,
-        description: 'Whether with settings: the client sees the Ideas column on the client calendar'
+        description: 'Whether the client sees the Ideas column on the client calendar'
       }
     ]
   }

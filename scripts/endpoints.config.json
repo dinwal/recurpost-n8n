@@ -1114,35 +1114,35 @@
       "name": "Search Mentions",
       "value": "mentionSearch"
     },
-    "workflow_card_move:advance": {
+    "workflow_card_advance": {
       "name": "Advance Card",
       "value": "cardAdvance"
     },
-    "workflow_card_move:convert": {
+    "workflow_card_convert": {
       "name": "Convert Card",
       "value": "cardConvert"
     },
-    "workflow_card_move:move": {
+    "workflow_card_move": {
       "name": "Move Card",
       "value": "cardMove"
     },
-    "workflow_card_move:reassign": {
+    "workflow_card_reassign": {
       "name": "Reassign Card",
       "value": "cardReassign"
     },
-    "workflow_card_move:request_changes": {
+    "workflow_card_request_changes": {
       "name": "Request Card Changes",
       "value": "cardRequestChanges"
     },
-    "workflow_client_decision:approve": {
+    "workflow_client_approve": {
       "name": "Client Approve Card",
       "value": "clientApprove"
     },
-    "workflow_client_decision:comment": {
+    "workflow_client_comment": {
       "name": "Client Comment on Card",
       "value": "clientComment"
     },
-    "workflow_client_decision:reject": {
+    "workflow_client_reject": {
       "name": "Client Reject Card",
       "value": "clientReject"
     },
@@ -1150,19 +1150,19 @@
       "name": "Comment on Card",
       "value": "cardComment"
     },
-    "workflow_settings:create": {
+    "workflow_settings_create": {
       "name": "Create Workflow",
       "value": "create"
     },
-    "workflow_settings:get": {
+    "workflow_settings_get": {
       "name": "Get Workflow",
       "value": "get"
     },
-    "workflow_settings:settings": {
+    "workflow_settings_update": {
       "name": "Update Workflow Settings",
       "value": "updateSettings"
     },
-    "workflow_settings:ideas": {
+    "workflow_settings_ideas": {
       "name": "Toggle Ideas Stage",
       "value": "toggleIdeas"
     },
