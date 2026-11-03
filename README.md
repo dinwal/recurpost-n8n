@@ -51,20 +51,20 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 | Operation | Endpoint |
 |-----------|----------|
 | Create Custom Field | `custom_fields:create` |
-| Delete Branding | `branding:delete` |
+| Delete White Label | `white_label:delete` |
 | Delete Custom Field | `custom_fields:delete` |
 | Delete Custom Field Value | `custom_fields:delete_value` |
 | Get | `account_details` |
 | Get Announcements | `notifications` |
 | Get Billing Invoices | `billing_invoices` |
-| Get Branding | `branding:get` |
+| Get White Label | `white_label:get` |
 | Get Limits | `account_limits` |
 | Get Many Custom Fields | `custom_fields:list` |
 | Get or Set Email Preferences | `email_preferences` |
 | Get or Set Working Hours | `working_hours` |
 | Get Plan | `plan_details` |
 | Rename Custom Field | `custom_fields:rename` |
-| Set Branding | `branding:set` |
+| Set White Label | `white_label:set` |
 | Set Click Tracking | `click_tracking` |
 | Set Custom Field Value | `custom_fields:set_value` |
 | Set Timezone | `account_timezone` |

@@ -45,14 +45,6 @@ export const accountOperations: OperationSpec[] = [
   },
   {
     resource: 'account',
-    operation: 'brandingDelete',
-    endpoint: 'branding',
-    action: 'delete',
-    workspace: true,
-    params: []
-  },
-  {
-    resource: 'account',
     operation: 'customFieldDelete',
     endpoint: 'custom_fields',
     action: 'delete',
@@ -122,6 +114,14 @@ export const accountOperations: OperationSpec[] = [
   },
   {
     resource: 'account',
+    operation: 'whiteLabelDelete',
+    endpoint: 'white_label',
+    action: 'delete',
+    workspace: false,
+    params: []
+  },
+  {
+    resource: 'account',
     operation: 'get',
     endpoint: 'account_details',
     workspace: false,
@@ -157,14 +157,6 @@ export const accountOperations: OperationSpec[] = [
     resource: 'account',
     operation: 'billingInvoices',
     endpoint: 'billing_invoices',
-    workspace: true,
-    params: []
-  },
-  {
-    resource: 'account',
-    operation: 'brandingGet',
-    endpoint: 'branding',
-    action: 'get',
     workspace: true,
     params: []
   },
@@ -285,6 +277,14 @@ export const accountOperations: OperationSpec[] = [
   },
   {
     resource: 'account',
+    operation: 'whiteLabelGet',
+    endpoint: 'white_label',
+    action: 'get',
+    workspace: false,
+    params: []
+  },
+  {
+    resource: 'account',
     operation: 'customFieldRename',
     endpoint: 'custom_fields',
     action: 'rename',
@@ -312,21 +312,6 @@ export const accountOperations: OperationSpec[] = [
       {
         name: 'value',
         key: 'value',
-        kind: 'string',
-        required: false
-      }
-    ]
-  },
-  {
-    resource: 'account',
-    operation: 'brandingSet',
-    endpoint: 'branding',
-    action: 'set',
-    workspace: true,
-    params: [
-      {
-        name: 'logoUrl',
-        key: 'logo_url',
         kind: 'string',
         required: false
       }
@@ -402,6 +387,21 @@ export const accountOperations: OperationSpec[] = [
   },
   {
     resource: 'account',
+    operation: 'whiteLabelSet',
+    endpoint: 'white_label',
+    action: 'set',
+    workspace: false,
+    params: [
+      {
+        name: 'logoUrl',
+        key: 'logo_url',
+        kind: 'string',
+        required: false
+      }
+    ]
+  },
+  {
+    resource: 'account',
     operation: 'update',
     endpoint: 'account_update',
     workspace: false,
@@ -454,12 +454,6 @@ export const accountOperationOptions = [
     action: 'Create custom field'
   },
   {
-    name: 'Delete Branding',
-    value: 'brandingDelete',
-    description: 'Read, set or remove the workspace owner\'s white-label logo for reports',
-    action: 'Delete branding'
-  },
-  {
     name: 'Delete Custom Field',
     value: 'customFieldDelete',
     description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
@@ -470,6 +464,12 @@ export const accountOperationOptions = [
     value: 'customFieldDeleteValue',
     description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
     action: 'Delete custom field value'
+  },
+  {
+    name: 'Delete White Label',
+    value: 'whiteLabelDelete',
+    description: 'Read, set or remove the white-label logo printed on your reports, an account-level setting',
+    action: 'Delete white label'
   },
   {
     name: 'Get',
@@ -488,12 +488,6 @@ export const accountOperationOptions = [
     value: 'billingInvoices',
     description: 'The key owner\'s payments, newest first, with the invoice link of each',
     action: 'Get billing invoices'
-  },
-  {
-    name: 'Get Branding',
-    value: 'brandingGet',
-    description: 'Read, set or remove the workspace owner\'s white-label logo for reports',
-    action: 'Get branding'
   },
   {
     name: 'Get Limits',
@@ -526,16 +520,16 @@ export const accountOperationOptions = [
     action: 'Get plan'
   },
   {
+    name: 'Get White Label',
+    value: 'whiteLabelGet',
+    description: 'Read, set or remove the white-label logo printed on your reports, an account-level setting',
+    action: 'Get white label'
+  },
+  {
     name: 'Rename Custom Field',
     value: 'customFieldRename',
     description: 'List, create, rename and delete custom fields, and set each account\'s value for them',
     action: 'Rename custom field'
-  },
-  {
-    name: 'Set Branding',
-    value: 'brandingSet',
-    description: 'Read, set or remove the workspace owner\'s white-label logo for reports',
-    action: 'Set branding'
   },
   {
     name: 'Set Click Tracking',
@@ -554,6 +548,12 @@ export const accountOperationOptions = [
     value: 'timezone',
     description: 'Set the time zone of the account that owns the API key',
     action: 'Set timezone'
+  },
+  {
+    name: 'Set White Label',
+    value: 'whiteLabelSet',
+    description: 'Read, set or remove the white-label logo printed on your reports, an account-level setting',
+    action: 'Set white label'
   },
   {
     name: 'Update',
@@ -579,17 +579,14 @@ export const accountProperties: INodeProperties[] = [
         ],
         operation: [
           'customFieldCreate',
-          'brandingDelete',
           'customFieldDelete',
           'customFieldDeleteValue',
           'billingInvoices',
-          'brandingGet',
           'limits',
           'customFieldList',
           'workingHours',
           'planDetails',
           'customFieldRename',
-          'brandingSet',
           'clickTracking',
           'customFieldSetValue'
         ]
@@ -1088,32 +1085,6 @@ export const accountProperties: INodeProperties[] = [
     ]
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'account'
-        ],
-        operation: [
-          'brandingSet'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Logo URL',
-        name: 'logoUrl',
-        type: 'string',
-        default: '',
-        description: 'For set, required there: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is)'
-      }
-    ]
-  },
-  {
     displayName: 'Account Name or ID',
     name: 'accountId',
     type: 'options',
@@ -1252,6 +1223,32 @@ export const accountProperties: INodeProperties[] = [
         ]
       }
     }
+  },
+  {
+    displayName: 'Additional Fields',
+    name: 'additionalFields',
+    type: 'collection',
+    placeholder: 'Add Field',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: [
+          'account'
+        ],
+        operation: [
+          'whiteLabelSet'
+        ]
+      }
+    },
+    options: [
+      {
+        displayName: 'Logo URL',
+        name: 'logoUrl',
+        type: 'string',
+        default: '',
+        description: 'For set, required there: a publicly reachable image URL, downloaded and stored in your RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is)'
+      }
+    ]
   },
   {
     displayName: 'Additional Fields',
