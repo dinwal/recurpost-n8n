@@ -458,103 +458,103 @@
       "name": "Edit",
       "value": "edit"
     },
-    "hashtag_groups:add": {
+    "hashtag_groups_add": {
       "name": "Add Hashtag Group",
       "value": "hashtagGroupAdd"
     },
-    "hashtag_groups:copy": {
+    "hashtag_groups_copy": {
       "name": "Copy Hashtag Groups",
       "value": "hashtagGroupCopy"
     },
-    "hashtag_groups:delete": {
+    "hashtag_groups_delete": {
       "name": "Delete Hashtag Group",
       "value": "hashtagGroupDelete"
     },
-    "hashtag_groups:list": {
+    "hashtag_groups_list": {
       "name": "Get Many Hashtag Groups",
       "value": "hashtagGroupList"
     },
-    "hashtag_groups:update": {
+    "hashtag_groups_update": {
       "name": "Update Hashtag Group",
       "value": "hashtagGroupUpdate"
     },
-    "tag_bags:add": {
+    "tag_bags_add": {
       "name": "Add Tag Bag",
       "value": "tagBagAdd"
     },
-    "tag_bags:delete": {
+    "tag_bags_delete": {
       "name": "Delete Tag Bag",
       "value": "tagBagDelete"
     },
-    "tag_bags:list": {
+    "tag_bags_list": {
       "name": "Get Many Tag Bags",
       "value": "tagBagList"
     },
-    "tag_bags:update": {
+    "tag_bags_update": {
       "name": "Update Tag Bag",
       "value": "tagBagUpdate"
     },
-    "testimonial_templates:add": {
+    "testimonial_templates_add": {
       "name": "Add Testimonial Template",
       "value": "testimonialTemplateAdd"
     },
-    "testimonial_templates:delete": {
+    "testimonial_templates_delete": {
       "name": "Delete Testimonial Template",
       "value": "testimonialTemplateDelete"
     },
-    "testimonial_templates:list": {
+    "testimonial_templates_list": {
       "name": "Get Many Testimonial Templates",
       "value": "testimonialTemplateList"
     },
-    "shortener_accounts:attach": {
+    "shortener_accounts_attach": {
       "name": "Attach Shortener Account",
       "value": "shortenerAccountAttach"
     },
-    "shortener_accounts:detach": {
+    "shortener_accounts_detach": {
       "name": "Detach Shortener Account",
       "value": "shortenerAccountDetach"
     },
-    "shortener_accounts:list": {
+    "shortener_accounts_list": {
       "name": "Get Many Shortener Accounts",
       "value": "shortenerAccountList"
     },
-    "catalog:businesses": {
+    "catalog_businesses": {
       "name": "Get Catalog Businesses",
       "value": "catalogBusinesses"
     },
-    "catalog:create": {
+    "catalog_create": {
       "name": "Create Catalog",
       "value": "catalogCreate"
     },
-    "catalog:product_save": {
+    "catalog_product_save": {
       "name": "Save Catalog Product",
       "value": "catalogProductSave"
     },
-    "catalog:product_delete": {
+    "catalog_product_delete": {
       "name": "Delete Catalog Product",
       "value": "catalogProductDelete"
     },
-    "custom_reports:delete": {
+    "custom_reports_delete": {
       "name": "Delete",
       "value": "delete"
     },
-    "custom_reports:duplicate": {
+    "custom_reports_duplicate": {
       "name": "Duplicate",
       "value": "duplicate"
     },
-    "custom_reports:get": {
+    "custom_reports_get": {
       "name": "Get",
       "value": "get"
     },
-    "custom_reports:data": {
+    "custom_reports_data": {
       "name": "Get Data",
       "value": "getData"
     },
-    "custom_reports:list": {
+    "custom_reports_list": {
       "name": "Get Many",
       "value": "list"
     },
-    "custom_reports:save": {
+    "custom_reports_save": {
       "name": "Save",
       "value": "save"
     },

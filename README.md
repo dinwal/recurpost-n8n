@@ -115,41 +115,41 @@ Operations that delete or overwrite something send the API's `confirm` flag for 
 
 | Operation | Endpoint |
 |-----------|----------|
-| Add Hashtag Group | `hashtag_groups:add` |
-| Add Tag Bag | `tag_bags:add` |
-| Add Testimonial Template | `testimonial_templates:add` |
-| Attach Shortener Account | `shortener_accounts:attach` |
-| Copy Hashtag Groups | `hashtag_groups:copy` |
-| Copy Watermark | `watermark:copy` |
-| Create Catalog | `catalog:create` |
-| Delete Catalog Product | `catalog:product_delete` |
-| Delete Hashtag Group | `hashtag_groups:delete` |
-| Delete Tag Bag | `tag_bags:delete` |
-| Delete Testimonial Template | `testimonial_templates:delete` |
-| Delete Watermark | `watermark:delete` |
-| Detach Shortener Account | `shortener_accounts:detach` |
-| Get Catalog Businesses | `catalog:businesses` |
-| Get Many Hashtag Groups | `hashtag_groups:list` |
-| Get Many Shortener Accounts | `shortener_accounts:list` |
-| Get Many Tag Bags | `tag_bags:list` |
-| Get Many Testimonial Templates | `testimonial_templates:list` |
-| Get Watermark | `watermark:get` |
-| Save Catalog Product | `catalog:product_save` |
-| Set Watermark | `watermark:set` |
-| Update Hashtag Group | `hashtag_groups:update` |
-| Update Tag Bag | `tag_bags:update` |
+| Add Hashtag Group | `hashtag_groups_add` |
+| Add Tag Bag | `tag_bags_add` |
+| Add Testimonial Template | `testimonial_templates_add` |
+| Attach Shortener Account | `shortener_accounts_attach` |
+| Copy Hashtag Groups | `hashtag_groups_copy` |
+| Copy Watermark | `watermark_copy` |
+| Create Catalog | `catalog_create` |
+| Delete Catalog Product | `catalog_product_delete` |
+| Delete Hashtag Group | `hashtag_groups_delete` |
+| Delete Tag Bag | `tag_bags_delete` |
+| Delete Testimonial Template | `testimonial_templates_delete` |
+| Delete Watermark | `watermark_delete` |
+| Detach Shortener Account | `shortener_accounts_detach` |
+| Get Catalog Businesses | `catalog_businesses` |
+| Get Many Hashtag Groups | `hashtag_groups_list` |
+| Get Many Shortener Accounts | `shortener_accounts_list` |
+| Get Many Tag Bags | `tag_bags_list` |
+| Get Many Testimonial Templates | `testimonial_templates_list` |
+| Get Watermark | `watermark_get` |
+| Save Catalog Product | `catalog_product_save` |
+| Set Watermark | `watermark_set` |
+| Update Hashtag Group | `hashtag_groups_update` |
+| Update Tag Bag | `tag_bags_update` |
 
 ### Custom Report
 
 | Operation | Endpoint |
 |-----------|----------|
-| Delete | `custom_reports:delete` |
-| Duplicate | `custom_reports:duplicate` |
-| Get | `custom_reports:get` |
-| Get Data | `custom_reports:data` |
-| Get Many | `custom_reports:list` |
+| Delete | `custom_reports_delete` |
+| Duplicate | `custom_reports_duplicate` |
+| Get | `custom_reports_get` |
+| Get Data | `custom_reports_data` |
+| Get Many | `custom_reports_list` |
 | Get PDF | `custom_report_pdf` |
-| Save | `custom_reports:save` |
+| Save | `custom_reports_save` |
 
 ### DM Automation
 

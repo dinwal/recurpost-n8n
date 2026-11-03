@@ -6,9 +6,7 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'hashtagGroupAdd',
-    endpoint: 'hashtag_groups',
-    action: 'add',
-    unwrap: 'groups',
+    endpoint: 'hashtag_groups_add',
     workspace: true,
     params: [
       {
@@ -28,26 +26,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'hashtags',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'tagId',
-        key: 'tag_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'toLibraryId',
-        key: 'to_library_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'tagBagAdd',
-    endpoint: 'tag_bags',
-    action: 'add',
+    endpoint: 'tag_bags_add',
     workspace: true,
     params: [
       {
@@ -61,20 +46,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'hashtags',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'bagId',
-        key: 'bag_id',
-        kind: 'number',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'testimonialTemplateAdd',
-    endpoint: 'testimonial_templates',
-    action: 'add',
+    endpoint: 'testimonial_templates_add',
     unwrap: 'templates',
     workspace: true,
     params: [
@@ -83,20 +61,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'image_url',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'templateId',
-        key: 'template_id',
-        kind: 'number',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'shortenerAccountAttach',
-    endpoint: 'shortener_accounts',
-    action: 'attach',
+    endpoint: 'shortener_accounts_attach',
     workspace: true,
     params: [
       {
@@ -122,9 +93,7 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'hashtagGroupCopy',
-    endpoint: 'hashtag_groups',
-    action: 'copy',
-    unwrap: 'groups',
+    endpoint: 'hashtag_groups_copy',
     workspace: true,
     params: [
       {
@@ -132,24 +101,6 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'text',
-        key: 'text',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'hashtags',
-        key: 'hashtags',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'tagId',
-        key: 'tag_id',
-        kind: 'number',
-        required: false
       },
       {
         name: 'toLibraryId',
@@ -162,8 +113,7 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'watermarkCopy',
-    endpoint: 'watermark',
-    action: 'copy',
+    endpoint: 'watermark_copy',
     workspace: true,
     params: [
       {
@@ -176,43 +126,7 @@ export const contentToolOperations: OperationSpec[] = [
         name: 'accountId',
         key: 'account_id',
         kind: 'options',
-        required: false
-      },
-      {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'opacity',
-        key: 'opacity',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'size',
-        key: 'size',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'position',
-        key: 'position',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'forceAccountIds',
-        key: 'force_account_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
-        name: 'skipInherit',
-        key: 'skip_inherit',
-        kind: 'boolean',
-        required: false
+        required: true
       },
       {
         name: 'accountIds',
@@ -225,8 +139,7 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'catalogCreate',
-    endpoint: 'catalog',
-    action: 'create',
+    endpoint: 'catalog_create',
     workspace: true,
     params: [
       {
@@ -246,74 +159,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'name',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'catalogId',
-        key: 'catalog_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'productId',
-        key: 'product_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'price',
-        key: 'price',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'currency',
-        key: 'currency',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'url',
-        key: 'url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'description',
-        key: 'description',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'availability',
-        key: 'availability',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'brand',
-        key: 'brand',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'retailerId',
-        key: 'retailer_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'catalogProductDelete',
-    endpoint: 'catalog',
-    action: 'product_delete',
+    endpoint: 'catalog_product_delete',
     confirm: true,
     workspace: true,
     params: [
@@ -324,86 +176,18 @@ export const contentToolOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'businessId',
-        key: 'business_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'catalogId',
-        key: 'catalog_id',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'productId',
         key: 'product_id',
         kind: 'string',
         required: true
-      },
-      {
-        name: 'price',
-        key: 'price',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'currency',
-        key: 'currency',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'url',
-        key: 'url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'description',
-        key: 'description',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'availability',
-        key: 'availability',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'brand',
-        key: 'brand',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'retailerId',
-        key: 'retailer_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'hashtagGroupDelete',
-    endpoint: 'hashtag_groups',
-    action: 'delete',
+    endpoint: 'hashtag_groups_delete',
     confirm: true,
-    unwrap: 'groups',
     workspace: true,
     params: [
       {
@@ -413,51 +197,20 @@ export const contentToolOperations: OperationSpec[] = [
         required: true
       },
       {
-        name: 'text',
-        key: 'text',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'hashtags',
-        key: 'hashtags',
-        kind: 'string',
-        required: false
-      },
-      {
         name: 'tagId',
         key: 'tag_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'toLibraryId',
-        key: 'to_library_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'tagBagDelete',
-    endpoint: 'tag_bags',
-    action: 'delete',
+    endpoint: 'tag_bags_delete',
     confirm: true,
     workspace: true,
     params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'hashtags',
-        key: 'hashtags',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'bagId',
         key: 'bag_id',
@@ -469,18 +222,11 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'testimonialTemplateDelete',
-    endpoint: 'testimonial_templates',
-    action: 'delete',
+    endpoint: 'testimonial_templates_delete',
     confirm: true,
     unwrap: 'templates',
     workspace: true,
     params: [
-      {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
       {
         name: 'templateId',
         key: 'template_id',
@@ -492,8 +238,7 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'watermarkDelete',
-    endpoint: 'watermark',
-    action: 'delete',
+    endpoint: 'watermark_delete',
     confirm: true,
     workspace: true,
     params: [
@@ -510,45 +255,9 @@ export const contentToolOperations: OperationSpec[] = [
         required: false
       },
       {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'opacity',
-        key: 'opacity',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'size',
-        key: 'size',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'position',
-        key: 'position',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'forceAccountIds',
-        key: 'force_account_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
         name: 'skipInherit',
         key: 'skip_inherit',
         kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'accountIds',
-        key: 'account_ids',
-        kind: 'multiOptions',
         required: false
       }
     ]
@@ -556,8 +265,7 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'shortenerAccountDetach',
-    endpoint: 'shortener_accounts',
-    action: 'detach',
+    endpoint: 'shortener_accounts_detach',
     workspace: true,
     params: [
       {
@@ -565,26 +273,14 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'account_ids',
         kind: 'multiOptions',
         required: true
-      },
-      {
-        name: 'shortenerId',
-        key: 'shortener_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'domainId',
-        key: 'domain_id',
-        kind: 'number',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'catalogBusinesses',
-    endpoint: 'catalog',
-    action: 'businesses',
+    endpoint: 'catalog_businesses',
+    unwrap: 'businesses',
     workspace: true,
     params: [
       {
@@ -592,86 +288,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'account_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'businessId',
-        key: 'business_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'catalogId',
-        key: 'catalog_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'productId',
-        key: 'product_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'price',
-        key: 'price',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'currency',
-        key: 'currency',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'url',
-        key: 'url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'description',
-        key: 'description',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'availability',
-        key: 'availability',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'brand',
-        key: 'brand',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'retailerId',
-        key: 'retailer_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'hashtagGroupList',
-    endpoint: 'hashtag_groups',
-    action: 'list',
+    endpoint: 'hashtag_groups_list',
     unwrap: 'groups',
     workspace: true,
     params: [
@@ -680,114 +303,36 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'library_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'text',
-        key: 'text',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'hashtags',
-        key: 'hashtags',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'tagId',
-        key: 'tag_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'toLibraryId',
-        key: 'to_library_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'shortenerAccountList',
-    endpoint: 'shortener_accounts',
-    action: 'list',
+    endpoint: 'shortener_accounts_list',
     workspace: true,
-    params: [
-      {
-        name: 'accountIds',
-        key: 'account_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
-        name: 'shortenerId',
-        key: 'shortener_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'domainId',
-        key: 'domain_id',
-        kind: 'number',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'contentTool',
     operation: 'tagBagList',
-    endpoint: 'tag_bags',
-    action: 'list',
+    endpoint: 'tag_bags_list',
+    unwrap: 'bags',
     workspace: true,
-    params: [
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'hashtags',
-        key: 'hashtags',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'bagId',
-        key: 'bag_id',
-        kind: 'number',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'contentTool',
     operation: 'testimonialTemplateList',
-    endpoint: 'testimonial_templates',
-    action: 'list',
+    endpoint: 'testimonial_templates_list',
     unwrap: 'templates',
     workspace: true,
-    params: [
-      {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'templateId',
-        key: 'template_id',
-        kind: 'number',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'contentTool',
     operation: 'watermarkGet',
-    endpoint: 'watermark',
-    action: 'get',
+    endpoint: 'watermark_get',
     workspace: true,
     params: [
       {
@@ -801,56 +346,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'account_id',
         kind: 'options',
         required: false
-      },
-      {
-        name: 'imageUrl',
-        key: 'image_url',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'opacity',
-        key: 'opacity',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'size',
-        key: 'size',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'position',
-        key: 'position',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'forceAccountIds',
-        key: 'force_account_ids',
-        kind: 'multiOptions',
-        required: false
-      },
-      {
-        name: 'skipInherit',
-        key: 'skip_inherit',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'accountIds',
-        key: 'account_ids',
-        kind: 'multiOptions',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'catalogProductSave',
-    endpoint: 'catalog',
-    action: 'product_save',
+    endpoint: 'catalog_product_save',
     workspace: true,
     params: [
       {
@@ -858,12 +360,6 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'account_id',
         kind: 'options',
         required: true
-      },
-      {
-        name: 'businessId',
-        key: 'business_id',
-        kind: 'string',
-        required: false
       },
       {
         name: 'name',
@@ -936,8 +432,7 @@ export const contentToolOperations: OperationSpec[] = [
   {
     resource: 'contentTool',
     operation: 'watermarkSet',
-    endpoint: 'watermark',
-    action: 'set',
+    endpoint: 'watermark_set',
     workspace: true,
     params: [
       {
@@ -956,7 +451,7 @@ export const contentToolOperations: OperationSpec[] = [
         name: 'imageUrl',
         key: 'image_url',
         kind: 'string',
-        required: true
+        required: false
       },
       {
         name: 'opacity',
@@ -981,27 +476,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'force_account_ids',
         kind: 'multiOptions',
         required: false
-      },
-      {
-        name: 'skipInherit',
-        key: 'skip_inherit',
-        kind: 'boolean',
-        required: false
-      },
-      {
-        name: 'accountIds',
-        key: 'account_ids',
-        kind: 'multiOptions',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'hashtagGroupUpdate',
-    endpoint: 'hashtag_groups',
-    action: 'update',
-    unwrap: 'groups',
+    endpoint: 'hashtag_groups_update',
     workspace: true,
     params: [
       {
@@ -1027,20 +508,13 @@ export const contentToolOperations: OperationSpec[] = [
         key: 'tag_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'toLibraryId',
-        key: 'to_library_id',
-        kind: 'string',
-        required: false
       }
     ]
   },
   {
     resource: 'contentTool',
     operation: 'tagBagUpdate',
-    endpoint: 'tag_bags',
-    action: 'update',
+    endpoint: 'tag_bags_update',
     workspace: true,
     params: [
       {
@@ -1069,139 +543,139 @@ export const contentToolOperationOptions = [
   {
     name: 'Add Hashtag Group',
     value: 'hashtagGroupAdd',
-    description: 'List, add, update, delete or copy the hashtag groups of a library',
+    description: 'Add a hashtag group to a library',
     action: 'Add hashtag group'
   },
   {
     name: 'Add Tag Bag',
     value: 'tagBagAdd',
-    description: 'List, add, update or delete the owner\'s named hashtag sets',
+    description: 'Add a bag of tags',
     action: 'Add tag bag'
   },
   {
     name: 'Add Testimonial Template',
     value: 'testimonialTemplateAdd',
-    description: 'List, add or delete the owner\'s testimonial template images',
+    description: 'Add a testimonial template image from a URL',
     action: 'Add testimonial template'
   },
   {
     name: 'Attach Shortener Account',
     value: 'shortenerAccountAttach',
-    description: 'List the owner\'s URL shortener accounts and attach or detach social accounts to one of their domains',
+    description: 'Attach social accounts to a shortener domain',
     action: 'Attach shortener account'
   },
   {
     name: 'Copy Hashtag Groups',
     value: 'hashtagGroupCopy',
-    description: 'List, add, update, delete or copy the hashtag groups of a library',
+    description: 'Copy every hashtag group of a library into another library',
     action: 'Copy hashtag groups'
   },
   {
     name: 'Copy Watermark',
     value: 'watermarkCopy',
-    description: 'Read, set, delete or copy the watermark stamped on images, per account or for the workspace',
+    description: 'Copy the watermark of one social account to other accounts',
     action: 'Copy watermark'
   },
   {
     name: 'Create Catalog',
     value: 'catalogCreate',
-    description: 'Create a product catalog on Meta for an Instagram account and manage its products',
+    description: 'Create a product catalog on Meta under a business',
     action: 'Create catalog'
   },
   {
     name: 'Delete Catalog Product',
     value: 'catalogProductDelete',
-    description: 'Create a product catalog on Meta for an Instagram account and manage its products',
+    description: 'Remove a product from a catalog on Meta',
     action: 'Delete catalog product'
   },
   {
     name: 'Delete Hashtag Group',
     value: 'hashtagGroupDelete',
-    description: 'List, add, update, delete or copy the hashtag groups of a library',
+    description: 'Remove a hashtag group from a library',
     action: 'Delete hashtag group'
   },
   {
     name: 'Delete Tag Bag',
     value: 'tagBagDelete',
-    description: 'List, add, update or delete the owner\'s named hashtag sets',
+    description: 'Delete a bag of tags',
     action: 'Delete tag bag'
   },
   {
     name: 'Delete Testimonial Template',
     value: 'testimonialTemplateDelete',
-    description: 'List, add or delete the owner\'s testimonial template images',
+    description: 'Delete a testimonial template image',
     action: 'Delete testimonial template'
   },
   {
     name: 'Delete Watermark',
     value: 'watermarkDelete',
-    description: 'Read, set, delete or copy the watermark stamped on images, per account or for the workspace',
+    description: 'Remove the watermark of a social account or of the workspace',
     action: 'Delete watermark'
   },
   {
     name: 'Detach Shortener Account',
     value: 'shortenerAccountDetach',
-    description: 'List the owner\'s URL shortener accounts and attach or detach social accounts to one of their domains',
+    description: 'Stop shortening links for social accounts',
     action: 'Detach shortener account'
   },
   {
     name: 'Get Catalog Businesses',
     value: 'catalogBusinesses',
-    description: 'Create a product catalog on Meta for an Instagram account and manage its products',
+    description: 'The Meta businesses a product catalog can be created under',
     action: 'Get catalog businesses'
   },
   {
     name: 'Get Many Hashtag Groups',
     value: 'hashtagGroupList',
-    description: 'List, add, update, delete or copy the hashtag groups of a library',
+    description: 'List the hashtag groups of a library',
     action: 'Get many hashtag groups'
   },
   {
     name: 'Get Many Shortener Accounts',
     value: 'shortenerAccountList',
-    description: 'List the owner\'s URL shortener accounts and attach or detach social accounts to one of their domains',
+    description: 'List the owner\'s URL shortener accounts and which social accounts use them',
     action: 'Get many shortener accounts'
   },
   {
     name: 'Get Many Tag Bags',
     value: 'tagBagList',
-    description: 'List, add, update or delete the owner\'s named hashtag sets',
+    description: 'List the owner\'s bags of tags',
     action: 'Get many tag bags'
   },
   {
     name: 'Get Many Testimonial Templates',
     value: 'testimonialTemplateList',
-    description: 'List, add or delete the owner\'s testimonial template images',
+    description: 'List the owner\'s testimonial template images',
     action: 'Get many testimonial templates'
   },
   {
     name: 'Get Watermark',
     value: 'watermarkGet',
-    description: 'Read, set, delete or copy the watermark stamped on images, per account or for the workspace',
+    description: 'Read the watermark of a social account or of the workspace',
     action: 'Get watermark'
   },
   {
     name: 'Save Catalog Product',
     value: 'catalogProductSave',
-    description: 'Create a product catalog on Meta for an Instagram account and manage its products',
+    description: 'Add a product to a catalog on Meta, or change one',
     action: 'Save catalog product'
   },
   {
     name: 'Set Watermark',
     value: 'watermarkSet',
-    description: 'Read, set, delete or copy the watermark stamped on images, per account or for the workspace',
+    description: 'Set the watermark of a social account or of the workspace',
     action: 'Set watermark'
   },
   {
     name: 'Update Hashtag Group',
     value: 'hashtagGroupUpdate',
-    description: 'List, add, update, delete or copy the hashtag groups of a library',
+    description: 'Change the text or hashtags of a hashtag group',
     action: 'Update hashtag group'
   },
   {
     name: 'Update Tag Bag',
     value: 'tagBagUpdate',
-    description: 'List, add, update or delete the owner\'s named hashtag sets',
+    description: 'Change the name or hashtags of a bag of tags',
     action: 'Update tag bag'
   }
 ];
@@ -1279,7 +753,7 @@ export const contentToolProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'The text that triggers the group, 1 to 100 characters. Required when action is add or update.',
+    description: 'The text that triggers the group, 1 to 100 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1297,7 +771,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The hashtags the text becomes, 1 to 100 characters. Required when action is add or update.',
+    description: 'The hashtags the text becomes, 1 to 100 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1308,39 +782,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'hashtagGroupAdd'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Tag ID',
-        name: 'tagId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the group, from the list. Required when action is update or delete.'
-      },
-      {
-        displayName: 'To Library ID',
-        name: 'toLibraryId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the library that receives the groups; another library of the owner. Required when action is copy.'
-      }
-    ]
   },
   {
     displayName: 'Name',
@@ -1348,7 +789,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Bag name, 1 to 500 characters, unique for the owner. Required when action is add; optional on update.',
+    description: 'Bag name, 1 to 500 characters, unique for the owner',
     displayOptions: {
       show: {
         resource: [
@@ -1366,7 +807,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The hashtags, 1 to 1000 characters. Required when action is add; optional on update.',
+    description: 'The hashtags, 1 to 1000 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1377,32 +818,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'tagBagAdd'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Bag ID',
-        name: 'bagId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the bag, from the list. Required when action is update or delete.'
-      }
-    ]
   },
   {
     displayName: 'Image URL',
@@ -1410,7 +825,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The template image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is add.',
+    description: 'The template image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is)',
     displayOptions: {
       show: {
         resource: [
@@ -1421,32 +836,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'testimonialTemplateAdd'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Template ID',
-        name: 'templateId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the template, from the list. Required when action is delete.'
-      }
-    ]
   },
   {
     displayName: 'Account Names or IDs',
@@ -1457,7 +846,7 @@ export const contentToolProperties: INodeProperties[] = [
       loadOptionsMethod: 'getSocialAccounts'
     },
     required: true,
-    description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Required when action is attach or detach. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -1475,7 +864,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the shortener account, from shorteners[].ID. Required when action is attach.',
+    description: 'Plain integer ID of the shortener account, from shorteners[].ID',
     displayOptions: {
       show: {
         resource: [
@@ -1493,7 +882,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of one of that shortener\'s domains, from shorteners[].domains[].ID. Required when action is attach.',
+    description: 'Plain integer ID of one of that shortener\'s domains, from shorteners[].domains[].ID',
     displayOptions: {
       show: {
         resource: [
@@ -1532,7 +921,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Encrypted ID of the library that receives the groups; another library of the owner. Required when action is copy.',
+    description: 'Encrypted ID of the library that receives the groups; another library of the owner',
     displayOptions: {
       show: {
         resource: [
@@ -1545,47 +934,25 @@ export const contentToolProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
+    displayName: 'Account Name or ID',
+    name: 'accountId',
+    type: 'options',
+    default: '',
+    typeOptions: {
+      loadOptionsMethod: 'getSocialAccounts'
+    },
+    required: true,
+    description: 'Encrypted ID of the source account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
           'contentTool'
         ],
         operation: [
-          'hashtagGroupCopy'
+          'watermarkCopy'
         ]
       }
-    },
-    options: [
-      {
-        displayName: 'Hashtags',
-        name: 'hashtags',
-        type: 'string',
-        default: '',
-        description: 'The hashtags the text becomes, 1 to 100 characters. Required when action is add or update.'
-      },
-      {
-        displayName: 'Tag ID',
-        name: 'tagId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the group, from the list. Required when action is update or delete.'
-      },
-      {
-        displayName: 'Text',
-        name: 'text',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'The text that triggers the group, 1 to 100 characters. Required when action is add or update.'
-      }
-    ]
+    }
   },
   {
     displayName: 'Account Names or IDs',
@@ -1596,7 +963,7 @@ export const contentToolProperties: INodeProperties[] = [
       loadOptionsMethod: 'getSocialAccounts'
     },
     required: true,
-    description: 'Encrypted IDs of the accounts that receive the copy, at most 50. Required when action is copy. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted IDs of the accounts that receive the copy, at most 50. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -1625,65 +992,6 @@ export const contentToolProperties: INodeProperties[] = [
       }
     },
     options: [
-      {
-        displayName: 'Account Name or ID',
-        name: 'accountId',
-        type: 'options',
-        default: '',
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account ID. Required when scope is account; for copy it is the source account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Force Account Names or IDs',
-        name: 'forceAccountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Set with scope workspace: encrypted IDs of accounts whose own watermark is replaced by the workspace one, at most 50. Accounts not listed keep their own. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.'
-      },
-      {
-        displayName: 'Opacity',
-        name: 'opacity',
-        type: 'number',
-        default: 0,
-        description: 'Set: 1 to 100 percent. Keeps the current value when omitted (50 on a first set).'
-      },
-      {
-        displayName: 'Position',
-        name: 'position',
-        type: 'options',
-        default: 'top_left',
-        options: [
-          {
-            name: 'Bottom Left',
-            value: 'bottom_left'
-          },
-          {
-            name: 'Bottom Right',
-            value: 'bottom_right'
-          },
-          {
-            name: 'Top Left',
-            value: 'top_left'
-          },
-          {
-            name: 'Top Right',
-            value: 'top_right'
-          }
-        ],
-        description: 'Set: corner the watermark sits in. Keeps the current value when omitted (bottom_left on a first set).'
-      },
       {
         displayName: 'Scope',
         name: 'scope',
@@ -1699,21 +1007,7 @@ export const contentToolProperties: INodeProperties[] = [
             value: 'workspace'
           }
         ],
-        description: 'Account acts on one social account, workspace on the watermark every account of the workspace inherits'
-      },
-      {
-        displayName: 'Size',
-        name: 'size',
-        type: 'number',
-        default: 0,
-        description: 'Set: 5 to 100, the watermark\'s width as a percentage of the image. Keeps the current value when omitted (50 on a first set).'
-      },
-      {
-        displayName: 'Skip Inherit',
-        name: 'skipInherit',
-        type: 'boolean',
-        default: false,
-        description: 'Whether delete with scope account: true also opts the account out of the workspace watermark'
+        description: 'Must be account (the default); copy works between accounts'
       }
     ]
   },
@@ -1744,7 +1038,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Meta business ID from the businesses list. Required when action is create.',
+    description: 'Meta business ID from /api/catalog_businesses',
     displayOptions: {
       show: {
         resource: [
@@ -1762,7 +1056,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Catalog name, 1 to 100 characters, required when action is create. For product_save: the product name, 1 to 150 characters, required for a new product.',
+    description: 'Catalog name, 1 to 100 characters',
     displayOptions: {
       show: {
         resource: [
@@ -1773,98 +1067,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'catalogCreate'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Availability',
-        name: 'availability',
-        type: 'string',
-        default: '',
-        description: 'Product_save: Meta availability value, for example in stock or out of stock'
-      },
-      {
-        displayName: 'Brand',
-        name: 'brand',
-        type: 'string',
-        default: '',
-        description: 'Product_save: brand name'
-      },
-      {
-        displayName: 'Catalog ID',
-        name: 'catalogId',
-        type: 'string',
-        default: '',
-        description: 'Meta catalog ID to add a product to. product_save: send this for a new product, or product_id for an existing one, not both.'
-      },
-      {
-        displayName: 'Currency',
-        name: 'currency',
-        type: 'string',
-        default: '',
-        description: 'Product_save: ISO currency code. Required for a new product.'
-      },
-      {
-        displayName: 'Description',
-        name: 'description',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Product_save: up to 5000 characters'
-      },
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the product image, starting with http:// or https://'
-      },
-      {
-        displayName: 'Price',
-        name: 'price',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the price as a number in the currency\'s units, for example 12.50. Required for a new product.'
-      },
-      {
-        displayName: 'Product ID',
-        name: 'productId',
-        type: 'string',
-        default: '',
-        description: 'Meta product ID, from /api/instagram_products. Required when action is product_delete; product_save: send it to change the product.'
-      },
-      {
-        displayName: 'Retailer ID',
-        name: 'retailerId',
-        type: 'string',
-        default: '',
-        description: 'Product_save: your own SKU or ID for the product'
-      },
-      {
-        displayName: 'URL',
-        name: 'url',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the product page, starting with http:// or https://'
-      }
-    ]
   },
   {
     displayName: 'Account Name or ID',
@@ -1893,7 +1095,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'Meta product ID, from /api/instagram_products. Required when action is product_delete; product_save: send it to change the product.',
+    description: 'Meta product ID, from /api/instagram_products',
     displayOptions: {
       show: {
         resource: [
@@ -1904,105 +1106,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'catalogProductDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Availability',
-        name: 'availability',
-        type: 'string',
-        default: '',
-        description: 'Product_save: Meta availability value, for example in stock or out of stock'
-      },
-      {
-        displayName: 'Brand',
-        name: 'brand',
-        type: 'string',
-        default: '',
-        description: 'Product_save: brand name'
-      },
-      {
-        displayName: 'Business ID',
-        name: 'businessId',
-        type: 'string',
-        default: '',
-        description: 'Meta business ID from the businesses list. Required when action is create.'
-      },
-      {
-        displayName: 'Catalog ID',
-        name: 'catalogId',
-        type: 'string',
-        default: '',
-        description: 'Meta catalog ID to add a product to. product_save: send this for a new product, or product_id for an existing one, not both.'
-      },
-      {
-        displayName: 'Currency',
-        name: 'currency',
-        type: 'string',
-        default: '',
-        description: 'Product_save: ISO currency code. Required for a new product.'
-      },
-      {
-        displayName: 'Description',
-        name: 'description',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Product_save: up to 5000 characters'
-      },
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the product image, starting with http:// or https://'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Catalog name, 1 to 100 characters, required when action is create. For product_save: the product name, 1 to 150 characters, required for a new product.'
-      },
-      {
-        displayName: 'Price',
-        name: 'price',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the price as a number in the currency\'s units, for example 12.50. Required for a new product.'
-      },
-      {
-        displayName: 'Retailer ID',
-        name: 'retailerId',
-        type: 'string',
-        default: '',
-        description: 'Product_save: your own SKU or ID for the product'
-      },
-      {
-        displayName: 'URL',
-        name: 'url',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the product page, starting with http:// or https://'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',
@@ -2031,7 +1134,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the group, from the list. Required when action is update or delete.',
+    description: 'Plain integer ID of the group, from /api/hashtag_groups_list',
     displayOptions: {
       show: {
         resource: [
@@ -2042,49 +1145,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'hashtagGroupDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Hashtags',
-        name: 'hashtags',
-        type: 'string',
-        default: '',
-        description: 'The hashtags the text becomes, 1 to 100 characters. Required when action is add or update.'
-      },
-      {
-        displayName: 'Text',
-        name: 'text',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'The text that triggers the group, 1 to 100 characters. Required when action is add or update.'
-      },
-      {
-        displayName: 'To Library ID',
-        name: 'toLibraryId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the library that receives the groups; another library of the owner. Required when action is copy.'
-      }
-    ]
   },
   {
     displayName: 'Bag ID',
@@ -2092,7 +1152,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the bag, from the list. Required when action is update or delete.',
+    description: 'Plain integer ID of the bag, from /api/tag_bags_list',
     displayOptions: {
       show: {
         resource: [
@@ -2103,39 +1163,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'tagBagDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Hashtags',
-        name: 'hashtags',
-        type: 'string',
-        default: '',
-        description: 'The hashtags, 1 to 1000 characters. Required when action is add; optional on update.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Bag name, 1 to 500 characters, unique for the owner. Required when action is add; optional on update.'
-      }
-    ]
   },
   {
     displayName: 'Template ID',
@@ -2143,7 +1170,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the template, from the list. Required when action is delete.',
+    description: 'Plain integer ID of the template, from /api/testimonial_templates_list',
     displayOptions: {
       show: {
         resource: [
@@ -2154,32 +1181,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'testimonialTemplateDelete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'The template image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is add.'
-      }
-    ]
   },
   {
     displayName: 'Additional Fields',
@@ -2206,66 +1207,7 @@ export const contentToolProperties: INodeProperties[] = [
         typeOptions: {
           loadOptionsMethod: 'getSocialAccounts'
         },
-        description: 'Encrypted social account ID. Required when scope is account; for copy it is the source account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Account Names or IDs',
-        name: 'accountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted IDs of the accounts that receive the copy, at most 50. Required when action is copy. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Force Account Names or IDs',
-        name: 'forceAccountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Set with scope workspace: encrypted IDs of accounts whose own watermark is replaced by the workspace one, at most 50. Accounts not listed keep their own. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.'
-      },
-      {
-        displayName: 'Opacity',
-        name: 'opacity',
-        type: 'number',
-        default: 0,
-        description: 'Set: 1 to 100 percent. Keeps the current value when omitted (50 on a first set).'
-      },
-      {
-        displayName: 'Position',
-        name: 'position',
-        type: 'options',
-        default: 'top_left',
-        options: [
-          {
-            name: 'Bottom Left',
-            value: 'bottom_left'
-          },
-          {
-            name: 'Bottom Right',
-            value: 'bottom_right'
-          },
-          {
-            name: 'Top Left',
-            value: 'top_left'
-          },
-          {
-            name: 'Top Right',
-            value: 'top_right'
-          }
-        ],
-        description: 'Set: corner the watermark sits in. Keeps the current value when omitted (bottom_left on a first set).'
+        description: 'Encrypted social account ID. Required when scope is account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
       },
       {
         displayName: 'Scope',
@@ -2285,18 +1227,11 @@ export const contentToolProperties: INodeProperties[] = [
         description: 'Account acts on one social account, workspace on the watermark every account of the workspace inherits'
       },
       {
-        displayName: 'Size',
-        name: 'size',
-        type: 'number',
-        default: 0,
-        description: 'Set: 5 to 100, the watermark\'s width as a percentage of the image. Keeps the current value when omitted (50 on a first set).'
-      },
-      {
         displayName: 'Skip Inherit',
         name: 'skipInherit',
         type: 'boolean',
         default: false,
-        description: 'Whether delete with scope account: true also opts the account out of the workspace watermark'
+        description: 'Whether with scope account: true also opts the account out of the workspace watermark'
       }
     ]
   },
@@ -2309,7 +1244,7 @@ export const contentToolProperties: INodeProperties[] = [
       loadOptionsMethod: 'getSocialAccounts'
     },
     required: true,
-    description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Required when action is attach or detach. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+    description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
     displayOptions: {
       show: {
         resource: [
@@ -2320,39 +1255,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'shortenerAccountDetach'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Domain ID',
-        name: 'domainId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of one of that shortener\'s domains, from shorteners[].domains[].ID. Required when action is attach.'
-      },
-      {
-        displayName: 'Shortener ID',
-        name: 'shortenerId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the shortener account, from shorteners[].ID. Required when action is attach.'
-      }
-    ]
   },
   {
     displayName: 'Account Name or ID',
@@ -2374,112 +1276,6 @@ export const contentToolProperties: INodeProperties[] = [
         ]
       }
     }
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'catalogBusinesses'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Availability',
-        name: 'availability',
-        type: 'string',
-        default: '',
-        description: 'Product_save: Meta availability value, for example in stock or out of stock'
-      },
-      {
-        displayName: 'Brand',
-        name: 'brand',
-        type: 'string',
-        default: '',
-        description: 'Product_save: brand name'
-      },
-      {
-        displayName: 'Business ID',
-        name: 'businessId',
-        type: 'string',
-        default: '',
-        description: 'Meta business ID from the businesses list. Required when action is create.'
-      },
-      {
-        displayName: 'Catalog ID',
-        name: 'catalogId',
-        type: 'string',
-        default: '',
-        description: 'Meta catalog ID to add a product to. product_save: send this for a new product, or product_id for an existing one, not both.'
-      },
-      {
-        displayName: 'Currency',
-        name: 'currency',
-        type: 'string',
-        default: '',
-        description: 'Product_save: ISO currency code. Required for a new product.'
-      },
-      {
-        displayName: 'Description',
-        name: 'description',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'Product_save: up to 5000 characters'
-      },
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the product image, starting with http:// or https://'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Catalog name, 1 to 100 characters, required when action is create. For product_save: the product name, 1 to 150 characters, required for a new product.'
-      },
-      {
-        displayName: 'Price',
-        name: 'price',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the price as a number in the currency\'s units, for example 12.50. Required for a new product.'
-      },
-      {
-        displayName: 'Product ID',
-        name: 'productId',
-        type: 'string',
-        default: '',
-        description: 'Meta product ID, from /api/instagram_products. Required when action is product_delete; product_save: send it to change the product.'
-      },
-      {
-        displayName: 'Retailer ID',
-        name: 'retailerId',
-        type: 'string',
-        default: '',
-        description: 'Product_save: your own SKU or ID for the product'
-      },
-      {
-        displayName: 'URL',
-        name: 'url',
-        type: 'string',
-        default: '',
-        description: 'Product_save: the product page, starting with http:// or https://'
-      }
-    ]
   },
   {
     displayName: 'Library Name or ID',
@@ -2514,172 +1310,6 @@ export const contentToolProperties: INodeProperties[] = [
           'contentTool'
         ],
         operation: [
-          'hashtagGroupList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Hashtags',
-        name: 'hashtags',
-        type: 'string',
-        default: '',
-        description: 'The hashtags the text becomes, 1 to 100 characters. Required when action is add or update.'
-      },
-      {
-        displayName: 'Tag ID',
-        name: 'tagId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the group, from the list. Required when action is update or delete.'
-      },
-      {
-        displayName: 'Text',
-        name: 'text',
-        type: 'string',
-        default: '',
-        typeOptions: {
-          rows: 3
-        },
-        description: 'The text that triggers the group, 1 to 100 characters. Required when action is add or update.'
-      },
-      {
-        displayName: 'To Library ID',
-        name: 'toLibraryId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the library that receives the groups; another library of the owner. Required when action is copy.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'shortenerAccountList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Account Names or IDs',
-        name: 'accountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted social account IDs: one ID, a comma-separated string or an array, at most 50. Required when action is attach or detach. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Domain ID',
-        name: 'domainId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of one of that shortener\'s domains, from shorteners[].domains[].ID. Required when action is attach.'
-      },
-      {
-        displayName: 'Shortener ID',
-        name: 'shortenerId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the shortener account, from shorteners[].ID. Required when action is attach.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'tagBagList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Bag ID',
-        name: 'bagId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the bag, from the list. Required when action is update or delete.'
-      },
-      {
-        displayName: 'Hashtags',
-        name: 'hashtags',
-        type: 'string',
-        default: '',
-        description: 'The hashtags, 1 to 1000 characters. Required when action is add; optional on update.'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Bag name, 1 to 500 characters, unique for the owner. Required when action is add; optional on update.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'testimonialTemplateList'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'The template image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is add.'
-      },
-      {
-        displayName: 'Template ID',
-        name: 'templateId',
-        type: 'number',
-        default: 0,
-        description: 'Plain integer ID of the template, from the list. Required when action is delete.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
           'watermarkGet'
         ]
       }
@@ -2693,66 +1323,7 @@ export const contentToolProperties: INodeProperties[] = [
         typeOptions: {
           loadOptionsMethod: 'getSocialAccounts'
         },
-        description: 'Encrypted social account ID. Required when scope is account; for copy it is the source account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Account Names or IDs',
-        name: 'accountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted IDs of the accounts that receive the copy, at most 50. Required when action is copy. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Force Account Names or IDs',
-        name: 'forceAccountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Set with scope workspace: encrypted IDs of accounts whose own watermark is replaced by the workspace one, at most 50. Accounts not listed keep their own. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.'
-      },
-      {
-        displayName: 'Opacity',
-        name: 'opacity',
-        type: 'number',
-        default: 0,
-        description: 'Set: 1 to 100 percent. Keeps the current value when omitted (50 on a first set).'
-      },
-      {
-        displayName: 'Position',
-        name: 'position',
-        type: 'options',
-        default: 'top_left',
-        options: [
-          {
-            name: 'Bottom Left',
-            value: 'bottom_left'
-          },
-          {
-            name: 'Bottom Right',
-            value: 'bottom_right'
-          },
-          {
-            name: 'Top Left',
-            value: 'top_left'
-          },
-          {
-            name: 'Top Right',
-            value: 'top_right'
-          }
-        ],
-        description: 'Set: corner the watermark sits in. Keeps the current value when omitted (bottom_left on a first set).'
+        description: 'Encrypted social account ID. Required when scope is account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
       },
       {
         displayName: 'Scope',
@@ -2770,20 +1341,6 @@ export const contentToolProperties: INodeProperties[] = [
           }
         ],
         description: 'Account acts on one social account, workspace on the watermark every account of the workspace inherits'
-      },
-      {
-        displayName: 'Size',
-        name: 'size',
-        type: 'number',
-        default: 0,
-        description: 'Set: 5 to 100, the watermark\'s width as a percentage of the image. Keeps the current value when omitted (50 on a first set).'
-      },
-      {
-        displayName: 'Skip Inherit',
-        name: 'skipInherit',
-        type: 'boolean',
-        default: false,
-        description: 'Whether delete with scope account: true also opts the account out of the workspace watermark'
       }
     ]
   },
@@ -2830,35 +1387,28 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'availability',
         type: 'string',
         default: '',
-        description: 'Product_save: Meta availability value, for example in stock or out of stock'
+        description: 'Meta availability value, for example in stock or out of stock'
       },
       {
         displayName: 'Brand',
         name: 'brand',
         type: 'string',
         default: '',
-        description: 'Product_save: brand name'
-      },
-      {
-        displayName: 'Business ID',
-        name: 'businessId',
-        type: 'string',
-        default: '',
-        description: 'Meta business ID from the businesses list. Required when action is create.'
+        description: 'Brand name'
       },
       {
         displayName: 'Catalog ID',
         name: 'catalogId',
         type: 'string',
         default: '',
-        description: 'Meta catalog ID to add a product to. product_save: send this for a new product, or product_id for an existing one, not both.'
+        description: 'Meta catalog ID to add a product to. Send this for a new product, or product_id for an existing one, not both.'
       },
       {
         displayName: 'Currency',
         name: 'currency',
         type: 'string',
         default: '',
-        description: 'Product_save: ISO currency code. Required for a new product.'
+        description: 'ISO currency code. Required for a new product.'
       },
       {
         displayName: 'Description',
@@ -2868,69 +1418,51 @@ export const contentToolProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'Product_save: up to 5000 characters'
+        description: 'Up to 5000 characters'
       },
       {
         displayName: 'Image URL',
         name: 'imageUrl',
         type: 'string',
         default: '',
-        description: 'Product_save: the product image, starting with http:// or https://'
+        description: 'The product image, starting with http:// or https://'
       },
       {
         displayName: 'Name',
         name: 'name',
         type: 'string',
         default: '',
-        description: 'Catalog name, 1 to 100 characters, required when action is create. For product_save: the product name, 1 to 150 characters, required for a new product.'
+        description: 'The product name, 1 to 150 characters. Required for a new product.'
       },
       {
         displayName: 'Price',
         name: 'price',
         type: 'string',
         default: '',
-        description: 'Product_save: the price as a number in the currency\'s units, for example 12.50. Required for a new product.'
+        description: 'The price as a number in the currency\'s units, for example 12.50. Required for a new product.'
       },
       {
         displayName: 'Product ID',
         name: 'productId',
         type: 'string',
         default: '',
-        description: 'Meta product ID, from /api/instagram_products. Required when action is product_delete; product_save: send it to change the product.'
+        description: 'Meta product ID, from /api/instagram_products. Send it to change the product.'
       },
       {
         displayName: 'Retailer ID',
         name: 'retailerId',
         type: 'string',
         default: '',
-        description: 'Product_save: your own SKU or ID for the product'
+        description: 'Your own SKU or ID for the product'
       },
       {
         displayName: 'URL',
         name: 'url',
         type: 'string',
         default: '',
-        description: 'Product_save: the product page, starting with http:// or https://'
+        description: 'The product page, starting with http:// or https://'
       }
     ]
-  },
-  {
-    displayName: 'Image URL',
-    name: 'imageUrl',
-    type: 'string',
-    default: '',
-    required: true,
-    description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when action is set and no watermark is saved yet.',
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'watermarkSet'
-        ]
-      }
-    }
   },
   {
     displayName: 'Additional Fields',
@@ -2957,17 +1489,7 @@ export const contentToolProperties: INodeProperties[] = [
         typeOptions: {
           loadOptionsMethod: 'getSocialAccounts'
         },
-        description: 'Encrypted social account ID. Required when scope is account; for copy it is the source account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
-      },
-      {
-        displayName: 'Account Names or IDs',
-        name: 'accountIds',
-        type: 'multiOptions',
-        default: [],
-        typeOptions: {
-          loadOptionsMethod: 'getSocialAccounts'
-        },
-        description: 'Encrypted IDs of the accounts that receive the copy, at most 50. Required when action is copy. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+        description: 'Encrypted social account ID. Required when scope is account. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
       },
       {
         displayName: 'Force Account Names or IDs',
@@ -2977,14 +1499,21 @@ export const contentToolProperties: INodeProperties[] = [
         typeOptions: {
           loadOptionsMethod: 'getSocialAccounts'
         },
-        description: 'Set with scope workspace: encrypted IDs of accounts whose own watermark is replaced by the workspace one, at most 50. Accounts not listed keep their own. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+        description: 'With scope workspace: encrypted IDs of accounts whose own watermark is replaced by the workspace one, at most 50. Accounts not listed keep their own. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.'
+      },
+      {
+        displayName: 'Image URL',
+        name: 'imageUrl',
+        type: 'string',
+        default: '',
+        description: 'The watermark image: a publicly reachable image URL, downloaded and stored in the owner\'s RecurPost storage (a URL already on RecurPost storage, for example from /api/media_list, is used as it is). Required when no watermark is saved yet.'
       },
       {
         displayName: 'Opacity',
         name: 'opacity',
         type: 'number',
         default: 0,
-        description: 'Set: 1 to 100 percent. Keeps the current value when omitted (50 on a first set).'
+        description: '1 to 100 percent. Keeps the current value when omitted (50 on a first set).'
       },
       {
         displayName: 'Position',
@@ -3009,7 +1538,7 @@ export const contentToolProperties: INodeProperties[] = [
             value: 'top_right'
           }
         ],
-        description: 'Set: corner the watermark sits in. Keeps the current value when omitted (bottom_left on a first set).'
+        description: 'Corner the watermark sits in: top_left, top_right, bottom_left or bottom_right. Keeps the current value when omitted (bottom_left on a first set).'
       },
       {
         displayName: 'Scope',
@@ -3033,14 +1562,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'size',
         type: 'number',
         default: 0,
-        description: 'Set: 5 to 100, the watermark\'s width as a percentage of the image. Keeps the current value when omitted (50 on a first set).'
-      },
-      {
-        displayName: 'Skip Inherit',
-        name: 'skipInherit',
-        type: 'boolean',
-        default: false,
-        description: 'Whether delete with scope account: true also opts the account out of the workspace watermark'
+        description: '5 to 100, the watermark\'s width as a percentage of the image. Keeps the current value when omitted (50 on a first set).'
       }
     ]
   },
@@ -3074,7 +1596,7 @@ export const contentToolProperties: INodeProperties[] = [
       rows: 3
     },
     required: true,
-    description: 'The text that triggers the group, 1 to 100 characters. Required when action is add or update.',
+    description: 'The text that triggers the group, 1 to 100 characters',
     displayOptions: {
       show: {
         resource: [
@@ -3092,7 +1614,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'string',
     default: '',
     required: true,
-    description: 'The hashtags the text becomes, 1 to 100 characters. Required when action is add or update.',
+    description: 'The hashtags the text becomes, 1 to 100 characters',
     displayOptions: {
       show: {
         resource: [
@@ -3110,7 +1632,7 @@ export const contentToolProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the group, from the list. Required when action is update or delete.',
+    description: 'Plain integer ID of the group, from /api/hashtag_groups_list',
     displayOptions: {
       show: {
         resource: [
@@ -3123,38 +1645,12 @@ export const contentToolProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'contentTool'
-        ],
-        operation: [
-          'hashtagGroupUpdate'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'To Library ID',
-        name: 'toLibraryId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the library that receives the groups; another library of the owner. Required when action is copy.'
-      }
-    ]
-  },
-  {
     displayName: 'Bag ID',
     name: 'bagId',
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain integer ID of the bag, from the list. Required when action is update or delete.',
+    description: 'Plain integer ID of the bag, from /api/tag_bags_list',
     displayOptions: {
       show: {
         resource: [
@@ -3188,14 +1684,14 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'hashtags',
         type: 'string',
         default: '',
-        description: 'The hashtags, 1 to 1000 characters. Required when action is add; optional on update.'
+        description: 'The hashtags, 1 to 1000 characters. Left out, they are kept.'
       },
       {
         displayName: 'Name',
         name: 'name',
         type: 'string',
         default: '',
-        description: 'Bag name, 1 to 500 characters, unique for the owner. Required when action is add; optional on update.'
+        description: 'New bag name, 1 to 500 characters, unique for the owner. Left out, the name is kept.'
       }
     ]
   }

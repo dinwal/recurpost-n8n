@@ -6,8 +6,7 @@ export const customReportOperations: OperationSpec[] = [
   {
     resource: 'customReport',
     operation: 'delete',
-    endpoint: 'custom_reports',
-    action: 'delete',
+    endpoint: 'custom_reports_delete',
     confirm: true,
     workspace: true,
     params: [
@@ -16,68 +15,13 @@ export const customReportOperations: OperationSpec[] = [
         key: 'report_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'accounts',
-        key: 'accounts',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'tiles',
-        key: 'tiles',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'dateMode',
-        key: 'date_mode',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'templateKey',
-        key: 'template_key',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'period',
-        key: 'period',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'forceRefresh',
-        key: 'force_refresh',
-        kind: 'boolean',
-        required: false
       }
     ]
   },
   {
     resource: 'customReport',
     operation: 'duplicate',
-    endpoint: 'custom_reports',
-    action: 'duplicate',
+    endpoint: 'custom_reports_duplicate',
     workspace: true,
     params: [
       {
@@ -85,68 +29,13 @@ export const customReportOperations: OperationSpec[] = [
         key: 'report_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'accounts',
-        key: 'accounts',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'tiles',
-        key: 'tiles',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'dateMode',
-        key: 'date_mode',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'templateKey',
-        key: 'template_key',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'period',
-        key: 'period',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'forceRefresh',
-        key: 'force_refresh',
-        kind: 'boolean',
-        required: false
       }
     ]
   },
   {
     resource: 'customReport',
     operation: 'get',
-    endpoint: 'custom_reports',
-    action: 'get',
+    endpoint: 'custom_reports_get',
     workspace: true,
     params: [
       {
@@ -154,105 +43,20 @@ export const customReportOperations: OperationSpec[] = [
         key: 'report_id',
         kind: 'number',
         required: true
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'accounts',
-        key: 'accounts',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'tiles',
-        key: 'tiles',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'dateMode',
-        key: 'date_mode',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'templateKey',
-        key: 'template_key',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'period',
-        key: 'period',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'forceRefresh',
-        key: 'force_refresh',
-        kind: 'boolean',
-        required: false
       }
     ]
   },
   {
     resource: 'customReport',
     operation: 'getData',
-    endpoint: 'custom_reports',
-    action: 'data',
+    endpoint: 'custom_reports_data',
     workspace: true,
     params: [
       {
         name: 'reportId',
         key: 'report_id',
         kind: 'number',
-        required: false
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'accounts',
-        key: 'accounts',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'tiles',
-        key: 'tiles',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'dateMode',
-        key: 'date_mode',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'templateKey',
-        key: 'template_key',
-        kind: 'string',
-        required: false
+        required: true
       },
       {
         name: 'period',
@@ -283,71 +87,10 @@ export const customReportOperations: OperationSpec[] = [
   {
     resource: 'customReport',
     operation: 'list',
-    endpoint: 'custom_reports',
-    action: 'list',
+    endpoint: 'custom_reports_list',
+    unwrap: 'reports',
     workspace: true,
-    params: [
-      {
-        name: 'reportId',
-        key: 'report_id',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'name',
-        key: 'name',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'accounts',
-        key: 'accounts',
-        kind: 'list',
-        required: false
-      },
-      {
-        name: 'tiles',
-        key: 'tiles',
-        kind: 'json',
-        required: false
-      },
-      {
-        name: 'dateMode',
-        key: 'date_mode',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'templateKey',
-        key: 'template_key',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'period',
-        key: 'period',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'forceRefresh',
-        key: 'force_refresh',
-        kind: 'boolean',
-        required: false
-      }
-    ]
+    params: []
   },
   {
     resource: 'customReport',
@@ -390,8 +133,7 @@ export const customReportOperations: OperationSpec[] = [
   {
     resource: 'customReport',
     operation: 'save',
-    endpoint: 'custom_reports',
-    action: 'save',
+    endpoint: 'custom_reports_save',
     workspace: true,
     params: [
       {
@@ -404,7 +146,7 @@ export const customReportOperations: OperationSpec[] = [
         name: 'name',
         key: 'name',
         kind: 'string',
-        required: true
+        required: false
       },
       {
         name: 'accounts',
@@ -429,30 +171,6 @@ export const customReportOperations: OperationSpec[] = [
         key: 'template_key',
         kind: 'string',
         required: false
-      },
-      {
-        name: 'period',
-        key: 'period',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'startDate',
-        key: 'start_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'endDate',
-        key: 'end_date',
-        kind: 'date',
-        required: false
-      },
-      {
-        name: 'forceRefresh',
-        key: 'force_refresh',
-        kind: 'boolean',
-        required: false
       }
     ]
   }
@@ -462,31 +180,31 @@ export const customReportOperationOptions = [
   {
     name: 'Delete',
     value: 'delete',
-    description: 'List, read, create or update, duplicate and delete the workspace\'s custom report canvases',
+    description: 'Delete a custom report',
     action: 'Delete a custom report'
   },
   {
     name: 'Duplicate',
     value: 'duplicate',
-    description: 'List, read, create or update, duplicate and delete the workspace\'s custom report canvases',
+    description: 'Copy a custom report',
     action: 'Duplicate a custom report'
   },
   {
     name: 'Get',
     value: 'get',
-    description: 'List, read, create or update, duplicate and delete the workspace\'s custom report canvases',
+    description: 'Read one custom report with its tiles',
     action: 'Get a custom report'
   },
   {
     name: 'Get Data',
     value: 'getData',
-    description: 'List, read, create or update, duplicate and delete the workspace\'s custom report canvases',
+    description: 'The numbers behind the metric tiles of a custom report',
     action: 'Get data'
   },
   {
     name: 'Get Many',
     value: 'list',
-    description: 'List, read, create or update, duplicate and delete the workspace\'s custom report canvases',
+    description: 'List the workspace\'s custom reports',
     action: 'Get many custom reports'
   },
   {
@@ -498,7 +216,7 @@ export const customReportOperationOptions = [
   {
     name: 'Save',
     value: 'save',
-    description: 'List, read, create or update, duplicate and delete the workspace\'s custom report canvases',
+    description: 'Create a custom report or change one',
     action: 'Save a custom report'
   }
 ];
@@ -536,7 +254,7 @@ export const customReportProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain report ID from list. Required when action is get, duplicate or delete; on save it names the report to change, leave it out to create one.',
+    description: 'Plain report ID from /api/custom_reports_list',
     displayOptions: {
       show: {
         resource: [
@@ -549,112 +267,12 @@ export const customReportProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'customReport'
-        ],
-        operation: [
-          'delete'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Accounts',
-        name: 'accounts',
-        type: 'string',
-        default: '',
-        description: 'Save: the social accounts the report covers, as encrypted IDs from /api/social_account_list (a JSON array, a form array or a comma-separated string; up to 50). They must be the workspace owner\'s and, when workspace_id is sent, inside that workspace. Send an empty value to clear the list. Separate several values with commas.'
-      },
-      {
-        displayName: 'Date Mode',
-        name: 'dateMode',
-        type: 'string',
-        default: 'Last Week',
-        description: 'Save: the period the report opens with: Last Week, Last Month, Today, Yesterday or a fixed range YYYY-MM-DD|YYYY-MM-DD (first day, a pipe, last day). Case matters.'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: last day, YYYY-MM-DD, at most a year after start_date'
-      },
-      {
-        displayName: 'Force Refresh',
-        name: 'forceRefresh',
-        type: 'boolean',
-        default: false,
-        description: 'Whether with action data: ask the networks again instead of the stored figures'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Report name, 1 to 255 characters. Required when action is save and no report_id is sent (a create); optional on a change.'
-      },
-      {
-        displayName: 'Period',
-        name: 'period',
-        type: 'options',
-        default: 'today',
-        options: [
-          {
-            name: 'Last Month',
-            value: 'last_month'
-          },
-          {
-            name: 'Last Week',
-            value: 'last_week'
-          },
-          {
-            name: 'Today',
-            value: 'today'
-          },
-          {
-            name: 'Yesterday',
-            value: 'yesterday'
-          }
-        ],
-        description: 'With action data: today, yesterday, last_week or last_month in the owner\'s timezone. Defaults to the report\'s own date_mode.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: first day, YYYY-MM-DD, with end_date; wins over period'
-      },
-      {
-        displayName: 'Template Key',
-        name: 'templateKey',
-        type: 'string',
-        default: '',
-        description: 'Save: the template the canvas was started from, up to 50 letters, digits, - and _; blank for none. Kept for the app\'s own use.'
-      },
-      {
-        displayName: 'Tiles',
-        name: 'tiles',
-        type: 'json',
-        default: '[]',
-        description: 'Save: the tiles of the canvas, in display order, as a JSON array or a JSON string. Each tile is an object. A metric tile: metricId (a metric key of the app\'s custom report canvas, 1 to 60 lowercase letters, digits and hyphens, for example followers or impressions), title (up to 120 characters), viz (number, line, area, bar, pie, list, table, funnel, gauge, heat or map; default number), size (quarter, third, half, threeq or full; default quarter) and compare (blank, previous for the comparison window or network). A note tile: metricId note, title, size and body (up to 5000 characters). At most 60 tiles and 200000 bytes of JSON.'
-      }
-    ]
-  },
-  {
     displayName: 'Report ID',
     name: 'reportId',
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain report ID from list. Required when action is get, duplicate or delete; on save it names the report to change, leave it out to create one.',
+    description: 'Plain report ID from /api/custom_reports_list',
     displayOptions: {
       show: {
         resource: [
@@ -667,112 +285,12 @@ export const customReportProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'customReport'
-        ],
-        operation: [
-          'duplicate'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Accounts',
-        name: 'accounts',
-        type: 'string',
-        default: '',
-        description: 'Save: the social accounts the report covers, as encrypted IDs from /api/social_account_list (a JSON array, a form array or a comma-separated string; up to 50). They must be the workspace owner\'s and, when workspace_id is sent, inside that workspace. Send an empty value to clear the list. Separate several values with commas.'
-      },
-      {
-        displayName: 'Date Mode',
-        name: 'dateMode',
-        type: 'string',
-        default: 'Last Week',
-        description: 'Save: the period the report opens with: Last Week, Last Month, Today, Yesterday or a fixed range YYYY-MM-DD|YYYY-MM-DD (first day, a pipe, last day). Case matters.'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: last day, YYYY-MM-DD, at most a year after start_date'
-      },
-      {
-        displayName: 'Force Refresh',
-        name: 'forceRefresh',
-        type: 'boolean',
-        default: false,
-        description: 'Whether with action data: ask the networks again instead of the stored figures'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Report name, 1 to 255 characters. Required when action is save and no report_id is sent (a create); optional on a change.'
-      },
-      {
-        displayName: 'Period',
-        name: 'period',
-        type: 'options',
-        default: 'today',
-        options: [
-          {
-            name: 'Last Month',
-            value: 'last_month'
-          },
-          {
-            name: 'Last Week',
-            value: 'last_week'
-          },
-          {
-            name: 'Today',
-            value: 'today'
-          },
-          {
-            name: 'Yesterday',
-            value: 'yesterday'
-          }
-        ],
-        description: 'With action data: today, yesterday, last_week or last_month in the owner\'s timezone. Defaults to the report\'s own date_mode.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: first day, YYYY-MM-DD, with end_date; wins over period'
-      },
-      {
-        displayName: 'Template Key',
-        name: 'templateKey',
-        type: 'string',
-        default: '',
-        description: 'Save: the template the canvas was started from, up to 50 letters, digits, - and _; blank for none. Kept for the app\'s own use.'
-      },
-      {
-        displayName: 'Tiles',
-        name: 'tiles',
-        type: 'json',
-        default: '[]',
-        description: 'Save: the tiles of the canvas, in display order, as a JSON array or a JSON string. Each tile is an object. A metric tile: metricId (a metric key of the app\'s custom report canvas, 1 to 60 lowercase letters, digits and hyphens, for example followers or impressions), title (up to 120 characters), viz (number, line, area, bar, pie, list, table, funnel, gauge, heat or map; default number), size (quarter, third, half, threeq or full; default quarter) and compare (blank, previous for the comparison window or network). A note tile: metricId note, title, size and body (up to 5000 characters). At most 60 tiles and 200000 bytes of JSON.'
-      }
-    ]
-  },
-  {
     displayName: 'Report ID',
     name: 'reportId',
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain report ID from list. Required when action is get, duplicate or delete; on save it names the report to change, leave it out to create one.',
+    description: 'Plain report ID from /api/custom_reports_list',
     displayOptions: {
       show: {
         resource: [
@@ -785,104 +303,22 @@ export const customReportProperties: INodeProperties[] = [
     }
   },
   {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
+    displayName: 'Report ID',
+    name: 'reportId',
+    type: 'number',
+    default: 0,
+    required: true,
+    description: 'Plain report ID from /api/custom_reports_list',
     displayOptions: {
       show: {
         resource: [
           'customReport'
         ],
         operation: [
-          'get'
+          'getData'
         ]
       }
-    },
-    options: [
-      {
-        displayName: 'Accounts',
-        name: 'accounts',
-        type: 'string',
-        default: '',
-        description: 'Save: the social accounts the report covers, as encrypted IDs from /api/social_account_list (a JSON array, a form array or a comma-separated string; up to 50). They must be the workspace owner\'s and, when workspace_id is sent, inside that workspace. Send an empty value to clear the list. Separate several values with commas.'
-      },
-      {
-        displayName: 'Date Mode',
-        name: 'dateMode',
-        type: 'string',
-        default: 'Last Week',
-        description: 'Save: the period the report opens with: Last Week, Last Month, Today, Yesterday or a fixed range YYYY-MM-DD|YYYY-MM-DD (first day, a pipe, last day). Case matters.'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: last day, YYYY-MM-DD, at most a year after start_date'
-      },
-      {
-        displayName: 'Force Refresh',
-        name: 'forceRefresh',
-        type: 'boolean',
-        default: false,
-        description: 'Whether with action data: ask the networks again instead of the stored figures'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Report name, 1 to 255 characters. Required when action is save and no report_id is sent (a create); optional on a change.'
-      },
-      {
-        displayName: 'Period',
-        name: 'period',
-        type: 'options',
-        default: 'today',
-        options: [
-          {
-            name: 'Last Month',
-            value: 'last_month'
-          },
-          {
-            name: 'Last Week',
-            value: 'last_week'
-          },
-          {
-            name: 'Today',
-            value: 'today'
-          },
-          {
-            name: 'Yesterday',
-            value: 'yesterday'
-          }
-        ],
-        description: 'With action data: today, yesterday, last_week or last_month in the owner\'s timezone. Defaults to the report\'s own date_mode.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: first day, YYYY-MM-DD, with end_date; wins over period'
-      },
-      {
-        displayName: 'Template Key',
-        name: 'templateKey',
-        type: 'string',
-        default: '',
-        description: 'Save: the template the canvas was started from, up to 50 letters, digits, - and _; blank for none. Kept for the app\'s own use.'
-      },
-      {
-        displayName: 'Tiles',
-        name: 'tiles',
-        type: 'json',
-        default: '[]',
-        description: 'Save: the tiles of the canvas, in display order, as a JSON array or a JSON string. Each tile is an object. A metric tile: metricId (a metric key of the app\'s custom report canvas, 1 to 60 lowercase letters, digits and hyphens, for example followers or impressions), title (up to 120 characters), viz (number, line, area, bar, pie, list, table, funnel, gauge, heat or map; default number), size (quarter, third, half, threeq or full; default quarter) and compare (blank, previous for the comparison window or network). A note tile: metricId note, title, size and body (up to 5000 characters). At most 60 tiles and 200000 bytes of JSON.'
-      }
-    ]
+    }
   },
   {
     displayName: 'Additional Fields',
@@ -902,39 +338,18 @@ export const customReportProperties: INodeProperties[] = [
     },
     options: [
       {
-        displayName: 'Accounts',
-        name: 'accounts',
-        type: 'string',
-        default: '',
-        description: 'Save: the social accounts the report covers, as encrypted IDs from /api/social_account_list (a JSON array, a form array or a comma-separated string; up to 50). They must be the workspace owner\'s and, when workspace_id is sent, inside that workspace. Send an empty value to clear the list. Separate several values with commas.'
-      },
-      {
-        displayName: 'Date Mode',
-        name: 'dateMode',
-        type: 'string',
-        default: 'Last Week',
-        description: 'Save: the period the report opens with: Last Week, Last Month, Today, Yesterday or a fixed range YYYY-MM-DD|YYYY-MM-DD (first day, a pipe, last day). Case matters.'
-      },
-      {
         displayName: 'End Date',
         name: 'endDate',
         type: 'dateTime',
         default: '',
-        description: 'With action data: last day, YYYY-MM-DD, at most a year after start_date'
+        description: 'Last day, YYYY-MM-DD, at most a year after start_date'
       },
       {
         displayName: 'Force Refresh',
         name: 'forceRefresh',
         type: 'boolean',
         default: false,
-        description: 'Whether with action data: ask the networks again instead of the stored figures'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Report name, 1 to 255 characters. Required when action is save and no report_id is sent (a create); optional on a change.'
+        description: 'Whether ask the networks again instead of the stored figures'
       },
       {
         displayName: 'Period',
@@ -959,142 +374,14 @@ export const customReportProperties: INodeProperties[] = [
             value: 'yesterday'
           }
         ],
-        description: 'With action data: today, yesterday, last_week or last_month in the owner\'s timezone. Defaults to the report\'s own date_mode.'
-      },
-      {
-        displayName: 'Report ID',
-        name: 'reportId',
-        type: 'number',
-        default: 0,
-        description: 'Plain report ID from list. Required when action is get, duplicate or delete; on save it names the report to change, leave it out to create one.'
+        description: 'Today, yesterday, last_week or last_month in the owner\'s timezone. Defaults to the report\'s own date_mode.'
       },
       {
         displayName: 'Start Date',
         name: 'startDate',
         type: 'dateTime',
         default: '',
-        description: 'With action data: first day, YYYY-MM-DD, with end_date; wins over period'
-      },
-      {
-        displayName: 'Template Key',
-        name: 'templateKey',
-        type: 'string',
-        default: '',
-        description: 'Save: the template the canvas was started from, up to 50 letters, digits, - and _; blank for none. Kept for the app\'s own use.'
-      },
-      {
-        displayName: 'Tiles',
-        name: 'tiles',
-        type: 'json',
-        default: '[]',
-        description: 'Save: the tiles of the canvas, in display order, as a JSON array or a JSON string. Each tile is an object. A metric tile: metricId (a metric key of the app\'s custom report canvas, 1 to 60 lowercase letters, digits and hyphens, for example followers or impressions), title (up to 120 characters), viz (number, line, area, bar, pie, list, table, funnel, gauge, heat or map; default number), size (quarter, third, half, threeq or full; default quarter) and compare (blank, previous for the comparison window or network). A note tile: metricId note, title, size and body (up to 5000 characters). At most 60 tiles and 200000 bytes of JSON.'
-      }
-    ]
-  },
-  {
-    displayName: 'Additional Fields',
-    name: 'additionalFields',
-    type: 'collection',
-    placeholder: 'Add Field',
-    default: {},
-    displayOptions: {
-      show: {
-        resource: [
-          'customReport'
-        ],
-        operation: [
-          'list'
-        ]
-      }
-    },
-    options: [
-      {
-        displayName: 'Accounts',
-        name: 'accounts',
-        type: 'string',
-        default: '',
-        description: 'Save: the social accounts the report covers, as encrypted IDs from /api/social_account_list (a JSON array, a form array or a comma-separated string; up to 50). They must be the workspace owner\'s and, when workspace_id is sent, inside that workspace. Send an empty value to clear the list. Separate several values with commas.'
-      },
-      {
-        displayName: 'Date Mode',
-        name: 'dateMode',
-        type: 'string',
-        default: 'Last Week',
-        description: 'Save: the period the report opens with: Last Week, Last Month, Today, Yesterday or a fixed range YYYY-MM-DD|YYYY-MM-DD (first day, a pipe, last day). Case matters.'
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: last day, YYYY-MM-DD, at most a year after start_date'
-      },
-      {
-        displayName: 'Force Refresh',
-        name: 'forceRefresh',
-        type: 'boolean',
-        default: false,
-        description: 'Whether with action data: ask the networks again instead of the stored figures'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'Report name, 1 to 255 characters. Required when action is save and no report_id is sent (a create); optional on a change.'
-      },
-      {
-        displayName: 'Period',
-        name: 'period',
-        type: 'options',
-        default: 'today',
-        options: [
-          {
-            name: 'Last Month',
-            value: 'last_month'
-          },
-          {
-            name: 'Last Week',
-            value: 'last_week'
-          },
-          {
-            name: 'Today',
-            value: 'today'
-          },
-          {
-            name: 'Yesterday',
-            value: 'yesterday'
-          }
-        ],
-        description: 'With action data: today, yesterday, last_week or last_month in the owner\'s timezone. Defaults to the report\'s own date_mode.'
-      },
-      {
-        displayName: 'Report ID',
-        name: 'reportId',
-        type: 'number',
-        default: 0,
-        description: 'Plain report ID from list. Required when action is get, duplicate or delete; on save it names the report to change, leave it out to create one.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: first day, YYYY-MM-DD, with end_date; wins over period'
-      },
-      {
-        displayName: 'Template Key',
-        name: 'templateKey',
-        type: 'string',
-        default: '',
-        description: 'Save: the template the canvas was started from, up to 50 letters, digits, - and _; blank for none. Kept for the app\'s own use.'
-      },
-      {
-        displayName: 'Tiles',
-        name: 'tiles',
-        type: 'json',
-        default: '[]',
-        description: 'Save: the tiles of the canvas, in display order, as a JSON array or a JSON string. Each tile is an object. A metric tile: metricId (a metric key of the app\'s custom report canvas, 1 to 60 lowercase letters, digits and hyphens, for example followers or impressions), title (up to 120 characters), viz (number, line, area, bar, pie, list, table, funnel, gauge, heat or map; default number), size (quarter, third, half, threeq or full; default quarter) and compare (blank, previous for the comparison window or network). A note tile: metricId note, title, size and body (up to 5000 characters). At most 60 tiles and 200000 bytes of JSON.'
+        description: 'First day, YYYY-MM-DD, with end_date; wins over period'
       }
     ]
   },
@@ -1104,7 +391,7 @@ export const customReportProperties: INodeProperties[] = [
     type: 'number',
     default: 0,
     required: true,
-    description: 'Plain report ID from /api/custom_reports',
+    description: 'Plain report ID from /api/custom_reports_list',
     displayOptions: {
       show: {
         resource: [
@@ -1183,24 +470,6 @@ export const customReportProperties: INodeProperties[] = [
     ]
   },
   {
-    displayName: 'Name',
-    name: 'name',
-    type: 'string',
-    default: '',
-    required: true,
-    description: 'Report name, 1 to 255 characters. Required when action is save and no report_id is sent (a create); optional on a change.',
-    displayOptions: {
-      show: {
-        resource: [
-          'customReport'
-        ],
-        operation: [
-          'save'
-        ]
-      }
-    }
-  },
-  {
     displayName: 'Additional Fields',
     name: 'additionalFields',
     type: 'collection',
@@ -1232,57 +501,18 @@ export const customReportProperties: INodeProperties[] = [
         description: 'Save: the period the report opens with: Last Week, Last Month, Today, Yesterday or a fixed range YYYY-MM-DD|YYYY-MM-DD (first day, a pipe, last day). Case matters.'
       },
       {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
+        displayName: 'Name',
+        name: 'name',
+        type: 'string',
         default: '',
-        description: 'With action data: last day, YYYY-MM-DD, at most a year after start_date'
-      },
-      {
-        displayName: 'Force Refresh',
-        name: 'forceRefresh',
-        type: 'boolean',
-        default: false,
-        description: 'Whether with action data: ask the networks again instead of the stored figures'
-      },
-      {
-        displayName: 'Period',
-        name: 'period',
-        type: 'options',
-        default: 'today',
-        options: [
-          {
-            name: 'Last Month',
-            value: 'last_month'
-          },
-          {
-            name: 'Last Week',
-            value: 'last_week'
-          },
-          {
-            name: 'Today',
-            value: 'today'
-          },
-          {
-            name: 'Yesterday',
-            value: 'yesterday'
-          }
-        ],
-        description: 'With action data: today, yesterday, last_week or last_month in the owner\'s timezone. Defaults to the report\'s own date_mode.'
+        description: 'Report name, 1 to 255 characters. Required on a create; optional on a change.'
       },
       {
         displayName: 'Report ID',
         name: 'reportId',
         type: 'number',
         default: 0,
-        description: 'Plain report ID from list. Required when action is get, duplicate or delete; on save it names the report to change, leave it out to create one.'
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'With action data: first day, YYYY-MM-DD, with end_date; wins over period'
+        description: 'The report to change. Leave it out to create one.'
       },
       {
         displayName: 'Template Key',

@@ -210,7 +210,7 @@ export const postProperties: INodeProperties[] = [
         name: 'shortenerId',
         type: 'number',
         default: 0,
-        description: 'Plain integer ID of one of your shortener accounts (see /api/shortener_accounts). Defaults to the first one.'
+        description: 'Plain integer ID of one of your shortener accounts (see /api/shortener_accounts_list). Defaults to the first one.'
       }
     ]
   }
