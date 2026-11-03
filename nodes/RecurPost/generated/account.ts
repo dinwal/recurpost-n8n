@@ -285,13 +285,6 @@ export const accountOperations: OperationSpec[] = [
   },
   {
     resource: 'account',
-    operation: 'storageUsage',
-    endpoint: 'storage_usage',
-    workspace: true,
-    params: []
-  },
-  {
-    resource: 'account',
     operation: 'customFieldRename',
     endpoint: 'custom_fields',
     action: 'rename',
@@ -505,7 +498,7 @@ export const accountOperationOptions = [
   {
     name: 'Get Limits',
     value: 'limits',
-    description: 'Plan limits of the workspace owner and how much of each is used',
+    description: 'Plan limits of the workspace owner and how much of each is used, media storage included',
     action: 'Get limits'
   },
   {
@@ -531,12 +524,6 @@ export const accountOperationOptions = [
     value: 'planDetails',
     description: 'The workspace owner\'s plan: name, billing cycle, where it was bought, its state, features and limits',
     action: 'Get plan'
-  },
-  {
-    name: 'Get Storage Usage',
-    value: 'storageUsage',
-    description: 'Media storage used against the workspace owner\'s allowance',
-    action: 'Get storage usage'
   },
   {
     name: 'Rename Custom Field',
@@ -601,7 +588,6 @@ export const accountProperties: INodeProperties[] = [
           'customFieldList',
           'workingHours',
           'planDetails',
-          'storageUsage',
           'customFieldRename',
           'brandingSet',
           'clickTracking',
