@@ -1138,54 +1138,6 @@ export const libraryOperations: OperationSpec[] = [
         required: false
       },
       {
-        name: 'inAudioId',
-        key: 'in_audio_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'inAudioAccountId',
-        key: 'in_audio_account_id',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'inAudioType',
-        key: 'in_audio_type',
-        kind: 'options',
-        required: false
-      },
-      {
-        name: 'inAudioTitle',
-        key: 'in_audio_title',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'inAudioArtist',
-        key: 'in_audio_artist',
-        kind: 'string',
-        required: false
-      },
-      {
-        name: 'inAudioDurationMs',
-        key: 'in_audio_duration_ms',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'inAudioVolume',
-        key: 'in_audio_volume',
-        kind: 'number',
-        required: false
-      },
-      {
-        name: 'inVideoVolume',
-        key: 'in_video_volume',
-        kind: 'number',
-        required: false
-      },
-      {
         name: 'inTrialReel',
         key: 'in_trial_reel',
         kind: 'options',
@@ -3534,65 +3486,6 @@ export const libraryProperties: INodeProperties[] = [
         description: 'Custom cover image URL for the video on Facebook. Public image URL; copied to RecurPost storage unless host_images_on_recurpost is off. Ignored when the post has no video_url.'
       },
       {
-        displayName: 'Instagram Audio Account ID',
-        name: 'inAudioAccountId',
-        type: 'string',
-        default: '',
-        description: 'Encrypted ID of the Instagram account /api/instagram_audio_search ran for. Required with in_audio_id.'
-      },
-      {
-        displayName: 'Instagram Audio Artist',
-        name: 'inAudioArtist',
-        type: 'string',
-        default: '',
-        description: 'Artist of the audio, as the search returned it'
-      },
-      {
-        displayName: 'Instagram Audio Duration Ms',
-        name: 'inAudioDurationMs',
-        type: 'number',
-        default: 0,
-        description: 'Length of the audio in milliseconds, as the search returned it'
-      },
-      {
-        displayName: 'Instagram Audio ID',
-        name: 'inAudioId',
-        type: 'string',
-        default: '',
-        description: 'Instagram audio to lay under a reel, from /api/instagram_audio_search. Needs in_post_type reel, a video_url and in_audio_account_id.'
-      },
-      {
-        displayName: 'Instagram Audio Title',
-        name: 'inAudioTitle',
-        type: 'string',
-        default: '',
-        description: 'Title of the audio, as the search returned it; stored with the reel'
-      },
-      {
-        displayName: 'Instagram Audio Type',
-        name: 'inAudioType',
-        type: 'options',
-        default: 'music',
-        options: [
-          {
-            name: 'Music',
-            value: 'music'
-          },
-          {
-            name: 'Original Sound',
-            value: 'original_sound'
-          }
-        ],
-        description: 'Kind of audio behind in_audio_id'
-      },
-      {
-        displayName: 'Instagram Audio Volume',
-        name: 'inAudioVolume',
-        type: 'number',
-        default: 100,
-        description: 'Volume of the added audio, 0 to 100'
-      },
-      {
         displayName: 'Instagram Collaborators',
         name: 'inCollaborators',
         type: 'string',
@@ -3678,13 +3571,6 @@ export const libraryProperties: INodeProperties[] = [
           }
         ],
         description: 'Publish the reel as a trial reel, shown to non-followers first. manual: you decide in Instagram when to share it with followers; performance: Instagram shares it when it does well. Reels only.'
-      },
-      {
-        displayName: 'Instagram Video Volume',
-        name: 'inVideoVolume',
-        type: 'number',
-        default: 100,
-        description: 'Volume of the reel\'s own sound, 0 to 100'
       },
       {
         displayName: 'Is Top Of Queue',
