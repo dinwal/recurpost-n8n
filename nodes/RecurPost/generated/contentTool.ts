@@ -365,7 +365,7 @@ export const contentToolOperations: OperationSpec[] = [
         name: 'name',
         key: 'name',
         kind: 'string',
-        required: false
+        required: true
       },
       {
         name: 'catalogId',
@@ -383,25 +383,25 @@ export const contentToolOperations: OperationSpec[] = [
         name: 'price',
         key: 'price',
         kind: 'string',
-        required: false
+        required: true
       },
       {
         name: 'currency',
         key: 'currency',
         kind: 'string',
-        required: false
+        required: true
       },
       {
         name: 'url',
         key: 'url',
         kind: 'string',
-        required: false
+        required: true
       },
       {
         name: 'imageUrl',
         key: 'image_url',
         kind: 'string',
-        required: false
+        required: true
       },
       {
         name: 'description',
@@ -1366,6 +1366,96 @@ export const contentToolProperties: INodeProperties[] = [
     }
   },
   {
+    displayName: 'Name',
+    name: 'name',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'The product name, 1 to 150 characters. Required on a new product and on a change.',
+    displayOptions: {
+      show: {
+        resource: [
+          'contentTool'
+        ],
+        operation: [
+          'catalogProductSave'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Price',
+    name: 'price',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'The price as a number in the currency\'s units, for example 12.50. Required on a new product and on a change.',
+    displayOptions: {
+      show: {
+        resource: [
+          'contentTool'
+        ],
+        operation: [
+          'catalogProductSave'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Currency',
+    name: 'currency',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'ISO currency code. Required on a new product and on a change.',
+    displayOptions: {
+      show: {
+        resource: [
+          'contentTool'
+        ],
+        operation: [
+          'catalogProductSave'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'URL',
+    name: 'url',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'The product page, starting with http:// or https://. Required on a new product and on a change.',
+    displayOptions: {
+      show: {
+        resource: [
+          'contentTool'
+        ],
+        operation: [
+          'catalogProductSave'
+        ]
+      }
+    }
+  },
+  {
+    displayName: 'Image URL',
+    name: 'imageUrl',
+    type: 'string',
+    default: '',
+    required: true,
+    description: 'The product image, starting with http:// or https://. Required on a new product and on a change.',
+    displayOptions: {
+      show: {
+        resource: [
+          'contentTool'
+        ],
+        operation: [
+          'catalogProductSave'
+        ]
+      }
+    }
+  },
+  {
     displayName: 'Additional Fields',
     name: 'additionalFields',
     type: 'collection',
@@ -1387,7 +1477,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'availability',
         type: 'string',
         default: '',
-        description: 'Meta availability value, for example in stock or out of stock'
+        description: 'Meta availability value, for example in stock or out of stock. Left out, it is sent as in stock.'
       },
       {
         displayName: 'Brand',
@@ -1404,13 +1494,6 @@ export const contentToolProperties: INodeProperties[] = [
         description: 'Meta catalog ID to add a product to. Send this for a new product, or product_id for an existing one, not both.'
       },
       {
-        displayName: 'Currency',
-        name: 'currency',
-        type: 'string',
-        default: '',
-        description: 'ISO currency code. Required for a new product.'
-      },
-      {
         displayName: 'Description',
         name: 'description',
         type: 'string',
@@ -1418,28 +1501,7 @@ export const contentToolProperties: INodeProperties[] = [
         typeOptions: {
           rows: 3
         },
-        description: 'Up to 5000 characters'
-      },
-      {
-        displayName: 'Image URL',
-        name: 'imageUrl',
-        type: 'string',
-        default: '',
-        description: 'The product image, starting with http:// or https://'
-      },
-      {
-        displayName: 'Name',
-        name: 'name',
-        type: 'string',
-        default: '',
-        description: 'The product name, 1 to 150 characters. Required for a new product.'
-      },
-      {
-        displayName: 'Price',
-        name: 'price',
-        type: 'string',
-        default: '',
-        description: 'The price as a number in the currency\'s units, for example 12.50. Required for a new product.'
+        description: 'Up to 5000 characters. Left out, it is sent blank, so a change clears it.'
       },
       {
         displayName: 'Product ID',
@@ -1453,14 +1515,7 @@ export const contentToolProperties: INodeProperties[] = [
         name: 'retailerId',
         type: 'string',
         default: '',
-        description: 'Your own SKU or ID for the product'
-      },
-      {
-        displayName: 'URL',
-        name: 'url',
-        type: 'string',
-        default: '',
-        description: 'The product page, starting with http:// or https://'
+        description: 'Your own SKU or ID for the product. Meta keeps it once set; a change does not update it.'
       }
     ]
   },
