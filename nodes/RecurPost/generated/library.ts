@@ -2701,7 +2701,7 @@ export const libraryProperties: INodeProperties[] = [
         name: 'gmbCtaType',
         type: 'number',
         default: 0,
-        description: 'Google Business call-to-action code as the app stores it: 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 1 clears the button.'
+        description: 'Google Business call-to-action code as the app stores it: 1 Learn more, 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 7 clears the button. Left out, the draft keeps its button.'
       },
       {
         displayName: 'Image URL',
@@ -3317,7 +3317,7 @@ export const libraryProperties: INodeProperties[] = [
         name: 'gmbCtaType',
         type: 'number',
         default: 0,
-        description: 'Google Business call-to-action code as the app stores it: 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 1 clears the button.'
+        description: 'Google Business call-to-action code as the app stores it: 1 Learn more, 2 Sign up, 3 Buy, 4 Order online, 5 Book, 6 Call now, 8 Offer. 0 or 7 clears the button. Left out, the draft keeps its button.'
       },
       {
         displayName: 'Image URL',
