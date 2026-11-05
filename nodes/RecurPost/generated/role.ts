@@ -68,6 +68,13 @@ export const roleOperations: OperationSpec[] = [
   },
   {
     resource: 'role',
+    operation: 'permissions',
+    endpoint: 'role_permissions',
+    workspace: true,
+    params: []
+  },
+  {
+    resource: 'role',
     operation: 'rename',
     endpoint: 'role_rename',
     workspace: true,
@@ -133,7 +140,7 @@ export const roleOperations: OperationSpec[] = [
       {
         name: 'permissions',
         key: 'permissions',
-        kind: 'list',
+        kind: 'json',
         required: true
       }
     ]
@@ -166,6 +173,12 @@ export const roleOperationOptions = [
     action: 'Get many team roles'
   },
   {
+    name: 'Get Permissions',
+    value: 'permissions',
+    description: 'List every permission a role can hold, grouped as the Roles page shows them',
+    action: 'Get permissions'
+  },
+  {
     name: 'Rename',
     value: 'rename',
     description: 'Rename a role',
@@ -180,7 +193,7 @@ export const roleOperationOptions = [
   {
     name: 'Set Permissions',
     value: 'setPermissions',
-    description: 'Replace the permission keys of a role',
+    description: 'Switch permissions of a role on or off; keys you leave out are not changed',
     action: 'Set permissions'
   }
 ];
@@ -204,6 +217,7 @@ export const roleProperties: INodeProperties[] = [
           'delete',
           'duplicate',
           'list',
+          'permissions',
           'rename',
           'setNotification',
           'setPermissions'
@@ -480,10 +494,10 @@ export const roleProperties: INodeProperties[] = [
   {
     displayName: 'Permissions',
     name: 'permissions',
-    type: 'string',
-    default: '',
+    type: 'json',
+    default: '{}',
     required: true,
-    description: 'The full list of permission keys the role should hold, as an array or a comma-separated string, from permission_keys of /api/roles. Duplicates are dropped; an empty list takes every permission away. Separate several values with commas.',
+    description: 'Object of permission key to toggle, with at least one key. Keys come from /api/role_permissions. A toggle is true/false, yes/no or 1/0, as a boolean, number or string in any case. Switching off a key the role does not hold is a no-op. As a form field send permissions[create-posts]=yes; as a string, the JSON object.',
     displayOptions: {
       show: {
         resource: [
