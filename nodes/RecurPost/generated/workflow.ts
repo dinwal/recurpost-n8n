@@ -2597,7 +2597,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'assigneeUserId',
         type: 'string',
         default: '',
-        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage.'
+        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage. A member who may not work the card\'s stage is not assigned: the card is left unassigned, so read assignee on the card.'
       },
       {
         displayName: 'Bluesky Alt Text',
@@ -3293,7 +3293,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'shareWithClient',
         type: 'boolean',
         default: false,
-        description: 'Whether the card is shared with the client for approval. Defaults to the workflow setting.'
+        description: 'Whether the card is shared with the client for approval. Defaults to the workflow setting. Only the owner and members with the send-to-client permission can set it; for anyone else it is ignored and the workflow setting applies. Read client_approval on the card to see what was kept.'
       },
       {
         displayName: 'Target Date',
@@ -3927,7 +3927,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'assigneeUserId',
         type: 'string',
         default: '',
-        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage.'
+        description: 'Encrypted user ID from members[] to assign the card to; 0 clears the assignee. The app checks the member may work the stage. A member who may not work the card\'s stage is not assigned: the card is left unassigned, so read assignee on the card.'
       },
       {
         displayName: 'Bluesky Alt Text',
@@ -4630,7 +4630,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'shareWithClient',
         type: 'boolean',
         default: false,
-        description: 'Whether the card is shared with the client for approval'
+        description: 'Whether the card is shared with the client for approval. Only the owner and members with the send-to-client permission can set it; for anyone else it is ignored and the workflow setting applies. Read client_approval on the card to see what was kept.'
       },
       {
         displayName: 'Target Date',
@@ -5334,7 +5334,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'rejectToStageId',
         type: 'number',
         default: 0,
-        description: 'On the client stage: the stage a post the client rejects goes back to'
+        description: 'On the client stage: the stage a post the client rejects goes back to. It must be an earlier work or review stage; any other value is dropped and the stage reads back 0 in stages[].'
       },
       {
         displayName: 'Reschedule By Days',
