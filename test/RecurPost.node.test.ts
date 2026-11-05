@@ -1,50 +1,9 @@
 /* eslint-disable @n8n/community-nodes/no-restricted-imports -- vitest is a devDependency; tests are excluded from the published package */
 import { describe, it, expect } from 'vitest';
 import { RecurPost } from '../nodes/RecurPost/RecurPost.node';
-
-interface HttpCall {
-  url: string;
-  body: Record<string, unknown>;
-}
-
-// Minimal stand-in for IExecuteFunctions / ILoadOptionsFunctions. Node
-// parameters come from `params`; every HTTP call is recorded and answered
-// from `responses` (keyed by URL suffix, first match wins).
-function createContext(
-  params: Record<string, unknown>,
-  responses: Array<[string, unknown]> = [['', { status: 200, message: 'Success' }]],
-) {
-  const calls: HttpCall[] = [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ctx: any = {
-    getInputData: () => [{ json: {} }],
-    getCredentials: async () => ({
-      email: 'test@example.com',
-      apiKey: 'test-key',
-      apiUrl: 'https://api.test',
-    }),
-    getNodeParameter: (name: string, _i: number, fallback?: unknown) =>
-      Object.prototype.hasOwnProperty.call(params, name) ? params[name] : fallback,
-    getCurrentNodeParameter: (name: string) => params[name],
-    continueOnFail: () => false,
-    getNode: () => ({ name: 'RecurPost', type: 'recurPost', typeVersion: 1 }),
-    helpers: {
-      httpRequestWithAuthentication: async (_credName: string, options: { url: string; body: Record<string, unknown> }) => {
-        calls.push({ url: options.url, body: options.body });
-        const match = responses.find(([suffix]) => options.url.endsWith(suffix));
-        return match ? match[1] : { status: 200, message: 'Success' };
-      },
-    },
-  };
-  return { ctx, calls };
-}
-
-async function run(params: Record<string, unknown>, responses?: Array<[string, unknown]>) {
-  const { ctx, calls } = createContext(params, responses);
-  const node = new RecurPost();
-  const result = await node.execute.call(ctx);
-  return { items: result[0], calls };
-}
+import { RecurPostApi } from '../credentials/RecurPostApi.credentials';
+import { flattenBody } from '../nodes/RecurPost/request';
+import { createContext, run } from './helpers';
 
 describe('Workspace resource', () => {
   it('Get Many calls /api/workspace_list and unwraps workspace_list', async () => {
@@ -188,6 +147,35 @@ describe('request body encoding (regression)', () => {
     });
   });
 
+  it('sends the AI disclosure switches as 1 and the Facebook image list as given', async () => {
+    const { calls } = await run({
+      resource: 'post',
+      operation: 'schedule',
+      workspaceId: '',
+      socialAccounts: ['101'],
+      content: 'Labelled',
+      scheduleType: 'now',
+      imageUrls: ['https://img.test/a.jpg'],
+      facebookOptions: { fbIsAiGenerated: true, fbAiImages: 'https://img.test/a.jpg' },
+      twitterOptions: { twMadeWithAi: true },
+      instagramOptions: { inIsAiGenerated: true },
+      pinterestOptions: { piAiModified: false, piSyntheticPerformer: true },
+      youtubeOptions: { ytContainsSyntheticMedia: true },
+      tiktokOptions: { tkIsAigc: true },
+    });
+
+    expect(calls[0].body).toMatchObject({
+      fb_is_ai_generated: '1',
+      fb_ai_images: 'https://img.test/a.jpg',
+      tw_made_with_ai: '1',
+      in_is_ai_generated: '1',
+      pi_synthetic_performer: '1',
+      yt_contains_synthetic_media: '1',
+      tk_is_aigc: '1',
+    });
+    expect(calls[0].body).not.toHaveProperty('pi_ai_modified');
+  });
+
   it('formats the schedule date as Y-m-d H:i:s', async () => {
     const { calls } = await run({
       resource: 'post',
@@ -269,5 +257,99 @@ describe('node description', () => {
       'getAll',
       'getHistory',
     ]);
+  });
+});
+
+describe('authentication', () => {
+  it('sends the email and API key as HTTP Basic auth, not in the body', () => {
+    const credential = new RecurPostApi();
+    const auth = credential.authenticate as { properties: { auth?: unknown; body?: unknown } };
+    expect(auth.properties.auth).toEqual({
+      username: '={{$credentials.email}}',
+      password: '={{$credentials.apiKey}}',
+    });
+    expect(auth.properties.body).toBeUndefined();
+  });
+
+  it('never puts credentials in a request body', async () => {
+    const { calls } = await run({ resource: 'workspace', operation: 'getAll' });
+    expect(calls[0].body).not.toHaveProperty('emailid');
+    expect(calls[0].body).not.toHaveProperty('pass_key');
+  });
+});
+
+describe('request helper', () => {
+  it('asks for the full response and keeps HTTP errors readable', async () => {
+    const { calls } = await run({ resource: 'workspace', operation: 'getAll' });
+    expect(calls[0].options).toMatchObject({
+      method: 'POST',
+      returnFullResponse: true,
+      ignoreHttpStatusErrors: true,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+  });
+
+  it('treats HTTP 200 with a body status other than 200 as an error carrying the API message', async () => {
+    await expect(
+      run(
+        { resource: 'library', operation: 'getAll', workspaceId: '' },
+        [['/api/library_list', { status: 400, error: 'Bad Request Please try again later' }]],
+      ),
+    ).rejects.toThrow('Bad Request Please try again later');
+  });
+
+  it('surfaces a real HTTP 403 with the API message', async () => {
+    await expect(
+      run(
+        { resource: 'library', operation: 'getAll', workspaceId: '' },
+        [['/api/library_list', { statusCode: 403, body: { status: 403, error: 'Not yours' } }]],
+      ),
+    ).rejects.toThrow('Not yours');
+  });
+
+  it('reports a 429 with the server wait message and does not retry by itself', async () => {
+    const reply = () => ({
+      statusCode: 429,
+      headers: { 'retry-after': '17' },
+      body: { status: 429, error: 'Rate limit of 60 calls per minute reached. Try again in 17 seconds.' },
+    });
+    const { ctx, calls } = createContext({ resource: 'workspace', operation: 'getAll' }, [['/api/workspace_list', reply]]);
+    const node = new RecurPost();
+
+    await expect(node.execute.call(ctx)).rejects.toMatchObject({
+      message: 'Rate limit of 60 calls per minute reached. Try again in 17 seconds.',
+      httpCode: '429',
+    });
+    expect(calls).toHaveLength(1);
+  });
+
+  it('keeps the API message when the node wraps the error for an item', async () => {
+    await expect(
+      run(
+        { resource: 'library', operation: 'getAll', workspaceId: '' },
+        [['/api/library_list', { statusCode: 404, body: { status: 404, error: 'Workspace not found or you do not have access to it.' } }]],
+      ),
+    ).rejects.toMatchObject({ message: 'Workspace not found or you do not have access to it.', httpCode: '404' });
+  });
+
+  it('flattens arrays and objects into PHP bracket keys and drops empty values', () => {
+    expect(
+      flattenBody({
+        id: [48213, 48214],
+        tabs: { facebook: { message: 'Hi' } },
+        empty: '',
+        missing: undefined,
+        flag: true,
+        off: false,
+        count: 3,
+      }),
+    ).toEqual({
+      'id[0]': '48213',
+      'id[1]': '48214',
+      'tabs[facebook][message]': 'Hi',
+      flag: '1',
+      off: '0',
+      count: '3',
+    });
   });
 });

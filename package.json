@@ -25,6 +25,8 @@
     "build": "n8n-node build",
     "postbuild": "node scripts/copy-codex.mjs",
     "build:watch": "tsc --watch",
+    "gen": "node scripts/gen-endpoints.mjs",
+    "gen:check": "node scripts/gen-endpoints.mjs --check",
     "dev": "n8n-node dev",
     "lint": "n8n-node lint",
     "lint:fix": "n8n-node lint --fix",
