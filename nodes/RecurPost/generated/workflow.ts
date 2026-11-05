@@ -3286,7 +3286,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'schedule',
         type: 'json',
         default: '[]',
-        description: 'Draft schedule slots, one object per slot: {account_id, at} with at as YYYY-MM-DD HH:MM (wall clock of that account\'s timezone), or {account_id, date, best_time: true} with date as YYYY-MM-DD to let RecurPost pick the best time that day. account_id is an encrypted account ID.'
+        description: 'Draft schedule slots, one object per slot: {account_id, at} with at as YYYY-MM-DD HH:MM (wall clock of that account\'s timezone), or {account_id, date, best_time: true} with date as YYYY-MM-DD to let RecurPost pick the best time that day. account_id is an encrypted account ID. Needs the publish permission (the owner and the account manager have it).'
       },
       {
         displayName: 'Share With Client',
@@ -4623,7 +4623,7 @@ export const workflowProperties: INodeProperties[] = [
         name: 'schedule',
         type: 'json',
         default: '[]',
-        description: 'Draft schedule slots, one object per slot: {account_id, at} with at as YYYY-MM-DD HH:MM (wall clock of that account\'s timezone), or {account_id, date, best_time: true} with date as YYYY-MM-DD to let RecurPost pick the best time that day. account_id is an encrypted account ID. Replaces the current slots; an empty list clears them.'
+        description: 'Draft schedule slots, one object per slot: {account_id, at} with at as YYYY-MM-DD HH:MM (wall clock of that account\'s timezone), or {account_id, date, best_time: true} with date as YYYY-MM-DD to let RecurPost pick the best time that day. account_id is an encrypted account ID. Replaces the current slots; an empty list clears them. Needs the publish permission (the owner and the account manager have it).'
       },
       {
         displayName: 'Share With Client',
