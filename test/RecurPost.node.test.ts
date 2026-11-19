@@ -364,7 +364,7 @@ describe('generated operations', () => {
     });
     expect(calls[0].body).toEqual({
       library_id: 'lib-1',
-      account_id: 'acc-1',
+      account_id: ['acc-1'],
       slots: [{ frequency: 'weekly', day: 3, time: '09:30' }],
     });
   });
