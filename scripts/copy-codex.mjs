@@ -1,7 +1,7 @@
 // Copies n8n codex files (*.node.json) into dist.
 //
 // @n8n/node-cli's `n8n-node build` (as of 0.36.x) only copies png/svg and
-// __schema__ JSON into dist — it does NOT copy the codex `*.node.json` files.
+// __schema__ JSON into dist; it does NOT copy the codex `*.node.json` files.
 // n8n auto-discovers codex by filename next to the compiled .node.js, and the
 // n8n Creator Portal verification reads fields from it (e.g. the `node` prefix),
 // so the codex must be present in the published package. This postbuild step
