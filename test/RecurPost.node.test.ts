@@ -217,6 +217,40 @@ describe('preserved v1 operations build v2 requests', () => {
     expect(calls[0].body).toEqual({ id: ['acc-1'], message: 'Now' });
   });
 
+  it('Post > Schedule sends a post type combination as a list and a single type as a string', async () => {
+    const { calls } = await run({
+      resource: 'post',
+      operation: 'schedule',
+      socialAccounts: ['acc-1'],
+      content: 'Launch',
+      scheduleType: 'now',
+      facebookOptions: { fbPostType: 'feed,story,reel' },
+      instagramOptions: { inPostType: 'story,reel' },
+    });
+    expect(calls[0].body).toMatchObject({ fb_post_type: ['feed', 'story', 'reel'], in_post_type: ['story', 'reel'] });
+
+    const single = await run({
+      resource: 'post',
+      operation: 'schedule',
+      socialAccounts: ['acc-1'],
+      content: 'Launch',
+      scheduleType: 'now',
+      facebookOptions: { fbPostType: 'story' },
+    });
+    expect(single.calls[0].body.fb_post_type).toBe('story');
+  });
+
+  it('Library > Add Content refuses a post type combination without calling the API', async () => {
+    const attempt = run({
+      resource: 'library',
+      operation: 'addContent',
+      libraryId: 'lib-1',
+      libraryContent: 'Evergreen tip',
+      instagramOptions: { inPostType: 'feed,story' },
+    });
+    await expect(attempt).rejects.toThrow('Library content takes one post type');
+  });
+
   it('Library > Add Content sends the library id, message, queue options and workspace', async () => {
     const { calls } = await run({
       resource: 'library',

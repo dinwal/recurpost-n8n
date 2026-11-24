@@ -114,7 +114,15 @@ function collection(ctx: IExecuteFunctions, name: string, itemIndex: number): ID
 
 // The shared media + per-platform options of "Post > Schedule" and
 // "Library > Add Content" as v2 JSON values.
-export function buildCustomizationBody(ctx: IExecuteFunctions, itemIndex: number): IDataObject {
+// A post type combination (feed,story) is a list for post_content; library content
+// takes one type, so a combination there stops with a clear error.
+const POST_TYPE_PARAMS = ['fb_post_type', 'in_post_type'];
+
+export function buildCustomizationBody(
+  ctx: IExecuteFunctions,
+  itemIndex: number,
+  multiplePostTypes = false,
+): IDataObject {
   const body: IDataObject = {};
 
   const imageUrls = toList(ctx.getNodeParameter('imageUrls', itemIndex, []))
@@ -146,6 +154,21 @@ export function buildCustomizationBody(ctx: IExecuteFunctions, itemIndex: number
         body[param] = value;
       }
     }
+  }
+
+  for (const param of POST_TYPE_PARAMS) {
+    const value = body[param];
+    if (typeof value !== 'string' || !value.includes(',')) {
+      continue;
+    }
+    if (!multiplePostTypes) {
+      throw new NodeOperationError(
+        ctx.getNode(),
+        'Library content takes one post type. Pick Feed, Reel or Story, or schedule the post with Post > Schedule to send several types.',
+        { itemIndex },
+      );
+    }
+    body[param] = value.split(',');
   }
 
   const instagramOptions = collection(ctx, 'instagramOptions', itemIndex);
@@ -210,7 +233,7 @@ export const LEGACY_OPERATIONS: LegacyOperation[] = [
       const body: IDataObject = {
         id: toList(ctx.getNodeParameter('socialAccounts', i, [])).map((id) => String(id)),
         message: ctx.getNodeParameter('content', i, '') as string,
-        ...buildCustomizationBody(ctx, i),
+        ...buildCustomizationBody(ctx, i, true),
       };
       if (ctx.getNodeParameter('scheduleType', i, 'now') === 'scheduled') {
         const scheduleDateTime = ctx.getNodeParameter('scheduleDateTime', i, '') as string;

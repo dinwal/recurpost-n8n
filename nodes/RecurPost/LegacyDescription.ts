@@ -281,11 +281,16 @@ export const legacyProperties: INodeProperties[] = [
         type: 'options',
         options: [
           { name: 'Feed', value: 'feed' },
+          { name: 'Feed + Reel', value: 'feed,reel' },
+          { name: 'Feed + Story', value: 'feed,story' },
+          { name: 'Feed + Story + Reel', value: 'feed,story,reel' },
           { name: 'Reel', value: 'reel' },
           { name: 'Story', value: 'story' },
+          { name: 'Story + Reel', value: 'story,reel' },
         ],
         default: 'feed',
-        description: 'Facebook post type',
+        description:
+          'Facebook post type. A combination posts each type as its own post (Post > Schedule only; library content takes one type).',
       },
     ],
   },
@@ -313,11 +318,14 @@ export const legacyProperties: INodeProperties[] = [
         type: 'options',
         options: [
           { name: 'Feed', value: 'feed' },
+          { name: 'Feed + Story', value: 'feed,story' },
           { name: 'Reel', value: 'reel' },
           { name: 'Story', value: 'story' },
+          { name: 'Story + Reel', value: 'story,reel' },
         ],
         default: 'feed',
-        description: 'Instagram post type',
+        description:
+          'Instagram post type. A combination posts each type as its own post, the second a minute after the first (Post > Schedule only; library content takes one type). Instagram does not take feed and reel together.',
       },
       {
         displayName: 'Share Reel to Feed',
