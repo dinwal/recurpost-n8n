@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-recurpost",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "N8N community node for RecurPost - Schedule and automate your social media posts",
   "keywords": [
     "n8n-community-node-package",
@@ -30,7 +30,8 @@
     "lint:fix": "n8n-node lint --fix",
     "release": "n8n-node release",
     "prepublishOnly": "n8n-node prerelease",
-    "test": "vitest run"
+    "test": "vitest run",
+    "sync-catalog": "node scripts/sync-catalog.mjs"
   },
   "files": [
     "dist"
